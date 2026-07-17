@@ -2044,6 +2044,201 @@
   }
 }
 
+/* ============================================================
+   AUTHENTICATION PAGES RESPONSIVENESS
+   ============================================================ */
+@media (max-width: 1024px) {
+  .auth-page {
+    padding: var(--space-lg) var(--space-md) !important;
+  }
+  .auth-container {
+    max-width: 100% !important;
+    padding: 0 var(--space-md) !important;
+  }
+  .auth-card {
+    padding: var(--space-xl) !important;
+  }
+  .auth-header h2 {
+    font-size: clamp(1.5rem, 5vw, 1.75rem) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .auth-page {
+    padding: var(--space-md) 0 !important;
+  }
+  .auth-container {
+    padding: 0 16px !important;
+  }
+  .auth-card {
+    padding: var(--space-lg) !important;
+  }
+  .auth-header .logo {
+    font-size: 1.25rem !important;
+  }
+  .auth-header .logo-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  
+  /* Stack inline flex elements */
+  .auth-form .flex-between {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  
+  /* Stack social buttons */
+  .social-auth {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  .social-auth .btn {
+    width: 100% !important;
+  }
+}
+
+/* ============================================================
+   DASHBOARD GLOBAL RESPONSIVENESS
+   ============================================================ */
+@media (max-width: 1024px) {
+  .dash-main {
+    padding: 24px !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Guarantee 2 columns on Tablet */
+  .quick-summary-grid, .quick-actions-grid, .stats-grid,
+  .stats-grid-6, .stats-grid-4, .qa-grid-8, .class-grid, .teacher-grid, .finance-grid, .sys-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+  
+  .dash-two-col, .dash-three-col,
+  .dash-main div[style*="grid-template-columns:2fr 1fr"],
+  .dash-main div[style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* Force tables to be horizontally scrollable without breaking parent */
+  .hw-table, .fee-table, .data-table {
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    border-collapse: collapse !important;
+  }
+  
+  .revenue-chart {
+    gap: 4px !important;
+    overflow-x: auto !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Dashboard Header Mobile Fixes */
+  .dash-header {
+    padding: 0 16px !important;
+    gap: 8px !important;
+    height: 60px !important;
+  }
+  .dash-header-search {
+    display: none !important; /* Hide search bar on small screens to save space */
+  }
+  .dash-title-group {
+    display: none !important; /* Hide secondary title texts */
+  }
+  .dash-logo {
+    font-size: 1.1rem !important;
+  }
+  .dash-logo-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .dash-icon-btn, .dash-profile-btn {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    padding: 0 !important;
+  }
+  .dash-avatar {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0.75rem !important;
+  }
+  .dash-profile-name {
+    display: none !important; /* Hide profile name, keep avatar */
+  }
+
+  /* Dashboard Content Mobile Fixes */
+  .dash-main {
+    padding: 16px !important;
+  }
+  .dash-welcome {
+    flex-direction: column !important;
+    padding: 20px !important;
+    text-align: center !important;
+    align-items: center !important;
+  }
+  .dash-welcome-text h1 {
+    font-size: 1.5rem !important;
+  }
+  .dash-child-selector-wrap {
+    width: 100% !important;
+    margin-top: 16px !important;
+  }
+  .dash-child-select {
+    width: 100% !important;
+  }
+  
+  /* Sub-grids */
+  .docs-grid, .score-grid, .profile-grid, .today-status-grid, .fee-summary,
+  .class-grid, .teacher-grid, .finance-grid, .sys-grid, .class-stats {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  .quick-summary-grid, .quick-actions-grid,
+  .stats-grid-6, .stats-grid-4, .qa-grid-8 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  
+  /* Force all inline grids to 1 column on mobile */
+  .dash-main div[style*="display:grid"],
+  .dash-main div[style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Cards */
+  .qs-card, .dash-card {
+    padding: 16px !important;
+    height: 100% !important;
+    min-width: 0 !important; /* Prevent flex blowout */
+  }
+  
+  /* Prevent flex children from preventing wrap/shrink (Announcements & Events) */
+  .announcement-card > div,
+  .event-card > div,
+  .contact-card > div {
+    min-width: 0 !important;
+  }
+  
+  /* Prevent fee buttons from squishing or overflowing */
+  .fee-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .fee-actions .btn-pay, 
+  .fee-actions .btn-receipt {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
 /* Specific Tablet Overrides */
 @media (min-width: 768px) and (max-width: 1023px) {
   .contact-info-grid {
