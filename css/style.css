@@ -1187,26 +1187,7 @@ textarea.form-control { min-height: 140px; resize: vertical; }
   color: #ffffff !important;
 }
 
-/* ── 4. STATS SECTION (dark bar) ── */
-[data-theme="dark"] .stats-grid .stat-item {
-  background: #181827 !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
-  backdrop-filter: none !important;
-}
-[data-theme="dark"] .stats-grid .stat-item:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25) !important;
-}
-[data-theme="dark"] .stats-grid .stat-number {
-  color: #FFFFFF !important;
-  background: none !important;
-  -webkit-text-fill-color: #FFFFFF !important;
-  background-clip: border-box !important;
-}
-[data-theme="dark"] .stats-grid .stat-label {
-  color: #D7DCE7 !important;
-}
+
 [data-theme="dark"] .hero-stat h3 {
   color: #ffffff !important;
 }
@@ -1292,46 +1273,8 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 }
 
 /* Privacy/Terms .page-hero gradient */
-[data-theme="dark"] .page-hero {
+[data-theme="dark"] body:has(.legal-layout) .page-hero {
   background: linear-gradient(135deg, #0A0B1E 0%, #141430 40%, #1A1045 100%) !important;
-}
-
-/* Page Hero background image preservation with soft dark overlay in dark theme */
-[data-theme="dark"] body:has(.nav-links a[href="about.html"].active) .page-hero {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(16, 18, 32, 0.48) 0%,
-      rgba(16, 18, 32, 0.52) 100%
-    ),
-    url("../assets/images/about_hero_1784219920826.png") center/cover no-repeat !important;
-}
-[data-theme="dark"] body:has(.nav-links a[href="gallery.html"].active) .page-hero {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(16, 18, 32, 0.48) 0%,
-      rgba(16, 18, 32, 0.52) 100%
-    ),
-    url("../assets/images/gallery_hero.png") center/cover no-repeat !important;
-}
-[data-theme="dark"] body:has(.nav-links a[href="blog.html"].active) .page-hero {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(16, 18, 32, 0.48) 0%,
-      rgba(16, 18, 32, 0.52) 100%
-    ),
-    url("../assets/images/blog_hero_1784220054487.png") center/cover no-repeat !important;
-}
-[data-theme="dark"] body:has(.nav-links a[href="contact.html"].active) .page-hero {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(16, 18, 32, 0.48) 0%,
-      rgba(16, 18, 32, 0.52) 100%
-    ),
-    url("../assets/images/contact_hero_1784220089204.png") center/cover no-repeat !important;
 }
 
 /* ── 7. GALLERY: Virtual Tour texts & icons ── */
