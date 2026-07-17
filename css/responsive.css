@@ -2101,11 +2101,29 @@
 /* ============================================================
    DASHBOARD GLOBAL RESPONSIVENESS
    ============================================================ */
+/* Fix Dashboard header icon visibility in light mode (overriding style.css theme-toggle) */
+.dash-header .theme-toggle,
+.dash-header .rtl-toggle {
+  color: var(--dash-muted) !important;
+  background: var(--dash-card) !important;
+  border: 1px solid var(--dash-border) !important;
+}
+.dash-header .theme-toggle:hover,
+.dash-header .rtl-toggle:hover {
+  background: var(--dash-bg) !important;
+  color: var(--indigo) !important;
+  border-color: var(--lavender) !important;
+}
+
 @media (max-width: 1024px) {
   .dash-main {
     padding: 24px !important;
     max-width: 100vw !important;
     overflow-x: hidden !important;
+  }
+  
+  .dash-header {
+    justify-content: space-between !important;
   }
   
   /* Guarantee 2 columns on Tablet */
@@ -2152,7 +2170,8 @@
     display: none !important; /* Hide secondary title texts */
   }
   .dash-logo {
-    font-size: 1.1rem !important;
+    font-size: 0 !important; /* Hide the word 'Kindergarden' on tiny screens to prevent flex overflow */
+    gap: 0 !important;
   }
   .dash-logo-icon {
     width: 32px !important;
@@ -2194,7 +2213,15 @@
     width: 100% !important;
   }
   
-  /* Sub-grids */
+  /* Sub-grids & Labels */
+  .dash-section-label {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  .dash-section-label h2 {
+    font-size: 1.05rem !important;
+  }
+  
   .docs-grid, .score-grid, .profile-grid, .today-status-grid, .fee-summary,
   .class-grid, .teacher-grid, .finance-grid, .sys-grid, .class-stats {
     grid-template-columns: 1fr !important;
