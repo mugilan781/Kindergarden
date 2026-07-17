@@ -1277,6 +1277,32 @@ textarea.form-control { min-height: 140px; resize: vertical; }
   background: linear-gradient(135deg, #0A0B1E 0%, #141430 40%, #1A1045 100%) !important;
 }
 
+/* Force Homepage Stats Section to look 100% identical to Light Mode */
+[data-theme="dark"] div:has(> .container > .stats-grid) {
+  background: #1E1B4B !important; /* Original light-theme var(--indigo-dark) background */
+}
+[data-theme="dark"] .stats-grid .stat-item {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+[data-theme="dark"] .stats-grid .stat-item:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+[data-theme="dark"] .stats-grid .stat-number {
+  background: var(--gradient-secondary) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+[data-theme="dark"] .stats-grid .stat-label {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
 /* ── 7. GALLERY: Virtual Tour texts & icons ── */
 [data-theme="dark"] .virtual-tour-hint p        { color: #ffffff !important; }
 [data-theme="dark"] .virtual-tour-hint .compass  {
