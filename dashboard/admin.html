@@ -1,1441 +1,606 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard — Kindergarden</title>
-    <meta
-      name="description"
-      content="Admin dashboard for Kindergarden International School"
-    />
-    <link rel="stylesheet" href="../css/style.css" />
-    <style>
-      .dashboard-sidebar-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(30, 27, 75, 0.4);
-        z-index: 99;
-        backdrop-filter: blur(4px);
-        transition: var(--transition);
-      }
-      .dashboard-sidebar-overlay.active {
-        display: block;
-      }
-      .dashboard-nav-item.logout {
-        margin-top: auto;
-        color: var(--coral);
-      }
-      .dashboard-nav-item.logout:hover {
-        background: rgba(255, 107, 107, 0.08);
-        color: var(--coral-dark);
-      }
-      .admin-grid-3 {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--space-lg);
-        margin-bottom: var(--space-2xl);
-      }
-      .admin-grid-4 {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: var(--space-lg);
-        margin-bottom: var(--space-2xl);
-      }
-      .quick-action-btn {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: var(--space-sm);
-        padding: var(--space-xl);
-        background: var(--white);
-        border-radius: var(--radius-xl);
-        box-shadow: var(--shadow-sm);
-        border: none;
-        cursor: pointer;
-        transition: var(--transition);
-        font-family: var(--font-heading);
-        font-weight: 600;
-        font-size: 0.875rem;
-        color: var(--indigo-dark);
-      }
-      .quick-action-btn:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-lg);
-      }
-      .quick-action-btn .icon-wrap {
-        width: 52px;
-        height: 52px;
-        border-radius: var(--radius-lg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.25rem;
-        transition: var(--transition);
-      }
-      .quick-action-btn:hover .icon-wrap {
-        transform: scale(1.1);
-      }
-      .attendance-class-item {
-        display: flex;
-        align-items: center;
-        gap: var(--space-lg);
-        padding: var(--space-md) 0;
-        border-bottom: 1px solid var(--gray-100);
-      }
-      .attendance-class-item:last-child {
-        border-bottom: none;
-      }
-      .attendance-class-name {
-        min-width: 140px;
-        font-family: var(--font-heading);
-        font-weight: 600;
-        font-size: 0.9375rem;
-        color: var(--indigo-dark);
-      }
-      .attendance-class-info {
-        flex: 1;
-      }
-      .attendance-class-pct {
-        min-width: 48px;
-        text-align: right;
-        font-family: var(--font-heading);
-        font-weight: 800;
-        font-size: 0.9375rem;
-        color: var(--lavender);
-      }
-      .status-badge {
-        display: inline-flex;
-        padding: 4px 14px;
-        border-radius: var(--radius-pill);
-        font-size: 0.75rem;
-        font-weight: 700;
-        font-family: var(--font-heading);
-      }
-      .status-badge.confirmed {
-        background: rgba(110, 231, 183, 0.2);
-        color: #059669;
-      }
-      .status-badge.pending {
-        background: rgba(253, 186, 116, 0.2);
-        color: var(--peach-dark);
-      }
-      .status-badge.review {
-        background: rgba(139, 92, 246, 0.1);
-        color: var(--lavender);
-      }
-      .status-badge.completed {
-        background: rgba(49, 46, 129, 0.08);
-        color: var(--indigo);
-      }
-      .menu-toggle {
-        cursor: pointer;
-      }
-      @media (max-width: 1024px) {
-        .admin-grid-4 {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .admin-grid-3 {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-      @media (max-width: 768px) {
-        .dashboard-sidebar {
-          position: fixed;
-          left: -100%;
-          transition: var(--transition-slow);
-          display: flex;
-          z-index: 100;
-        }
-        .dashboard-sidebar.open {
-          left: 0;
-        }
-        .admin-grid-4 {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .admin-grid-3 {
-          grid-template-columns: 1fr;
-        }
-      }
-      @media (max-width: 480px) {
-        .admin-grid-4 {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="dashboard-layout">
-      <!-- Sidebar Overlay -->
-      <div class="dashboard-sidebar-overlay" id="sidebarOverlay"></div>
-      <!-- ===== SIDEBAR ===== -->
-      <aside class="dashboard-sidebar" id="dashboardSidebar">
-        <a href="../index.html" class="logo">
-          <span class="logo-icon">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-              <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
-            </svg>
-          </span>
-          Kindergarden
-        </a>
-        <nav
-          class="dashboard-nav"
-          style="display: flex; flex-direction: column; height: 100%"
-        >
-          <div>
-            <div class="dashboard-nav-label">Main</div>
-            <a href="admin.html" class="dashboard-nav-item active">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="3" width="7" height="7" />
-                <rect x="14" y="3" width="7" height="7" />
-                <rect x="14" y="14" width="7" height="7" />
-                <rect x="3" y="14" width="7" height="7" />
-              </svg>
-              Dashboard
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              Students
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              Teachers
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-              </svg>
-              Classes
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
-                />
-                <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
-              </svg>
-              Admissions
-            </a>
-          </div>
-          <div style="margin-top: var(--space-md)">
-            <div class="dashboard-nav-label">Academics</div>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                <line x1="16" y1="2" x2="16" y2="6" />
-                <line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-                <path d="M8 14h.01" />
-                <path d="M12 14h.01" />
-                <path d="M16 14h.01" />
-                <path d="M8 18h.01" />
-                <path d="M12 18h.01" />
-                <path d="M16 18h.01" />
-              </svg>
-              Attendance
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              Grades
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                <line x1="16" y1="2" x2="16" y2="6" />
-                <line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-              </svg>
-              Events
-            </a>
-          </div>
-          <div style="margin-top: var(--space-md)">
-            <div class="dashboard-nav-label">Administration</div>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
-                <line x1="1" y1="10" x2="23" y2="10" />
-              </svg>
-              Finance
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="3" />
-                <path
-                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
-                />
-              </svg>
-              Settings
-            </a>
-          </div>
-          <a
-            href="../login.html"
-            class="dashboard-nav-item logout"
-            style="margin-top: auto"
-          >
-            <svg
-              class="nav-icon"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-              <polyline points="16 17 21 12 16 7" />
-              <line x1="21" y1="12" x2="9" y2="12" />
-            </svg>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard &mdash; Kindergarden</title>
+  <meta name="description" content="Admin dashboard for Kindergarden International School &mdash; manage students, staff, finance and operations." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    :root {
+      --dash-bg: #F4F3FF;
+      --dash-card: #FFFFFF;
+      --dash-border: rgba(49,46,129,0.08);
+      --dash-header-h: 72px;
+      --dash-text: #1E1B4B;
+      --dash-muted: #6B7280;
+    }
+    [data-theme="dark"] {
+      --dash-bg: #0D0B1A;
+      --dash-card: #1A1730;
+      --dash-border: rgba(139,92,246,0.15);
+      --dash-text: rgba(255,255,255,0.92);
+      --dash-muted: rgba(255,255,255,0.5);
+    }
+    [data-theme="dark"] body { background: var(--dash-bg); color: var(--dash-text); }
+    [data-theme="dark"] .dash-card,
+    [data-theme="dark"] .stat-card { background: var(--dash-card); border-color: var(--dash-border); }
+    [data-theme="dark"] .dash-header { background: var(--dash-card); border-color: var(--dash-border); }
+    [data-theme="dark"] .qa-btn,
+    [data-theme="dark"] .class-card,
+    [data-theme="dark"] .teacher-card { background: rgba(255,255,255,0.04); }
+    [data-theme="dark"] .progress-track { background: rgba(255,255,255,0.08); }
+    [data-theme="dark"] .dash-header-search input { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.85); }
+    [data-theme="dark"] table tbody tr:hover td { background: rgba(255,255,255,0.03); }
+
+    /* ── PROFILE DROPDOWN ── */
+    .profile-dropdown-wrap { position: relative; }
+    .profile-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      min-width: 186px;
+      background: var(--dash-card);
+      border: 1px solid var(--dash-border);
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(49,46,129,0.18), 0 4px 12px rgba(49,46,129,0.08);
+      padding: 8px;
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(-8px) scale(0.97);
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+    .profile-dropdown-menu.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    .profile-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 10px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: background 0.18s;
+      cursor: pointer;
+      color: var(--dash-text);
+    }
+    .logout-item { color: var(--coral-dark); }
+    .logout-item:hover { background: rgba(239,68,68,0.09); }
+    .profile-dropdown-item svg { flex-shrink: 0; }
+    [data-theme="dark"] .profile-dropdown-menu {
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--dash-bg); font-family: var(--font-body); color: var(--dash-text); min-height: 100vh; }
+
+    /* HEADER */
+    .dash-header { position:sticky; top:0; z-index:200; background:var(--dash-card); border-bottom:1px solid var(--dash-border); box-shadow:0 1px 20px rgba(49,46,129,0.08); height:var(--dash-header-h); display:flex; align-items:center; padding:0 32px; gap:24px; }
+    .dash-logo { display:flex; align-items:center; gap:10px; font-family:var(--font-heading); font-weight:800; font-size:1.25rem; color:var(--indigo); text-decoration:none; flex-shrink:0; }
+    .dash-logo-icon { width:38px; height:38px; background:var(--gradient-primary); border-radius:10px; display:flex; align-items:center; justify-content:center; color:white; }
+    .dash-title-group { display:flex; flex-direction:column; }
+    .dash-title-group span:first-child { font-family:var(--font-heading); font-weight:700; font-size:0.9375rem; color:var(--dash-text); line-height:1.2; }
+    .dash-title-group span:last-child { font-size:0.75rem; color:var(--dash-muted); }
+    .dash-header-search { flex:1; max-width:320px; margin:0 auto; position:relative; }
+    .dash-header-search input { width:100%; padding:9px 16px 9px 40px; background:var(--dash-bg); border:1px solid var(--dash-border); border-radius:9999px; font-family:var(--font-body); font-size:0.875rem; color:var(--dash-text); outline:none; transition:0.3s; }
+    .dash-header-search input:focus { border-color:var(--lavender); box-shadow:0 0 0 3px rgba(139,92,246,0.12); }
+    .dash-header-search svg { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--dash-muted); }
+    .dash-header-actions { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+    .dash-icon-btn { width:40px; height:40px; border-radius:10px; border:1px solid var(--dash-border); background:var(--dash-card); display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--dash-muted); transition:0.3s; position:relative; }
+    .dash-icon-btn:hover { background:var(--dash-bg); color:var(--indigo); border-color:var(--lavender); }
+    .dash-icon-btn .notif-dot { position:absolute; top:7px; right:7px; width:8px; height:8px; background:var(--coral); border-radius:50%; border:2px solid var(--dash-card); }
+    .dash-rtl-btn { padding:0 12px; width:auto; font-family:var(--font-heading); font-size:0.75rem; font-weight:700; letter-spacing:0.05em; }
+    .dash-profile-btn { display:flex; align-items:center; gap:8px; padding:6px 12px 6px 6px; border-radius:9999px; border:1px solid var(--dash-border); background:var(--dash-card); transition:0.3s; }
+    .dash-profile-btn:hover { border-color:var(--lavender); background:var(--dash-bg); }
+    .dash-avatar { width:32px; height:32px; border-radius:50%; background:var(--gradient-primary); display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:700; font-size:0.875rem; color:white; flex-shrink:0; }
+    .dash-profile-name { font-family:var(--font-heading); font-weight:600; font-size:0.8125rem; color:var(--dash-text); }
+
+    /* MAIN */
+    .dash-main { padding:32px; max-width:1400px; margin:0 auto; }
+
+    /* WELCOME */
+    .admin-welcome { background:var(--gradient-dark); border-radius:24px; padding:28px 40px; margin-bottom:32px; display:flex; align-items:center; justify-content:space-between; gap:32px; position:relative; overflow:hidden; }
+    .admin-welcome::before { content:''; position:absolute; top:-50px; right:-50px; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,0.05); }
+    .admin-welcome-text h1 { color:white; font-size:1.5rem; font-weight:800; margin-bottom:4px; display:flex; align-items:center; gap:10px; }
+    .admin-welcome-text p { color:rgba(255,255,255,0.65); font-size:0.9375rem; margin:0; }
+    .admin-welcome-badge { display:inline-flex; align-items:center; gap:6px; padding:6px 16px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:9999px; color:white; font-family:var(--font-heading); font-weight:700; font-size:0.875rem; flex-shrink:0; }
+
+    /* SECTION HEADER */
+    .dash-section-label { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
+    .dash-section-label h2 { font-size:1.125rem; font-weight:700; color:var(--dash-text); display:flex; align-items:center; gap:10px; }
+    .dash-section-label h2 .section-icon { width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+    .dash-section-label a { font-size:0.8125rem; font-weight:600; color:var(--lavender); text-decoration:none; }
+    .dash-section-label a:hover { color:var(--indigo); }
+
+    /* CARDS */
+    .dash-card { background:var(--dash-card); border-radius:20px; padding:24px; box-shadow:0 2px 12px rgba(49,46,129,0.07); border:1px solid var(--dash-border); transition:box-shadow 0.3s,transform 0.3s; }
+    .dash-card:hover { box-shadow:0 8px 30px rgba(49,46,129,0.12); }
+    .dash-card-accent { position:relative; overflow:hidden; }
+    .dash-card-accent::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; }
+    .accent-purple::before { background:linear-gradient(90deg,var(--indigo),var(--lavender)); }
+    .accent-green::before { background:linear-gradient(90deg,#059669,var(--mint)); }
+    .accent-blue::before { background:linear-gradient(90deg,#2563EB,#60A5FA); }
+    .accent-orange::before { background:linear-gradient(90deg,var(--peach-dark),var(--peach)); }
+
+    /* STATS */
+    .stats-grid-6 { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; margin-bottom:32px; }
+    .stats-grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:32px; }
+    .stat-card { background:var(--dash-card); border-radius:18px; padding:20px; border:1px solid var(--dash-border); box-shadow:0 2px 8px rgba(49,46,129,0.06); display:flex; flex-direction:column; gap:8px; transition:0.3s; }
+    .stat-card:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(49,46,129,0.12); }
+    .stat-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; }
+    .si-purple { background:rgba(139,92,246,0.12); color:var(--lavender); }
+    .si-green { background:rgba(16,185,129,0.12); color:#059669; }
+    .si-orange { background:rgba(249,115,22,0.12); color:var(--peach-dark); }
+    .si-blue { background:rgba(37,99,235,0.12); color:#2563EB; }
+    .si-red { background:rgba(239,68,68,0.12); color:var(--coral-dark); }
+    .si-teal { background:rgba(20,184,166,0.12); color:#0D9488; }
+    .si-pink { background:rgba(236,72,153,0.12); color:#DB2777; }
+    .si-indigo { background:rgba(99,102,241,0.12); color:#6366F1; }
+    .stat-value { font-family:var(--font-heading); font-weight:800; font-size:1.625rem; color:var(--dash-text); line-height:1; }
+    .stat-label { font-size:0.75rem; font-weight:600; color:var(--dash-muted); text-transform:uppercase; letter-spacing:0.04em; }
+    .stat-change { display:inline-flex; align-items:center; gap:3px; font-size:0.6875rem; font-weight:700; padding:2px 8px; border-radius:9999px; }
+    .up { background:rgba(16,185,129,0.1); color:#059669; }
+    .down { background:rgba(239,68,68,0.1); color:var(--coral-dark); }
+    .neutral { background:rgba(107,114,128,0.1); color:var(--dash-muted); }
+
+    /* BADGE */
+    .badge { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:9999px; font-size:0.6875rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; }
+    .badge-green { background:rgba(16,185,129,0.1); color:#059669; }
+    .badge-red { background:rgba(239,68,68,0.1); color:var(--coral-dark); }
+    .badge-orange { background:rgba(249,115,22,0.1); color:var(--peach-dark); }
+    .badge-blue { background:rgba(37,99,235,0.1); color:#2563EB; }
+    .badge-purple { background:rgba(139,92,246,0.1); color:var(--lavender); }
+    .badge-gray { background:rgba(107,114,128,0.1); color:var(--dash-muted); }
+
+    /* GRIDS */
+    .dash-two-col { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:32px; }
+    .dash-section { margin-bottom:32px; }
+    .dash-divider { height:1px; background:var(--dash-border); margin:24px 0; }
+
+    /* QUICK ACTIONS */
+    .qa-grid-8 { display:grid; grid-template-columns:repeat(8,1fr); gap:12px; }
+    .qa-btn { display:flex; flex-direction:column; align-items:center; gap:8px; padding:20px 12px; background:var(--dash-bg); border-radius:16px; border:1px solid var(--dash-border); cursor:pointer; transition:0.3s; text-decoration:none; text-align:center; }
+    .qa-btn:hover { border-color:var(--lavender); background:var(--dash-card); transform:translateY(-3px); box-shadow:0 8px 20px rgba(49,46,129,0.1); }
+    .qa-icon { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; }
+    .qa-label { font-size:0.6875rem; font-weight:700; color:var(--dash-text); line-height:1.3; }
+
+    /* TABLES */
+    .data-table { width:100%; border-collapse:collapse; }
+    .data-table th { text-align:left; padding:8px 16px; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--dash-muted); border-bottom:1px solid var(--dash-border); white-space:nowrap; }
+    .data-table td { padding:14px 16px; border-bottom:1px solid var(--dash-border); font-size:0.875rem; }
+    .data-table tr:last-child td { border-bottom:none; }
+    .data-table tr:hover td { background:var(--dash-bg); }
+    .student-name { font-weight:600; color:var(--dash-text); }
+    .student-sub { font-size:0.75rem; color:var(--dash-muted); }
+
+    /* PROGRESS */
+    .progress-bar-wrap { margin-bottom:12px; }
+    .progress-bar-header { display:flex; justify-content:space-between; margin-bottom:5px; }
+    .progress-bar-label { font-size:0.875rem; font-weight:600; color:var(--dash-text); }
+    .progress-bar-value { font-size:0.875rem; font-weight:700; color:var(--lavender); }
+    .progress-track { height:8px; background:var(--dash-bg); border-radius:9999px; overflow:hidden; }
+    .progress-fill { height:100%; border-radius:9999px; }
+    .pf-purple { background:var(--gradient-primary); }
+    .pf-green { background:linear-gradient(90deg,#059669,var(--mint)); }
+    .pf-orange { background:linear-gradient(90deg,var(--peach-dark),var(--peach)); }
+    .pf-blue { background:linear-gradient(90deg,#2563EB,#60A5FA); }
+    .pf-red { background:linear-gradient(90deg,var(--coral-dark),var(--coral)); }
+
+    /* CLASS CARDS */
+    .class-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .class-card { background:var(--dash-bg); border-radius:16px; padding:20px; border:1px solid var(--dash-border); transition:0.3s; }
+    .class-card:hover { border-color:var(--lavender); transform:translateY(-2px); box-shadow:0 6px 20px rgba(49,46,129,0.1); }
+    .class-card-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+    .class-grade { font-family:var(--font-heading); font-weight:800; font-size:1.125rem; color:var(--dash-text); }
+    .class-section { font-size:0.75rem; color:var(--dash-muted); margin-top:2px; }
+    .class-stats { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
+    .class-stat-item { text-align:center; padding:8px; background:var(--dash-card); border-radius:10px; }
+    .class-stat-value { font-family:var(--font-heading); font-weight:700; font-size:1rem; color:var(--dash-text); }
+    .class-stat-label { font-size:0.625rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; color:var(--dash-muted); }
+    .class-teacher { font-size:0.8125rem; color:var(--dash-muted); display:flex; align-items:center; gap:4px; }
+
+    /* TEACHER CARDS */
+    .teacher-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .teacher-card { background:var(--dash-bg); border-radius:16px; padding:20px; border:1px solid var(--dash-border); transition:0.3s; }
+    .teacher-card:hover { border-color:var(--lavender); box-shadow:0 6px 20px rgba(49,46,129,0.1); }
+    .teacher-avatar { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:700; font-size:1.125rem; color:white; margin-bottom:12px; }
+    .teacher-name { font-family:var(--font-heading); font-weight:700; font-size:1rem; color:var(--dash-text); margin-bottom:2px; }
+    .teacher-dept { font-size:0.8125rem; color:var(--dash-muted); margin-bottom:12px; }
+    .teacher-tags { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:12px; }
+    .teacher-tag { padding:2px 8px; border-radius:9999px; font-size:0.6875rem; font-weight:600; background:rgba(139,92,246,0.1); color:var(--lavender); }
+    .teacher-meta { display:flex; justify-content:space-between; align-items:center; }
+    .teacher-meta-item { font-size:0.75rem; color:var(--dash-muted); }
+
+    /* FINANCE */
+    .finance-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px; }
+    .fin-card { text-align:center; padding:24px; border-radius:16px; }
+    .fin-card.revenue { background:rgba(49,46,129,0.06); border:1px solid rgba(49,46,129,0.12); }
+    .fin-card.collected { background:rgba(16,185,129,0.06); border:1px solid rgba(16,185,129,0.15); }
+    .fin-card.pending { background:rgba(249,115,22,0.06); border:1px solid rgba(249,115,22,0.15); }
+    .fin-amount { font-family:var(--font-heading); font-weight:800; font-size:1.75rem; margin-bottom:4px; }
+    .fin-card.revenue .fin-amount { color:var(--indigo); }
+    .fin-card.collected .fin-amount { color:#059669; }
+    .fin-card.pending .fin-amount { color:var(--peach-dark); }
+    .fin-label { font-size:0.8125rem; color:var(--dash-muted); font-weight:600; }
+    .fin-sub { font-size:0.75rem; color:var(--dash-muted); margin-top:4px; }
+
+    /* REVENUE BARS */
+    .revenue-chart { display:flex; gap:8px; align-items:flex-end; height:120px; padding:0 8px; margin-bottom:16px; }
+    .rev-col { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end; }
+    .rev-bar { width:100%; border-radius:6px 6px 0 0; }
+    .rev-label { font-size:0.625rem; font-weight:600; color:var(--dash-muted); }
+
+    /* EVENTS */
+    .event-card { display:flex; align-items:center; gap:16px; padding:16px 20px; background:var(--dash-bg); border-radius:14px; border:1px solid var(--dash-border); margin-bottom:8px; transition:0.3s; }
+    .event-card:hover { border-color:var(--lavender); transform:translateX(4px); }
+    .event-date { width:52px; height:56px; border-radius:12px; background:var(--gradient-primary); display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0; color:white; }
+    .event-date-day { font-family:var(--font-heading); font-weight:800; font-size:1.25rem; line-height:1; }
+    .event-date-month { font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; opacity:0.85; }
+    .event-title { font-family:var(--font-heading); font-weight:700; font-size:0.9375rem; color:var(--dash-text); }
+    .event-desc { font-size:0.8125rem; color:var(--dash-muted); margin-top:2px; }
+
+    /* ANNOUNCEMENTS */
+    .ann-item { display:flex; align-items:flex-start; gap:12px; padding:16px; background:var(--dash-bg); border-radius:14px; border:1px solid var(--dash-border); margin-bottom:8px; transition:0.3s; }
+    .ann-item:hover { border-color:var(--lavender); }
+    .ann-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; margin-top:5px; }
+    .ann-title { font-weight:600; font-size:0.9375rem; color:var(--dash-text); margin-bottom:2px; }
+    .ann-meta { font-size:0.75rem; color:var(--dash-muted); }
+
+    /* SYSTEM STATUS */
+    .sys-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .sys-item { display:flex; align-items:center; gap:12px; padding:16px; background:var(--dash-bg); border-radius:14px; border:1px solid var(--dash-border); }
+    .sys-indicator { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+    .sys-indicator.online { background:#059669; box-shadow:0 0 0 3px rgba(16,185,129,0.2); }
+    .sys-indicator.warning { background:var(--peach-dark); box-shadow:0 0 0 3px rgba(249,115,22,0.2); }
+    .sys-label { font-size:0.875rem; font-weight:600; color:var(--dash-text); }
+    .sys-sub { font-size:0.75rem; color:var(--dash-muted); }
+
+    /* FOOTER */
+    .dash-footer { text-align:center; padding:32px 0; color:var(--dash-muted); font-size:0.8125rem; border-top:1px solid var(--dash-border); margin-top:32px; }
+
+    /* RESPONSIVE */
+    @media(max-width:1200px){
+      .stats-grid-6{grid-template-columns:repeat(3,1fr);}
+      .stats-grid-4{grid-template-columns:repeat(2,1fr);}
+      .qa-grid-8{grid-template-columns:repeat(4,1fr);}
+      .class-grid{grid-template-columns:repeat(2,1fr);}
+      .teacher-grid{grid-template-columns:repeat(2,1fr);}
+    }
+    @media(max-width:1024px){
+      .dash-main{padding:24px;}
+      .dash-two-col{grid-template-columns:1fr;}
+    }
+    @media(max-width:768px){
+      .dash-header{padding:0 16px;gap:8px;}
+      .dash-header-search,.dash-title-group{display:none;}
+      .dash-main{padding:16px;}
+      .admin-welcome{flex-direction:column;padding:24px;}
+      .stats-grid-6{grid-template-columns:repeat(2,1fr);}
+      .stats-grid-4{grid-template-columns:repeat(2,1fr);}
+      .qa-grid-8{grid-template-columns:repeat(3,1fr);}
+      .class-grid{grid-template-columns:1fr 1fr;}
+      .teacher-grid{grid-template-columns:1fr;}
+      .finance-grid{grid-template-columns:1fr;}
+      .sys-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:480px){
+      .stats-grid-6{grid-template-columns:1fr 1fr;}
+      .qa-grid-8{grid-template-columns:repeat(2,1fr);}
+      .class-grid{grid-template-columns:1fr;}
+      .sys-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY HEADER -->
+  <header class="dash-header">
+    <a href="../index.html" class="dash-logo">
+      <div class="dash-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-5"/>
+        </svg>
+      </div>
+      <span>Kindergarden</span>
+    </a>
+    <div class="dash-title-group">
+      <span>Admin Dashboard</span>
+      <span id="dash-date-display">Loading...</span>
+    </div>
+    <div class="dash-header-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search students, teachers, classes&hellip;" />
+    </div>
+    <div class="dash-header-actions">
+      <button class="dash-icon-btn" aria-label="Notifications">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="notif-dot"></span>
+      </button>
+      <button class="dash-icon-btn theme-toggle" aria-label="Toggle theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <button class="dash-icon-btn dash-rtl-btn rtl-toggle" aria-label="Toggle RTL">RTL</button>
+            <div class="profile-dropdown-wrap" id="profileDropdownWrap">
+        <div class="dash-profile-btn" id="profileDropdownBtn" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer">
+          <div class="dash-avatar">AD</div>
+          <span class="dash-profile-name">Admin</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="profile-dropdown-menu" id="profileDropdownMenu" role="menu" aria-hidden="true">
+          <a href="../login.html" class="profile-dropdown-item logout-item" role="menuitem">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
             Logout
           </a>
-        </nav>
-      </aside>
-      <!-- ===== MAIN CONTENT ===== -->
-      <main class="dashboard-main">
-        <!-- Mobile Header -->
-        <div
-          class="dashboard-mobile-header"
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: var(--space-md) 0;
-            margin-bottom: var(--space-lg);
-          "
-        >
-          <button
-            class="menu-toggle"
-            id="menuToggle"
-            style="
-              background: none;
-              border: none;
-              cursor: pointer;
-              padding: 4px;
-              color: var(--indigo-dark);
-            "
-            aria-label="Toggle menu"
-          >
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-          </button>
-          <a
-            href="../index.html"
-            style="
-              font-family: var(--font-heading);
-              font-weight: 800;
-              font-size: 1.25rem;
-              color: var(--indigo-dark);
-              display: flex;
-              align-items: center;
-              gap: var(--space-sm);
-            "
-          >
-            <span class="logo-icon">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
-              </svg>
-            </span>
-            Kindergarden
-          </a>
-          <div style="width: 28px"></div>
         </div>
-        <!-- Header -->
-        <div class="dashboard-header">
-          <div>
-            <h1>Good morning, Admin</h1>
-            <p
-              style="
-                color: var(--gray-500);
-                font-size: 0.9375rem;
-                margin-top: 4px;
-              "
-            >
-              Wednesday, July 16, 2026 · 18 active sessions
-            </p>
-          </div>
-          <div class="dashboard-header-right">
-            <button
-              class="rtl-toggle"
-              aria-label="Toggle language direction"
-              style="
-                background: var(--gray-100);
-                border-color: var(--gray-200);
-                color: var(--indigo);
-                width: 36px;
-                height: 36px;
-                font-size: 0.75rem;
-              "
-            >
-              AR
-            </button>
-            <button
-              class="theme-toggle"
-              aria-label="Toggle theme"
-              style="
-                background: var(--gray-100);
-                border-color: var(--gray-200);
-                color: var(--indigo);
-                width: 36px;
-                height: 36px;
-                font-size: 1rem;
-              "
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="5" />
-                <line x1="12" y1="1" x2="12" y2="3" />
-                <line x1="12" y1="21" x2="12" y2="23" />
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                <line x1="1" y1="12" x2="3" y2="12" />
-                <line x1="21" y1="12" x2="23" y2="12" />
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-              </svg>
-            </button>
-            <div class="dashboard-notification" id="notifToggle">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-              </svg>
-              <span class="badge">5</span>
-            </div>
-            <div class="dashboard-avatar">AD</div>
-          </div>
-        </div>
-        <!-- Stats Grid -->
-        <div class="admin-grid-4">
-          <div class="dashboard-card">
-            <div class="dashboard-card-header">
-              <div class="dashboard-card-icon purple">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-              </div>
-              <span class="dashboard-card-change up">+12 this term</span>
-            </div>
-            <div class="dashboard-card-value">524</div>
-            <div class="dashboard-card-label">Total Students</div>
-          </div>
-          <div class="dashboard-card">
-            <div class="dashboard-card-header">
-              <div class="dashboard-card-icon green">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-              </div>
-              <span class="dashboard-card-change up">+2 this month</span>
-            </div>
-            <div class="dashboard-card-value">42</div>
-            <div class="dashboard-card-label">Active Teachers</div>
-          </div>
-          <div class="dashboard-card">
-            <div class="dashboard-card-header">
-              <div class="dashboard-card-icon orange">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
-                  />
-                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
-                </svg>
-              </div>
-              <span class="dashboard-card-change up">+5 new</span>
-            </div>
-            <div class="dashboard-card-value">18</div>
-            <div class="dashboard-card-label">Pending Admissions</div>
-          </div>
-          <div class="dashboard-card">
-            <div class="dashboard-card-header">
-              <div class="dashboard-card-icon indigo">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                </svg>
-              </div>
-              <span class="dashboard-card-change up">All staffed</span>
-            </div>
-            <div class="dashboard-card-value">12</div>
-            <div class="dashboard-card-label">Classes Today</div>
-          </div>
-        </div>
-        <!-- Second row of stats -->
-        <div
-          class="admin-grid-3"
-          style="margin-top: calc(-1 * var(--space-xl))"
-        >
-          <div class="dashboard-card">
-            <div class="dashboard-card-header">
-              <div class="dashboard-card-icon green">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
-                  <line x1="1" y1="10" x2="23" y2="10" />
-                  <line x1="8" y1="14" x2="8" y2="18" />
-                  <line x1="16" y1="14" x2="16" y2="18" />
-                </svg>
-              </div>
-              <span class="dashboard-card-change up">+12.4% vs last month</span>
-            </div>
-            <div class="dashboard-card-value">$48.2K</div>
-            <div class="dashboard-card-label">Monthly Revenue</div>
-            <div
-              style="
-                margin-top: var(--space-md);
-                display: flex;
-                gap: var(--space-lg);
-                font-size: 0.8125rem;
-                color: var(--gray-400);
-              "
-            >
-              <span
-                >Tuition:
-                <strong style="color: var(--gray-600)">$42.1K</strong></span
-              >
-              <span
-                >Programs:
-                <strong style="color: var(--gray-600)">$4.3K</strong></span
-              >
-              <span
-                >Other:
-                <strong style="color: var(--gray-600)">$1.8K</strong></span
-              >
-            </div>
-          </div>
-          <div class="dashboard-card">
-            <div class="dashboard-card-header">
-              <div class="dashboard-card-icon coral">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                  />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-              </div>
-              <span class="dashboard-card-change up">+3 since yesterday</span>
-            </div>
-            <div class="dashboard-card-value">8</div>
-            <div class="dashboard-card-label">New Inquiries</div>
-            <div
-              style="
-                margin-top: var(--space-md);
-                font-size: 0.8125rem;
-                color: var(--gray-400);
-              "
-            >
-              Awaiting follow-up: <strong style="color: var(--coral)">5</strong>
-            </div>
-          </div>
-          <div class="dashboard-card">
-            <div class="dashboard-card-header">
-              <div class="dashboard-card-icon purple">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-              </div>
-              <span class="dashboard-card-change up">75% response rate</span>
-            </div>
-            <div class="dashboard-card-value">94%</div>
-            <div class="dashboard-card-label">Parent Satisfaction</div>
-            <div style="margin-top: var(--space-md)" class="progress-bar">
-              <div
-                class="progress-bar-fill"
-                style="width: 94%; background: var(--gradient-secondary)"
-              ></div>
-            </div>
-          </div>
-        </div>
-        <!-- Quick Actions -->
-        <div class="dashboard-section">
-          <div class="dashboard-section-header">
-            <h3 class="dashboard-section-title">Quick Actions</h3>
-          </div>
-          <div class="admin-grid-4">
-            <button
-              class="quick-action-btn"
-              onclick="window.location.href = '#'"
-            >
-              <div
-                class="icon-wrap"
-                style="
-                  background: rgba(139, 92, 246, 0.12);
-                  color: var(--lavender);
-                "
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <line x1="19" y1="8" x2="19" y2="14" />
-                  <line x1="16" y1="11" x2="22" y2="11" />
-                </svg>
-              </div>
-              Add Student
-            </button>
-            <button
-              class="quick-action-btn"
-              onclick="window.location.href = '#'"
-            >
-              <div
-                class="icon-wrap"
-                style="
-                  background: rgba(110, 231, 183, 0.2);
-                  color: var(--mint-dark);
-                "
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                </svg>
-              </div>
-              New Class
-            </button>
-            <button
-              class="quick-action-btn"
-              onclick="window.location.href = '#'"
-            >
-              <div
-                class="icon-wrap"
-                style="
-                  background: rgba(253, 186, 116, 0.2);
-                  color: var(--peach-dark);
-                "
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                  />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-              </div>
-              Send Announcement
-            </button>
-            <button
-              class="quick-action-btn"
-              onclick="window.location.href = '#'"
-            >
-              <div
-                class="icon-wrap"
-                style="
-                  background: rgba(49, 46, 129, 0.08);
-                  color: var(--indigo);
-                "
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                  />
-                  <polyline points="14 2 14 8 20 8" />
-                  <line x1="16" y1="13" x2="8" y2="13" />
-                  <line x1="16" y1="17" x2="8" y2="17" />
-                  <polyline points="10 9 9 9 8 9" />
-                </svg>
-              </div>
-              Generate Report
-            </button>
-          </div>
-        </div>
-        <!-- Recent Enrollments & Attendance Overview -->
-        <div
-          style="
-            display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: var(--space-xl);
-            margin-bottom: var(--space-2xl);
-          "
-        >
-          <!-- Recent Enrollments -->
-          <div class="dashboard-section" style="margin-bottom: 0">
-            <div class="dashboard-section-header">
-              <h3 class="dashboard-section-title">Recent Enrollments</h3>
-              <a
-                href="#"
-                style="
-                  color: var(--lavender);
-                  font-weight: 600;
-                  font-size: 0.875rem;
-                  font-family: var(--font-heading);
-                  display: flex;
-                  align-items: center;
-                  gap: 4px;
-                "
-              >
-                View All
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </a>
-            </div>
-            <div
-              style="
-                background: var(--white);
-                border-radius: var(--radius-xl);
-                padding: var(--space-lg);
-                box-shadow: var(--shadow-sm);
-                overflow-x: auto;
-              "
-            >
-              <table class="dashboard-table">
-                <thead>
-                  <tr>
-                    <th>Student</th>
-                    <th>Parent</th>
-                    <th>Class</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <strong style="color: var(--indigo-dark)"
-                        >Emma Wilson</strong
-                      >
-                    </td>
-                    <td style="color: var(--gray-500)">Sarah Wilson</td>
-                    <td>Pre-K (Sunshine)</td>
-                    <td>Jul 14, 2026</td>
-                    <td>
-                      <span class="status-badge confirmed">Confirmed</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong style="color: var(--indigo-dark)"
-                        >Liam Chen</strong
-                      >
-                    </td>
-                    <td style="color: var(--gray-500)">David Chen</td>
-                    <td>Grade 1 (Discovery)</td>
-                    <td>Jul 12, 2026</td>
-                    <td><span class="status-badge pending">Pending</span></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong style="color: var(--indigo-dark)"
-                        >Sophia Patel</strong
-                      >
-                    </td>
-                    <td style="color: var(--gray-500)">Priya Patel</td>
-                    <td>Montessori (Butterfly)</td>
-                    <td>Jul 10, 2026</td>
-                    <td>
-                      <span class="status-badge confirmed">Confirmed</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong style="color: var(--indigo-dark)"
-                        >Oliver Kim</strong
-                      >
-                    </td>
-                    <td style="color: var(--gray-500)">Jennifer Kim</td>
-                    <td>Pre-K (Rainbow)</td>
-                    <td>Jul 8, 2026</td>
-                    <td><span class="status-badge review">Review</span></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong style="color: var(--indigo-dark)"
-                        >Aria Thompson</strong
-                      >
-                    </td>
-                    <td style="color: var(--gray-500)">Michael Thompson</td>
-                    <td>Grade 2 (Adventure)</td>
-                    <td>Jul 5, 2026</td>
-                    <td>
-                      <span class="status-badge completed">Completed</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <!-- Attendance Overview -->
-          <div class="dashboard-section" style="margin-bottom: 0">
-            <div class="dashboard-section-header">
-              <h3 class="dashboard-section-title">Attendance Overview</h3>
-              <span
-                style="
-                  font-size: 0.8125rem;
-                  color: var(--gray-400);
-                  font-weight: 500;
-                "
-                >This Week</span
-              >
-            </div>
-            <div
-              style="
-                background: var(--white);
-                border-radius: var(--radius-xl);
-                padding: var(--space-xl);
-                box-shadow: var(--shadow-sm);
-              "
-            >
-              <div class="attendance-class-item">
-                <div class="attendance-class-name">Pre-K Sunshine</div>
-                <div class="attendance-class-info">
-                  <div class="progress-bar">
-                    <div class="progress-bar-fill" style="width: 96%"></div>
-                  </div>
-                </div>
-                <div class="attendance-class-pct">96%</div>
-              </div>
-              <div class="attendance-class-item">
-                <div class="attendance-class-name">Pre-K Rainbow</div>
-                <div class="attendance-class-info">
-                  <div class="progress-bar">
-                    <div
-                      class="progress-bar-fill"
-                      style="width: 88%; background: var(--gradient-secondary)"
-                    ></div>
-                  </div>
-                </div>
-                <div
-                  class="attendance-class-pct"
-                  style="color: var(--mint-dark)"
-                >
-                  88%
-                </div>
-              </div>
-              <div class="attendance-class-item">
-                <div class="attendance-class-name">Grade 1 Discovery</div>
-                <div class="attendance-class-info">
-                  <div class="progress-bar">
-                    <div class="progress-bar-fill" style="width: 94%"></div>
-                  </div>
-                </div>
-                <div class="attendance-class-pct">94%</div>
-              </div>
-              <div class="attendance-class-item">
-                <div class="attendance-class-name">Grade 1 Explorer</div>
-                <div class="attendance-class-info">
-                  <div class="progress-bar">
-                    <div
-                      class="progress-bar-fill"
-                      style="width: 91%; background: var(--gradient-secondary)"
-                    ></div>
-                  </div>
-                </div>
-                <div
-                  class="attendance-class-pct"
-                  style="color: var(--mint-dark)"
-                >
-                  91%
-                </div>
-              </div>
-              <div class="attendance-class-item">
-                <div class="attendance-class-name">Grade 2 Adventure</div>
-                <div class="attendance-class-info">
-                  <div class="progress-bar">
-                    <div
-                      class="progress-bar-fill"
-                      style="width: 85%; background: var(--gradient-accent)"
-                    ></div>
-                  </div>
-                </div>
-                <div
-                  class="attendance-class-pct"
-                  style="color: var(--peach-dark)"
-                >
-                  85%
-                </div>
-              </div>
-              <div
-                class="attendance-class-item"
-                style="border-bottom: none; padding-bottom: 0"
-              >
-                <div class="attendance-class-name">Montessori Butterfly</div>
-                <div class="attendance-class-info">
-                  <div class="progress-bar">
-                    <div class="progress-bar-fill" style="width: 97%"></div>
-                  </div>
-                </div>
-                <div class="attendance-class-pct">97%</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Upcoming Events -->
-        <div class="dashboard-section">
-          <div class="dashboard-section-header">
-            <h3 class="dashboard-section-title">Upcoming Events</h3>
-            <a
-              href="#"
-              style="
-                color: var(--lavender);
-                font-weight: 600;
-                font-size: 0.875rem;
-                font-family: var(--font-heading);
-                display: flex;
-                align-items: center;
-                gap: 4px;
-              "
-            >
-              Manage Events
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </a>
-          </div>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: repeat(4, 1fr);
-              gap: var(--space-lg);
-            "
-          >
-            <div
-              style="
-                background: var(--white);
-                border-radius: var(--radius-xl);
-                box-shadow: var(--shadow-sm);
-                overflow: hidden;
-                transition: var(--transition);
-              "
-            >
-              <div
-                style="
-                  background: var(--gradient-primary);
-                  padding: var(--space-md);
-                  text-align: center;
-                  color: var(--white);
-                "
-              >
-                <div
-                  style="
-                    font-size: 0.7rem;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.06em;
-                    opacity: 0.8;
-                  "
-                >
-                  Sep 15
-                </div>
-              </div>
-              <div style="padding: var(--space-lg)">
-                <h4 style="font-size: 0.9375rem; margin-bottom: 4px">
-                  Fall Open House
-                </h4>
-                <p
-                  style="
-                    color: var(--gray-500);
-                    font-size: 0.75rem;
-                    margin-bottom: 0;
-                  "
-                >
-                  9:00 AM · Main Campus
-                </p>
-                <div
-                  style="
-                    margin-top: var(--space-sm);
-                    display: flex;
-                    gap: 4px;
-                    flex-wrap: wrap;
-                  "
-                >
-                  <span
-                    class="status-badge confirmed"
-                    style="padding: 2px 8px; font-size: 0.625rem"
-                    >Public</span
-                  >
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                background: var(--white);
-                border-radius: var(--radius-xl);
-                box-shadow: var(--shadow-sm);
-                overflow: hidden;
-                transition: var(--transition);
-              "
-            >
-              <div
-                style="
-                  background: var(--gradient-secondary);
-                  padding: var(--space-md);
-                  text-align: center;
-                  color: var(--indigo-dark);
-                "
-              >
-                <div
-                  style="
-                    font-size: 0.7rem;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.06em;
-                  "
-                >
-                  Sep 22
-                </div>
-              </div>
-              <div style="padding: var(--space-lg)">
-                <h4 style="font-size: 0.9375rem; margin-bottom: 4px">
-                  Staff PD Day
-                </h4>
-                <p
-                  style="
-                    color: var(--gray-500);
-                    font-size: 0.75rem;
-                    margin-bottom: 0;
-                  "
-                >
-                  8:00 AM · Staff Room
-                </p>
-                <div
-                  style="
-                    margin-top: var(--space-sm);
-                    display: flex;
-                    gap: 4px;
-                    flex-wrap: wrap;
-                  "
-                >
-                  <span
-                    class="status-badge review"
-                    style="padding: 2px 8px; font-size: 0.625rem"
-                    >Internal</span
-                  >
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                background: var(--white);
-                border-radius: var(--radius-xl);
-                box-shadow: var(--shadow-sm);
-                overflow: hidden;
-                transition: var(--transition);
-              "
-            >
-              <div
-                style="
-                  background: var(--gradient-accent);
-                  padding: var(--space-md);
-                  text-align: center;
-                  color: var(--white);
-                "
-              >
-                <div
-                  style="
-                    font-size: 0.7rem;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.06em;
-                    opacity: 0.8;
-                  "
-                >
-                  Oct 5
-                </div>
-              </div>
-              <div style="padding: var(--space-lg)">
-                <h4 style="font-size: 0.9375rem; margin-bottom: 4px">
-                  Parent-Teacher Conf.
-                </h4>
-                <p
-                  style="
-                    color: var(--gray-500);
-                    font-size: 0.75rem;
-                    margin-bottom: 0;
-                  "
-                >
-                  2:00 PM · School Hall
-                </p>
-                <div
-                  style="
-                    margin-top: var(--space-sm);
-                    display: flex;
-                    gap: 4px;
-                    flex-wrap: wrap;
-                  "
-                >
-                  <span
-                    class="status-badge confirmed"
-                    style="padding: 2px 8px; font-size: 0.625rem"
-                    >Required</span
-                  >
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                background: var(--white);
-                border-radius: var(--radius-xl);
-                box-shadow: var(--shadow-sm);
-                overflow: hidden;
-                transition: var(--transition);
-              "
-            >
-              <div
-                style="
-                  background: var(--gradient-dark);
-                  padding: var(--space-md);
-                  text-align: center;
-                  color: var(--white);
-                "
-              >
-                <div
-                  style="
-                    font-size: 0.7rem;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.06em;
-                    opacity: 0.8;
-                  "
-                >
-                  Oct 20
-                </div>
-              </div>
-              <div style="padding: var(--space-lg)">
-                <h4 style="font-size: 0.9375rem; margin-bottom: 4px">
-                  Harvest Festival
-                </h4>
-                <p
-                  style="
-                    color: var(--gray-500);
-                    font-size: 0.75rem;
-                    margin-bottom: 0;
-                  "
-                >
-                  10:00 AM · Nature Campus
-                </p>
-                <div
-                  style="
-                    margin-top: var(--space-sm);
-                    display: flex;
-                    gap: 4px;
-                    flex-wrap: wrap;
-                  "
-                >
-                  <span
-                    class="status-badge completed"
-                    style="padding: 2px 8px; font-size: 0.625rem"
-                    >All School</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+      </div>
     </div>
-    <script src="../js/main.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const menuToggle = document.getElementById("menuToggle");
-        const sidebar = document.getElementById("dashboardSidebar");
-        const overlay = document.getElementById("sidebarOverlay");
-        if (menuToggle && sidebar && overlay) {
-          const toggleSidebar = () => {
-            sidebar.classList.toggle("open");
-            overlay.classList.toggle("active");
-            document.body.style.overflow = sidebar.classList.contains("open")
-              ? "hidden"
-              : "";
-          };
-          menuToggle.addEventListener("click", toggleSidebar);
-          overlay.addEventListener("click", toggleSidebar);
-        }
-        sidebar.querySelectorAll(".dashboard-nav-item").forEach((item) => {
-          item.addEventListener("click", () => {
-            if (window.innerWidth <= 768) {
-              sidebar.classList.remove("open");
-              overlay.classList.remove("active");
-              document.body.style.overflow = "";
-            }
-          });
-        });
+  </header>
+
+  <main class="dash-main">
+
+    <!-- ADMIN WELCOME -->
+    <div class="admin-welcome">
+      <div class="admin-welcome-text">
+        <h1 id="adminGreeting">
+          Good Morning, Administrator
+          <svg style="display:inline-block;vertical-align:-4px;margin-left:8px;opacity:0.9" width="22" height="22" viewBox="0 0 24 24" fill="rgba(255,255,255,0.55)" stroke="rgba(255,255,255,0.95)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </h1>
+        <p>Academic Year 2024&ndash;25 &nbsp;&bull;&nbsp; Second Semester &nbsp;&bull;&nbsp; July 17, 2025</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:2">
+        <div class="admin-welcome-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>School Open</div>
+        <div class="admin-welcome-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Day 142 of 200</div>
+      </div>
+    </div>
+
+    <!-- STATS ROW 1 -->
+    <div class="stats-grid-6">
+      <div class="stat-card"><div class="stat-icon si-purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="stat-value">1,248</div><div class="stat-label">Total Students</div><span class="stat-change up">&#8593; 48 this term</span></div>
+      <div class="stat-card"><div class="stat-icon si-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="stat-value">64</div><div class="stat-label">Teachers</div><span class="stat-change up">&#8593; 4 new hires</span></div>
+      <div class="stat-card"><div class="stat-icon si-teal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><div class="stat-value">28</div><div class="stat-label">Support Staff</div><span class="stat-change neutral">&#8212; Stable</span></div>
+      <div class="stat-card"><div class="stat-icon si-green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="stat-value">91%</div><div class="stat-label">Today&rsquo;s Attendance</div><span class="stat-change up">&#8593; 2% vs last week</span></div>
+      <div class="stat-card"><div class="stat-icon si-orange"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="stat-value">42</div><div class="stat-label">Active Classes</div><span class="stat-change neutral">&#8212; 2 sections</span></div>
+      <div class="stat-card"><div class="stat-icon si-pink"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><div class="stat-value">$84.2K</div><div class="stat-label">Monthly Revenue</div><span class="stat-change up">&#8593; 12% vs last month</span></div>
+    </div>
+
+    <!-- STATS ROW 2 -->
+    <div class="stats-grid-4">
+      <div class="stat-card"><div class="stat-icon si-red"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div><div class="stat-value">$12,840</div><div class="stat-label">Pending Fees</div><span class="stat-change down">&#8595; 47 families</span></div>
+      <div class="stat-card"><div class="stat-icon si-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg></div><div class="stat-value">18</div><div class="stat-label">New Admissions</div><span class="stat-change up">&#8593; This month</span></div>
+      <div class="stat-card"><div class="stat-icon si-teal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div class="stat-value">12</div><div class="stat-label">School Vehicles</div><span class="stat-change neutral">&#8212; All operational</span></div>
+      <div class="stat-card"><div class="stat-icon si-purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="stat-value">34</div><div class="stat-label">Enquiries</div><span class="stat-change up">&#8593; 9 pending</span></div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="dash-card dash-section">
+      <div class="dash-section-label">
+        <h2><div class="section-icon" style="background:rgba(139,92,246,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--lavender)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>Quick Actions</h2>
+      </div>
+      <div class="qa-grid-8">
+        <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(139,92,246,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--lavender)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg></div><span class="qa-label">Add Student</span></a>
+        <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(37,99,235,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="23" y2="8"/><line x1="21" y1="6" x2="21" y2="10"/></svg></div><span class="qa-label">Add Teacher</span></a>
+        <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(16,185,129,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><span class="qa-label">Take Attendance</span></a>
+        <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(249,115,22,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--peach-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div><span class="qa-label">Announcement</span></a>
+        <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(239,68,68,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--coral-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div><span class="qa-label">Upload Homework</span></a>
+        <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(20,184,166,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="18" x2="12" y2="14"/><line x1="10" y1="16" x2="14" y2="16"/></svg></div><span class="qa-label">Create Event</span></a>
+        <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(99,102,241,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div><span class="qa-label">Collect Fees</span></a>
+        <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(236,72,153,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#DB2777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><span class="qa-label">Generate Reports</span></a>
+      </div>
+    </div>
+
+    <!-- RECENT ADMISSIONS + ATTENDANCE -->
+    <div class="dash-two-col">
+      <div class="dash-card dash-card-accent accent-purple">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(139,92,246,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--lavender)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg></div>Recent Admissions</h2>
+          <a href="#">View All</a>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Student</th><th>Class</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><div class="student-name">Emma Johnson</div><div class="student-sub">Parent: Mr. Johnson</div></td><td>Grade KG-A</td><td style="color:var(--dash-muted);font-size:0.8125rem">Jul 15</td><td><span class="badge badge-green">Admitted</span></td></tr>
+            <tr><td><div class="student-name">Rohan Mehta</div><div class="student-sub">Parent: Mrs. Mehta</div></td><td>Grade 1B</td><td style="color:var(--dash-muted);font-size:0.8125rem">Jul 14</td><td><span class="badge badge-green">Admitted</span></td></tr>
+            <tr><td><div class="student-name">Sofia Chen</div><div class="student-sub">Parent: Mr. Chen</div></td><td>Grade 2A</td><td style="color:var(--dash-muted);font-size:0.8125rem">Jul 12</td><td><span class="badge badge-orange">Pending Docs</span></td></tr>
+            <tr><td><div class="student-name">Aiden Williams</div><div class="student-sub">Parent: Ms. Williams</div></td><td>Grade KG-B</td><td style="color:var(--dash-muted);font-size:0.8125rem">Jul 11</td><td><span class="badge badge-blue">Under Review</span></td></tr>
+            <tr><td><div class="student-name">Priya Nair</div><div class="student-sub">Parent: Mr. Nair</div></td><td>Grade 3A</td><td style="color:var(--dash-muted);font-size:0.8125rem">Jul 10</td><td><span class="badge badge-green">Admitted</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dash-card dash-card-accent accent-green">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(16,185,129,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>Attendance Overview</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px">
+          <div style="text-align:center;padding:16px;border-radius:14px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.15)"><div style="font-family:var(--font-heading);font-weight:800;font-size:1.5rem;color:#059669">91%</div><div style="font-size:0.75rem;color:var(--dash-muted);font-weight:600">School Today</div></div>
+          <div style="text-align:center;padding:16px;border-radius:14px;background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.15)"><div style="font-family:var(--font-heading);font-weight:800;font-size:1.5rem;color:var(--lavender)">1,137</div><div style="font-size:0.75rem;color:var(--dash-muted);font-weight:600">Present</div></div>
+          <div style="text-align:center;padding:16px;border-radius:14px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.15)"><div style="font-family:var(--font-heading);font-weight:800;font-size:1.5rem;color:var(--coral-dark)">111</div><div style="font-size:0.75rem;color:var(--dash-muted);font-weight:600">Absent</div></div>
+        </div>
+        <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--dash-muted);margin-bottom:16px">Class-Wise Attendance</div>
+        <div class="progress-bar-wrap"><div class="progress-bar-header"><span class="progress-bar-label">KG Section A</span><span class="progress-bar-value" style="color:#059669">97%</span></div><div class="progress-track"><div class="progress-fill pf-green" style="width:97%"></div></div></div>
+        <div class="progress-bar-wrap"><div class="progress-bar-header"><span class="progress-bar-label">Grade 1 Section B</span><span class="progress-bar-value">94%</span></div><div class="progress-track"><div class="progress-fill pf-purple" style="width:94%"></div></div></div>
+        <div class="progress-bar-wrap"><div class="progress-bar-header"><span class="progress-bar-label">Grade 2 Section A</span><span class="progress-bar-value" style="color:var(--peach-dark)">88%</span></div><div class="progress-track"><div class="progress-fill pf-orange" style="width:88%"></div></div></div>
+        <div class="progress-bar-wrap"><div class="progress-bar-header"><span class="progress-bar-label">Grade 3 Section A</span><span class="progress-bar-value">91%</span></div><div class="progress-track"><div class="progress-fill pf-blue" style="width:91%"></div></div></div>
+        <div class="progress-bar-wrap" style="margin-bottom:0"><div class="progress-bar-header"><span class="progress-bar-label">Grade 4 Section B</span><span class="progress-bar-value" style="color:var(--coral-dark)">82%</span></div><div class="progress-track"><div class="progress-fill pf-red" style="width:82%"></div></div></div>
+      </div>
+    </div>
+
+    <!-- CLASS MANAGEMENT -->
+    <div class="dash-card dash-section">
+      <div class="dash-section-label">
+        <h2><div class="section-icon" style="background:rgba(37,99,235,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>Class Management</h2>
+        <a href="#">Manage All</a>
+      </div>
+      <div class="class-grid">
+        <div class="class-card"><div class="class-card-header"><div><div class="class-grade">KG Section A</div><div class="class-section">Kindergarten &bull; Morning</div></div><span class="badge badge-green">Active</span></div><div class="class-stats"><div class="class-stat-item"><div class="class-stat-value">28</div><div class="class-stat-label">Students</div></div><div class="class-stat-item"><div class="class-stat-value">30</div><div class="class-stat-label">Capacity</div></div></div><div class="progress-track" style="margin-bottom:12px"><div class="progress-fill pf-green" style="width:93%"></div></div><div class="class-teacher"><svg style="display:inline-block;vertical-align:-3px;margin-right:4px;opacity:0.65" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Ms. Sarah Mitchell</div></div>
+        <div class="class-card"><div class="class-card-header"><div><div class="class-grade">Grade 1 &mdash; B</div><div class="class-section">Primary 1 &bull; Full Day</div></div><span class="badge badge-green">Active</span></div><div class="class-stats"><div class="class-stat-item"><div class="class-stat-value">30</div><div class="class-stat-label">Students</div></div><div class="class-stat-item"><div class="class-stat-value">30</div><div class="class-stat-label">Capacity</div></div></div><div class="progress-track" style="margin-bottom:12px"><div class="progress-fill pf-purple" style="width:100%"></div></div><div class="class-teacher"><svg style="display:inline-block;vertical-align:-3px;margin-right:4px;opacity:0.65" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Mr. James Peterson</div></div>
+        <div class="class-card"><div class="class-card-header"><div><div class="class-grade">Grade 2 &mdash; A</div><div class="class-section">Primary 2 &bull; Full Day</div></div><span class="badge badge-green">Active</span></div><div class="class-stats"><div class="class-stat-item"><div class="class-stat-value">26</div><div class="class-stat-label">Students</div></div><div class="class-stat-item"><div class="class-stat-value">30</div><div class="class-stat-label">Capacity</div></div></div><div class="progress-track" style="margin-bottom:12px"><div class="progress-fill pf-blue" style="width:87%"></div></div><div class="class-teacher"><svg style="display:inline-block;vertical-align:-3px;margin-right:4px;opacity:0.65" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Ms. Linda Torres</div></div>
+        <div class="class-card"><div class="class-card-header"><div><div class="class-grade">Grade 3 &mdash; A</div><div class="class-section">Primary 3 &bull; Full Day</div></div><span class="badge badge-orange">Near Capacity</span></div><div class="class-stats"><div class="class-stat-item"><div class="class-stat-value">29</div><div class="class-stat-label">Students</div></div><div class="class-stat-item"><div class="class-stat-value">30</div><div class="class-stat-label">Capacity</div></div></div><div class="progress-track" style="margin-bottom:12px"><div class="progress-fill pf-orange" style="width:97%"></div></div><div class="class-teacher"><svg style="display:inline-block;vertical-align:-3px;margin-right:4px;opacity:0.65" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Mr. David Kim</div></div>
+      </div>
+    </div>
+
+    <!-- TEACHER MANAGEMENT -->
+    <div class="dash-card dash-section">
+      <div class="dash-section-label">
+        <h2><div class="section-icon" style="background:rgba(139,92,246,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--lavender)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>Teacher Management</h2>
+        <a href="#">View All 64 Teachers</a>
+      </div>
+      <div class="teacher-grid">
+        <div class="teacher-card"><div class="teacher-avatar" style="background:var(--gradient-primary)">SM</div><div class="teacher-name">Ms. Sarah Mitchell</div><div class="teacher-dept">Kindergarten &bull; 8 yrs experience</div><div class="teacher-tags"><span class="teacher-tag">English</span><span class="teacher-tag">Arts</span><span class="teacher-tag">Music</span></div><div class="teacher-meta"><span class="teacher-meta-item">Class: KG-A</span><span class="badge badge-green">Active</span></div></div>
+        <div class="teacher-card"><div class="teacher-avatar" style="background:linear-gradient(135deg,#2563EB,#60A5FA)">JP</div><div class="teacher-name">Mr. James Peterson</div><div class="teacher-dept">Primary &bull; 12 yrs experience</div><div class="teacher-tags"><span class="teacher-tag">Mathematics</span><span class="teacher-tag">Science</span></div><div class="teacher-meta"><span class="teacher-meta-item">Class: Grade 1B</span><span class="badge badge-green">Active</span></div></div>
+        <div class="teacher-card"><div class="teacher-avatar" style="background:linear-gradient(135deg,#059669,var(--mint))">LT</div><div class="teacher-name">Ms. Linda Torres</div><div class="teacher-dept">Primary &bull; 6 yrs experience</div><div class="teacher-tags"><span class="teacher-tag">Social Studies</span><span class="teacher-tag">History</span></div><div class="teacher-meta"><span class="teacher-meta-item">Class: Grade 2A</span><span class="badge badge-orange">On Leave</span></div></div>
+      </div>
+    </div>
+
+    <!-- FINANCE + EVENTS -->
+    <div class="dash-two-col">
+      <div class="dash-card dash-card-accent accent-blue">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(37,99,235,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>Finance Overview</h2>
+        </div>
+        <div class="finance-grid">
+          <div class="fin-card revenue"><div class="fin-amount">$84,200</div><div class="fin-label">Monthly Revenue</div><div class="fin-sub">July 2025</div></div>
+          <div class="fin-card collected"><div class="fin-amount">$71,360</div><div class="fin-label">Collected</div><div class="fin-sub">84.7% of target</div></div>
+          <div class="fin-card pending"><div class="fin-amount">$12,840</div><div class="fin-label">Pending</div><div class="fin-sub">47 families</div></div>
+        </div>
+        <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--dash-muted);margin-bottom:8px">Monthly Revenue Trend</div>
+        <div class="revenue-chart">
+          <div class="rev-col"><div class="rev-bar" style="height:60%;background:var(--gradient-primary);opacity:0.6"></div><div class="rev-label">Feb</div></div>
+          <div class="rev-col"><div class="rev-bar" style="height:70%;background:var(--gradient-primary);opacity:0.7"></div><div class="rev-label">Mar</div></div>
+          <div class="rev-col"><div class="rev-bar" style="height:80%;background:var(--gradient-primary);opacity:0.75"></div><div class="rev-label">Apr</div></div>
+          <div class="rev-col"><div class="rev-bar" style="height:75%;background:var(--gradient-primary);opacity:0.75"></div><div class="rev-label">May</div></div>
+          <div class="rev-col"><div class="rev-bar" style="height:85%;background:var(--gradient-primary);opacity:0.85"></div><div class="rev-label">Jun</div></div>
+          <div class="rev-col"><div class="rev-bar" style="height:100%;background:var(--gradient-primary)"></div><div class="rev-label">Jul</div></div>
+        </div>
+        <div class="dash-divider" style="margin:16px 0"></div>
+        <table class="data-table">
+          <thead><tr><th>Family</th><th>Amount</th><th>Due</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="student-name">Johnson Family</td><td style="font-weight:700">$420</td><td style="color:var(--coral-dark)">Jul 31</td><td><span class="badge badge-red">Overdue</span></td></tr>
+            <tr><td class="student-name">Mehta Family</td><td style="font-weight:700">$360</td><td style="color:var(--peach-dark)">Jul 31</td><td><span class="badge badge-orange">Pending</span></td></tr>
+            <tr><td class="student-name">Chen Family</td><td style="font-weight:700">$540</td><td style="color:var(--peach-dark)">Jul 31</td><td><span class="badge badge-orange">Pending</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dash-card dash-card-accent accent-orange">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(249,115,22,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--peach-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>Upcoming Events</h2>
+          <a href="#">Manage</a>
+        </div>
+        <div class="event-card"><div class="event-date"><div class="event-date-day">20</div><div class="event-date-month">Jul</div></div><div style="flex:1"><div class="event-title">Science Fair</div><div class="event-desc">9:00 AM &mdash; Main Hall &bull; All classes</div><div style="margin-top:4px"><span class="badge badge-blue">Academic</span><span class="badge badge-gray" style="margin-left:4px">142 Participants</span></div></div></div>
+        <div class="event-card"><div class="event-date" style="background:linear-gradient(135deg,#059669,var(--mint))"><div class="event-date-day">26</div><div class="event-date-month">Jul</div></div><div style="flex:1"><div class="event-title">Annual Sports Day</div><div class="event-desc">8:00 AM &mdash; Sports Ground</div><div style="margin-top:4px"><span class="badge badge-green">Sports</span></div></div></div>
+        <div class="event-card"><div class="event-date" style="background:linear-gradient(135deg,var(--peach-dark),var(--peach))"><div class="event-date-day">28</div><div class="event-date-month">Jul</div></div><div style="flex:1"><div class="event-title">PTA Quarterly Meeting</div><div class="event-desc">5:00 PM &mdash; Auditorium</div><div style="margin-top:4px"><span class="badge badge-orange">PTA</span></div></div></div>
+        <div class="event-card"><div class="event-date" style="background:linear-gradient(135deg,#7C3AED,var(--lavender))"><div class="event-date-day">15</div><div class="event-date-month">Aug</div></div><div style="flex:1"><div class="event-title">Annual School Excursion</div><div class="event-desc">All Day &mdash; City Science Museum</div><div style="margin-top:4px"><span class="badge badge-purple">Excursion</span></div></div></div>
+      </div>
+    </div>
+
+    <!-- ANNOUNCEMENTS + ENQUIRIES -->
+    <div class="dash-two-col">
+      <div class="dash-card">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(139,92,246,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--lavender)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg></div>Announcements</h2>
+          <a href="#">Manage</a>
+        </div>
+        <div class="ann-item"><div class="ann-dot" style="background:var(--coral-dark)"></div><div style="flex:1"><div class="ann-title">Half-Yearly Exam Timetable Published</div><div class="ann-meta">Today, 8:00 AM &bull; <span class="badge badge-orange" style="font-size:0.6rem">Exam</span> <span class="badge badge-blue" style="font-size:0.6rem">PINNED</span></div></div></div>
+        <div class="ann-item"><div class="ann-dot" style="background:var(--lavender)"></div><div style="flex:1"><div class="ann-title">PTA Meeting Reminder &mdash; July 28</div><div class="ann-meta">Yesterday &bull; <span class="badge badge-purple" style="font-size:0.6rem">PTA</span></div></div></div>
+        <div class="ann-item"><div class="ann-dot" style="background:#059669"></div><div style="flex:1"><div class="ann-title">National Day Holiday &mdash; August 9</div><div class="ann-meta">3 days ago &bull; <span class="badge badge-green" style="font-size:0.6rem">Holiday</span></div></div></div>
+        <div class="ann-item"><div class="ann-dot" style="background:var(--peach-dark)"></div><div style="flex:1"><div class="ann-title">Fee Collection Deadline &mdash; July 31</div><div class="ann-meta">5 days ago &bull; <span class="badge badge-orange" style="font-size:0.6rem">Finance</span></div></div></div>
+        <div style="margin-top:16px"><button style="width:100%;padding:10px;border-radius:9999px;border:1.5px solid var(--lavender);background:transparent;font-family:var(--font-heading);font-weight:700;font-size:0.875rem;color:var(--lavender);cursor:pointer;transition:0.3s" onmouseover="this.style.background='rgba(139,92,246,0.08)'" onmouseout="this.style.background='transparent'">+ Create New Announcement</button></div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(37,99,235,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>Recent Enquiries</h2>
+          <a href="#">View All 34</a>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Parent</th><th>Grade</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><div class="student-name">Mr. Robert Davis</div><div class="student-sub">For: Emma (5 yrs)</div></td><td>KG</td><td style="color:var(--dash-muted);font-size:0.8125rem">Jul 17</td><td><span class="badge badge-orange">Pending</span></td></tr>
+            <tr><td><div class="student-name">Mrs. Aisha Khan</div><div class="student-sub">For: Hassan (7 yrs)</div></td><td>Grade 2</td><td style="color:var(--dash-muted);font-size:0.8125rem">Jul 16</td><td><span class="badge badge-blue">Scheduled</span></td></tr>
+            <tr><td><div class="student-name">Mr. Lim Wei</div><div class="student-sub">For: Jun (6 yrs)</div></td><td>Grade 1</td><td style="color:var(--dash-muted);font-size:0.8125rem">Jul 15</td><td><span class="badge badge-green">Admitted</span></td></tr>
+            <tr><td><div class="student-name">Dr. Priya Rao</div><div class="student-sub">For: Ananya (5 yrs)</div></td><td>KG</td><td style="color:var(--dash-muted);font-size:0.8125rem">Jul 14</td><td><span class="badge badge-orange">Pending</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- REPORTS + SYSTEM STATUS -->
+    <div class="dash-two-col">
+      <div class="dash-card">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(236,72,153,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#DB2777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>Download Reports</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <button style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--dash-bg);border-radius:14px;border:1px solid var(--dash-border);cursor:pointer;transition:0.3s;text-align:left" onmouseover="this.style.borderColor='var(--lavender)'" onmouseout="this.style.borderColor='var(--dash-border)'"><div style="width:38px;height:38px;border-radius:10px;background:rgba(139,92,246,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--lavender)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><div style="font-family:var(--font-heading);font-weight:700;font-size:0.875rem;color:var(--dash-text)">Attendance Report</div><div style="font-size:0.75rem;color:var(--dash-muted)">Monthly &bull; PDF</div></div></button>
+          <button style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--dash-bg);border-radius:14px;border:1px solid var(--dash-border);cursor:pointer;transition:0.3s;text-align:left" onmouseover="this.style.borderColor='var(--lavender)'" onmouseout="this.style.borderColor='var(--dash-border)'"><div style="width:38px;height:38px;border-radius:10px;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div><div><div style="font-family:var(--font-heading);font-weight:700;font-size:0.875rem;color:var(--dash-text)">Fee Collection</div><div style="font-size:0.75rem;color:var(--dash-muted)">Monthly &bull; PDF</div></div></button>
+          <button style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--dash-bg);border-radius:14px;border:1px solid var(--dash-border);cursor:pointer;transition:0.3s;text-align:left" onmouseover="this.style.borderColor='var(--lavender)'" onmouseout="this.style.borderColor='var(--dash-border)'"><div style="width:38px;height:38px;border-radius:10px;background:rgba(37,99,235,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div><div style="font-family:var(--font-heading);font-weight:700;font-size:0.875rem;color:var(--dash-text)">Admission Report</div><div style="font-size:0.75rem;color:var(--dash-muted)">Term 2 &bull; PDF</div></div></button>
+          <button style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--dash-bg);border-radius:14px;border:1px solid var(--dash-border);cursor:pointer;transition:0.3s;text-align:left" onmouseover="this.style.borderColor='var(--lavender)'" onmouseout="this.style.borderColor='var(--dash-border)'"><div style="width:38px;height:38px;border-radius:10px;background:rgba(249,115,22,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--peach-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div><div><div style="font-family:var(--font-heading);font-weight:700;font-size:0.875rem;color:var(--dash-text)">Academic Performance</div><div style="font-size:0.75rem;color:var(--dash-muted)">Term 1 &bull; PDF</div></div></button>
+        </div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(16,185,129,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>System Status</h2>
+        </div>
+        <div class="sys-grid">
+          <div class="sys-item"><div class="sys-indicator online"></div><div><div class="sys-label">School Portal</div><div class="sys-sub">Fully Operational</div></div></div>
+          <div class="sys-item"><div class="sys-indicator online"></div><div><div class="sys-label">Database</div><div class="sys-sub">All Systems Normal</div></div></div>
+          <div class="sys-item"><div class="sys-indicator online"></div><div><div class="sys-label">Backup</div><div class="sys-sub">Last: Today 2:00 AM</div></div></div>
+          <div class="sys-item"><div class="sys-indicator warning"></div><div><div class="sys-label">Fee Gateway</div><div class="sys-sub">Minor Latency</div></div></div>
+        </div>
+        <div class="dash-divider" style="margin:20px 0"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="padding:14px;background:rgba(49,46,129,0.06);border-radius:14px;border:1px solid var(--dash-border)"><div style="font-size:0.75rem;font-weight:700;color:var(--dash-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">Academic Year</div><div style="font-family:var(--font-heading);font-weight:700;color:var(--dash-text)">2024 &ndash; 2025</div></div>
+          <div style="padding:14px;background:rgba(49,46,129,0.06);border-radius:14px;border:1px solid var(--dash-border)"><div style="font-size:0.75rem;font-weight:700;color:var(--dash-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">Current Semester</div><div style="font-family:var(--font-heading);font-weight:700;color:var(--dash-text)">Semester 2</div></div>
+          <div style="padding:14px;background:rgba(16,185,129,0.06);border-radius:14px;border:1px solid rgba(16,185,129,0.15)"><div style="font-size:0.75rem;font-weight:700;color:var(--dash-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">School Status</div><div style="font-family:var(--font-heading);font-weight:700;color:#059669">Open &bull; Day 142</div></div>
+          <div style="padding:14px;background:rgba(139,92,246,0.06);border-radius:14px;border:1px solid rgba(139,92,246,0.15)"><div style="font-size:0.75rem;font-weight:700;color:var(--dash-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">System Version</div><div style="font-family:var(--font-heading);font-weight:700;color:var(--lavender)">EduPortal v2.4.1</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-footer">
+      <p>&copy; 2025 Kindergarden International School &nbsp;|&nbsp; Admin Dashboard v2.0 &nbsp;|&nbsp; EduPortal Platform</p>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+  <script>
+    const dateEl = document.getElementById('dash-date-display');
+    if (dateEl) { const n=new Date(); dateEl.textContent=n.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}); }
+    const greetEl = document.getElementById('adminGreeting');
+    if (greetEl) {
+      const h=new Date().getHours();
+      const g=h<12?'Good Morning':h<17?'Good Afternoon':'Good Evening';
+      greetEl.innerHTML=`${g}, Administrator <svg style="display:inline-block;vertical-align:-4px;margin-left:8px;opacity:0.9" width="22" height="22" viewBox="0 0 24 24" fill="rgba(255,255,255,0.55)" stroke="rgba(255,255,255,0.95)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+    }
+
+    // ── PROFILE DROPDOWN ──
+    (function() {
+      var btn = document.getElementById('profileDropdownBtn');
+      var menu = document.getElementById('profileDropdownMenu');
+      if (!btn || !menu) return;
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = menu.classList.contains('open');
+        menu.classList.toggle('open');
+        menu.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
       });
-    </script>
-  </body>
+      document.addEventListener('click', function() {
+        menu.classList.remove('open');
+        menu.setAttribute('aria-hidden', 'true');
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          menu.classList.remove('open');
+          menu.setAttribute('aria-hidden', 'true');
+        }
+      });
+    })();
+  </script>
+</body>
 </html>

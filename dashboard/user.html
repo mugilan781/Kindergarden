@@ -1,1760 +1,796 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard — Kindergarden</title>
-    <meta
-      name="description"
-      content="Parent dashboard for Kindergarden International School"
-    />
-    <link rel="stylesheet" href="../css/style.css" />
-    <style>
-      .dashboard-sidebar-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(30, 27, 75, 0.4);
-        z-index: 99;
-        backdrop-filter: blur(4px);
-        transition: var(--transition);
-      }
-      .dashboard-sidebar-overlay.active {
-        display: block;
-      }
-      .dashboard-nav-item.logout {
-        margin-top: auto;
-        color: var(--coral);
-      }
-      .dashboard-nav-item.logout:hover {
-        background: rgba(255, 107, 107, 0.08);
-        color: var(--coral-dark);
-      }
-      .schedule-item {
-        display: flex;
-        gap: var(--space-lg);
-        padding: var(--space-md) 0;
-        border-bottom: 1px solid var(--gray-100);
-      }
-      .schedule-item:last-child {
-        border-bottom: none;
-      }
-      .schedule-time {
-        min-width: 72px;
-        font-family: var(--font-heading);
-        font-weight: 700;
-        font-size: 0.875rem;
-        color: var(--lavender);
-      }
-      .schedule-info {
-        flex: 1;
-      }
-      .schedule-info h4 {
-        font-size: 1rem;
-        margin-bottom: 2px;
-      }
-      .schedule-info p {
-        color: var(--gray-500);
-        font-size: 0.875rem;
-      }
-      .schedule-tag {
-        display: inline-flex;
-        padding: 2px 10px;
-        border-radius: var(--radius-pill);
-        font-size: 0.7rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-      }
-      .schedule-tag.in-class {
-        background: rgba(139, 92, 246, 0.12);
-        color: var(--lavender);
-      }
-      .schedule-tag.activity {
-        background: rgba(110, 231, 183, 0.2);
-        color: #059669;
-      }
-      .schedule-tag.meeting {
-        background: rgba(253, 186, 116, 0.2);
-        color: var(--peach-dark);
-      }
-      .activity-item {
-        display: flex;
-        align-items: flex-start;
-        gap: var(--space-md);
-        padding: var(--space-md) 0;
-        border-bottom: 1px solid var(--gray-100);
-      }
-      .activity-item:last-child {
-        border-bottom: none;
-      }
-      .activity-dot {
-        width: 10px;
-        height: 10px;
-        min-width: 10px;
-        border-radius: var(--radius-full);
-        margin-top: 6px;
-      }
-      .activity-dot.purple {
-        background: var(--lavender);
-      }
-      .activity-dot.green {
-        background: var(--mint-dark);
-      }
-      .activity-dot.orange {
-        background: var(--peach-dark);
-      }
-      .activity-dot.coral {
-        background: var(--coral);
-      }
-      .activity-content {
-        flex: 1;
-      }
-      .activity-content p {
-        font-size: 0.9375rem;
-        color: var(--gray-700);
-        margin-bottom: 2px;
-      }
-      .activity-content p strong {
-        color: var(--indigo-dark);
-      }
-      .activity-time {
-        font-size: 0.8125rem;
-        color: var(--gray-400);
-      }
-      .event-mini-card {
-        display: flex;
-        gap: var(--space-lg);
-        padding: var(--space-md) 0;
-        border-bottom: 1px solid var(--gray-100);
-        align-items: center;
-      }
-      .event-mini-card:last-child {
-        border-bottom: none;
-      }
-      .event-mini-date {
-        min-width: 56px;
-        text-align: center;
-      }
-      .event-mini-date .day {
-        font-family: var(--font-heading);
-        font-weight: 800;
-        font-size: 1.5rem;
-        color: var(--indigo-dark);
-        line-height: 1;
-      }
-      .event-mini-date .month {
-        font-size: 0.7rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        color: var(--lavender);
-      }
-      .event-mini-info {
-        flex: 1;
-      }
-      .event-mini-info h4 {
-        font-size: 1rem;
-        margin-bottom: 2px;
-      }
-      .event-mini-info p {
-        color: var(--gray-500);
-        font-size: 0.8125rem;
-        margin: 0;
-      }
-      .child-avatar-letter {
-        width: 80px;
-        height: 80px;
-        border-radius: var(--radius-full);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: var(--font-heading);
-        font-weight: 800;
-        font-size: 2rem;
-        color: var(--white);
-        margin: 0 auto var(--space-md);
-        border: 4px solid var(--white);
-        box-shadow: var(--shadow-lg);
-      }
-      .stat-icon-wrap {
-        width: 48px;
-        height: 48px;
-        border-radius: var(--radius-lg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .notification-dropdown {
-        position: absolute;
-        top: calc(100% + 12px);
-        right: 0;
-        width: 340px;
-        background: var(--white);
-        border-radius: var(--radius-xl);
-        box-shadow: var(--shadow-xl);
-        border: 1px solid var(--gray-200);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-8px);
-        transition: var(--transition);
-        z-index: 50;
-      }
-      .notification-dropdown.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-      .notification-dropdown-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: var(--space-lg) var(--space-lg) var(--space-md);
-        border-bottom: 1px solid var(--gray-100);
-      }
-      .notification-dropdown-header h4 {
-        font-size: 1rem;
-        margin: 0;
-      }
-      .notification-item {
-        display: flex;
-        gap: var(--space-md);
-        padding: var(--space-md) var(--space-lg);
-        transition: var(--transition);
-        cursor: pointer;
-      }
-      .notification-item:hover {
-        background: var(--cream);
-      }
-      .notification-item.unread {
-        background: rgba(139, 92, 246, 0.04);
-      }
-      .notification-item-icon {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
-        border-radius: var(--radius-lg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .notification-item-content p {
-        font-size: 0.875rem;
-        color: var(--gray-600);
-        margin-bottom: 2px;
-      }
-      .notification-item-content .time {
-        font-size: 0.75rem;
-        color: var(--gray-400);
-      }
-      .menu-toggle {
-        cursor: pointer;
-      }
-      @media (max-width: 768px) {
-        .dashboard-sidebar {
-          position: fixed;
-          left: -100%;
-          transition: var(--transition-slow);
-          display: flex;
-          z-index: 100;
-        }
-        .dashboard-sidebar.open {
-          left: 0;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="dashboard-layout">
-      <!-- Sidebar Overlay -->
-      <div class="dashboard-sidebar-overlay" id="sidebarOverlay"></div>
-      <!-- ===== SIDEBAR ===== -->
-      <aside class="dashboard-sidebar" id="dashboardSidebar">
-        <a href="../index.html" class="logo">
-          <span class="logo-icon">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-              <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
-            </svg>
-          </span>
-          Kindergarden
-        </a>
-        <nav
-          class="dashboard-nav"
-          style="display: flex; flex-direction: column; height: 100%"
-        >
-          <div>
-            <div class="dashboard-nav-label">Main Menu</div>
-            <a href="user.html" class="dashboard-nav-item active">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="3" width="7" height="7" />
-                <rect x="14" y="3" width="7" height="7" />
-                <rect x="14" y="14" width="7" height="7" />
-                <rect x="3" y="14" width="7" height="7" />
-              </svg>
-              Dashboard
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              My Children
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                <line x1="16" y1="2" x2="16" y2="6" />
-                <line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-                <path d="M8 14h.01" />
-                <path d="M12 14h.01" />
-                <path d="M16 14h.01" />
-                <path d="M8 18h.01" />
-                <path d="M12 18h.01" />
-                <path d="M16 18h.01" />
-              </svg>
-              Attendance
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              Grades
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polygon points="10 8 16 12 10 16 10 8" />
-              </svg>
-              Activities
-            </a>
-          </div>
-          <div style="margin-top: var(--space-md)">
-            <div class="dashboard-nav-label">Communication</div>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-              Messages
-              <span
-                style="
-                  margin-left: auto;
-                  padding: 2px 8px;
-                  background: var(--coral);
-                  color: var(--white);
-                  font-size: 0.6875rem;
-                  font-weight: 700;
-                  border-radius: var(--radius-pill);
-                "
-                >3</span
-              >
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-              Gallery
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-              Schedule
-            </a>
-          </div>
-          <div style="margin-top: var(--space-md)">
-            <div class="dashboard-nav-label">Account</div>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
-                <line x1="1" y1="10" x2="23" y2="10" />
-              </svg>
-              Payments
-            </a>
-            <a href="#" class="dashboard-nav-item">
-              <svg
-                class="nav-icon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="3" />
-                <path
-                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
-                />
-              </svg>
-              Settings
-            </a>
-          </div>
-          <a
-            href="../login.html"
-            class="dashboard-nav-item logout"
-            style="margin-top: auto"
-          >
-            <svg
-              class="nav-icon"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-              <polyline points="16 17 21 12 16 7" />
-              <line x1="21" y1="12" x2="9" y2="12" />
-            </svg>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parent Portal — Kindergarden</title>
+  <meta name="description" content="Parent portal for Kindergarden International School — view your child's attendance, homework, announcements and more." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    :root {
+      --dash-bg: #F4F3FF;
+      --dash-card: #FFFFFF;
+      --dash-border: rgba(49,46,129,0.08);
+      --dash-header-h: 72px;
+      --dash-text: #1E1B4B;
+      --dash-muted: #6B7280;
+    }
+    [data-theme="dark"] {
+      --dash-bg: #0D0B1A;
+      --dash-card: #1A1730;
+      --dash-border: rgba(139,92,246,0.15);
+      --dash-text: rgba(255,255,255,0.92);
+      --dash-muted: rgba(255,255,255,0.5);
+    }
+    [data-theme="dark"] body { background: var(--dash-bg); color: var(--dash-text); }
+    [data-theme="dark"] .dash-card,
+    [data-theme="dark"] .qs-card { background: var(--dash-card); border-color: var(--dash-border); }
+    [data-theme="dark"] .dash-header { background: var(--dash-card); border-color: var(--dash-border); }
+    [data-theme="dark"] .announcement-card,
+    [data-theme="dark"] .event-card,
+    [data-theme="dark"] .today-status-item,
+    [data-theme="dark"] .doc-card,
+    [data-theme="dark"] .qa-btn,
+    [data-theme="dark"] .contact-card,
+    [data-theme="dark"] .att-stat,
+    [data-theme="dark"] .score-card { background: rgba(255,255,255,0.04); border-color: var(--dash-border); }
+    [data-theme="dark"] .fee-stat.total { background: rgba(139,92,246,0.1); }
+    [data-theme="dark"] .fee-stat.paid { background: rgba(16,185,129,0.1); }
+    [data-theme="dark"] .fee-stat.pending { background: rgba(249,115,22,0.1); }
+    [data-theme="dark"] .progress-track { background: rgba(255,255,255,0.08); }
+    [data-theme="dark"] .dash-header-search input { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.85); }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--dash-bg); font-family: var(--font-body); color: var(--dash-text); min-height: 100vh; }
+
+    /* HEADER */
+    .dash-header {
+      position: sticky; top: 0; z-index: 200;
+      background: var(--dash-card); border-bottom: 1px solid var(--dash-border);
+      box-shadow: 0 1px 20px rgba(49,46,129,0.08); height: var(--dash-header-h);
+      display: flex; align-items: center; padding: 0 32px; gap: 24px;
+    }
+    .dash-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem;
+      color: var(--indigo); text-decoration: none; flex-shrink: 0;
+    }
+    .dash-logo-icon {
+      width: 38px; height: 38px; background: var(--gradient-primary);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;
+    }
+    .dash-title-group { display: flex; flex-direction: column; }
+    .dash-title-group span:first-child { font-family: var(--font-heading); font-weight: 700; font-size: 0.9375rem; color: var(--dash-text); line-height: 1.2; }
+    .dash-title-group span:last-child { font-size: 0.75rem; color: var(--dash-muted); }
+    .dash-header-search { flex: 1; max-width: 320px; margin: 0 auto; position: relative; }
+    .dash-header-search input {
+      width: 100%; padding: 9px 16px 9px 40px; background: var(--dash-bg);
+      border: 1px solid var(--dash-border); border-radius: 9999px; font-family: var(--font-body);
+      font-size: 0.875rem; color: var(--dash-text); outline: none; transition: 0.3s;
+    }
+    .dash-header-search input:focus { border-color: var(--lavender); box-shadow: 0 0 0 3px rgba(139,92,246,0.12); }
+    .dash-header-search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--dash-muted); }
+    .dash-header-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .dash-icon-btn {
+      width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--dash-border);
+      background: var(--dash-card); display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--dash-muted); transition: 0.3s; position: relative;
+    }
+    .dash-icon-btn:hover { background: var(--dash-bg); color: var(--indigo); border-color: var(--lavender); }
+    .dash-icon-btn .notif-dot {
+      position: absolute; top: 7px; right: 7px; width: 8px; height: 8px;
+      background: var(--coral); border-radius: 50%; border: 2px solid var(--dash-card);
+    }
+    .dash-rtl-btn { padding: 0 12px; width: auto; font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; }
+    .dash-profile-btn {
+      display: flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px;
+      border-radius: 9999px; border: 1px solid var(--dash-border); background: var(--dash-card);
+      transition: 0.3s;
+    }
+    .dash-profile-btn:hover { border-color: var(--lavender); background: var(--dash-bg); }
+    .dash-avatar {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--gradient-primary);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.875rem; color: white; flex-shrink: 0;
+    }
+    .dash-profile-name { font-family: var(--font-heading); font-weight: 600; font-size: 0.8125rem; color: var(--dash-text); }
+
+    /* ── PROFILE DROPDOWN ── */
+    .profile-dropdown-wrap { position: relative; }
+    .profile-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      min-width: 186px;
+      background: var(--dash-card);
+      border: 1px solid var(--dash-border);
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(49,46,129,0.18), 0 4px 12px rgba(49,46,129,0.08);
+      padding: 8px;
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(-8px) scale(0.97);
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+    .profile-dropdown-menu.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    .profile-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 10px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: background 0.18s;
+      cursor: pointer;
+      color: var(--dash-text);
+    }
+    .logout-item { color: var(--coral-dark); }
+    .logout-item:hover { background: rgba(239,68,68,0.09); }
+    .profile-dropdown-item svg { flex-shrink: 0; }
+    [data-theme="dark"] .profile-dropdown-menu {
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* MAIN */
+    .dash-main { padding: 32px; max-width: 1400px; margin: 0 auto; }
+
+    /* SECTION HEADER */
+    .dash-section-label { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .dash-section-label h2 { font-size: 1.125rem; font-weight: 700; color: var(--dash-text); display: flex; align-items: center; gap: 10px; }
+    .dash-section-label h2 .section-icon { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .dash-section-label a { font-size: 0.8125rem; font-weight: 600; color: var(--lavender); text-decoration: none; }
+    .dash-section-label a:hover { color: var(--indigo); }
+
+    /* CARD */
+    .dash-card {
+      background: var(--dash-card); border-radius: 20px; padding: 24px;
+      box-shadow: 0 2px 12px rgba(49,46,129,0.07); border: 1px solid var(--dash-border);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .dash-card:hover { box-shadow: 0 8px 30px rgba(49,46,129,0.12); }
+    .dash-card-accent { position: relative; overflow: hidden; }
+    .dash-card-accent::before { content:''; position: absolute; top:0; left:0; right:0; height:4px; }
+    .accent-purple::before { background: linear-gradient(90deg, var(--indigo), var(--lavender)); }
+    .accent-green::before { background: linear-gradient(90deg, #059669, var(--mint)); }
+    .accent-blue::before { background: linear-gradient(90deg, #2563EB, #60A5FA); }
+    .accent-orange::before { background: linear-gradient(90deg, var(--peach-dark), var(--peach)); }
+
+    /* WELCOME */
+    .dash-welcome {
+      background: var(--gradient-primary); border-radius: 24px; padding: 32px 48px;
+      margin-bottom: 32px; display: flex; align-items: center; justify-content: space-between;
+      gap: 32px; position: relative; overflow: hidden;
+    }
+    .dash-welcome::before {
+      content:''; position: absolute; top:-60px; right:-60px;
+      width:250px; height:250px; border-radius:50%; background: rgba(255,255,255,0.06);
+    }
+    .dash-welcome-text h1 { color:white; font-size:1.75rem; font-weight:800; margin-bottom:6px; }
+    .dash-welcome-text p { color:rgba(255,255,255,0.75); font-size:0.9375rem; margin:0; }
+    .dash-child-selector-wrap { position:relative; }
+    .dash-child-select {
+      padding:10px 40px 10px 16px; background:rgba(255,255,255,0.15);
+      border:1px solid rgba(255,255,255,0.3); border-radius:9999px; color:white;
+      font-family:var(--font-heading); font-weight:600; font-size:0.9375rem;
+      cursor:pointer; appearance:none; -webkit-appearance:none; outline:none; transition:0.3s;
+    }
+    .dash-child-select option { color:var(--indigo-dark); background:white; }
+    .dash-child-selector-wrap svg { position:absolute; right:14px; top:50%; transform:translateY(-50%); color:white; pointer-events:none; }
+
+    /* QUICK SUMMARY */
+    .quick-summary-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; margin-bottom:32px; }
+    .qs-card {
+      background:var(--dash-card); border-radius:18px; padding:20px; border:1px solid var(--dash-border);
+      box-shadow:0 2px 8px rgba(49,46,129,0.06); display:flex; flex-direction:column; gap:10px; transition:0.3s;
+    }
+    .qs-card:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(49,46,129,0.12); }
+    .qs-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; }
+    .qs-icon.purple { background:rgba(139,92,246,0.12); color:var(--lavender); }
+    .qs-icon.green { background:rgba(16,185,129,0.12); color:#059669; }
+    .qs-icon.orange { background:rgba(249,115,22,0.12); color:var(--peach-dark); }
+    .qs-icon.blue { background:rgba(37,99,235,0.12); color:#2563EB; }
+    .qs-icon.red { background:rgba(239,68,68,0.12); color:var(--coral-dark); }
+    .qs-icon.teal { background:rgba(20,184,166,0.12); color:#0D9488; }
+    .qs-value { font-family:var(--font-heading); font-weight:800; font-size:1.625rem; color:var(--dash-text); line-height:1; }
+    .qs-label { font-size:0.75rem; font-weight:600; color:var(--dash-muted); text-transform:uppercase; letter-spacing:0.04em; }
+    .qs-badge { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:9999px; font-size:0.6875rem; font-weight:700; }
+    .qs-badge.green { background:rgba(16,185,129,0.1); color:#059669; }
+    .qs-badge.orange { background:rgba(249,115,22,0.1); color:var(--peach-dark); }
+    .qs-badge.red { background:rgba(239,68,68,0.1); color:var(--coral-dark); }
+    .qs-badge.blue { background:rgba(37,99,235,0.1); color:#2563EB; }
+    .qs-badge.purple { background:rgba(139,92,246,0.1); color:var(--lavender); }
+
+    /* GRID LAYOUTS */
+    .dash-two-col { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:32px; }
+    .dash-section { margin-bottom:32px; }
+    .dash-divider { height:1px; background:var(--dash-border); margin:24px 0; }
+
+    /* BADGE SYSTEM */
+    .badge { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:9999px; font-size:0.6875rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; }
+    .badge-green { background:rgba(16,185,129,0.1); color:#059669; }
+    .badge-red { background:rgba(239,68,68,0.1); color:var(--coral-dark); }
+    .badge-orange { background:rgba(249,115,22,0.1); color:var(--peach-dark); }
+    .badge-blue { background:rgba(37,99,235,0.1); color:#2563EB; }
+    .badge-purple { background:rgba(139,92,246,0.1); color:var(--lavender); }
+    .badge-gray { background:rgba(107,114,128,0.1); color:var(--dash-muted); }
+
+    /* CHILD PROFILE */
+    .child-profile-header { display:flex; align-items:center; gap:16px; margin-bottom:24px; padding-bottom:24px; border-bottom:1px solid var(--dash-border); }
+    .child-profile-avatar { width:64px; height:64px; border-radius:18px; background:var(--gradient-primary); display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:800; font-size:1.5rem; color:white; flex-shrink:0; }
+    .child-profile-name { font-family:var(--font-heading); font-weight:800; font-size:1.25rem; color:var(--dash-text); }
+    .child-profile-role { font-size:0.875rem; color:var(--dash-muted); margin-top:2px; }
+    .status-active { display:inline-flex; align-items:center; gap:5px; padding:4px 12px; background:rgba(16,185,129,0.1); color:#059669; border-radius:9999px; font-size:0.75rem; font-weight:700; margin-top:6px; }
+    .status-active::before { content:''; width:6px; height:6px; border-radius:50%; background:#059669; }
+    .profile-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; }
+    .profile-field { display:flex; flex-direction:column; gap:2px; }
+    .profile-field-label { font-size:0.6875rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--dash-muted); }
+    .profile-field-value { font-size:0.9375rem; font-weight:600; color:var(--dash-text); }
+
+    /* TODAY STATUS */
+    .today-status-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px; }
+    .today-status-item { display:flex; align-items:center; gap:12px; padding:16px; background:var(--dash-bg); border-radius:14px; border:1px solid var(--dash-border); }
+    .today-status-icon { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .today-status-label { font-size:0.75rem; color:var(--dash-muted); font-weight:600; }
+    .today-status-value { font-family:var(--font-heading); font-weight:700; font-size:0.9375rem; color:var(--dash-text); }
+    .current-activity { display:flex; align-items:center; gap:12px; padding:16px 24px; background:rgba(139,92,246,0.08); border-radius:14px; border:1px solid rgba(139,92,246,0.15); }
+    .activity-pulse { width:10px; height:10px; border-radius:50%; background:var(--lavender); animation:pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.6;transform:scale(1.3);} }
+
+    /* HOMEWORK TABLE */
+    .hw-table { width:100%; border-collapse:collapse; }
+    .hw-table th { text-align:left; padding:8px 16px; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--dash-muted); border-bottom:1px solid var(--dash-border); }
+    .hw-table td { padding:16px; border-bottom:1px solid var(--dash-border); vertical-align:middle; }
+    .hw-table tr:last-child td { border-bottom:none; }
+    .hw-table tr:hover td { background:var(--dash-bg); }
+    .hw-subject-tag { display:inline-flex; padding:3px 10px; border-radius:9999px; font-size:0.75rem; font-weight:700; }
+    .hw-title { font-weight:600; font-size:0.9375rem; color:var(--dash-text); }
+    .hw-due { font-size:0.8125rem; color:var(--dash-muted); }
+    .btn-sm-outline { padding:6px 16px; border-radius:9999px; border:1px solid var(--dash-border); background:transparent; font-family:var(--font-heading); font-weight:600; font-size:0.75rem; color:var(--lavender); cursor:pointer; transition:0.3s; }
+    .btn-sm-outline:hover { background:var(--lavender); color:white; border-color:var(--lavender); }
+
+    /* ANNOUNCEMENTS */
+    .announcement-card { display:flex; gap:16px; padding:20px; background:var(--dash-bg); border-radius:16px; border:1px solid var(--dash-border); margin-bottom:16px; transition:0.3s; }
+    .announcement-card:last-child { margin-bottom:0; }
+    .announcement-card:hover { border-color:var(--lavender); }
+    .announcement-card.pinned { border-color:rgba(249,115,22,0.3); background:rgba(249,115,22,0.04); }
+    .announcement-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .announcement-title { font-family:var(--font-heading); font-weight:700; font-size:0.9375rem; color:var(--dash-text); margin-bottom:4px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .announcement-body { font-size:0.875rem; color:var(--dash-muted); line-height:1.6; margin-bottom:8px; }
+    .announcement-meta { font-size:0.75rem; color:var(--dash-muted); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+    /* EVENTS */
+    .event-card { display:flex; align-items:center; gap:16px; padding:16px 20px; background:var(--dash-bg); border-radius:14px; border:1px solid var(--dash-border); margin-bottom:8px; transition:0.3s; }
+    .event-card:hover { border-color:var(--lavender); transform:translateX(4px); }
+    .event-date { width:48px; height:52px; border-radius:12px; background:var(--gradient-primary); display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0; color:white; }
+    .event-date-day { font-family:var(--font-heading); font-weight:800; font-size:1.25rem; line-height:1; }
+    .event-date-month { font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; opacity:0.85; }
+    .event-title { font-family:var(--font-heading); font-weight:700; font-size:0.9375rem; color:var(--dash-text); }
+    .event-time { font-size:0.8125rem; color:var(--dash-muted); margin-top:2px; }
+
+    /* FEES */
+    .fee-summary { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+    .fee-stat { text-align:center; padding:20px; border-radius:16px; }
+    .fee-stat.total { background:rgba(49,46,129,0.06); border:1px solid rgba(49,46,129,0.12); }
+    .fee-stat.paid { background:rgba(16,185,129,0.06); border:1px solid rgba(16,185,129,0.15); }
+    .fee-stat.pending { background:rgba(249,115,22,0.06); border:1px solid rgba(249,115,22,0.15); }
+    .fee-stat-amount { font-family:var(--font-heading); font-weight:800; font-size:1.5rem; margin-bottom:4px; }
+    .fee-stat.total .fee-stat-amount { color:var(--indigo); }
+    .fee-stat.paid .fee-stat-amount { color:#059669; }
+    .fee-stat.pending .fee-stat-amount { color:var(--peach-dark); }
+    .fee-stat-label { font-size:0.8125rem; color:var(--dash-muted); font-weight:600; }
+    .fee-table { width:100%; border-collapse:collapse; }
+    .fee-table th { text-align:left; padding:8px 16px; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--dash-muted); border-bottom:1px solid var(--dash-border); }
+    .fee-table td { padding:16px; border-bottom:1px solid var(--dash-border); font-size:0.9375rem; }
+    .fee-table tr:last-child td { border-bottom:none; }
+    .fee-table .amount { font-weight:700; font-family:var(--font-heading); }
+    .fee-actions { display:flex; gap:8px; margin-top:24px; justify-content:flex-end; }
+    .btn-pay { display:inline-flex; align-items:center; gap:8px; padding:10px 24px; background:var(--gradient-primary); color:white; border:none; border-radius:9999px; font-family:var(--font-heading); font-weight:700; font-size:0.9375rem; cursor:pointer; transition:0.3s; box-shadow:0 4px 16px rgba(139,92,246,0.3); }
+    .btn-pay:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(139,92,246,0.4); }
+    .btn-receipt { display:inline-flex; align-items:center; gap:8px; padding:10px 24px; background:transparent; color:var(--lavender); border:1.5px solid var(--lavender); border-radius:9999px; font-family:var(--font-heading); font-weight:700; font-size:0.9375rem; cursor:pointer; transition:0.3s; }
+    .btn-receipt:hover { background:rgba(139,92,246,0.08); }
+
+    /* PROGRESS */
+    .progress-bar-wrap { margin-bottom:16px; }
+    .progress-bar-header { display:flex; justify-content:space-between; margin-bottom:6px; }
+    .progress-bar-label { font-size:0.875rem; font-weight:600; color:var(--dash-text); }
+    .progress-bar-value { font-size:0.875rem; font-weight:700; color:var(--lavender); }
+    .progress-track { height:8px; background:var(--dash-bg); border-radius:9999px; overflow:hidden; }
+    .progress-fill { height:100%; border-radius:9999px; transition:width 1s ease; }
+    .progress-fill.purple { background:var(--gradient-primary); }
+    .progress-fill.green { background:linear-gradient(90deg,#059669,var(--mint)); }
+    .progress-fill.orange { background:linear-gradient(90deg,var(--peach-dark),var(--peach)); }
+    .progress-fill.blue { background:linear-gradient(90deg,#2563EB,#60A5FA); }
+
+    /* SCORES */
+    .score-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px; }
+    .score-card { text-align:center; padding:16px; background:var(--dash-bg); border-radius:14px; border:1px solid var(--dash-border); }
+    .score-value { font-family:var(--font-heading); font-weight:800; font-size:1.5rem; margin-bottom:4px; }
+    .score-subject { font-size:0.75rem; font-weight:600; color:var(--dash-muted); text-transform:uppercase; letter-spacing:0.04em; }
+
+    /* ATTENDANCE */
+    .att-summary { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:24px; }
+    .att-stat { text-align:center; padding:16px; border-radius:14px; background:var(--dash-bg); border:1px solid var(--dash-border); }
+    .att-stat-value { font-family:var(--font-heading); font-weight:800; font-size:1.375rem; }
+    .att-stat-label { font-size:0.6875rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; color:var(--dash-muted); }
+
+    /* DOCUMENTS */
+    .docs-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .doc-card { display:flex; flex-direction:column; align-items:center; gap:8px; padding:20px; background:var(--dash-bg); border-radius:16px; border:1px solid var(--dash-border); cursor:pointer; transition:0.3s; text-align:center; }
+    .doc-card:hover { border-color:var(--lavender); background:rgba(139,92,246,0.06); transform:translateY(-3px); }
+    .doc-icon { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; }
+    .doc-name { font-family:var(--font-heading); font-weight:700; font-size:0.875rem; color:var(--dash-text); }
+    .doc-type { font-size:0.75rem; color:var(--dash-muted); }
+
+    /* QUICK ACTIONS */
+    .quick-actions-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; }
+    .qa-btn { display:flex; flex-direction:column; align-items:center; gap:8px; padding:20px 16px; background:var(--dash-bg); border-radius:16px; border:1px solid var(--dash-border); cursor:pointer; transition:0.3s; text-decoration:none; text-align:center; }
+    .qa-btn:hover { border-color:var(--lavender); background:var(--dash-card); transform:translateY(-3px); box-shadow:0 8px 20px rgba(49,46,129,0.1); }
+    .qa-icon { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; }
+    .qa-label { font-size:0.75rem; font-weight:700; color:var(--dash-text); line-height:1.3; }
+
+    /* CONTACT */
+    .contact-cards { display:flex; flex-direction:column; gap:8px; }
+    .contact-card { display:flex; align-items:center; gap:16px; padding:16px; background:var(--dash-bg); border-radius:14px; border:1px solid var(--dash-border); transition:0.3s; }
+    .contact-card:hover { border-color:var(--lavender); }
+    .contact-avatar { width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:var(--font-heading); font-weight:700; font-size:1rem; color:white; }
+    .contact-name { font-family:var(--font-heading); font-weight:700; font-size:0.9375rem; color:var(--dash-text); }
+    .contact-role { font-size:0.75rem; color:var(--dash-muted); margin-top:1px; }
+    .contact-link { margin-left:auto; width:32px; height:32px; border-radius:50%; border:1px solid var(--dash-border); display:flex; align-items:center; justify-content:center; color:var(--lavender); cursor:pointer; transition:0.3s; text-decoration:none; flex-shrink:0; }
+    .contact-link:hover { background:var(--lavender); color:white; border-color:var(--lavender); }
+
+    /* FOOTER */
+    .dash-footer { text-align:center; padding:32px 0; color:var(--dash-muted); font-size:0.8125rem; border-top:1px solid var(--dash-border); margin-top:32px; }
+
+    /* RESPONSIVE */
+    @media(max-width:1200px){
+      .quick-summary-grid{grid-template-columns:repeat(3,1fr);}
+      .quick-actions-grid{grid-template-columns:repeat(4,1fr);}
+      .docs-grid{grid-template-columns:repeat(3,1fr);}
+      .att-summary{grid-template-columns:repeat(2,1fr);}
+    }
+    @media(max-width:1024px){
+      .dash-main{padding:24px;}
+      .dash-two-col{grid-template-columns:1fr;}
+    }
+    @media(max-width:768px){
+      .dash-header{padding:0 16px;gap:8px;}
+      .dash-header-search,.dash-title-group{display:none;}
+      .dash-main{padding:16px;}
+      .dash-welcome{flex-direction:column;padding:24px;}
+      .quick-summary-grid{grid-template-columns:repeat(2,1fr);}
+      .quick-actions-grid{grid-template-columns:repeat(3,1fr);}
+      .docs-grid{grid-template-columns:repeat(2,1fr);}
+      .fee-summary{grid-template-columns:1fr;}
+      .score-grid{grid-template-columns:repeat(2,1fr);}
+      .profile-grid{grid-template-columns:1fr;}
+      .today-status-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:480px){
+      .quick-summary-grid{grid-template-columns:1fr 1fr;}
+      .quick-actions-grid{grid-template-columns:repeat(2,1fr);}
+      .att-summary{grid-template-columns:repeat(2,1fr);}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY HEADER -->
+  <header class="dash-header">
+    <a href="../index.html" class="dash-logo">
+      <div class="dash-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-5"/>
+        </svg>
+      </div>
+      <span>Kindergarden</span>
+    </a>
+    <div class="dash-title-group">
+      <span>Parent Portal</span>
+      <span id="dash-date-display">Loading...</span>
+    </div>
+    <div class="dash-header-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search homework, events, announcements&hellip;" />
+    </div>
+    <div class="dash-header-actions">
+      <button class="dash-icon-btn" aria-label="Notifications">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="notif-dot"></span>
+      </button>
+      <button class="dash-icon-btn theme-toggle" aria-label="Toggle theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <button class="dash-icon-btn dash-rtl-btn rtl-toggle" aria-label="Toggle RTL">RTL</button>
+            <div class="profile-dropdown-wrap" id="profileDropdownWrap">
+        <div class="dash-profile-btn" id="profileDropdownBtn" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer">
+          <div class="dash-avatar">PR</div>
+          <span class="dash-profile-name">Mrs. Sharma</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="profile-dropdown-menu" id="profileDropdownMenu" role="menu" aria-hidden="true">
+          <a href="../login.html" class="profile-dropdown-item logout-item" role="menuitem">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
             Logout
           </a>
-        </nav>
-      </aside>
-      <!-- ===== MAIN CONTENT ===== -->
-      <main class="dashboard-main">
-        <!-- Mobile Header -->
-        <div
-          class="dashboard-mobile-header"
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: var(--space-md) 0;
-            margin-bottom: var(--space-lg);
-          "
-        >
-          <button
-            class="menu-toggle"
-            id="menuToggle"
-            style="
-              background: none;
-              border: none;
-              cursor: pointer;
-              padding: 4px;
-              color: var(--indigo-dark);
-            "
-            aria-label="Toggle menu"
-          >
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-          </button>
-          <a
-            href="../index.html"
-            style="
-              font-family: var(--font-heading);
-              font-weight: 800;
-              font-size: 1.25rem;
-              color: var(--indigo-dark);
-              display: flex;
-              align-items: center;
-              gap: var(--space-sm);
-            "
-          >
-            <span class="logo-icon">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
-              </svg>
-            </span>
-            Kindergarden
-          </a>
-          <div style="width: 28px"></div>
         </div>
-        <!-- Header -->
-        <div class="dashboard-header">
-          <div>
-            <h1>Welcome back, Sarah!</h1>
-            <p
-              style="
-                color: var(--gray-500);
-                font-size: 0.9375rem;
-                margin-top: 4px;
-              "
-            >
-              Here's what's happening with your children today.
-            </p>
-          </div>
-          <div class="dashboard-header-right">
-            <button
-              class="rtl-toggle"
-              aria-label="Toggle language direction"
-              style="
-                background: var(--gray-100);
-                border-color: var(--gray-200);
-                color: var(--indigo);
-                width: 36px;
-                height: 36px;
-                font-size: 0.75rem;
-              "
-            >
-              AR
-            </button>
-            <button
-              class="theme-toggle"
-              aria-label="Toggle theme"
-              style="
-                background: var(--gray-100);
-                border-color: var(--gray-200);
-                color: var(--indigo);
-                width: 36px;
-                height: 36px;
-                font-size: 1rem;
-              "
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="5" />
-                <line x1="12" y1="1" x2="12" y2="3" />
-                <line x1="12" y1="21" x2="12" y2="23" />
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                <line x1="1" y1="12" x2="3" y2="12" />
-                <line x1="21" y1="12" x2="23" y2="12" />
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-              </svg>
-            </button>
-            <div class="dashboard-notification" id="notifToggle">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-              </svg>
-              <span class="badge">3</span>
-              <!-- Notification Dropdown -->
-              <div class="notification-dropdown" id="notifDropdown">
-                <div class="notification-dropdown-header">
-                  <h4>Notifications</h4>
-                  <button
-                    style="
-                      background: none;
-                      border: none;
-                      color: var(--lavender);
-                      font-size: 0.8125rem;
-                      font-weight: 600;
-                      cursor: pointer;
-                      font-family: var(--font-heading);
-                    "
-                  >
-                    Mark all read
-                  </button>
-                </div>
-                <div class="notification-item unread">
-                  <div
-                    class="notification-item-icon"
-                    style="
-                      background: rgba(110, 231, 183, 0.2);
-                      color: var(--mint-dark);
-                    "
-                  >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </div>
-                  <div class="notification-item-content">
-                    <p>Lily completed her <strong>Art Project</strong></p>
-                    <span class="time">12 min ago</span>
-                  </div>
-                </div>
-                <div class="notification-item unread">
-                  <div
-                    class="notification-item-icon"
-                    style="
-                      background: rgba(139, 92, 246, 0.12);
-                      color: var(--lavender);
-                    "
-                  >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path
-                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                      />
-                      <polyline points="22,6 12,13 2,6" />
-                    </svg>
-                  </div>
-                  <div class="notification-item-content">
-                    <p>New message from <strong>Ms. Elena</strong></p>
-                    <span class="time">2 hours ago</span>
-                  </div>
-                </div>
-                <div class="notification-item unread">
-                  <div
-                    class="notification-item-icon"
-                    style="
-                      background: rgba(253, 186, 116, 0.2);
-                      color: var(--peach-dark);
-                    "
-                  >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                      <line x1="16" y1="2" x2="16" y2="6" />
-                      <line x1="8" y1="2" x2="8" y2="6" />
-                      <line x1="3" y1="10" x2="21" y2="10" />
-                    </svg>
-                  </div>
-                  <div class="notification-item-content">
-                    <p>
-                      <strong>Field Trip</strong> permission slip due Friday
-                    </p>
-                    <span class="time">Yesterday at 3:45 PM</span>
-                  </div>
-                </div>
-                <div class="notification-item">
-                  <div
-                    class="notification-item-icon"
-                    style="
-                      background: rgba(49, 46, 129, 0.08);
-                      color: var(--indigo);
-                    "
-                  >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <polyline points="12 6 12 12 16 14" />
-                    </svg>
-                  </div>
-                  <div class="notification-item-content">
-                    <p>
-                      Parent-Teacher meeting rescheduled to
-                      <strong>Oct 5</strong>
-                    </p>
-                    <span class="time">2 days ago</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="dashboard-avatar">SM</div>
-          </div>
-        </div>
-        <!-- Stats Grid -->
-        <div class="dashboard-grid">
-          <div class="dashboard-card">
-            <div class="dashboard-card-header">
-              <div class="dashboard-card-icon green">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                  <line x1="16" y1="2" x2="16" y2="6" />
-                  <line x1="8" y1="2" x2="8" y2="6" />
-                  <line x1="3" y1="10" x2="21" y2="10" />
-                  <path d="M8 14h.01" />
-                  <path d="M12 14h.01" />
-                  <path d="M16 14h.01" />
-                  <path d="M8 18h.01" />
-                  <path d="M12 18h.01" />
-                  <path d="M16 18h.01" />
-                </svg>
-              </div>
-              <span class="dashboard-card-change up">+4 this week</span>
-            </div>
-            <div class="dashboard-card-value">156</div>
-            <div class="dashboard-card-label">Days Attended</div>
-            <div class="progress-bar" style="margin-top: var(--space-md)">
-              <div
-                class="progress-bar-fill"
-                style="width: 87%; background: var(--gradient-secondary)"
-              ></div>
-            </div>
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                font-size: 0.75rem;
-                color: var(--gray-400);
-                margin-top: 4px;
-              "
-            >
-              <span>180 school days</span>
-              <span style="font-weight: 700; color: var(--mint-dark)">87%</span>
-            </div>
-          </div>
-          <div class="dashboard-card">
-            <div class="dashboard-card-header">
-              <div class="dashboard-card-icon orange">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                  <line x1="16" y1="2" x2="16" y2="6" />
-                  <line x1="8" y1="2" x2="8" y2="6" />
-                  <line x1="3" y1="10" x2="21" y2="10" />
-                </svg>
-              </div>
-              <span class="dashboard-card-change up">2 this month</span>
-            </div>
-            <div class="dashboard-card-value">4</div>
-            <div class="dashboard-card-label">Upcoming Events</div>
-          </div>
-          <div class="dashboard-card">
-            <div class="dashboard-card-header">
-              <div class="dashboard-card-icon coral">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                  />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-              </div>
-              <span class="dashboard-card-change up">+2 new</span>
-            </div>
-            <div class="dashboard-card-value">3</div>
-            <div class="dashboard-card-label">New Messages</div>
-          </div>
-          <div class="dashboard-card">
-            <div class="dashboard-card-header">
-              <div class="dashboard-card-icon purple">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
-                  <line x1="1" y1="10" x2="23" y2="10" />
-                </svg>
-              </div>
-              <span class="dashboard-card-change down">Due in 5 days</span>
-            </div>
-            <div class="dashboard-card-value">$450</div>
-            <div class="dashboard-card-label">Next Payment</div>
-            <div
-              style="
-                margin-top: var(--space-md);
-                padding: 8px 12px;
-                background: rgba(139, 92, 246, 0.06);
-                border-radius: var(--radius-md);
-                font-size: 0.8125rem;
-                color: var(--gray-500);
-                display: flex;
-                justify-content: space-between;
-              "
-            >
-              <span>Tuition Fee — Oct</span>
-              <a href="#" style="color: var(--lavender); font-weight: 700"
-                >Pay Now</a
-              >
-            </div>
-          </div>
-        </div>
-        <!-- My Children -->
-        <div class="dashboard-section">
-          <div class="dashboard-section-header">
-            <h3 class="dashboard-section-title">My Children</h3>
-            <a
-              href="#"
-              style="
-                color: var(--lavender);
-                font-weight: 600;
-                font-size: 0.875rem;
-                font-family: var(--font-heading);
-                display: flex;
-                align-items: center;
-                gap: 4px;
-              "
-            >
-              View All
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </a>
-          </div>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: repeat(2, 1fr);
-              gap: var(--space-xl);
-            "
-          >
-            <!-- Child 1 -->
-            <div class="profile-card">
-              <div
-                class="profile-card-cover"
-                style="background: linear-gradient(135deg, #8b5cf6, #6ee7b7)"
-              ></div>
-              <div class="profile-card-body" style="text-align: center">
-                <div
-                  class="child-avatar-letter"
-                  style="background: linear-gradient(135deg, #8b5cf6, #a78bfa)"
-                >
-                  LM
-                </div>
-                <h4 style="font-size: 1.25rem; margin-bottom: 4px">
-                  Lily Mitchell
-                </h4>
-                <p
-                  style="
-                    color: var(--gray-500);
-                    font-size: 0.875rem;
-                    margin-bottom: var(--space-md);
-                  "
-                >
-                  Age 4 · Pre-Kindergarten
-                </p>
-                <div
-                  style="
-                    display: flex;
-                    justify-content: center;
-                    gap: var(--space-md);
-                    flex-wrap: wrap;
-                    margin-bottom: var(--space-md);
-                  "
-                >
-                  <div
-                    style="
-                      display: flex;
-                      align-items: center;
-                      gap: 6px;
-                      font-size: 0.8125rem;
-                      color: var(--gray-600);
-                    "
-                  >
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                      <circle cx="9" cy="7" r="4" />
-                    </svg>
-                    Ms. Elena
-                  </div>
-                  <div
-                    style="
-                      display: flex;
-                      align-items: center;
-                      gap: 6px;
-                      font-size: 0.8125rem;
-                      color: var(--gray-600);
-                    "
-                  >
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path
-                        d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"
-                      />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    Room B-2
-                  </div>
-                </div>
-                <div
-                  style="
-                    display: flex;
-                    gap: var(--space-sm);
-                    justify-content: center;
-                  "
-                >
-                  <a href="#" class="btn btn-sm btn-outline">Portfolio</a>
-                  <a href="#" class="btn btn-sm btn-primary">Message Teacher</a>
-                </div>
-              </div>
-            </div>
-            <!-- Child 2 -->
-            <div class="profile-card">
-              <div
-                class="profile-card-cover"
-                style="background: linear-gradient(135deg, #4f46e5, #34d399)"
-              ></div>
-              <div class="profile-card-body" style="text-align: center">
-                <div
-                  class="child-avatar-letter"
-                  style="background: linear-gradient(135deg, #4f46e5, #6ee7b7)"
-                >
-                  NM
-                </div>
-                <h4 style="font-size: 1.25rem; margin-bottom: 4px">
-                  Noah Mitchell
-                </h4>
-                <p
-                  style="
-                    color: var(--gray-500);
-                    font-size: 0.875rem;
-                    margin-bottom: var(--space-md);
-                  "
-                >
-                  Age 6 · Grade 1 — Cambridge
-                </p>
-                <div
-                  style="
-                    display: flex;
-                    justify-content: center;
-                    gap: var(--space-md);
-                    flex-wrap: wrap;
-                    margin-bottom: var(--space-md);
-                  "
-                >
-                  <div
-                    style="
-                      display: flex;
-                      align-items: center;
-                      gap: 6px;
-                      font-size: 0.8125rem;
-                      color: var(--gray-600);
-                    "
-                  >
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                      <circle cx="9" cy="7" r="4" />
-                    </svg>
-                    Mr. James
-                  </div>
-                  <div
-                    style="
-                      display: flex;
-                      align-items: center;
-                      gap: 6px;
-                      font-size: 0.8125rem;
-                      color: var(--gray-600);
-                    "
-                  >
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path
-                        d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"
-                      />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    Room C-1
-                  </div>
-                </div>
-                <div
-                  style="
-                    display: flex;
-                    gap: var(--space-sm);
-                    justify-content: center;
-                  "
-                >
-                  <a href="#" class="btn btn-sm btn-outline">Portfolio</a>
-                  <a href="#" class="btn btn-sm btn-primary">Message Teacher</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Today's Schedule & Recent Activity -->
-        <div
-          style="
-            display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: var(--space-xl);
-            margin-bottom: var(--space-2xl);
-          "
-        >
-          <!-- Schedule -->
-          <div class="dashboard-section" style="margin-bottom: 0">
-            <div class="dashboard-section-header">
-              <h3 class="dashboard-section-title">Today's Schedule</h3>
-              <span
-                style="
-                  font-size: 0.8125rem;
-                  color: var(--gray-400);
-                  font-weight: 500;
-                "
-                >Wed, Jul 16</span
-              >
-            </div>
-            <div
-              style="
-                background: var(--white);
-                border-radius: var(--radius-xl);
-                padding: var(--space-xl);
-                box-shadow: var(--shadow-sm);
-              "
-            >
-              <div class="schedule-item">
-                <div class="schedule-time">08:30</div>
-                <div class="schedule-info">
-                  <div
-                    style="
-                      display: flex;
-                      align-items: center;
-                      gap: var(--space-sm);
-                      margin-bottom: 2px;
-                    "
-                  >
-                    <h4>Morning Circle</h4>
-                    <span class="schedule-tag in-class">Class</span>
-                  </div>
-                  <p>Lily · Pre-K · Room B-2 with Ms. Elena</p>
-                </div>
-              </div>
-              <div class="schedule-item">
-                <div class="schedule-time">09:15</div>
-                <div class="schedule-info">
-                  <div
-                    style="
-                      display: flex;
-                      align-items: center;
-                      gap: var(--space-sm);
-                      margin-bottom: 2px;
-                    "
-                  >
-                    <h4>Montessori Work Cycle</h4>
-                    <span class="schedule-tag in-class">Class</span>
-                  </div>
-                  <p>Lily · Sensorial & Practical Life activities</p>
-                </div>
-              </div>
-              <div class="schedule-item">
-                <div class="schedule-time">10:00</div>
-                <div class="schedule-info">
-                  <div
-                    style="
-                      display: flex;
-                      align-items: center;
-                      gap: var(--space-sm);
-                      margin-bottom: 2px;
-                    "
-                  >
-                    <h4>English Language Arts</h4>
-                    <span class="schedule-tag in-class">Class</span>
-                  </div>
-                  <p>Noah · Grade 1 · Room C-1 with Mr. James</p>
-                </div>
-              </div>
-              <div class="schedule-item">
-                <div class="schedule-time">10:45</div>
-                <div class="schedule-info">
-                  <div
-                    style="
-                      display: flex;
-                      align-items: center;
-                      gap: var(--space-sm);
-                      margin-bottom: 2px;
-                    "
-                  >
-                    <h4>Outdoor Play & Garden</h4>
-                    <span class="schedule-tag activity">Outdoor</span>
-                  </div>
-                  <p>Both children · Nature campus</p>
-                </div>
-              </div>
-              <div class="schedule-item">
-                <div class="schedule-time">11:30</div>
-                <div class="schedule-info">
-                  <div
-                    style="
-                      display: flex;
-                      align-items: center;
-                      gap: var(--space-sm);
-                      margin-bottom: 2px;
-                    "
-                  >
-                    <h4>Mandarin Immersion</h4>
-                    <span class="schedule-tag in-class">Class</span>
-                  </div>
-                  <p>Noah · Grade 1 · Mandarin with Laoshi Wang</p>
-                </div>
-              </div>
-              <div class="schedule-item">
-                <div class="schedule-time">12:15</div>
-                <div class="schedule-info">
-                  <div
-                    style="
-                      display: flex;
-                      align-items: center;
-                      gap: var(--space-sm);
-                      margin-bottom: 2px;
-                    "
-                  >
-                    <h4>Lunch & Rest</h4>
-                    <span class="schedule-tag activity">Break</span>
-                  </div>
-                  <p>Both children · Cafeteria & nap room</p>
-                </div>
-              </div>
-              <div
-                class="schedule-item"
-                style="border-bottom: none; padding-bottom: 0"
-              >
-                <div class="schedule-time">14:00</div>
-                <div class="schedule-info">
-                  <div
-                    style="
-                      display: flex;
-                      align-items: center;
-                      gap: var(--space-sm);
-                      margin-bottom: 2px;
-                    "
-                  >
-                    <h4>Music & Movement</h4>
-                    <span class="schedule-tag activity">Enrichment</span>
-                  </div>
-                  <p>Lily · Music Room with Ms. Anaya</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Recent Activity -->
-          <div class="dashboard-section" style="margin-bottom: 0">
-            <div class="dashboard-section-header">
-              <h3 class="dashboard-section-title">Recent Activity</h3>
-              <a
-                href="#"
-                style="
-                  color: var(--lavender);
-                  font-weight: 600;
-                  font-size: 0.8125rem;
-                  font-family: var(--font-heading);
-                "
-                >View All</a
-              >
-            </div>
-            <div
-              style="
-                background: var(--white);
-                border-radius: var(--radius-xl);
-                padding: var(--space-xl);
-                box-shadow: var(--shadow-sm);
-              "
-            >
-              <div class="activity-item">
-                <div class="activity-dot purple"></div>
-                <div class="activity-content">
-                  <p>
-                    <strong>Lily</strong> submitted her art project — "My
-                    Family"
-                  </p>
-                  <span class="activity-time">Today, 10:32 AM</span>
-                </div>
-              </div>
-              <div class="activity-item">
-                <div class="activity-dot green"></div>
-                <div class="activity-content">
-                  <p><strong>Noah</strong> scored 92% on Math quiz — Unit 3</p>
-                  <span class="activity-time">Today, 9:15 AM</span>
-                </div>
-              </div>
-              <div class="activity-item">
-                <div class="activity-dot orange"></div>
-                <div class="activity-content">
-                  <p>
-                    <strong>Ms. Elena</strong> posted new photos in Lily's
-                    portfolio
-                  </p>
-                  <span class="activity-time">Yesterday, 4:20 PM</span>
-                </div>
-              </div>
-              <div class="activity-item">
-                <div class="activity-dot coral"></div>
-                <div class="activity-content">
-                  <p>
-                    <strong>Attendance</strong> recorded for both children — all
-                    present
-                  </p>
-                  <span class="activity-time">Yesterday, 8:45 AM</span>
-                </div>
-              </div>
-              <div
-                class="activity-item"
-                style="border-bottom: none; padding-bottom: 0"
-              >
-                <div class="activity-dot green"></div>
-                <div class="activity-content">
-                  <p>
-                    <strong>Noah</strong> earned a "Star Student" badge for
-                    helpfulness
-                  </p>
-                  <span class="activity-time">Jul 14, 2:30 PM</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Upcoming Events -->
-        <div class="dashboard-section">
-          <div class="dashboard-section-header">
-            <h3 class="dashboard-section-title">Upcoming Events</h3>
-            <a
-              href="#"
-              style="
-                color: var(--lavender);
-                font-weight: 600;
-                font-size: 0.875rem;
-                font-family: var(--font-heading);
-                display: flex;
-                align-items: center;
-                gap: 4px;
-              "
-            >
-              Full Calendar
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </a>
-          </div>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: repeat(3, 1fr);
-              gap: var(--space-lg);
-            "
-          >
-            <div
-              style="
-                background: var(--white);
-                border-radius: var(--radius-xl);
-                box-shadow: var(--shadow-sm);
-                overflow: hidden;
-                transition: var(--transition);
-              "
-            >
-              <div
-                style="
-                  background: var(--gradient-primary);
-                  padding: var(--space-lg);
-                  text-align: center;
-                  color: var(--white);
-                "
-              >
-                <div
-                  style="
-                    font-size: 0.75rem;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.06em;
-                    opacity: 0.8;
-                  "
-                >
-                  September
-                </div>
-                <div
-                  style="
-                    font-family: var(--font-heading);
-                    font-weight: 800;
-                    font-size: 2rem;
-                    line-height: 1.1;
-                  "
-                >
-                  15
-                </div>
-                <div style="font-size: 0.75rem; opacity: 0.7">2026</div>
-              </div>
-              <div style="padding: var(--space-lg)">
-                <h4 style="font-size: 1rem; margin-bottom: 4px">
-                  Fall Open House
-                </h4>
-                <p
-                  style="
-                    color: var(--gray-500);
-                    font-size: 0.8125rem;
-                    margin-bottom: var(--space-md);
-                  "
-                >
-                  Tour campus & meet teachers
-                </p>
-                <div
-                  style="
-                    display: flex;
-                    gap: var(--space-md);
-                    font-size: 0.75rem;
-                    color: var(--gray-400);
-                  "
-                >
-                  <span style="display: flex; align-items: center; gap: 4px">
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <polyline points="12 6 12 12 16 14" />
-                    </svg>
-                    9:00 AM
-                  </span>
-                  <span style="display: flex; align-items: center; gap: 4px">
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path
-                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                      />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    Main Campus
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                background: var(--white);
-                border-radius: var(--radius-xl);
-                box-shadow: var(--shadow-sm);
-                overflow: hidden;
-                transition: var(--transition);
-              "
-            >
-              <div
-                style="
-                  background: var(--gradient-secondary);
-                  padding: var(--space-lg);
-                  text-align: center;
-                  color: var(--indigo-dark);
-                "
-              >
-                <div
-                  style="
-                    font-size: 0.75rem;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.06em;
-                    opacity: 0.8;
-                  "
-                >
-                  October
-                </div>
-                <div
-                  style="
-                    font-family: var(--font-heading);
-                    font-weight: 800;
-                    font-size: 2rem;
-                    line-height: 1.1;
-                  "
-                >
-                  5
-                </div>
-                <div style="font-size: 0.75rem; opacity: 0.6">2026</div>
-              </div>
-              <div style="padding: var(--space-lg)">
-                <h4 style="font-size: 1rem; margin-bottom: 4px">
-                  Parent-Teacher Conference
-                </h4>
-                <p
-                  style="
-                    color: var(--gray-500);
-                    font-size: 0.8125rem;
-                    margin-bottom: var(--space-md);
-                  "
-                >
-                  Progress review for all students
-                </p>
-                <div
-                  style="
-                    display: flex;
-                    gap: var(--space-md);
-                    font-size: 0.75rem;
-                    color: var(--gray-400);
-                  "
-                >
-                  <span style="display: flex; align-items: center; gap: 4px">
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <polyline points="12 6 12 12 16 14" />
-                    </svg>
-                    2:00 PM
-                  </span>
-                  <span style="display: flex; align-items: center; gap: 4px">
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path
-                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                      />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    School Hall
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                background: var(--white);
-                border-radius: var(--radius-xl);
-                box-shadow: var(--shadow-sm);
-                overflow: hidden;
-                transition: var(--transition);
-              "
-            >
-              <div
-                style="
-                  background: var(--gradient-accent);
-                  padding: var(--space-lg);
-                  text-align: center;
-                  color: var(--white);
-                "
-              >
-                <div
-                  style="
-                    font-size: 0.75rem;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.06em;
-                    opacity: 0.8;
-                  "
-                >
-                  October
-                </div>
-                <div
-                  style="
-                    font-family: var(--font-heading);
-                    font-weight: 800;
-                    font-size: 2rem;
-                    line-height: 1.1;
-                  "
-                >
-                  20
-                </div>
-                <div style="font-size: 0.75rem; opacity: 0.7">2026</div>
-              </div>
-              <div style="padding: var(--space-lg)">
-                <h4 style="font-size: 1rem; margin-bottom: 4px">
-                  Harvest Festival
-                </h4>
-                <p
-                  style="
-                    color: var(--gray-500);
-                    font-size: 0.8125rem;
-                    margin-bottom: var(--space-md);
-                  "
-                >
-                  Seasonal celebration with families
-                </p>
-                <div
-                  style="
-                    display: flex;
-                    gap: var(--space-md);
-                    font-size: 0.75rem;
-                    color: var(--gray-400);
-                  "
-                >
-                  <span style="display: flex; align-items: center; gap: 4px">
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <polyline points="12 6 12 12 16 14" />
-                    </svg>
-                    10:00 AM
-                  </span>
-                  <span style="display: flex; align-items: center; gap: 4px">
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path
-                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                      />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    Nature Campus
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+      </div>
     </div>
-    <script src="../js/main.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {      // Mobile sidebar toggle      const menuToggle = document.getElementById('menuToggle');      const sidebar = document.getElementById('dashboardSidebar');      const overlay = document.getElementById('sidebarOverlay');      if (menuToggle && sidebar && overlay) {        const toggleSidebar = () => {          sidebar.classList.toggle('open');          overlay.classList.toggle('active');          document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';        };        menuToggle.addEventListener('click', toggleSidebar);        overlay.addEventListener('click', toggleSidebar);      }      // Notification dropdown toggle      const notifToggle = document.getElementById('notifToggle');      const notifDropdown = document.getElementById('notifDropdown');      if (notifToggle && notifDropdown) {        notifToggle.addEventListener('click', (e) => {          e.stopPropagation();          notifDropdown.classList.toggle('active');        });        document.addEventListener('click', (e) => {          if (!notifToggle.contains(e.target)) {            notifDropdown.classList.remove('active');          }        });      }      // Close sidebar on nav item click (mobile)      sidebar.querySelectorAll('.dashboard-nav-item').forEach(item => {        item.addEventListener('click', () => {          if (window.innerWidth <= 768) {            sidebar.classList.remove('open');            overlay.classList.remove('active');            document.body.style.overflow = '';          }        });      });    });
-    </script>
-  </body>
+  </header>
+
+  <main class="dash-main">
+
+    <!-- WELCOME BANNER -->
+    <div class="dash-welcome">
+      <div class="dash-welcome-text">
+        <h1 id="welcomeGreeting">Good Morning, Mrs. Sharma</h1>
+        <p>Here&rsquo;s everything you need to know about your child&rsquo;s school day today.</p>
+        <p style="font-size:0.8125rem;margin-top:6px;color:rgba(255,255,255,0.55)">Academic Year 2024&ndash;25 &nbsp;|&nbsp; Second Semester</p>
+      </div>
+      <div class="dash-child-selector-wrap">
+        <select class="dash-child-select" id="childSelector" onchange="switchChild(this.value)">
+          <option value="aarav">Aarav Sharma &mdash; Grade 2B</option>
+          <option value="priya">Priya Sharma &mdash; Grade KG-A</option>
+        </select>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+    </div>
+
+    <!-- QUICK SUMMARY -->
+    <div class="quick-summary-grid">
+      <div class="qs-card">
+        <div class="qs-icon green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="qs-value">94%</div><div class="qs-label">Attendance</div>
+        <span class="qs-badge green">&#8593; Good</span>
+      </div>
+      <div class="qs-card">
+        <div class="qs-icon orange"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <div class="qs-value">3</div><div class="qs-label">Homework Pending</div>
+        <span class="qs-badge orange">Due Soon</span>
+      </div>
+      <div class="qs-card">
+        <div class="qs-icon blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="qs-value">5</div><div class="qs-label">Upcoming Events</div>
+        <span class="qs-badge blue">This Month</span>
+      </div>
+      <div class="qs-card">
+        <div class="qs-icon purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+        <div class="qs-value">2</div><div class="qs-label">Announcements</div>
+        <span class="qs-badge purple">Unread</span>
+      </div>
+      <div class="qs-card">
+        <div class="qs-icon red"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <div class="qs-value">$420</div><div class="qs-label">Pending Fee</div>
+        <span class="qs-badge red">Due 31 Jul</span>
+      </div>
+      <div class="qs-card">
+        <div class="qs-icon teal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <div class="qs-value">On Route</div><div class="qs-label">Bus Status</div>
+        <span class="qs-badge green">On Time</span>
+      </div>
+    </div>
+
+    <!-- CHILD PROFILE + TODAY STATUS -->
+    <div class="dash-two-col dash-section">
+      <div class="dash-card dash-card-accent accent-purple">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(139,92,246,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--lavender)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>Child Profile</h2>
+        </div>
+        <div class="child-profile-header">
+          <div class="child-profile-avatar" id="profileInitial">A</div>
+          <div>
+            <div class="child-profile-name" id="profileName">Aarav Sharma</div>
+            <div class="child-profile-role" id="profileRole">Grade 2 &mdash; Section B</div>
+            <div class="status-active">Active Student</div>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div class="profile-field"><span class="profile-field-label">Admission No.</span><span class="profile-field-value">KG-2024-0142</span></div>
+          <div class="profile-field"><span class="profile-field-label">Roll Number</span><span class="profile-field-value">14</span></div>
+          <div class="profile-field"><span class="profile-field-label">Class Teacher</span><span class="profile-field-value">Ms. Sarah Mitchell</span></div>
+          <div class="profile-field"><span class="profile-field-label">Academic Year</span><span class="profile-field-value">2024 &ndash; 2025</span></div>
+          <div class="profile-field"><span class="profile-field-label">Blood Group</span><span class="profile-field-value">O+</span></div>
+          <div class="profile-field"><span class="profile-field-label">Emergency Contact</span><span class="profile-field-value">+65 9812 3456</span></div>
+        </div>
+      </div>
+
+      <div class="dash-card dash-card-accent accent-green">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(16,185,129,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>Today&rsquo;s Status</h2>
+          <span class="badge badge-green">Present</span>
+        </div>
+        <div class="today-status-grid">
+          <div class="today-status-item">
+            <div class="today-status-icon" style="background:rgba(16,185,129,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div><div class="today-status-label">Check-In</div><div class="today-status-value">7:52 AM</div></div>
+          </div>
+          <div class="today-status-item">
+            <div class="today-status-icon" style="background:rgba(249,115,22,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--peach-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div><div class="today-status-label">Check-Out</div><div class="today-status-value">2:30 PM</div></div>
+          </div>
+          <div class="today-status-item">
+            <div class="today-status-icon" style="background:rgba(20,184,166,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+            <div><div class="today-status-label">Bus Pickup</div><div class="today-status-value">7:42 AM</div></div>
+          </div>
+          <div class="today-status-item">
+            <div class="today-status-icon" style="background:rgba(139,92,246,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--lavender)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+            <div><div class="today-status-label">Bus Drop</div><div class="today-status-value">2:50 PM</div></div>
+          </div>
+        </div>
+        <div class="current-activity">
+          <div class="activity-pulse"></div>
+          <div style="flex:1">
+            <div style="font-family:var(--font-heading);font-weight:700;font-size:0.9375rem;color:var(--dash-text)">Currently In Class</div>
+            <div style="font-size:0.8125rem;color:var(--dash-muted);margin-top:2px">Science &mdash; Room 2B &bull; Ends 11:30 AM</div>
+          </div>
+          <span class="badge badge-purple">Live</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOMEWORK -->
+    <div class="dash-card dash-section">
+      <div class="dash-section-label">
+        <h2><div class="section-icon" style="background:rgba(249,115,22,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--peach-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="12" y1="7" x2="16" y2="7"/><line x1="12" y1="11" x2="16" y2="11"/><line x1="12" y1="15" x2="16" y2="15"/></svg></div>Homework</h2>
+        <a href="#">View All</a>
+      </div>
+      <table class="hw-table">
+        <thead><tr><th>Subject</th><th>Title</th><th>Due Date</th><th>Priority</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="hw-subject-tag" style="background:rgba(139,92,246,0.1);color:var(--lavender)">Mathematics</span></td>
+            <td><div class="hw-title">Chapter 5 &mdash; Fractions Worksheet</div><div class="hw-due">Pages 42&ndash;45, Problems 1&ndash;20</div></td>
+            <td style="font-weight:600;color:var(--coral-dark)">Tomorrow</td>
+            <td><span style="color:var(--coral-dark);font-weight:700;font-size:0.8125rem">&#9679; High</span></td>
+            <td><span class="badge badge-orange">Pending</span></td>
+            <td><button class="btn-sm-outline">View</button></td>
+          </tr>
+          <tr>
+            <td><span class="hw-subject-tag" style="background:rgba(16,185,129,0.1);color:#059669">Science</span></td>
+            <td><div class="hw-title">Plant Life Cycle &mdash; Draw &amp; Label</div><div class="hw-due">Colored pencil diagram required</div></td>
+            <td style="font-weight:600;color:var(--peach-dark)">July 20</td>
+            <td><span style="color:var(--peach-dark);font-weight:700;font-size:0.8125rem">&#9679; Medium</span></td>
+            <td><span class="badge badge-orange">Pending</span></td>
+            <td><button class="btn-sm-outline">View</button></td>
+          </tr>
+          <tr>
+            <td><span class="hw-subject-tag" style="background:rgba(37,99,235,0.1);color:#2563EB">English</span></td>
+            <td><div class="hw-title">Write a Short Story &mdash; 200 words</div><div class="hw-due">Topic: My Favourite Animal</div></td>
+            <td style="font-weight:600;color:var(--peach-dark)">July 22</td>
+            <td><span style="color:#059669;font-weight:700;font-size:0.8125rem">&#9679; Low</span></td>
+            <td><span class="badge badge-orange">Pending</span></td>
+            <td><button class="btn-sm-outline">View</button></td>
+          </tr>
+          <tr>
+            <td><span class="hw-subject-tag" style="background:rgba(249,115,22,0.1);color:var(--peach-dark)">Social Studies</span></td>
+            <td><div class="hw-title">Map Work &mdash; Asia Continents</div><div class="hw-due">Label major countries</div></td>
+            <td style="font-weight:600;color:#059669">July 25</td>
+            <td><span style="color:#059669;font-weight:700;font-size:0.8125rem">&#9679; Low</span></td>
+            <td><span class="badge badge-green">Submitted</span></td>
+            <td><button class="btn-sm-outline">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ANNOUNCEMENTS + EVENTS -->
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:32px">
+      <div class="dash-card">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(139,92,246,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--lavender)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg></div>Announcements</h2>
+          <a href="#">View All</a>
+        </div>
+        <div class="announcement-card pinned">
+          <div class="announcement-icon" style="background:rgba(249,115,22,0.1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--peach-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div style="flex:1">
+            <div class="announcement-title"><svg style="display:inline-block;vertical-align:-3px;margin-right:5px;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>Half-Yearly Exam Schedule Released <span class="badge badge-orange">PINNED</span><span class="badge badge-blue">NEW</span></div>
+            <div class="announcement-body">Exams will be held from August 5&ndash;15. Timetable has been uploaded to the Documents section. Please ensure students revise all chapters.</div>
+            <div class="announcement-meta"><span>Ms. Sarah Mitchell</span><span>&bull;</span><span>Today, 8:00 AM</span><span>&bull;</span><span class="badge badge-orange" style="font-size:0.6rem">Exam Notice</span></div>
+          </div>
+        </div>
+        <div class="announcement-card">
+          <div class="announcement-icon" style="background:rgba(16,185,129,0.1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div style="flex:1">
+            <div class="announcement-title">PTA Meeting &mdash; July 28th <span class="badge badge-blue">NEW</span></div>
+            <div class="announcement-body">All parents are invited to the quarterly PTA meeting at 5 PM in the school auditorium. Agenda includes exam results and annual day planning.</div>
+            <div class="announcement-meta"><span>Principal&rsquo;s Office</span><span>&bull;</span><span>Yesterday</span><span>&bull;</span><span class="badge badge-purple" style="font-size:0.6rem">PTA Meeting</span></div>
+          </div>
+        </div>
+        <div class="announcement-card">
+          <div class="announcement-icon" style="background:rgba(37,99,235,0.1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div style="flex:1">
+            <div class="announcement-title">School Holiday &mdash; National Day (Aug 9)</div>
+            <div class="announcement-body">The school will be closed on August 9th for National Day. Regular classes resume August 12th. No homework due that week.</div>
+            <div class="announcement-meta"><span>Administration</span><span>&bull;</span><span>3 days ago</span><span>&bull;</span><span class="badge badge-green" style="font-size:0.6rem">Holiday Notice</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-card">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(37,99,235,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>Upcoming Events</h2>
+          <a href="#">See All</a>
+        </div>
+        <div class="event-card"><div class="event-date"><div class="event-date-day">20</div><div class="event-date-month">Jul</div></div><div style="flex:1"><div class="event-title">Science Fair</div><div class="event-time">9:00 AM &mdash; Main Hall</div><div style="margin-top:4px"><span class="badge badge-blue">Academic</span></div></div></div>
+        <div class="event-card"><div class="event-date" style="background:linear-gradient(135deg,#059669,var(--mint))"><div class="event-date-day">26</div><div class="event-date-month">Jul</div></div><div style="flex:1"><div class="event-title">Sports Day</div><div class="event-time">8:00 AM &mdash; Sports Ground</div><div style="margin-top:4px"><span class="badge badge-green">Sports</span></div></div></div>
+        <div class="event-card"><div class="event-date" style="background:linear-gradient(135deg,var(--peach-dark),var(--peach))"><div class="event-date-day">28</div><div class="event-date-month">Jul</div></div><div style="flex:1"><div class="event-title">PTA Meeting</div><div class="event-time">5:00 PM &mdash; Auditorium</div><div style="margin-top:4px"><span class="badge badge-orange">Parent</span></div></div></div>
+        <div class="event-card"><div class="event-date" style="background:linear-gradient(135deg,var(--coral-dark),var(--coral))"><div class="event-date-day">09</div><div class="event-date-month">Aug</div></div><div style="flex:1"><div class="event-title">National Day Holiday</div><div class="event-time">School Closed</div><div style="margin-top:4px"><span class="badge badge-red">Holiday</span></div></div></div>
+        <div class="event-card"><div class="event-date" style="background:linear-gradient(135deg,#7C3AED,var(--lavender))"><div class="event-date-day">15</div><div class="event-date-month">Aug</div></div><div style="flex:1"><div class="event-title">Annual School Tour</div><div class="event-time">All Day &mdash; City Museum</div><div style="margin-top:4px"><span class="badge badge-purple">Excursion</span></div></div></div>
+      </div>
+    </div>
+
+    <!-- FEES -->
+    <div class="dash-card dash-card-accent accent-blue dash-section">
+      <div class="dash-section-label">
+        <h2><div class="section-icon" style="background:rgba(37,99,235,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>Online Fees</h2>
+        <span class="badge badge-orange">$420 Due July 31</span>
+      </div>
+      <div class="fee-summary">
+        <div class="fee-stat total"><div class="fee-stat-amount">$1,680</div><div class="fee-stat-label">Total Fees (Semester)</div></div>
+        <div class="fee-stat paid"><div class="fee-stat-amount">$1,260</div><div class="fee-stat-label">Amount Paid</div></div>
+        <div class="fee-stat pending"><div class="fee-stat-amount">$420</div><div class="fee-stat-label">Pending Amount</div></div>
+      </div>
+      <table class="fee-table">
+        <thead><tr><th>Fee Type</th><th>Amount</th><th>Status</th><th>Due Date</th></tr></thead>
+        <tbody>
+          <tr><td>Tuition Fee</td><td class="amount">$800</td><td><span class="badge badge-green">Paid</span></td><td style="color:var(--dash-muted)">June 30, 2025</td></tr>
+          <tr><td>Transport Fee</td><td class="amount">$180</td><td><span class="badge badge-green">Paid</span></td><td style="color:var(--dash-muted)">June 30, 2025</td></tr>
+          <tr><td>Activity Fee</td><td class="amount">$120</td><td><span class="badge badge-green">Paid</span></td><td style="color:var(--dash-muted)">June 30, 2025</td></tr>
+          <tr><td>Tuition Fee (July)</td><td class="amount">$300</td><td><span class="badge badge-orange">Pending</span></td><td style="color:var(--coral-dark);font-weight:600">July 31, 2025</td></tr>
+          <tr><td>Exam Fee</td><td class="amount">$120</td><td><span class="badge badge-orange">Pending</span></td><td style="color:var(--coral-dark);font-weight:600">July 31, 2025</td></tr>
+        </tbody>
+      </table>
+      <div class="fee-actions">
+        <button class="btn-receipt"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Receipt</button>
+        <button class="btn-pay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Pay Now &mdash; $420</button>
+      </div>
+    </div>
+
+    <!-- ACADEMIC PERFORMANCE + ATTENDANCE -->
+    <div class="dash-two-col dash-section">
+      <div class="dash-card">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(139,92,246,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--lavender)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div>Academic Performance</h2>
+        </div>
+        <div class="score-grid">
+          <div class="score-card"><div class="score-value" style="color:#059669">92%</div><div class="score-subject">Math</div></div>
+          <div class="score-card"><div class="score-value" style="color:var(--lavender)">88%</div><div class="score-subject">Science</div></div>
+          <div class="score-card"><div class="score-value" style="color:#2563EB">95%</div><div class="score-subject">English</div></div>
+          <div class="score-card"><div class="score-value" style="color:var(--peach-dark)">78%</div><div class="score-subject">Social Studies</div></div>
+          <div class="score-card"><div class="score-value" style="color:var(--coral)">85%</div><div class="score-subject">Art</div></div>
+          <div class="score-card"><div class="score-value" style="color:#0D9488">90%</div><div class="score-subject">Physical Ed.</div></div>
+        </div>
+        <div class="dash-divider"></div>
+        <div class="progress-bar-wrap"><div class="progress-bar-header"><span class="progress-bar-label">Mathematics</span><span class="progress-bar-value">92%</span></div><div class="progress-track"><div class="progress-fill purple" style="width:92%"></div></div></div>
+        <div class="progress-bar-wrap"><div class="progress-bar-header"><span class="progress-bar-label">English Language</span><span class="progress-bar-value">95%</span></div><div class="progress-track"><div class="progress-fill green" style="width:95%"></div></div></div>
+        <div class="progress-bar-wrap"><div class="progress-bar-header"><span class="progress-bar-label">Science</span><span class="progress-bar-value">88%</span></div><div class="progress-track"><div class="progress-fill blue" style="width:88%"></div></div></div>
+        <div class="progress-bar-wrap"><div class="progress-bar-header"><span class="progress-bar-label">Social Studies</span><span class="progress-bar-value">78%</span></div><div class="progress-track"><div class="progress-fill orange" style="width:78%"></div></div></div>
+        <div class="dash-divider"></div>
+        <div style="background:rgba(139,92,246,0.06);border-radius:12px;padding:16px;border:1px solid rgba(139,92,246,0.12)">
+          <div style="font-size:0.75rem;font-weight:700;color:var(--lavender);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">Teacher&rsquo;s Remarks</div>
+          <div style="font-size:0.875rem;color:var(--dash-muted);line-height:1.7">&ldquo;Aarav is a bright and curious learner. He excels in English and Mathematics. Encourage more reading at home to further strengthen comprehension skills.&rdquo; &mdash; Ms. Sarah Mitchell</div>
+        </div>
+      </div>
+
+      <div class="dash-card">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(16,185,129,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>Attendance History</h2>
+        </div>
+        <div class="att-summary">
+          <div class="att-stat"><div class="att-stat-value" style="color:var(--lavender)">94%</div><div class="att-stat-label">This Term</div></div>
+          <div class="att-stat"><div class="att-stat-value" style="color:#059669">47</div><div class="att-stat-label">Present</div></div>
+          <div class="att-stat"><div class="att-stat-value" style="color:var(--coral-dark)">2</div><div class="att-stat-label">Absent</div></div>
+          <div class="att-stat"><div class="att-stat-value" style="color:var(--peach-dark)">1</div><div class="att-stat-label">Late</div></div>
+        </div>
+        <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--dash-muted);margin-bottom:8px">Monthly Overview</div>
+        <div style="display:flex;gap:6px;align-items:flex-end;height:100px;padding:0 8px;margin-bottom:24px">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end"><div style="width:100%;border-radius:6px 6px 0 0;background:var(--gradient-primary);opacity:0.6;height:70%"></div><div style="font-size:0.625rem;font-weight:600;color:var(--dash-muted)">Feb</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end"><div style="width:100%;border-radius:6px 6px 0 0;background:var(--gradient-primary);opacity:0.7;height:80%"></div><div style="font-size:0.625rem;font-weight:600;color:var(--dash-muted)">Mar</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end"><div style="width:100%;border-radius:6px 6px 0 0;background:var(--gradient-primary);opacity:0.8;height:90%"></div><div style="font-size:0.625rem;font-weight:600;color:var(--dash-muted)">Apr</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end"><div style="width:100%;border-radius:6px 6px 0 0;background:var(--gradient-primary);opacity:0.7;height:75%"></div><div style="font-size:0.625rem;font-weight:600;color:var(--dash-muted)">May</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end"><div style="width:100%;border-radius:6px 6px 0 0;background:var(--gradient-primary);opacity:0.65;height:60%"></div><div style="font-size:0.625rem;font-weight:600;color:var(--dash-muted)">Jun</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end"><div style="width:100%;border-radius:6px 6px 0 0;background:var(--gradient-primary);height:95%"></div><div style="font-size:0.625rem;font-weight:600;color:var(--dash-muted)">Jul</div></div>
+        </div>
+        <div class="progress-bar-wrap" style="margin-bottom:0"><div class="progress-bar-header"><span class="progress-bar-label">Overall Attendance Rate</span><span class="progress-bar-value">94%</span></div><div class="progress-track" style="height:12px"><div class="progress-fill green" style="width:94%"></div></div></div>
+      </div>
+    </div>
+
+    <!-- DOCUMENTS -->
+    <div class="dash-card dash-section">
+      <div class="dash-section-label">
+        <h2><div class="section-icon" style="background:rgba(37,99,235,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>Documents</h2>
+      </div>
+      <div class="docs-grid">
+        <div class="doc-card"><div class="doc-icon" style="background:rgba(139,92,246,0.1)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--lavender)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div><div class="doc-name">Report Card</div><div class="doc-type">PDF &bull; Term 1</div><button class="btn-sm-outline" style="margin-top:4px">Download</button></div>
+        <div class="doc-card"><div class="doc-icon" style="background:rgba(16,185,129,0.1)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div><div class="doc-name">Fee Receipt</div><div class="doc-type">PDF &bull; June 2025</div><button class="btn-sm-outline" style="margin-top:4px">Download</button></div>
+        <div class="doc-card"><div class="doc-icon" style="background:rgba(249,115,22,0.1)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--peach-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="doc-name">Student ID Card</div><div class="doc-type">PDF &bull; 2024&ndash;25</div><button class="btn-sm-outline" style="margin-top:4px">Download</button></div>
+        <div class="doc-card"><div class="doc-icon" style="background:rgba(239,68,68,0.1)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--coral-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="doc-name">Medical Record</div><div class="doc-type">PDF &bull; Confidential</div><button class="btn-sm-outline" style="margin-top:4px">Download</button></div>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS + CONTACT -->
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:32px">
+      <div class="dash-card">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(139,92,246,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--lavender)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>Quick Actions</h2>
+        </div>
+        <div class="quick-actions-grid">
+          <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(139,92,246,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--lavender)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div><span class="qa-label">Request Leave</span></a>
+          <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(16,185,129,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span class="qa-label">Message Teacher</span></a>
+          <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(37,99,235,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><span class="qa-label">View Calendar</span></a>
+          <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(249,115,22,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--peach-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div><span class="qa-label">Pay Fees</span></a>
+          <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(239,68,68,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--coral-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><span class="qa-label">Download Timetable</span></a>
+          <a href="#" class="qa-btn"><div class="qa-icon" style="background:rgba(20,184,166,0.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><span class="qa-label">View Homework</span></a>
+        </div>
+      </div>
+
+      <div class="dash-card">
+        <div class="dash-section-label">
+          <h2><div class="section-icon" style="background:rgba(16,185,129,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.09 6.09l1.8-1.8a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>School Contacts</h2>
+        </div>
+        <div class="contact-cards">
+          <div class="contact-card"><div class="contact-avatar" style="background:var(--gradient-primary)">SM</div><div><div class="contact-name">Ms. Sarah Mitchell</div><div class="contact-role">Class Teacher &mdash; 2B</div></div><a href="tel:+6565001234" class="contact-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.09 6.09l1.8-1.8a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a></div>
+          <div class="contact-card"><div class="contact-avatar" style="background:linear-gradient(135deg,#059669,var(--mint))">PO</div><div><div class="contact-name">Principal&rsquo;s Office</div><div class="contact-role">+65 6500-1000</div></div><a href="tel:+6565001000" class="contact-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.09 6.09l1.8-1.8a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a></div>
+          <div class="contact-card"><div class="contact-avatar" style="background:linear-gradient(135deg,var(--peach-dark),var(--peach))">AC</div><div><div class="contact-name">Accounts Office</div><div class="contact-role">+65 6500-1200</div></div><a href="tel:+6565001200" class="contact-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.09 6.09l1.8-1.8a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a></div>
+          <div class="contact-card"><div class="contact-avatar" style="background:linear-gradient(135deg,#0D9488,var(--mint))">TR</div><div><div class="contact-name">Transport Office</div><div class="contact-role">+65 6500-1400</div></div><a href="tel:+6565001400" class="contact-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.09 6.09l1.8-1.8a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a></div>
+          <div class="contact-card" style="border-color:rgba(239,68,68,0.3)"><div class="contact-avatar" style="background:linear-gradient(135deg,var(--coral-dark),var(--coral))">EM</div><div><div class="contact-name">Emergency Line</div><div class="contact-role" style="color:var(--coral-dark);font-weight:700">+65 9999 1234</div></div><a href="tel:+6599991234" class="contact-link" style="color:var(--coral-dark)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.09 6.09l1.8-1.8a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-footer">
+      <p>&copy; 2025 Kindergarden International School &nbsp;|&nbsp; Parent Portal v2.0</p>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+  <script>
+    const dateEl = document.getElementById('dash-date-display');
+    if (dateEl) { const n=new Date(); dateEl.textContent=n.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}); }
+    const greetEl = document.getElementById('welcomeGreeting');
+    if (greetEl) {
+      const h=new Date().getHours();
+      const g=h<12?'Good Morning':h<17?'Good Afternoon':'Good Evening';
+      greetEl.innerHTML=`${g}, Mrs. Sharma <svg style="display:inline-block;vertical-align:-4px;margin-left:8px;opacity:0.9" width="22" height="22" viewBox="0 0 24 24" fill="rgba(255,255,255,0.55)" stroke="rgba(255,255,255,0.95)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+    }
+    function switchChild(val) {
+      const ini=document.getElementById('profileInitial');
+      const nm=document.getElementById('profileName');
+      const rl=document.getElementById('profileRole');
+      if(val==='priya'){if(ini)ini.textContent='P';if(nm)nm.textContent='Priya Sharma';if(rl)rl.textContent='Grade KG — Section A';}
+      else{if(ini)ini.textContent='A';if(nm)nm.textContent='Aarav Sharma';if(rl)rl.textContent='Grade 2 — Section B';}
+    }
+
+    // ── PROFILE DROPDOWN ──
+    (function() {
+      var btn = document.getElementById('profileDropdownBtn');
+      var menu = document.getElementById('profileDropdownMenu');
+      if (!btn || !menu) return;
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = menu.classList.contains('open');
+        menu.classList.toggle('open');
+        menu.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+      });
+      document.addEventListener('click', function() {
+        menu.classList.remove('open');
+        menu.setAttribute('aria-hidden', 'true');
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          menu.classList.remove('open');
+          menu.setAttribute('aria-hidden', 'true');
+        }
+      });
+    })();
+  </script>
+</body>
 </html>
