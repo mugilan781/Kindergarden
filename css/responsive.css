@@ -599,13 +599,17 @@
   }
 
   .profile-dropdown {
-    right: -92px;
-    min-width: min(220px, calc(100vw - 24px));
+    /* Push dropdown rightwards from the profile button, but safely keep it 16-18px away from the tablet screen edge */
+    right: -130px !important; 
+    left: auto !important;
+    min-width: 220px !important;
+    max-width: calc(100vw - 32px) !important;
   }
 
   [dir="rtl"] .profile-dropdown {
-    left: -92px;
-    right: auto;
+    /* In RTL, the profile button is visually the right-most element, so right: 0 aligns perfectly to the screen edge */
+    right: 0 !important;
+    left: auto !important;
   }
 
   .hero,
@@ -994,6 +998,15 @@
     width: 32px !important;
     height: 32px !important;
     min-width: 32px !important;
+  }
+  
+  .profile-dropdown {
+    /* Tighter button spacing on mobile requires less push to maintain 16px screen padding */
+    right: -100px !important;
+  }
+  
+  [dir="rtl"] .profile-dropdown {
+    right: 0 !important;
   }
   
   /* Hero stats mobile */
