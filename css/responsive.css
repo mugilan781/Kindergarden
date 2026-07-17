@@ -1782,3 +1782,308 @@
     display: none !important;
   }
 }
+
+/* ============================================================
+   SERVICES PAGE RESPONSIVE POLISH (Mobile & Tablet)
+   ============================================================ */
+
+@media (max-width: 1023px) {
+  /* 1. Hero Section Spacing */
+  .services-hero {
+    padding-top: 140px !important; 
+    padding-bottom: 80px !important;
+  }
+
+  /* 2. Global Section Spacing Reduction (reduce excessive whitespace) */
+  .section, .section-alt {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+
+  /* 3. Before & After School Care (Prevent overflow) */
+  .care-grid {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  
+  /* Stack the schedule items vertically so long activities don't blow out width */
+  .schedule-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  
+  .schedule-item .time,
+  .schedule-item .activity {
+    text-align: left !important;
+    width: 100% !important;
+  }
+
+  /* Force highlights to 1 column on tablet & mobile */
+  .care-highlights {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 4. Flexible Plans for Every Family (Badge overlapping) */
+  .pricing-badge {
+    position: relative !important;
+    display: inline-block !important;
+    top: auto !important;
+    right: auto !important;
+    margin-top: 4px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* 5. Fix Unwanted Vertical Scroll / Gaps */
+  /* Absolutely positioned decorative shapes (top: -200px, bottom: -150px) 
+     stretch the document vertically. We clip them cleanly here. */
+  .services-hero,
+  .section,
+  .section-alt,
+  .cta-section {
+    overflow: hidden !important;
+  }
+}
+
+/* ============================================================
+   GALLERY PAGE RESPONSIVE POLISH (Mobile & Tablet)
+   ============================================================ */
+
+@media (max-width: 1023px) {
+  /* 1. Captured in Color & Joy (Filters Overflow) */
+  .gallery-filters {
+    flex-wrap: wrap !important;
+    overflow-x: hidden !important;
+    justify-content: center !important;
+  }
+  .gallery-filter {
+    flex: 1 1 auto !important;
+    text-align: center !important;
+  }
+
+  /* 2. Video Gallery */
+  .gallery-section-alt {
+    overflow: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  .video-card {
+    width: 100% !important;
+    max-width: 340px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    grid-column: 1 / -1 !important; /* Foolproof way to force single row */
+  }
+
+  .video-card-bg {
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  .video-card-info {
+    padding: var(--space-md) var(--space-lg) !important;
+  }
+
+  .video-card-info h4 {
+    font-size: 1rem !important;
+    white-space: normal !important;
+  }
+
+  .video-card-info p {
+    font-size: 0.8125rem !important;
+  }
+
+  .play-btn {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 1.25rem !important;
+  }
+
+  .video-card-duration {
+    top: var(--space-sm) !important;
+    right: var(--space-sm) !important;
+    font-size: 0.75rem !important;
+    padding: 4px 8px !important;
+  }
+
+  /* 3. Virtual Tour */
+  .virtual-tour-card {
+    aspect-ratio: auto !important;
+    min-height: 280px !important;
+    width: 100% !important;
+    max-width: 340px !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+  }
+  
+  .virtual-tour-bg {
+    flex-direction: column !important;
+    gap: 16px !important;
+    padding: 40px 20px !important;
+    box-sizing: border-box !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+  
+  .virtual-tour-hint, 
+  .virtual-tour-controls,
+  .virtual-tour-bg > div:last-child {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    right: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  .virtual-tour-hint {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .virtual-tour-hint p {
+    font-size: 0.8125rem !important;
+  }
+
+  .virtual-tour-btn {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  .virtual-tour-bg > div:last-child span {
+    width: auto !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+}
+
+/* Specific Tablet Overrides (≥768px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .gallery-section-alt .container > div:nth-of-type(2) {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  
+  .video-card {
+    max-width: 100% !important;
+    grid-column: auto !important; /* Restore 2 columns side-by-side */
+  }
+
+  .virtual-tour-card {
+    max-width: 100% !important;
+  }
+}
+
+/* ============================================================
+   BLOG PAGE RESPONSIVE POLISH (Mobile & Tablet)
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  /* Hide the floating "Featured" and "Parenting Guides" badges on the Featured Article image */
+  .featured-article-image > div:last-child {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   CONTACT PAGE RESPONSIVE POLISH (Mobile & Tablet)
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  /* 1. HOW TO REACH US & 3. SOCIAL MEDIA */
+  .contact-info-grid,
+  .visit-grid,
+  .social-grid,
+  .contact-form-wrapper {
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+  
+  .contact-info-card,
+  .visit-card,
+  .social-card,
+  .form-card,
+  .contact-detail-card {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .map-placeholder {
+    width: 100% !important;
+    height: 350px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. FREQUENTLY ASKED QUESTIONS */
+  .faq-item {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-bottom: var(--space-md) !important;
+  }
+
+  .faq-question {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: var(--space-lg) !important;
+    white-space: normal !important;
+    text-align: left !important;
+    align-items: center !important;
+    gap: var(--space-md) !important;
+  }
+
+  .faq-icon {
+    flex-shrink: 0 !important;
+  }
+
+  .faq-answer {
+    padding: 0 var(--space-lg) !important;
+    box-sizing: border-box !important;
+  }
+
+  .faq-item.active .faq-answer {
+    padding: 0 var(--space-lg) var(--space-lg) !important;
+    max-height: 800px !important;
+  }
+}
+
+/* Specific Tablet Overrides */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .contact-info-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .social-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .contact-form-wrapper,
+  .visit-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Specific Mobile Overrides (≤767px) */
+@media (max-width: 767px) {
+  .contact-info-grid,
+  .social-grid,
+  .contact-form-wrapper,
+  .visit-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-lg) !important;
+  }
+  
+  .contact-info-card,
+  .social-card,
+  .visit-card {
+    max-width: 360px !important;
+    margin: 0 auto !important;
+  }
+}
