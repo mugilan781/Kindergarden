@@ -939,7 +939,7 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 
 /* ── Mobile nav drawer ── */
 [data-theme="dark"] .nav-links {
-  background: #0D0D1A;
+  background: transparent;
 }
 
 /* ── Footer ── */
@@ -1150,8 +1150,8 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 
 /* ── 1. NAVBAR: mobile drawer dark background ── */
 [data-theme="dark"] .nav-links {
-  background: #0D0D1A !important;
-  border-left: 1px solid rgba(255,255,255,0.08);
+  background: transparent !important;
+  border-left: none !important;
 }
 [data-theme="dark"] .nav-links a {
   color: #E2E8F0 !important;
@@ -1189,17 +1189,29 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 
 /* ── 4. STATS SECTION (dark bar) ── */
 [data-theme="dark"] .stats-grid .stat-item {
-  background: rgba(255,255,255,0.06) !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
+  background: #181827 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+  backdrop-filter: none !important;
+}
+[data-theme="dark"] .stats-grid .stat-item:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25) !important;
+}
+[data-theme="dark"] .stats-grid .stat-number {
+  color: #FFFFFF !important;
+  background: none !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  background-clip: border-box !important;
 }
 [data-theme="dark"] .stats-grid .stat-label {
-  color: rgba(255,255,255,0.8) !important;
+  color: #D7DCE7 !important;
 }
 [data-theme="dark"] .hero-stat h3 {
   color: #ffffff !important;
 }
 [data-theme="dark"] .hero-stat p {
-  color: rgba(201,209,226,0.9) !important;
+  color: rgba(201, 209, 226, 0.9) !important;
 }
 
 /* ── 5. ABOUT PAGE CARDS ── */
@@ -1284,6 +1296,44 @@ textarea.form-control { min-height: 140px; resize: vertical; }
   background: linear-gradient(135deg, #0A0B1E 0%, #141430 40%, #1A1045 100%) !important;
 }
 
+/* Page Hero background image preservation with soft dark overlay in dark theme */
+[data-theme="dark"] body:has(.nav-links a[href="about.html"].active) .page-hero {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(16, 18, 32, 0.48) 0%,
+      rgba(16, 18, 32, 0.52) 100%
+    ),
+    url("../assets/images/about_hero_1784219920826.png") center/cover no-repeat !important;
+}
+[data-theme="dark"] body:has(.nav-links a[href="gallery.html"].active) .page-hero {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(16, 18, 32, 0.48) 0%,
+      rgba(16, 18, 32, 0.52) 100%
+    ),
+    url("../assets/images/gallery_hero.png") center/cover no-repeat !important;
+}
+[data-theme="dark"] body:has(.nav-links a[href="blog.html"].active) .page-hero {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(16, 18, 32, 0.48) 0%,
+      rgba(16, 18, 32, 0.52) 100%
+    ),
+    url("../assets/images/blog_hero_1784220054487.png") center/cover no-repeat !important;
+}
+[data-theme="dark"] body:has(.nav-links a[href="contact.html"].active) .page-hero {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(16, 18, 32, 0.48) 0%,
+      rgba(16, 18, 32, 0.52) 100%
+    ),
+    url("../assets/images/contact_hero_1784220089204.png") center/cover no-repeat !important;
+}
+
 /* ── 7. GALLERY: Virtual Tour texts & icons ── */
 [data-theme="dark"] .virtual-tour-hint p        { color: #ffffff !important; }
 [data-theme="dark"] .virtual-tour-hint .compass  {
@@ -1297,6 +1347,9 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 /* ── 8. CONTACT: Map, visit cards, social cards ── */
 [data-theme="dark"] .map-placeholder {
   background: linear-gradient(135deg, #0D0E24, #1A1535, #252045) !important;
+}
+[data-theme="dark"] .map-placeholder iframe {
+  filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%) grayscale(10%) !important;
 }
 [data-theme="dark"] .map-pin span { color: #ffffff !important; }
 [data-theme="dark"] .social-card {
@@ -1327,35 +1380,52 @@ textarea.form-control { min-height: 140px; resize: vertical; }
   box-shadow: 0 20px 60px rgba(0,0,0,0.6) !important;
 }
 [data-theme="dark"] .auth-header h2       { color: #ffffff !important; }
-[data-theme="dark"] .auth-header p        { color: #9AA3B5 !important; }
+[data-theme="dark"] .auth-header p        { color: #C9D1E2 !important; }
 [data-theme="dark"] .auth-header .logo    { color: #ffffff !important; }
-[data-theme="dark"] .auth-form .form-group label { color: #E2E8F0 !important; }
+[data-theme="dark"] .auth-form .form-group label { color: #EEF2FF !important; }
 [data-theme="dark"] .auth-form .form-control {
-  background: #232342 !important;
-  border-color: rgba(255,255,255,0.12) !important;
+  background: #11111B !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
   color: #ffffff !important;
 }
-[data-theme="dark"] .auth-form .form-control::placeholder { color: #64748B !important; }
+[data-theme="dark"] .auth-form .form-control::placeholder { color: #9AA3B5 !important; }
 [data-theme="dark"] .auth-form .form-control:focus {
   border-color: #A78BFA !important;
-  box-shadow: 0 0 0 4px rgba(167,139,250,0.15) !important;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.35) !important;
 }
-[data-theme="dark"] .password-toggle         { color: #64748B !important; }
+[data-theme="dark"] .password-toggle         { color: #ffffff !important; }
 [data-theme="dark"] .password-toggle:hover   { color: #C4B5FD !important; }
-[data-theme="dark"] .auth-divider            { color: #64748B !important; }
+[data-theme="dark"] .password-toggle svg     { stroke: #ffffff !important; }
+[data-theme="dark"] .auth-divider            { color: #9AA3B5 !important; }
 [data-theme="dark"] .auth-divider::before,
-[data-theme="dark"] .auth-divider::after     { background: rgba(255,255,255,0.1) !important; }
+[data-theme="dark"] .auth-divider::after     { background: rgba(255,255,255,0.08) !important; }
 [data-theme="dark"] .auth-footer            { color: #9AA3B5 !important; }
 [data-theme="dark"] .auth-footer a          { color: #C4B5FD !important; }
 [data-theme="dark"] .flex-between label     { color: #C9D1E2 !important; }
+[data-theme="dark"] .auth-card input[type="checkbox"] {
+  background-color: #11111B !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  accent-color: #C4B5FD !important;
+}
+[data-theme="dark"] .auth-card a            { color: #C4B5FD !important; }
+[data-theme="dark"] .auth-card .logo-icon svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
 [data-theme="dark"] .auth-card .btn-outline {
-  background: #232342 !important;
-  border-color: rgba(255,255,255,0.12) !important;
-  color: #E2E8F0 !important;
+  background: #11111B !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  color: #ffffff !important;
+}
+[data-theme="dark"] .auth-card .btn-outline svg {
+  fill: #ffffff !important;
+}
+[data-theme="dark"] .auth-card .btn-outline svg path {
+  fill: #ffffff !important;
 }
 [data-theme="dark"] .auth-card .btn-outline:hover {
-  background: #2E2E52 !important;
-  border-color: rgba(255,255,255,0.2) !important;
+  background: #202032 !important;
+  border-color: rgba(255,255,255,0.15) !important;
   color: #ffffff !important;
 }
 
@@ -1387,11 +1457,30 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 }
 
 /* ── 11. BREADCRUMBS: white in dark mode ── */
-[data-theme="dark"] .breadcrumb         { color: #D6DAE6 !important; }
-[data-theme="dark"] .breadcrumb a       { color: #D6DAE6 !important; }
-[data-theme="dark"] .breadcrumb a:hover { color: #C4B5FD !important; }
-[data-theme="dark"] .breadcrumb .separator { color: #9AA3B5 !important; opacity: 0.6 !important; }
-[data-theme="dark"] .breadcrumb .current   { color: #ffffff !important; }
+[data-theme="dark"] .breadcrumb {
+  color: #DCE3F1 !important;
+}
+[data-theme="dark"] .breadcrumb a {
+  color: #DCE3F1 !important;
+}
+[data-theme="dark"] .breadcrumb a:hover {
+  color: #C4B5FD !important;
+}
+[data-theme="dark"] .breadcrumb a svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+[data-theme="dark"] .breadcrumb .separator {
+  color: rgba(255, 255, 255, 0.65) !important;
+  opacity: 1 !important;
+}
+[data-theme="dark"] .breadcrumb .separator svg {
+  color: rgba(255, 255, 255, 0.65) !important;
+  stroke: rgba(255, 255, 255, 0.65) !important;
+}
+[data-theme="dark"] .breadcrumb .current {
+  color: #ffffff !important;
+}
 
 /* ── 12. BLOG: sidebar, pagination ── */
 [data-theme="dark"] .sidebar-card {
@@ -1443,6 +1532,7 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 @media (max-width: 1024px) {
   [data-theme="dark"] .nav-links {
     background: #0D0D1A !important;
+    border-left: 1px solid rgba(255,255,255,0.08) !important;
     box-shadow: 4px 0 30px rgba(0,0,0,0.6) !important;
   }
   [data-theme="dark"] .nav-links a { color: #E2E8F0 !important; }
