@@ -247,7 +247,20 @@
     </button>
     <!-- Password Toggle Script -->
     <script>
-      document.addEventListener('DOMContentLoaded', () => {      // Password visibility toggle      document.querySelectorAll('.password-toggle').forEach(toggle => {        toggle.addEventListener('click', () => {          const input = toggle.closest('.form-group').querySelector('input');          const eye = toggle.querySelector('.eye-icon');          const eyeOff = toggle.querySelector('.eye-off-icon');          const isPassword = input.type === 'password';          input.type = isPassword ? 'text' : 'password';          eye.style.display = isPassword ? 'none' : '';          eyeOff.style.display = isPassword ? '' : 'none';        });      });    });
+      document.addEventListener('DOMContentLoaded', () => {
+        // Password visibility toggle
+        document.querySelectorAll('.password-toggle').forEach(toggle => {
+          toggle.addEventListener('click', () => {
+            const input = toggle.closest('.form-group').querySelector('input');
+            const eye = toggle.querySelector('.eye-icon');
+            const eyeOff = toggle.querySelector('.eye-off-icon');
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            eye.style.display = isPassword ? 'none' : '';
+            eyeOff.style.display = isPassword ? '' : 'none';
+          });
+        });
+      });
     </script>
     <script src="js/main.js"></script>
   </body>
