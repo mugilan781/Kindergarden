@@ -1141,3 +1141,310 @@ textarea.form-control { min-height: 140px; resize: vertical; }
   .profile-dropdown { right: auto; left: 0; }
   [dir="rtl"] .profile-dropdown { right: 0; left: auto; }
 }
+
+/* ════════════════════════════════════════════════════════════
+   DARK MODE — SUPPLEMENTAL CONTRAST AUDIT FIXES
+   All fixes scoped to [data-theme="dark"] only.
+   Light mode is completely untouched.
+   ════════════════════════════════════════════════════════════ */
+
+/* ── 1. NAVBAR: mobile drawer dark background ── */
+[data-theme="dark"] .nav-links {
+  background: #0D0D1A !important;
+  border-left: 1px solid rgba(255,255,255,0.08);
+}
+[data-theme="dark"] .nav-links a {
+  color: #E2E8F0 !important;
+}
+[data-theme="dark"] .nav-links a:hover,
+[data-theme="dark"] .nav-links a.active {
+  color: #C4B5FD !important;
+}
+
+/* ── 2. LOGO: graduation cap icon white ── */
+[data-theme="dark"] .logo-icon {
+  color: #ffffff;
+}
+[data-theme="dark"] .logo-icon svg {
+  color: #ffffff;
+  stroke: #ffffff;
+}
+
+/* ── 3. HERO CTA BUTTONS: white text ── */
+[data-theme="dark"] .btn-primary {
+  color: #ffffff !important;
+}
+[data-theme="dark"] .btn-primary:hover {
+  color: #ffffff !important;
+}
+[data-theme="dark"] .btn-glass {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #ffffff !important;
+}
+[data-theme="dark"] .btn-glass:hover {
+  background: rgba(255,255,255,0.2);
+  color: #ffffff !important;
+}
+
+/* ── 4. STATS SECTION (dark bar) ── */
+[data-theme="dark"] .stats-grid .stat-item {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+}
+[data-theme="dark"] .stats-grid .stat-label {
+  color: rgba(255,255,255,0.8) !important;
+}
+[data-theme="dark"] .hero-stat h3 {
+  color: #ffffff !important;
+}
+[data-theme="dark"] .hero-stat p {
+  color: rgba(201,209,226,0.9) !important;
+}
+
+/* ── 5. ABOUT PAGE CARDS ── */
+[data-theme="dark"] .mv-card {
+  background: #1A1A30 !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  backdrop-filter: none;
+}
+[data-theme="dark"] .mv-card h3 { color: #ffffff !important; }
+[data-theme="dark"] .mv-card p  { color: #C9D1E2 !important; }
+
+[data-theme="dark"] .philosophy-card {
+  background: #181827 !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+}
+[data-theme="dark"] .philosophy-card h4 { color: #ffffff !important; }
+[data-theme="dark"] .philosophy-card p  { color: #C9D1E2 !important; }
+
+[data-theme="dark"] .facility-card {
+  background: #181827 !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+}
+[data-theme="dark"] .facility-card h4 { color: #ffffff !important; }
+[data-theme="dark"] .facility-card p  { color: #C9D1E2 !important; }
+
+[data-theme="dark"] .accreditation-badge {
+  background: #181827 !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+[data-theme="dark"] .accreditation-badge:hover {
+  background: #202032 !important;
+  border-color: rgba(196,181,253,0.35) !important;
+}
+[data-theme="dark"] .accreditation-badge h4 { color: #EEF2FF !important; }
+[data-theme="dark"] .accreditation-badge p  { color: #9AA3B5 !important; }
+
+[data-theme="dark"] .teacher-card {
+  background: #181827 !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+}
+[data-theme="dark"] .teacher-card-name { color: #ffffff !important; }
+[data-theme="dark"] .teacher-card-role { color: #C4B5FD !important; }
+[data-theme="dark"] .teacher-card-bio  { color: #C9D1E2 !important; }
+[data-theme="dark"] .teacher-social a  {
+  background: #232342 !important;
+  color: #CBD5E1 !important;
+}
+[data-theme="dark"] .leader-image-wrapper { background: #232342 !important; }
+[data-theme="dark"] .story-section        { background: #11111B !important; }
+[data-theme="dark"] .accreditation-section { background: #11111B !important; }
+
+/* ── 6. CTA / SHARE / NEWSLETTER SECTIONS: muted dark gradients ── */
+[data-theme="dark"] .cta-section {
+  background: linear-gradient(135deg, #0A0B1E 0%, #141430 50%, #1A1045 100%) !important;
+}
+[data-theme="dark"] .share-section {
+  background: linear-gradient(135deg, #0A0B1E 0%, #141430 50%, #1A1045 100%) !important;
+}
+[data-theme="dark"] .newsletter-section {
+  background: linear-gradient(135deg, #0A0B1E 0%, #141430 50%, #1A1045 100%) !important;
+}
+[data-theme="dark"] .cta-content h2,
+[data-theme="dark"] .share-content h2,
+[data-theme="dark"] .newsletter-card h2  { color: #ffffff !important; }
+[data-theme="dark"] .cta-content p,
+[data-theme="dark"] .share-content p,
+[data-theme="dark"] .newsletter-card p   { color: #C9D1E2 !important; }
+
+[data-theme="dark"] .newsletter-form input {
+  background: rgba(255,255,255,0.08) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+[data-theme="dark"] .newsletter-form input::placeholder { color: #9AA3B5 !important; }
+[data-theme="dark"] .newsletter-form input:focus {
+  background: rgba(255,255,255,0.14) !important;
+  box-shadow: 0 0 0 2px rgba(196,181,253,0.3);
+}
+
+/* Privacy/Terms .page-hero gradient */
+[data-theme="dark"] .page-hero {
+  background: linear-gradient(135deg, #0A0B1E 0%, #141430 40%, #1A1045 100%) !important;
+}
+
+/* ── 7. GALLERY: Virtual Tour texts & icons ── */
+[data-theme="dark"] .virtual-tour-hint p        { color: #ffffff !important; }
+[data-theme="dark"] .virtual-tour-hint .compass  {
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,0.3) !important;
+}
+[data-theme="dark"] .virtual-tour-btn           { color: #ffffff !important; border-color: rgba(255,255,255,0.3) !important; }
+[data-theme="dark"] .video-card-info h4          { color: #ffffff !important; }
+[data-theme="dark"] .video-card-info p           { color: rgba(255,255,255,0.75) !important; }
+
+/* ── 8. CONTACT: Map, visit cards, social cards ── */
+[data-theme="dark"] .map-placeholder {
+  background: linear-gradient(135deg, #0D0E24, #1A1535, #252045) !important;
+}
+[data-theme="dark"] .map-pin span { color: #ffffff !important; }
+[data-theme="dark"] .social-card {
+  background: #181827 !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+}
+[data-theme="dark"] .social-card h4 { color: #EEF2FF !important; }
+[data-theme="dark"] .social-card p  { color: #9AA3B5 !important; }
+[data-theme="dark"] .visit-card {
+  background: #181827 !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+}
+[data-theme="dark"] .visit-card h3   { color: #ffffff !important; }
+[data-theme="dark"] .visit-card > p  { color: #C9D1E2 !important; }
+[data-theme="dark"] .visit-benefit   { background: #11111B !important; }
+[data-theme="dark"] .visit-benefit:hover { background: #202032 !important; }
+[data-theme="dark"] .visit-benefit h5 { color: #EEF2FF !important; }
+[data-theme="dark"] .visit-benefit p  { color: #9AA3B5 !important; }
+[data-theme="dark"] .visit-benefit-icon { background: #232342 !important; }
+[data-theme="dark"] .contact-detail-text h4 { color: #EEF2FF !important; }
+[data-theme="dark"] .contact-detail-text p  { color: #C9D1E2 !important; }
+
+/* ── 9. AUTH PAGES: full dark treatment ── */
+[data-theme="dark"] .auth-page { background: #0D0D1A !important; }
+[data-theme="dark"] .auth-card {
+  background: #181827 !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6) !important;
+}
+[data-theme="dark"] .auth-header h2       { color: #ffffff !important; }
+[data-theme="dark"] .auth-header p        { color: #9AA3B5 !important; }
+[data-theme="dark"] .auth-header .logo    { color: #ffffff !important; }
+[data-theme="dark"] .auth-form .form-group label { color: #E2E8F0 !important; }
+[data-theme="dark"] .auth-form .form-control {
+  background: #232342 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #ffffff !important;
+}
+[data-theme="dark"] .auth-form .form-control::placeholder { color: #64748B !important; }
+[data-theme="dark"] .auth-form .form-control:focus {
+  border-color: #A78BFA !important;
+  box-shadow: 0 0 0 4px rgba(167,139,250,0.15) !important;
+}
+[data-theme="dark"] .password-toggle         { color: #64748B !important; }
+[data-theme="dark"] .password-toggle:hover   { color: #C4B5FD !important; }
+[data-theme="dark"] .auth-divider            { color: #64748B !important; }
+[data-theme="dark"] .auth-divider::before,
+[data-theme="dark"] .auth-divider::after     { background: rgba(255,255,255,0.1) !important; }
+[data-theme="dark"] .auth-footer            { color: #9AA3B5 !important; }
+[data-theme="dark"] .auth-footer a          { color: #C4B5FD !important; }
+[data-theme="dark"] .flex-between label     { color: #C9D1E2 !important; }
+[data-theme="dark"] .auth-card .btn-outline {
+  background: #232342 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #E2E8F0 !important;
+}
+[data-theme="dark"] .auth-card .btn-outline:hover {
+  background: #2E2E52 !important;
+  border-color: rgba(255,255,255,0.2) !important;
+  color: #ffffff !important;
+}
+
+/* ── 10. PRIVACY & TERMS: legal cards ── */
+[data-theme="dark"] .legal-section { background: #11111B !important; }
+[data-theme="dark"] .legal-card {
+  background: #181827 !important;
+  border-color: rgba(255,255,255,0.07) !important;
+}
+[data-theme="dark"] .legal-card h3       { color: #A5B4FC !important; }
+[data-theme="dark"] .legal-card p,
+[data-theme="dark"] .legal-card li       { color: #C9D1E2 !important; }
+[data-theme="dark"] .legal-card .last-updated { color: #9AA3B5 !important; }
+[data-theme="dark"] .legal-card .highlight-box {
+  background: #232342 !important;
+  border-left-color: #A78BFA !important;
+}
+[data-theme="dark"] .legal-card .highlight-box p { color: #C9D1E2 !important; }
+[data-theme="dark"] .legal-toc {
+  background: #181827 !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+[data-theme="dark"] .legal-toc h4 { color: #9AA3B5 !important; }
+[data-theme="dark"] .legal-toc a  { color: #C9D1E2 !important; }
+[data-theme="dark"] .legal-toc a:hover,
+[data-theme="dark"] .legal-toc a.active {
+  color: #C4B5FD !important;
+  background: rgba(139,92,246,0.12) !important;
+}
+
+/* ── 11. BREADCRUMBS: white in dark mode ── */
+[data-theme="dark"] .breadcrumb         { color: #D6DAE6 !important; }
+[data-theme="dark"] .breadcrumb a       { color: #D6DAE6 !important; }
+[data-theme="dark"] .breadcrumb a:hover { color: #C4B5FD !important; }
+[data-theme="dark"] .breadcrumb .separator { color: #9AA3B5 !important; opacity: 0.6 !important; }
+[data-theme="dark"] .breadcrumb .current   { color: #ffffff !important; }
+
+/* ── 12. BLOG: sidebar, pagination ── */
+[data-theme="dark"] .sidebar-card {
+  background: #181827 !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+}
+[data-theme="dark"] .sidebar-card h4,
+[data-theme="dark"] .sidebar-card h3 { color: #EEF2FF !important; }
+[data-theme="dark"] .page-link {
+  background: #181827 !important;
+  border-color: rgba(255,255,255,0.1) !important;
+  color: #CBD5E1 !important;
+}
+[data-theme="dark"] .page-link:hover {
+  border-color: #C4B5FD !important;
+  color: #C4B5FD !important;
+}
+
+/* ── 13. BLOG DETAILS: article content ── */
+[data-theme="dark"] .blog-content h2,
+[data-theme="dark"] .blog-content h3,
+[data-theme="dark"] .blog-content h4    { color: #EEF2FF !important; }
+[data-theme="dark"] .blog-content p,
+[data-theme="dark"] .blog-content li    { color: #C9D1E2 !important; }
+[data-theme="dark"] .blog-content blockquote {
+  border-left-color: #A78BFA !important;
+  background: #181827 !important;
+  color: #C9D1E2 !important;
+}
+
+/* ── 14. BACK TO TOP button ── */
+[data-theme="dark"] .back-to-top {
+  background: #232342 !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: #E2E8F0 !important;
+}
+[data-theme="dark"] .back-to-top:hover {
+  background: var(--gradient-primary) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+}
+
+/* ── 15. MAINTENANCE PAGE ── */
+[data-theme="dark"] .maintenance-page   { background: #0D0D1A !important; }
+[data-theme="dark"] .maintenance-page h1 { color: #ffffff !important; }
+[data-theme="dark"] .maintenance-page p  { color: #C9D1E2 !important; }
+
+/* ── 16. RESPONSIVE: mobile nav dark bg ── */
+@media (max-width: 1024px) {
+  [data-theme="dark"] .nav-links {
+    background: #0D0D1A !important;
+    box-shadow: 4px 0 30px rgba(0,0,0,0.6) !important;
+  }
+  [data-theme="dark"] .nav-links a { color: #E2E8F0 !important; }
+  [data-theme="dark"] .hamburger span { background: #F1F5F9 !important; }
+}
