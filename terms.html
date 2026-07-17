@@ -1,0 +1,1262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Terms of Service | Kindergarden — Premium Kindergarten & Primary School
+    </title>
+    <meta
+      name="description"
+      content="Read Kindergarden's Terms of Service governing enrollment, tuition, code of conduct, intellectual property, and the use of our educational services and website."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23312E81'/><text x='16' y='22' font-size='18' text-anchor='middle' fill='white' font-family='Poppins,sans-serif' font-weight='800'>K</text></svg>"
+    />
+    <style>
+      .page-hero {
+        position: relative;
+        min-height: 40vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        padding: var(--header-height) 0 0;
+        background: linear-gradient(
+          135deg,
+          var(--indigo-dark) 0%,
+          var(--indigo) 40%,
+          var(--lavender) 100%
+        );
+      }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.5;
+      }
+      .page-hero-content {
+        position: relative;
+        z-index: 2;
+        padding: var(--space-4xl) 0;
+      }
+      .page-hero h1 {
+        color: var(--white);
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        margin-bottom: var(--space-md);
+        letter-spacing: -0.02em;
+      }
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        color: rgba(255, 255, 255, 0.6);
+        font-family: var(--font-heading);
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+      .breadcrumb a {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .breadcrumb a:hover {
+        color: var(--white);
+      }
+      .breadcrumb .separator {
+        display: flex;
+        align-items: center;
+        opacity: 0.4;
+      }
+      .breadcrumb .current {
+        color: var(--white);
+      }
+      .hero-floating-shapes {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .hero-floating-shapes .shape {
+        position: absolute;
+        border-radius: var(--radius-full);
+        opacity: 0.08;
+      }
+      .hero-floating-shapes .shape:nth-child(1) {
+        width: 500px;
+        height: 500px;
+        background: var(--lavender-light);
+        top: -150px;
+        right: -100px;
+        animation: float 20s ease-in-out infinite;
+      }
+      .hero-floating-shapes .shape:nth-child(2) {
+        width: 350px;
+        height: 350px;
+        background: var(--mint);
+        bottom: -80px;
+        left: -80px;
+        animation: floatReverse 18s ease-in-out infinite;
+      }
+      .hero-floating-shapes .shape:nth-child(3) {
+        width: 180px;
+        height: 180px;
+        background: var(--peach);
+        top: 30%;
+        right: 15%;
+        animation: blobMove 22s ease-in-out infinite;
+      }
+      .legal-section {
+        background: var(--white);
+        position: relative;
+      }
+      .legal-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: var(--space-3xl);
+        align-items: start;
+      }
+      .legal-toc {
+        position: sticky;
+        top: calc(var(--header-height) + var(--space-xl));
+        padding: var(--space-xl);
+        background: var(--cream);
+        border-radius: var(--radius-xl);
+        border: 1px solid var(--gray-200);
+      }
+      .legal-toc h4 {
+        font-size: 0.8125rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--gray-400);
+        margin-bottom: var(--space-lg);
+      }
+      .legal-toc nav {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+      }
+      .legal-toc a {
+        font-family: var(--font-heading);
+        font-weight: 500;
+        font-size: 0.875rem;
+        color: var(--gray-500);
+        padding: 6px 12px;
+        border-radius: var(--radius-md);
+        transition: var(--transition);
+      }
+      .legal-toc a:hover {
+        background: rgba(139, 92, 246, 0.08);
+        color: var(--lavender);
+      }
+      .legal-toc a.active {
+        background: rgba(139, 92, 246, 0.1);
+        color: var(--lavender);
+        font-weight: 600;
+      }
+      .legal-content {
+        min-width: 0;
+      }
+      .legal-card {
+        background: var(--white);
+        border-radius: var(--radius-xl);
+        padding: var(--space-2xl);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--gray-100);
+        margin-bottom: var(--space-xl);
+        transition: var(--transition);
+      }
+      .legal-card:hover {
+        box-shadow: var(--shadow-md);
+        border-color: var(--gray-200);
+      }
+      .legal-card h2 {
+        font-size: 1.5rem;
+        margin-bottom: var(--space-lg);
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+      }
+      .legal-card h2 .section-number {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        border-radius: var(--radius-md);
+        background: var(--gradient-primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 0.875rem;
+        font-weight: 700;
+      }
+      .legal-card h3 {
+        font-size: 1.125rem;
+        margin-bottom: var(--space-md);
+        color: var(--indigo);
+      }
+      .legal-card p {
+        color: var(--gray-600);
+        font-size: 0.9375rem;
+        line-height: 1.8;
+        margin-bottom: var(--space-md);
+      }
+      .legal-card ul {
+        margin-bottom: var(--space-md);
+        padding-left: var(--space-lg);
+      }
+      .legal-card ul li {
+        color: var(--gray-600);
+        font-size: 0.9375rem;
+        line-height: 1.8;
+        list-style: disc;
+        margin-bottom: 4px;
+      }
+      .legal-card ul li::marker {
+        color: var(--lavender);
+      }
+      .legal-card .last-updated {
+        font-size: 0.8125rem;
+        color: var(--gray-400);
+        font-weight: 600;
+        margin-bottom: var(--space-lg);
+        display: block;
+      }
+      .cta-section {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          var(--indigo-dark) 0%,
+          var(--indigo) 50%,
+          var(--lavender) 100%
+        );
+        padding: var(--space-5xl) 0;
+      }
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.5;
+      }
+      .cta-blob-1 {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: var(--lavender-light);
+        border-radius: var(--radius-full);
+        filter: blur(80px);
+        opacity: 0.12;
+        top: -100px;
+        right: -100px;
+        animation: float 20s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .cta-blob-2 {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: var(--mint);
+        border-radius: var(--radius-full);
+        filter: blur(60px);
+        opacity: 0.1;
+        bottom: -80px;
+        left: -80px;
+        animation: floatReverse 18s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .cta-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      .cta-content h2 {
+        color: var(--white);
+        margin-bottom: var(--space-md);
+      }
+      .cta-content p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.125rem;
+        margin-bottom: var(--space-xl);
+      }
+      .cta-buttons {
+        display: flex;
+        gap: var(--space-md);
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 1024px) {
+        .legal-layout {
+          grid-template-columns: 1fr;
+        }
+        .legal-toc {
+          position: static;
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--space-md);
+          padding: var(--space-lg);
+        }
+        .legal-toc h4 {
+          width: 100%;
+          margin-bottom: 0;
+        }
+        .legal-toc nav {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+        .legal-toc a {
+          font-size: 0.8125rem;
+          padding: 4px 12px;
+        }
+      }
+      @media (max-width: 768px) {
+        .page-hero {
+          min-height: 35vh;
+        }
+      }
+      @media (max-width: 480px) {
+        .legal-card {
+          padding: var(--space-xl);
+        }
+        .legal-card h2 {
+          font-size: 1.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar white-bg">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-5" />
+          </svg>
+        </span>
+        Kindergarden
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a> <a href="home2.html">Home 2</a>
+        <a href="about.html">About</a> <a href="services.html">Programs</a>
+        <a href="gallery.html">Gallery</a> <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        </div>
+      <div class="nav-cta">
+        <div class="profile-wrap">
+          <button class="profile-btn" aria-label="Profile menu">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </button>
+          <div class="profile-dropdown">
+            <a href="login.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" y1="12" x2="3" y2="12" />
+              </svg>
+              Sign In / Register
+            </a>
+            <div class="divider"></div>
+            <a href="dashboard/user.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              User Dashboard
+            </a>
+            <a href="dashboard/admin.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+              Admin Dashboard
+            </a>
+          </div>
+        </div>
+        <button class="rtl-toggle" aria-label="Toggle language direction">RTL</button>
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+      </div>
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <section class="page-hero">
+      <div class="hero-floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <div class="container">
+        <div class="page-hero-content">
+          <div class="breadcrumb reveal">
+            <a href="index.html">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="vertical-align: middle; margin-right: 2px"
+              >
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+              Home
+            </a>
+            <span class="separator">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </span>
+            <span class="current">Terms of Service</span>
+          </div>
+          <h1 class="reveal" style="transition-delay: 0.1s">
+            Terms of Service
+          </h1>
+          <p
+            class="reveal"
+            style="
+              transition-delay: 0.2s;
+              color: rgba(255, 255, 255, 0.8);
+              font-size: 1.125rem;
+              max-width: 540px;
+            "
+          >
+            These terms govern your relationship with Kindergarden, including
+            enrollment, tuition, conduct expectations, and the use of our
+            educational services and website.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="section legal-section">
+      <div class="container">
+        <div class="legal-layout">
+          <aside class="legal-toc reveal">
+            <h4>On This Page</h4>
+            <nav>
+              <a href="#introduction">Introduction</a>
+              <a href="#enrollment">Enrollment Terms</a>
+              <a href="#fees">Fees & Payments</a>
+              <a href="#conduct">Code of Conduct</a>
+              <a href="#intellectual-property">Intellectual Property</a>
+              <a href="#liability">Limitation of Liability</a>
+              <a href="#privacy">Privacy</a>
+              <a href="#termination">Termination</a>
+              <a href="#governing-law">Governing Law</a>
+              <a href="#contact-legal">Contact</a>
+            </nav>
+          </aside>
+          <div class="legal-content">
+            <span class="last-updated">Last updated: July 1, 2026</span>
+            <div id="introduction" class="legal-card reveal">
+              <h2><span class="section-number">01</span>Introduction</h2>
+              <p>
+                Welcome to Kindergarden (operated by Kindergarden Education
+                Ltd., registered in Illinois, United States). These Terms of
+                Service constitute a legally binding agreement between you (the
+                parent, legal guardian, or website visitor) and Kindergarden
+                regarding the use of our website, enrollment services,
+                educational programs, and any related content or materials.
+              </p>
+              <p>
+                By enrolling your child in any Kindergarden program, accessing
+                our website at kindergarden.edu, or otherwise using our
+                services, you acknowledge that you have read, understood, and
+                agree to be bound by these terms. If you do not agree with any
+                part of these terms, you must not use our services or enroll
+                your child.
+              </p>
+              <p>
+                Kindergarden reserves the right to update or modify these terms
+                at any time without prior notice. Changes become effective
+                immediately upon posting. We encourage you to review this page
+                periodically. Your continued use of our services after any
+                modifications constitutes acceptance of the updated terms.
+              </p>
+            </div>
+            <div
+              id="enrollment"
+              class="legal-card reveal"
+              style="transition-delay: 0.05s"
+            >
+              <h2><span class="section-number">02</span>Enrollment Terms</h2>
+              <p>
+                Enrollment at Kindergarden is offered on a first-come,
+                first-served basis and is subject to availability. The following
+                conditions apply to all enrollments:
+              </p>
+              <ul>
+                <li>
+                  All enrollment applications must be submitted through our
+                  official enrollment portal or in person at our administrative
+                  office. Applications submitted via email or third-party
+                  platforms are not considered valid.
+                </li>
+                <li>
+                  Enrollment is confirmed only after the completion of all
+                  required documentation, receipt of the enrollment deposit, and
+                  written acceptance from Kindergarden's admissions office.
+                </li>
+                <li>
+                  Kindergarden admits students of any race, color, national
+                  origin, religion, or ethnic origin to all rights, privileges,
+                  programs, and activities generally made available to students
+                  at the school. We do not discriminate in administration of our
+                  educational policies, admissions, or tuition assistance
+                  programs.
+                </li>
+                <li>
+                  Parents or guardians must provide accurate and complete
+                  information during the enrollment process. Falsification of
+                  information, including but not limited to medical history,
+                  emergency contacts, or prior academic records, may result in
+                  immediate termination of enrollment without refund.
+                </li>
+                <li>
+                  Kindergarden reserves the right to decline or discontinue
+                  enrollment if, in our sole discretion, the school cannot
+                  adequately meet the child's educational or developmental
+                  needs, or if the child's presence poses a health or safety
+                  risk to themselves or others.
+                </li>
+                <li>
+                  Each enrolling family must designate at least two emergency
+                  contacts who are available during school hours. Emergency
+                  contact information must be kept current throughout the
+                  academic year.
+                </li>
+              </ul>
+            </div>
+            <div
+              id="fees"
+              class="legal-card reveal"
+              style="transition-delay: 0.1s"
+            >
+              <h2><span class="section-number">03</span>Fees & Payments</h2>
+              <p>
+                Tuition and fees are set annually and communicated to enrolled
+                families before the start of each academic year. The following
+                payment policies apply:
+              </p>
+              <ul>
+                <li>
+                  Tuition is due on or before the first day of each month,
+                  semester, or as outlined in your specific enrollment
+                  agreement. Late payments may incur a fee of 5% of the
+                  outstanding amount per month.
+                </li>
+                <li>
+                  An enrollment deposit equal to one month's tuition is required
+                  to secure your child's place. This deposit is applied to the
+                  final month's tuition and is non-refundable if enrollment is
+                  cancelled after the start of the academic term.
+                </li>
+                <li>
+                  Kindergarden accepts payments via bank transfer, credit card
+                  (Visa, Mastercard, Amex), and certified check. Personal checks
+                  are accepted up to 30 days before the end of the academic
+                  year.
+                </li>
+                <li>
+                  Full or partial tuition assistance is available for qualifying
+                  families. Assistance applications are reviewed confidentially
+                  by our financial aid committee. Awards are applied as a credit
+                  to your account and do not constitute a scholarship or
+                  merit-based reduction.
+                </li>
+                <li>
+                  Refunds for early withdrawal are calculated on a pro-rata
+                  basis for the remaining term, less a processing fee of $250.
+                  No refunds are issued after 50% of the academic term has
+                  elapsed.
+                </li>
+                <li>
+                  All fees are quoted in United States Dollars (USD) and are
+                  exclusive of applicable taxes unless otherwise stated.
+                  Kindergarden is not responsible for any bank charges, currency
+                  conversion fees, or intermediary bank deductions.
+                </li>
+              </ul>
+            </div>
+            <div
+              id="conduct"
+              class="legal-card reveal"
+              style="transition-delay: 0.15s"
+            >
+              <h2><span class="section-number">04</span>Code of Conduct</h2>
+              <p>
+                Kindergarden is committed to maintaining a safe, respectful, and
+                inclusive environment for all students, families, and staff. The
+                following behaviors are expected from every member of our
+                community:
+              </p>
+              <ul>
+                <li>
+                  Students are expected to treat classmates, teachers, and staff
+                  with kindness, respect, and empathy at all times. Bullying,
+                  harassment, intimidation, or exclusionary behavior is strictly
+                  prohibited and will result in disciplinary action.
+                </li>
+                <li>
+                  Parents and guardians are expected to communicate with staff
+                  in a courteous and constructive manner. Verbal abuse, threats,
+                  or aggressive behavior toward any Kindergarden employee will
+                  not be tolerated and may result in termination of enrollment.
+                </li>
+                <li>
+                  The use of electronic devices, including smartphones, tablets,
+                  and smartwatches, is restricted during school hours unless
+                  explicitly authorized by a teacher for educational purposes.
+                  Kindergarden is not responsible for lost, stolen, or damaged
+                  personal devices.
+                </li>
+                <li>
+                  Violence, possession of weapons (including toy weapons that
+                  resemble real firearms), theft, vandalism, or any illegal
+                  activity on school grounds will result in immediate suspension
+                  pending review, and may lead to permanent expulsion.
+                </li>
+                <li>
+                  Kindergarden promotes a drug-, alcohol-, and tobacco-free
+                  environment. Any student found to be in possession of or under
+                  the influence of prohibited substances will face disciplinary
+                  action in accordance with school policy and applicable law.
+                </li>
+                <li>
+                  Repeated violations of the code of conduct may result in a
+                  behavior contract, probation, suspension, or termination of
+                  enrollment at the sole discretion of the school
+                  administration.
+                </li>
+              </ul>
+            </div>
+            <div
+              id="intellectual-property"
+              class="legal-card reveal"
+              style="transition-delay: 0.2s"
+            >
+              <h2>
+                <span class="section-number">05</span>Intellectual Property
+              </h2>
+              <p>
+                All content, materials, and resources provided by Kindergarden —
+                including but not limited to curriculum guides, lesson plans,
+                worksheets, digital resources, photographs, videos, logos, and
+                brand assets — are the intellectual property of Kindergarden
+                Education Ltd. unless otherwise attributed.
+              </p>
+              <p>
+                You may not reproduce, distribute, modify, create derivative
+                works from, publicly display, or commercially exploit any
+                Kindergarden intellectual property without our prior written
+                consent. This includes sharing our curriculum materials with
+                other schools, publishing our content on external websites, or
+                using our branding for unauthorized purposes.
+              </p>
+              <p>
+                During your child's enrollment, you are granted a limited,
+                non-exclusive, non-transferable license to access and use our
+                digital resources and educational materials solely for your
+                child's personal educational use. This license terminates
+                automatically upon the end of your child's enrollment.
+              </p>
+              <p>
+                Photographs and videos taken during school events, class
+                activities, or on campus may be used by Kindergarden for
+                promotional, marketing, and archival purposes unless you have
+                submitted a written opt-out request to our administrative
+                office. Kindergarden makes reasonable efforts to avoid using
+                identifiable images of opted-out children in public-facing
+                materials.
+              </p>
+            </div>
+            <div
+              id="liability"
+              class="legal-card reveal"
+              style="transition-delay: 0.25s"
+            >
+              <h2>
+                <span class="section-number">06</span>Limitation of Liability
+              </h2>
+              <p>
+                To the maximum extent permitted by applicable law, Kindergarden
+                Education Ltd., its officers, directors, employees, and agents
+                shall not be liable for any indirect, incidental, special,
+                consequential, or punitive damages arising out of or relating to
+                your use of our services, enrollment of your child, or any
+                content provided by Kindergarden.
+              </p>
+              <p>
+                This includes, but is not limited to, damages for loss of
+                profits, goodwill, data, or other intangible losses resulting
+                from: (a) your use or inability to use our services; (b)
+                unauthorized access to or alteration of your transmissions or
+                data; (c) statements or conduct of any third party on our
+                premises or during school activities; or (d) any other matter
+                relating to our services.
+              </p>
+              <p>
+                Kindergarden maintains comprehensive general liability insurance
+                and takes reasonable precautions to ensure the safety of all
+                children in our care. However, parents and guardians acknowledge
+                that participation in school activities, including outdoor play,
+                sports, field trips, and hands-on learning experiences, carries
+                inherent risks, and they assume such risks on behalf of their
+                enrolled child.
+              </p>
+              <p>
+                In no event shall Kindergarden's total liability to you exceed
+                the total tuition fees paid by you in the twelve-month period
+                preceding the event giving rise to the claim. Some jurisdictions
+                do not allow the exclusion or limitation of certain damages, so
+                the above limitations may not apply to you.
+              </p>
+            </div>
+            <div
+              id="privacy"
+              class="legal-card reveal"
+              style="transition-delay: 0.3s"
+            >
+              <h2><span class="section-number">07</span>Privacy</h2>
+              <p>
+                Kindergarden takes your privacy and the privacy of your child
+                seriously. Our collection, use, and disclosure of personal
+                information is governed by our Privacy Policy, which is
+                incorporated into these Terms of Service by reference.
+              </p>
+              <p>
+                By using our services, you consent to the collection and use of
+                personal information as described in the Privacy Policy. This
+                includes the collection of student records, medical information,
+                emergency contacts, and academic progress data for the purpose
+                of providing educational services.
+              </p>
+              <p>
+                We implement reasonable administrative, technical, and physical
+                security measures to protect your personal information from
+                unauthorized access, alteration, or destruction. However, no
+                method of transmission over the Internet or electronic storage
+                is 100% secure, and we cannot guarantee absolute security.
+              </p>
+              <p>
+                We do not sell your personal information to third parties.
+                Student data is shared only with authorized staff, regulatory
+                bodies as required by law, and third-party service providers who
+                are contractually bound to protect the data and use it solely
+                for the services they provide on our behalf.
+              </p>
+            </div>
+            <div
+              id="termination"
+              class="legal-card reveal"
+              style="transition-delay: 0.35s"
+            >
+              <h2><span class="section-number">08</span>Termination</h2>
+              <p>
+                Kindergarden reserves the right to terminate or suspend your
+                access to our services and your child's enrollment under the
+                following circumstances:
+              </p>
+              <ul>
+                <li>
+                  Violation of any provision of these Terms of Service,
+                  including the Code of Conduct.
+                </li>
+                <li>
+                  Failure to pay tuition or fees within 30 days of the due date,
+                  after reasonable notice has been provided.
+                </li>
+                <li>
+                  Conduct that, in Kindergarden's sole discretion, poses a risk
+                  to the safety, health, or well-being of other students, staff,
+                  or the school community.
+                </li>
+                <li>
+                  Provision of false, misleading, or incomplete information
+                  during the enrollment process or at any time during the
+                  child's enrollment.
+                </li>
+                <li>
+                  Extended absence without notification or valid excuse for a
+                  period exceeding 20 consecutive school days.
+                </li>
+              </ul>
+              <p>
+                Upon termination, your right to access Kindergarden's services,
+                facilities, and digital resources ceases immediately. Any
+                outstanding balances become due and payable in full. Termination
+                does not affect any provisions of these terms that by their
+                nature should survive, including but not limited to intellectual
+                property, limitation of liability, and governing law.
+              </p>
+              <p>
+                Parents or guardians may voluntarily terminate enrollment by
+                providing 30 days' written notice to the admissions office.
+                Refunds for early withdrawal are subject to the fee policies
+                outlined in Section 03.
+              </p>
+            </div>
+            <div
+              id="governing-law"
+              class="legal-card reveal"
+              style="transition-delay: 0.4s"
+            >
+              <h2><span class="section-number">09</span>Governing Law</h2>
+              <p>
+                These Terms of Service shall be governed by and construed in
+                accordance with the laws of the State of Illinois, United States
+                of America, without regard to its conflict of law provisions.
+                Any disputes arising out of or relating to these terms or your
+                use of Kindergarden's services shall be resolved exclusively in
+                the state or federal courts located in Sangamon County,
+                Illinois.
+              </p>
+              <p>
+                The parties agree to attempt to resolve any dispute through
+                good-faith negotiation before initiating legal proceedings. If
+                negotiation fails, the parties agree to participate in
+                non-binding mediation administered by a mutually agreed-upon
+                mediator before resorting to litigation.
+              </p>
+              <p>
+                If any provision of these terms is found to be invalid or
+                unenforceable by a court of competent jurisdiction, the
+                remaining provisions shall remain in full force and effect. The
+                failure of Kindergarden to enforce any right or provision of
+                these terms shall not constitute a waiver of such right or
+                provision.
+              </p>
+              <p>
+                These terms constitute the entire agreement between you and
+                Kindergarden regarding your use of our services and supersede
+                any prior agreements, understandings, or representations,
+                whether oral or written, relating to the subject matter herein.
+              </p>
+            </div>
+            <div
+              id="contact-legal"
+              class="legal-card reveal"
+              style="transition-delay: 0.45s"
+            >
+              <h2><span class="section-number">10</span>Contact</h2>
+              <p>
+                If you have any questions, concerns, or requests regarding these
+                Terms of Service, please reach out to our administrative team
+                through the following channels:
+              </p>
+              <p>
+                <strong>Kindergarden Education Ltd.</strong><br />
+                123 Learning Lane, Springfield, IL 62701<br />
+                Email: legal@kindergarden.edu<br />
+                Phone: +1 (555) 123-4567<br />
+                Hours: Monday – Friday, 8:00 AM – 4:00 PM CST
+              </p>
+              <p>
+                For urgent matters related to student safety or conduct, please
+                contact our principal's office directly at
+                principal@kindergarden.edu or call +1 (555) 123-4568. For
+                general inquiries, our contact form is available at
+                kindergarden.edu/contact.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cta-section">
+      <div class="cta-blob-1"></div>
+      <div class="cta-blob-2"></div>
+      <div class="container">
+        <div class="cta-content reveal">
+          <h2>Questions About Our Policies?</h2>
+          <p>
+            Our admissions team is happy to clarify any term or condition. We
+            believe in transparent communication with every family in our
+            community.
+          </p>
+          <div class="cta-buttons">
+            <a href="contact.html" class="btn btn-secondary btn-lg"
+              >Contact Us</a
+            >
+            <a href="enroll.html" class="btn btn-glass btn-lg">Enroll Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo">
+              <span class="logo-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
+                </svg>
+              </span>
+              Kindergarden
+            </a>
+            <p>
+              Kindergarden International is a premium IB World School and
+              Cambridge International Academy, offering world-class education
+              for children aged 2 to 12 in a nurturing, inquiry-driven
+              environment.
+            </p>
+            <div class="footer-social">
+              <a
+                href="#"
+                aria-label="Facebook"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="Twitter"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="Instagram"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="YouTube"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"
+                  />
+                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="services.html">Programs</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Programs</h4>
+            <ul class="footer-links">
+              <li><a href="services.html">Montessori</a></li>
+              <li><a href="services.html">Cambridge</a></li>
+              <li><a href="services.html">IB PYP</a></li>
+              <li><a href="services.html">After School</a></li>
+              <li><a href="services.html">Summer Camp</a></li>
+              <li><a href="services.html">Parent Workshops</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Get in Touch</h4>
+            <ul class="footer-contact">
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>123 Learning Lane,<br />Singapore 189721</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+                <span>+65 6789 0123</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <span>hello@kindergarden.edu</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                <span
+                  >Mon–Fri: 7:30 AM – 6:00 PM<br />Sat: 8:00 AM – 12:00 PM</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >&copy; 2026 Kindergarden International. All rights reserved.</span
+          >
+          <div style="display: flex; gap: var(--space-lg)">
+            <a
+              href="privacy.html"
+              style="color: rgba(255, 255, 255, 0.5); font-size: 0.875rem"
+              >Privacy Policy</a
+            >
+            <a
+              href="terms.html"
+              style="color: rgba(255, 255, 255, 0.5); font-size: 0.875rem"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Back to Top -->
+    <button class="back-to-top" aria-label="Back to top">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="12" y1="19" x2="12" y2="5" />
+        <polyline points="5 12 12 5 19 12" />
+      </svg>
+    </button>
+    <script src="js/main.js"></script>
+  </body>
+</html>

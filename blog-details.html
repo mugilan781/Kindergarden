@@ -1,0 +1,1854 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      The Benefits of Montessori Education — Kindergarden International
+    </title>
+    <meta
+      name="description"
+      content="Discover how Montessori education fosters independent thinking, self-directed learning, and a lifelong love of discovery in young children at Kindergarden International."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .article-hero {
+        position: relative;
+        padding: calc(var(--header-height) + var(--space-4xl)) 0
+          var(--space-4xl);
+        background: url("../assets/images/blog_hero_1784220054487.png") center/cover no-repeat;
+        overflow: hidden;
+      }
+      .article-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(30, 27, 75, 0.92),
+          rgba(49, 46, 129, 0.6),
+          rgba(139, 92, 246, 0.3)
+        );
+        z-index: 1;
+      }
+      .article-hero-shapes {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .article-hero-shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.08;
+      }
+      .article-hero-shape-1 {
+        width: 500px;
+        height: 500px;
+        background: var(--lavender);
+        top: -150px;
+        right: -100px;
+        animation: float 20s ease-in-out infinite;
+      }
+      .article-hero-shape-2 {
+        width: 350px;
+        height: 350px;
+        background: var(--mint);
+        bottom: -100px;
+        left: -80px;
+        animation: floatReverse 18s ease-in-out infinite;
+      }
+      .article-hero-shape-3 {
+        width: 200px;
+        height: 200px;
+        background: var(--peach);
+        top: 20%;
+        right: 15%;
+        animation: blobMove 25s ease-in-out infinite;
+      }
+      .article-hero .container {
+        position: relative;
+        z-index: 2;
+      }
+      .article-header-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: 6px 16px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: var(--radius-pill);
+        color: var(--white);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        font-family: var(--font-heading);
+        margin-bottom: var(--space-lg);
+      }
+      .article-header-badge .cat-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--mint);
+      }
+      .article-meta-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-lg);
+        margin-top: var(--space-xl);
+        padding-top: var(--space-lg);
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9375rem;
+      }
+      .article-meta-item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      .article-meta-item .meta-icon {
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+        color: var(--mint);
+        opacity: 0.7;
+      }
+      .article-featured-image {
+        width: 100%;
+        height: 480px;
+        background: url('../assets/images/gallery_hero_1784224707753.png') center/cover no-repeat;
+        border-radius: var(--radius-xl);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-xl);
+      }
+      .article-featured-image::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(30, 27, 75, 0.4),
+          rgba(139, 92, 246, 0.2)
+        );
+      }
+      .article-featured-icon {
+        position: relative;
+        z-index: 1;
+        width: 100px;
+        height: 100px;
+        border-radius: var(--radius-xl);
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .article-body {
+        max-width: 780px;
+        margin: 0 auto;
+        font-size: 1.125rem;
+        line-height: 1.85;
+        color: var(--gray-700);
+      }
+      .article-body h2 {
+        margin-top: var(--space-3xl);
+        margin-bottom: var(--space-lg);
+      }
+      .article-body h3 {
+        margin-top: var(--space-2xl);
+        margin-bottom: var(--space-md);
+      }
+      .article-body p {
+        margin-bottom: 1.25em;
+      }
+      .article-body .drop-cap::first-letter {
+        font-family: var(--font-heading);
+        font-size: 4.5rem;
+        font-weight: 800;
+        float: left;
+        line-height: 0.85;
+        padding-right: var(--space-md);
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-top: 4px;
+      }
+      .article-blockquote {
+        margin: var(--space-2xl) 0;
+        padding: var(--space-2xl) var(--space-2xl) var(--space-2xl)
+          var(--space-3xl);
+        background: var(--cream-light);
+        border-radius: var(--radius-xl);
+        position: relative;
+        border-left: 4px solid;
+        border-image: var(--gradient-primary) 1;
+      }
+      .article-blockquote::before {
+        content: '"';
+        position: absolute;
+        top: var(--space-md);
+        left: var(--space-md);
+        font-size: 5rem;
+        line-height: 1;
+        font-family: var(--font-heading);
+        font-weight: 900;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        opacity: 0.15;
+      }
+      .article-blockquote p {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--indigo-dark);
+        font-style: italic;
+        line-height: 1.7;
+        margin: 0;
+      }
+      .article-blockquote cite {
+        display: block;
+        margin-top: var(--space-md);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: var(--gray-500);
+        font-style: normal;
+      }
+      .author-card {
+        display: flex;
+        gap: var(--space-xl);
+        background: var(--white);
+        border-radius: var(--radius-xl);
+        padding: var(--space-2xl);
+        box-shadow: var(--shadow-md);
+        max-width: 780px;
+        margin: 0 auto;
+      }
+      .author-avatar {
+        width: 80px;
+        height: 80px;
+        min-width: 80px;
+        border-radius: 50%;
+        background: var(--gradient-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-family: var(--font-heading);
+        font-weight: 800;
+        font-size: 1.75rem;
+        box-shadow:
+          0 0 0 4px var(--cream),
+          0 0 0 6px rgba(139, 92, 246, 0.2);
+      }
+      .author-info {
+        flex: 1;
+      }
+      .author-name {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 1.125rem;
+        color: var(--indigo-dark);
+        margin-bottom: 2px;
+      }
+      .author-role {
+        font-size: 0.875rem;
+        color: var(--lavender);
+        font-weight: 600;
+        margin-bottom: var(--space-sm);
+      }
+      .author-bio {
+        color: var(--gray-500);
+        font-size: 0.9375rem;
+        line-height: 1.7;
+        margin-bottom: var(--space-md);
+      }
+      .author-social {
+        display: flex;
+        gap: var(--space-sm);
+      }
+      .author-social a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--cream);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gray-500);
+        transition: var(--transition);
+        font-size: 0.875rem;
+      }
+      .author-social a:hover {
+        background: var(--gradient-primary);
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+      .comment {
+        display: flex;
+        gap: var(--space-lg);
+        padding: var(--space-xl) 0;
+      }
+      .comment + .comment {
+        border-top: 1px solid var(--gray-200);
+      }
+      .comment.reply {
+        margin-left: var(--space-4xl);
+      }
+      .comment-avatar {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 1rem;
+      }
+      .comment-body {
+        flex: 1;
+      }
+      .comment-author {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--indigo-dark);
+        margin-bottom: 2px;
+      }
+      .comment-date {
+        font-size: 0.8125rem;
+        color: var(--gray-400);
+        margin-bottom: var(--space-sm);
+      }
+      .comment-text {
+        color: var(--gray-600);
+        font-size: 0.9375rem;
+        line-height: 1.7;
+        margin-bottom: var(--space-sm);
+      }
+      .comment-reply-link {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--lavender);
+        font-family: var(--font-heading);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: var(--transition);
+      }
+      .comment-reply-link:hover {
+        color: var(--indigo);
+      }
+      .share-buttons {
+        display: flex;
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+      }
+      .share-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: 10px 20px;
+        border-radius: var(--radius-pill);
+        border: none;
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: var(--transition);
+        color: var(--white);
+      }
+      .share-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+      .share-btn.facebook {
+        background: #1877f2;
+      }
+      .share-btn.twitter {
+        background: #1da1f2;
+      }
+      .share-btn.linkedin {
+        background: #0a66c2;
+      }
+      .share-btn.copy {
+        background: var(--gray-600);
+      }
+      .back-to-blog {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 0.9375rem;
+        color: var(--lavender);
+        transition: var(--transition);
+      }
+      .back-to-blog:hover {
+        color: var(--indigo);
+        gap: var(--space-md);
+      }
+      .section-divider {
+        width: 60px;
+        height: 3px;
+        background: var(--gradient-primary);
+        border-radius: var(--radius-pill);
+        margin: 0 auto var(--space-lg);
+      }
+      @media (max-width: 768px) {
+        .article-featured-image {
+          height: 280px;
+        }
+        .article-body {
+          font-size: 1rem;
+        }
+        .article-blockquote {
+          padding: var(--space-xl) var(--space-lg);
+        }
+        .article-blockquote p {
+          font-size: 1.0625rem;
+        }
+        .author-card {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .author-social {
+          justify-content: center;
+        }
+        .comment.reply {
+          margin-left: var(--space-xl);
+        }
+        .article-meta-bar {
+          gap: var(--space-md);
+        }
+      }
+      @media (max-width: 480px) {
+        .article-featured-image {
+          height: 200px;
+        }
+        .article-hero {
+          padding: calc(var(--header-height) + var(--space-2xl)) 0
+            var(--space-2xl);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Page Transition -->
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar white-bg">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
+          </svg>
+        </span>
+        Kindergarden
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a> <a href="home2.html">Home 2</a>
+        <a href="about.html">About</a> <a href="services.html">Programs</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="contact.html">Contact</a>
+        </div>
+      <div class="nav-cta">
+        <div class="profile-wrap">
+          <button class="profile-btn" aria-label="Profile menu">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </button>
+          <div class="profile-dropdown">
+            <a href="login.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" y1="12" x2="3" y2="12" />
+              </svg>
+              Sign In / Register
+            </a>
+            <div class="divider"></div>
+            <a href="dashboard/user.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              User Dashboard
+            </a>
+            <a href="dashboard/admin.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+              Admin Dashboard
+            </a>
+          </div>
+        </div>
+        <button class="rtl-toggle" aria-label="Toggle language direction">RTL</button>
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+        <button class="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <!-- ===== ARTICLE HERO ===== -->
+    <section class="article-hero">
+      <div class="article-hero-shapes">
+        <div class="article-hero-shape article-hero-shape-1"></div>
+        <div class="article-hero-shape article-hero-shape-2"></div>
+        <div class="article-hero-shape article-hero-shape-3"></div>
+      </div>
+      <div class="container" style="max-width: 960px">
+        <a
+          href="blog.html"
+          class="back-to-blog reveal"
+          style="
+            margin-bottom: var(--space-xl);
+            color: rgba(255, 255, 255, 0.6);
+          "
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="19" y1="12" x2="5" y2="12" />
+            <polyline points="12 19 5 12 12 5" />
+          </svg>
+          Back to Blog
+        </a>
+        <div class="article-header-badge reveal">
+          <span class="cat-dot"></span> Montessori Education
+        </div>
+        <h1
+          class="reveal"
+          style="
+            color: var(--white);
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            transition-delay: 0.1s;
+          "
+        >
+          The Benefits of Montessori Education:<br />Fostering Independent
+          Thinkers
+        </h1>
+        <p
+          class="reveal"
+          style="
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.125rem;
+            max-width: 680px;
+            margin-top: var(--space-md);
+            transition-delay: 0.15s;
+          "
+        >
+          Discover how the Montessori method cultivates self-directed learners
+          who think critically, act with confidence, and approach the world with
+          wonder.
+        </p>
+        <div class="article-meta-bar reveal" style="transition-delay: 0.2s">
+          <div class="article-meta-item">
+            <svg
+              class="meta-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+            </svg>
+            <span>Dr. Amelia Hartfield</span>
+          </div>
+          <div class="article-meta-item">
+            <svg
+              class="meta-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <span>July 12, 2026</span>
+          </div>
+          <div class="article-meta-item">
+            <svg
+              class="meta-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <span>6 min read</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== FEATURED IMAGE ===== -->
+    <section
+      class="section"
+      style="padding-top: var(--space-2xl); padding-bottom: 0"
+    >
+      <div class="container" style="max-width: 960px">
+        <div class="article-featured-image reveal-scale">
+          <div class="article-featured-icon">
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+              <path d="M12 2v2" />
+              <path d="M4.93 4.93l1.41 1.41" />
+              <path d="M2 12h2" />
+              <path d="M20 12h2" />
+              <path d="M6.34 17.66l-1.41 1.41" />
+              <path d="M17.66 6.34l1.41-1.41" />
+            </svg>
+          </div>
+          <div
+            style="
+              position: absolute;
+              bottom: var(--space-lg);
+              left: var(--space-lg);
+              color: rgba(255, 255, 255, 0.5);
+              font-size: 0.8125rem;
+              font-weight: 500;
+              letter-spacing: 0.03em;
+              z-index: 1;
+            "
+          >
+            Montessori Classroom — Kindergarden International
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== ARTICLE CONTENT ===== -->
+    <section class="section">
+      <div class="article-body reveal">
+        <p class="drop-cap">
+          When Maria Montessori opened her first Casa dei Bambini in Rome in
+          1907, she could scarcely have imagined the global movement her
+          revolutionary ideas would inspire. Today, over 20,000 Montessori
+          schools across more than 110 countries serve millions of children,
+          making it one of the most widely adopted alternative educational
+          approaches in the world. At Kindergarden International, Montessori
+          lies at the heart of our early years programme, and for good reason:
+          the method's emphasis on self-directed activity, hands-on learning,
+          and collaborative play produces children who are not only academically
+          prepared but emotionally resilient and intrinsically motivated.
+        </p>
+        <p>
+          The Montessori classroom is often described as a "prepared
+          environment" — a carefully calibrated space where every shelf,
+          material, and activity serves a specific developmental purpose. Unlike
+          traditional classrooms where the teacher stands at the front
+          delivering instruction to a passive audience, the Montessori guide
+          moves quietly among children who are deeply absorbed in self-chosen
+          work. A three-year-old might be meticulously pouring water from one
+          vessel to another, refining her fine motor control and concentration.
+          A five-year-old might be tracing sandpaper letters, building the
+          neural pathways that will soon unlock reading. This freedom of choice
+          is not chaos; it is the bedrock of independence.
+        </p>
+        <h2>Why Independence Matters in Early Childhood</h2>
+        <p>
+          The drive for independence emerges naturally in children between the
+          ages of two and six — a developmental window that Montessori
+          identified as the "absorbent mind." During this period, children
+          possess a remarkable capacity to absorb information from their
+          environment without conscious effort. When we honour this drive by
+          allowing children to dress themselves, prepare their own snacks,
+          choose their own work, and resolve their own social conflicts, we send
+          a powerful message:
+          <em>You are capable. Your choices matter. I trust you.</em> This trust
+          forms the foundation of healthy self-esteem and intrinsic motivation.
+        </p>
+        <p>
+          Research supports what Montessori practitioners have observed for over
+          a century. A landmark study published in the journal
+          <em>Science</em> found that children who attended Montessori
+          programmes demonstrated significantly better academic and social
+          outcomes compared to peers in conventional settings, particularly in
+          measures of executive function — the cognitive processes that enable
+          self-regulation, planning, and flexible thinking. These skills, rather
+          than any specific body of knowledge, are the true predictors of
+          long-term success in school and life.
+        </p>
+        <div class="article-blockquote">
+          <p>
+            "The child who concentrates is immensely happy. The greatest sign of
+            success for a teacher is to be able to say, 'The children are now
+            working as if I did not exist.'"
+          </p>
+          <cite>— Dr. Maria Montessori, The Absorbent Mind</cite>
+        </div>
+        <h2>How the Montessori Classroom Cultivates Independent Thinkers</h2>
+        <h3>Freedom Within Limits</h3>
+        <p>
+          One of the most common misconceptions about Montessori is that
+          children can do whatever they like. In reality, the method offers
+          "freedom within limits" — children may choose any activity from the
+          shelves that has been presented to them, but they must use the
+          materials respectfully, return them to their proper place when
+          finished, and work in a way that does not disturb others. This
+          structure teaches self-discipline and personal responsibility far more
+          effectively than external rewards or punishments ever could.
+        </p>
+        <h3>Mixed-Age Classrooms</h3>
+        <p>
+          Montessori classrooms typically group children in three-year spans
+          (ages 3–6, 6–9, and 9–12). This multi-age dynamic mirrors the natural
+          structure of families and communities. Younger children learn by
+          observing and imitating older peers, while older children deepen their
+          own understanding by mentoring the younger ones. This peer teaching is
+          not only academically effective — research shows that teaching a
+          concept to someone else is one of the most powerful ways to master it
+          — but it also nurtures empathy, patience, and leadership.
+        </p>
+        <h3>Uninterrupted Work Cycles</h3>
+        <p>
+          A hallmark of the Montessori approach is the three-hour uninterrupted
+          work cycle. During this extended period, children have the time they
+          need to choose an activity, engage with it deeply, repeat it as many
+          times as they wish, and experience the satisfaction of completion.
+          This stands in stark contrast to the fragmented schedules of
+          conventional classrooms, where children are shuffled from one
+          thirty-minute lesson to the next. The uninterrupted work cycle allows
+          for the development of what psychologist Mihaly Csikszentmihalyi
+          called "flow" — a state of deep absorption that is the very essence of
+          joyful learning.
+        </p>
+        <h2>Beyond Academics: The Whole Child</h2>
+        <p>
+          Perhaps the most compelling argument for Montessori education is its
+          commitment to educating the whole child — intellectual, social,
+          emotional, and physical. Practical life activities (pouring, sweeping,
+          buttoning, flower arranging) develop fine motor skills and
+          concentration while fostering a sense of responsibility to the
+          community. Grace and courtesy lessons teach children how to interrupt
+          politely, greet a visitor, offer help, and resolve disagreements with
+          words. Sensorial materials refine the senses and help children
+          classify and understand the world around them. The result is not
+          merely a good student, but a capable, confident, and compassionate
+          human being.
+        </p>
+        <p>
+          At Kindergarden International, we have seen the transformative power
+          of this approach in hundreds of children over two decades. We watch
+          three-year-olds who arrive tearful and uncertain blossom into
+          seven-year-olds who advocate for themselves, collaborate with peers
+          from a dozen different cultural backgrounds, and approach every new
+          challenge with curiosity rather than fear. In a world that
+          increasingly demands creativity, adaptability, and critical thinking,
+          Montessori education offers not just an alternative to conventional
+          schooling, but a profound and timely reimagining of what education can
+          be.
+        </p>
+      </div>
+    </section>
+    <!-- ===== AUTHOR BIO CARD ===== -->
+    <section class="section" style="padding-top: 0">
+      <div class="container" style="max-width: 780px">
+        <div class="author-card reveal">
+          <div class="author-avatar">AH</div>
+          <div class="author-info">
+            <div class="author-name">Dr. Amelia Hartfield</div>
+            <div class="author-role">
+              Head of Early Years & Montessori Specialist
+            </div>
+            <p class="author-bio">
+              Dr. Hartfield holds a PhD in Early Childhood Education from the
+              University of Cambridge and has over 18 years of experience in
+              Montessori education across three continents. She joined
+              Kindergarden International in 2015 and leads our Montessori
+              teacher training programme.
+            </p>
+            <div class="author-social">
+              <a href="#" aria-label="Twitter">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <path
+                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                  />
+                </svg>
+              </a>
+              <a href="#" aria-label="LinkedIn">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
+              <a href="#" aria-label="Email">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== SHARE SECTION ===== -->
+    <section class="section" style="padding-top: 0">
+      <div class="container" style="max-width: 780px">
+        <div
+          class="reveal"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-lg);
+            padding: var(--space-xl) 0;
+            border-top: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
+          "
+        >
+          <div style="display: flex; align-items: center; gap: var(--space-md)">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--indigo)"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+            </svg>
+            <span
+              style="
+                font-family: var(--font-heading);
+                font-weight: 700;
+                font-size: 1rem;
+                color: var(--indigo-dark);
+              "
+              >Share This Article</span
+            >
+          </div>
+          <div class="share-buttons">
+            <button
+              class="share-btn facebook"
+              onclick="
+                window.open(
+                  'https://facebook.com/sharer/sharer.php?u=' +
+                    encodeURIComponent(window.location.href),
+                  '_blank',
+                )
+              "
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                stroke="none"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z"
+                />
+              </svg>
+              Facebook
+            </button>
+            <button
+              class="share-btn twitter"
+              onclick="
+                window.open(
+                  'https://twitter.com/intent/tweet?text=' +
+                    encodeURIComponent(document.title) +
+                    '&url=' +
+                    encodeURIComponent(window.location.href),
+                  '_blank',
+                )
+              "
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                stroke="none"
+              >
+                <path
+                  d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                />
+              </svg>
+              Twitter
+            </button>
+            <button
+              class="share-btn linkedin"
+              onclick="
+                window.open(
+                  'https://linkedin.com/shareArticle?mini=true&url=' +
+                    encodeURIComponent(window.location.href) +
+                    '&title=' +
+                    encodeURIComponent(document.title),
+                  '_blank',
+                )
+              "
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                stroke="none"
+              >
+                <path
+                  d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              LinkedIn
+            </button>
+            <button
+              class="share-btn copy"
+              onclick="
+                navigator.clipboard.writeText(window.location.href);
+                this.innerHTML = 'Copied!';
+                setTimeout(() => (this.innerHTML = 'Copy Link'), 2000);
+              "
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path
+                  d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                />
+              </svg>
+              Copy Link
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== COMMENTS SECTION ===== -->
+    <section class="section section-cream" id="comments">
+      <div class="container" style="max-width: 780px">
+        <div
+          class="section-header reveal"
+          style="margin-bottom: var(--space-2xl)"
+        >
+          <div class="section-subtitle">Discussion</div>
+          <h2 class="section-title" style="font-size: clamp(1.5rem, 3vw, 2rem)">
+            3 Comments
+          </h2>
+          <div class="section-divider"></div>
+        </div>
+        <!-- Comment 1 -->
+        <div class="comment reveal">
+          <div
+            class="comment-avatar"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--lavender),
+                var(--coral)
+              );
+            "
+          >
+            JM
+          </div>
+          <div class="comment-body">
+            <div class="comment-author">Jennifer Martinez</div>
+            <div class="comment-date">July 14, 2026 at 9:23 AM</div>
+            <p class="comment-text">
+              This is such a well-researched and beautifully written piece. My
+              son has been at Kindergarden for two years now, and every point
+              Dr. Hartfield makes rings true. The transformation in his
+              confidence and curiosity has been nothing short of remarkable. I
+              especially appreciated the explanation of the three-hour work
+              cycle — I'd heard the term before but never fully understood its
+              significance.
+            </p>
+            <a href="#" class="comment-reply-link">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="21 15 15 9 21 3" />
+                <line x1="3" y1="21" x2="15" y2="21" />
+              </svg>
+              Reply
+            </a>
+          </div>
+        </div>
+        <!-- Comment 2 (Reply) -->
+        <div class="comment reply reveal" style="transition-delay: 0.05s">
+          <div
+            class="comment-avatar"
+            style="background: var(--gradient-primary)"
+          >
+            AH
+          </div>
+          <div class="comment-body">
+            <div class="comment-author">Dr. Amelia Hartfield</div>
+            <div class="comment-date">July 14, 2026 at 11:45 AM</div>
+            <p class="comment-text">
+              Thank you so much, Jennifer! It means the world to hear that the
+              article resonated with you as a parent. You've put your finger on
+              exactly why the uninterrupted work cycle is so powerful — it's not
+              just about learning, it's about honouring the child's natural
+              rhythm and capacity for deep focus. I'm so glad your son is
+              thriving!
+            </p>
+            <a href="#" class="comment-reply-link">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="21 15 15 9 21 3" />
+                <line x1="3" y1="21" x2="15" y2="21" />
+              </svg>
+              Reply
+            </a>
+          </div>
+        </div>
+        <!-- Comment 3 -->
+        <div class="comment reveal" style="transition-delay: 0.1s">
+          <div
+            class="comment-avatar"
+            style="
+              background: linear-gradient(135deg, var(--mint), var(--peach));
+            "
+          >
+            RK
+          </div>
+          <div class="comment-body">
+            <div class="comment-author">Raj Krishnamurthy</div>
+            <div class="comment-date">July 13, 2026 at 4:08 PM</div>
+            <p class="comment-text">
+              We are currently researching schools for our daughter and this
+              article has been incredibly helpful. The Montessori vs.
+              traditional dichotomy is often oversimplified — this piece does a
+              wonderful job of explaining not just <em>what</em> Montessori is,
+              but <em>why</em> its principles are so effective. We've scheduled
+              a tour at Kindergarden for next week and are very much looking
+              forward to seeing the prepared environment in action!
+            </p>
+            <a href="#" class="comment-reply-link">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="21 15 15 9 21 3" />
+                <line x1="3" y1="21" x2="15" y2="21" />
+              </svg>
+              Reply
+            </a>
+          </div>
+        </div>
+        <!-- Comment Form -->
+        <div
+          class="reveal"
+          style="
+            margin-top: var(--space-3xl);
+            padding-top: var(--space-2xl);
+            border-top: 1px solid var(--gray-200);
+          "
+        >
+          <h3 style="font-size: 1.375rem; margin-bottom: var(--space-lg)">
+            Leave a Comment
+          </h3>
+          <p
+            style="
+              color: var(--gray-500);
+              font-size: 0.9375rem;
+              margin-bottom: var(--space-xl);
+            "
+          >
+            Your email address will not be published. Required fields are marked
+            <span style="color: var(--coral)">*</span>
+          </p>
+          <form
+            class="contact-form"
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: var(--space-lg);
+            "
+          >
+            <div class="form-group" style="grid-column: span 2">
+              <label for="comment-text"
+                >Comment <span style="color: var(--coral)">*</span></label
+              >
+              <textarea
+                class="form-control"
+                id="comment-text"
+                rows="5"
+                required
+                placeholder="Share your thoughts…"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="comment-name"
+                >Name <span style="color: var(--coral)">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="comment-name"
+                required
+                placeholder="Your full name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="comment-email"
+                >Email <span style="color: var(--coral)">*</span></label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="comment-email"
+                required
+                placeholder="your@email.com"
+              />
+            </div>
+            <div class="form-group" style="grid-column: span 2">
+              <label for="comment-website">Website</label>
+              <input
+                type="url"
+                class="form-control"
+                id="comment-website"
+                placeholder="https://yourwebsite.com (optional)"
+              />
+            </div>
+            <div style="grid-column: span 2">
+              <button type="submit" class="btn btn-primary">
+                Post Comment
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polyline points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- ===== RELATED POSTS ===== -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-subtitle">Continue Reading</div>
+          <h2 class="section-title">Related Articles</h2>
+          <p>
+            Explore more insights on Montessori education, parenting, and early
+            childhood development from our expert educators.
+          </p>
+        </div>
+        <div class="blog-grid">
+          <div class="blog-card reveal">
+            <div class="blog-card-image">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: url('assets/images/gallery_outdoor_1784219856859.png') center/cover no-repeat;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.3)"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"
+                  />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div class="blog-card-category">Parenting</div>
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  Jul 5, 2026
+                </span>
+                <span>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                  </svg>
+                  By Sarah M.
+                </span>
+              </div>
+              <a href="blog-details.html"
+                ><h4 class="blog-card-title">
+                  5 Signs Your Child Is Ready for Preschool
+                </h4></a
+              >
+              <p class="blog-card-excerpt">
+                Wondering if your little one is ready for the classroom? Here
+                are the key developmental milestones to look for before
+                enrollment.
+              </p>
+            </div>
+          </div>
+          <div class="blog-card reveal" style="transition-delay: 0.1s">
+            <div class="blog-card-image">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: url('assets/images/gallery_classroom_1784219838321.png') center/cover no-repeat;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.3)"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+              </div>
+              <div class="blog-card-category">Montessori</div>
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  Jun 15, 2026
+                </span>
+                <span>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                  </svg>
+                  By Dr. Adams
+                </span>
+              </div>
+              <a href="blog-details.html"
+                ><h4 class="blog-card-title">
+                  The Montessori Method: A Parent's Guide
+                </h4></a
+              >
+              <p class="blog-card-excerpt">
+                Discover how the Montessori approach fosters independence,
+                concentration, and a lifelong love of learning in young
+                children.
+              </p>
+            </div>
+          </div>
+          <div class="blog-card reveal" style="transition-delay: 0.2s">
+            <div class="blog-card-image">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: url('assets/images/hero_slide_3_1784219647143.png') center/cover no-repeat;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.3)"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <div class="blog-card-category">Community</div>
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  Jun 2, 2026
+                </span>
+                <span>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                  </svg>
+                  By Sarah M.
+                </span>
+              </div>
+              <a href="blog-details.html"
+                ><h4 class="blog-card-title">
+                  Celebrating Cultural Diversity at Kindergarden
+                </h4></a
+              >
+              <p class="blog-card-excerpt">
+                From Lunar New Year to Diwali, here's how our community
+                celebrates the rich tapestry of cultures that make our school
+                unique.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          style="text-align: center; margin-top: var(--space-3xl)"
+          class="reveal"
+        >
+          <a href="blog.html" class="btn btn-outline btn-lg">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="margin-right: var(--space-sm)"
+            >
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
+            </svg>
+            View All Articles
+          </a>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo">
+              <span class="logo-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
+                </svg>
+              </span>
+              Kindergarden
+            </a>
+            <p>
+              Kindergarden International is a premium IB World School and
+              Cambridge International Academy, offering world-class education
+              for children aged 2 to 12 in a nurturing, inquiry-driven
+              environment.
+            </p>
+            <div class="footer-social">
+              <a
+                href="#"
+                aria-label="Facebook"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="Twitter"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="Instagram"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="YouTube"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"
+                  />
+                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="services.html">Programs</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Programs</h4>
+            <ul class="footer-links">
+              <li><a href="services.html">Montessori</a></li>
+              <li><a href="services.html">Cambridge</a></li>
+              <li><a href="services.html">IB PYP</a></li>
+              <li><a href="services.html">After School</a></li>
+              <li><a href="services.html">Summer Camp</a></li>
+              <li><a href="services.html">Parent Workshops</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Get in Touch</h4>
+            <ul class="footer-contact">
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>123 Learning Lane,<br />Singapore 189721</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+                <span>+65 6789 0123</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <span>hello@kindergarden.edu</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                <span
+                  >Mon–Fri: 7:30 AM – 6:00 PM<br />Sat: 8:00 AM – 12:00 PM</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >&copy; 2026 Kindergarden International. All rights reserved.</span
+          >
+          <div style="display: flex; gap: var(--space-lg)">
+            <a
+              href="privacy.html"
+              style="color: rgba(255, 255, 255, 0.5); font-size: 0.875rem"
+              >Privacy Policy</a
+            >
+            <a
+              href="terms.html"
+              style="color: rgba(255, 255, 255, 0.5); font-size: 0.875rem"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Back to Top -->
+    <button class="back-to-top" aria-label="Back to top">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="12" y1="19" x2="12" y2="5" />
+        <polyline points="5 12 12 5 19 12" />
+      </svg>
+    </button>
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Page Not Found | Kindergarden</title>
+    <meta
+      name="description"
+      content="Oops! The page you're looking for doesn't exist. Let's get you back on track at Kindergarden."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .error-page {
+        background: var(--cream);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: var(--space-xl);
+        position: relative;
+        overflow: hidden;
+      }
+      .error-shapes {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .error-shape {
+        position: absolute;
+        border-radius: 50%;
+      }
+      .error-shape-1 {
+        width: 500px;
+        height: 500px;
+        background: var(--lavender);
+        top: -200px;
+        left: -150px;
+        opacity: 0.06;
+        animation: blobMove 22s ease-in-out infinite;
+      }
+      .error-shape-2 {
+        width: 350px;
+        height: 350px;
+        background: var(--peach);
+        bottom: -120px;
+        right: -80px;
+        opacity: 0.08;
+        animation: blobMove 18s ease-in-out infinite reverse;
+      }
+      .error-shape-3 {
+        width: 200px;
+        height: 200px;
+        background: var(--mint);
+        top: 20%;
+        right: 15%;
+        opacity: 0.05;
+        animation: float 16s ease-in-out infinite;
+      }
+      .error-shape-4 {
+        width: 150px;
+        height: 150px;
+        background: var(--coral);
+        bottom: 25%;
+        left: 10%;
+        opacity: 0.04;
+        animation: floatReverse 14s ease-in-out infinite;
+      }
+      .error-content {
+        position: relative;
+        z-index: 1;
+      }
+      .error-monster {
+        margin-bottom: var(--space-xl);
+      }
+      .error-monster svg {
+        width: 280px;
+        height: 280px;
+        filter: drop-shadow(0 20px 60px rgba(139, 92, 246, 0.2));
+      }
+      .error-code {
+        font-family: var(--font-heading);
+        font-weight: 900;
+        font-size: clamp(8rem, 20vw, 16rem);
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+        margin-bottom: var(--space-md);
+        animation: float 6s ease-in-out infinite;
+      }
+      .error-page h2 {
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        margin-bottom: var(--space-md);
+        color: var(--indigo-dark);
+      }
+      .error-page p {
+        color: var(--gray-500);
+        max-width: 480px;
+        margin-bottom: var(--space-xl);
+        font-size: 1.125rem;
+        line-height: 1.8;
+      }
+      .error-actions {
+        display: flex;
+        gap: var(--space-md);
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .dot-grid {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.03;
+      }
+      @media (max-width: 480px) {
+        .error-monster svg {
+          width: 180px;
+          height: 180px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="error-page">
+      <div
+        class="dot-grid"
+        style="
+          background-image: radial-gradient(
+            var(--indigo) 1.5px,
+            transparent 1.5px
+          );
+          background-size: 32px 32px;
+        "
+      ></div>
+      <div class="error-shapes">
+        <div class="error-shape error-shape-1"></div>
+        <div class="error-shape error-shape-2"></div>
+        <div class="error-shape error-shape-3"></div>
+        <div class="error-shape error-shape-4"></div>
+      </div>
+      <div class="error-content">
+        <div class="error-monster">
+          <svg
+            viewBox="0 0 280 280"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Friendly monster illustration"
+          >
+            <circle
+              cx="140"
+              cy="140"
+              r="130"
+              fill="url(#monsterGrad)"
+              opacity="0.12"
+            />
+            <defs>
+              <linearGradient id="monsterGrad" x1="0" y1="0" x2="280" y2="280">
+                <stop stop-color="#312E81" />
+                <stop offset="1" stop-color="#8B5CF6" />
+              </linearGradient>
+              <linearGradient id="hornGrad" x1="0" y1="0" x2="0" y2="30">
+                <stop stop-color="#312E81" />
+                <stop offset="1" stop-color="#8B5CF6" />
+              </linearGradient>
+              <linearGradient id="cheekGrad" x1="0" y1="0" x2="0" y2="20">
+                <stop stop-color="#FDBA74" />
+                <stop offset="1" stop-color="#F97316" />
+              </linearGradient>
+            </defs>
+            <circle cx="140" cy="170" r="80" fill="#312E81" opacity="0.06" />
+            <path
+              d="M90 120a50 50 0 0 1 100 0v50a50 50 0 0 1-50 50 50 50 0 0 1-50-50v-50z"
+              fill="var(--indigo-dark)"
+              opacity="0.85"
+            />
+            <path
+              d="M90 120a50 50 0 0 1 100 0v10a50 50 0 0 1-50 50 50 50 0 0 1-50-50v-10z"
+              fill="var(--indigo)"
+            />
+            <path
+              d="M100 125a40 40 0 0 1 80 0v5a40 40 0 0 1-40 40 40 40 0 0 1-40-40v-5z"
+              fill="#4F46E5"
+            />
+            <rect
+              x="97"
+              y="110"
+              width="14"
+              height="30"
+              rx="7"
+              fill="url(#hornGrad)"
+              transform="rotate(-15 104 125)"
+            />
+            <rect
+              x="169"
+              y="110"
+              width="14"
+              height="30"
+              rx="7"
+              fill="url(#hornGrad)"
+              transform="rotate(15 176 125)"
+            />
+            <ellipse cx="122" cy="145" rx="9" ry="11" fill="var(--white)" />
+            <ellipse cx="158" cy="145" rx="9" ry="11" fill="var(--white)" />
+            <circle cx="125" cy="146" r="5" fill="var(--indigo-dark)" />
+            <circle cx="161" cy="146" r="5" fill="var(--indigo-dark)" />
+            <circle cx="127" cy="144" r="2" fill="var(--white)" />
+            <circle cx="163" cy="144" r="2" fill="var(--white)" />
+            <ellipse cx="140" cy="172" rx="16" ry="10" fill="var(--cream)" />
+            <path
+              d="M132 172a8 8 0 0 1 16 0"
+              stroke="var(--indigo-dark)"
+              stroke-width="2"
+              stroke-linecap="round"
+              fill="none"
+            />
+            <circle
+              cx="118"
+              cy="165"
+              r="8"
+              fill="url(#cheekGrad)"
+              opacity="0.35"
+            />
+            <circle
+              cx="162"
+              cy="165"
+              r="8"
+              fill="url(#cheekGrad)"
+              opacity="0.35"
+            />
+            <circle cx="110" cy="190" r="6" fill="#6EE7B7" opacity="0.4" />
+            <circle cx="170" cy="190" r="6" fill="#6EE7B7" opacity="0.4" />
+            <circle cx="140" cy="198" r="5" fill="#6EE7B7" opacity="0.35" />
+            <path
+              d="M100 240a40 40 0 0 0 80 0"
+              stroke="var(--indigo)"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              opacity="0.3"
+              fill="none"
+            />
+            <path
+              d="M108 233a32 32 0 0 0 64 0"
+              stroke="var(--lavender)"
+              stroke-width="2"
+              stroke-linecap="round"
+              opacity="0.2"
+              fill="none"
+            />
+            <circle cx="140" cy="230" r="3" fill="#8B5CF6" opacity="0.25" />
+            <path
+              d="M75 180q-10-8-5-20"
+              stroke="#FDBA74"
+              stroke-width="2"
+              stroke-linecap="round"
+              opacity="0.4"
+              fill="none"
+            />
+            <path
+              d="M205 180q10-8 5-20"
+              stroke="#FDBA74"
+              stroke-width="2"
+              stroke-linecap="round"
+              opacity="0.4"
+              fill="none"
+            />
+            <path
+              d="M70 156q-8-4-4-14"
+              stroke="#FDBA74"
+              stroke-width="2"
+              stroke-linecap="round"
+              opacity="0.3"
+              fill="none"
+            />
+            <path
+              d="M210 156q8-4 4-14"
+              stroke="#FDBA74"
+              stroke-width="2"
+              stroke-linecap="round"
+              opacity="0.3"
+              fill="none"
+            />
+            <circle
+              cx="85"
+              cy="240"
+              r="4"
+              fill="#6EE7B7"
+              opacity="0.2"
+              animation="float 8s ease-in-out infinite"
+            />
+            <circle
+              cx="195"
+              cy="238"
+              r="3"
+              fill="#FDBA74"
+              opacity="0.2"
+              animation="float 6s ease-in-out infinite"
+            />
+            <circle
+              cx="60"
+              cy="200"
+              r="3"
+              fill="#8B5CF6"
+              opacity="0.15"
+              animation="float 7s ease-in-out infinite"
+            />
+            <circle
+              cx="220"
+              cy="202"
+              r="4"
+              fill="#6EE7B7"
+              opacity="0.15"
+              animation="float 9s ease-in-out infinite"
+            />
+            <path
+              d="M66 91a20 20 0 0 1 20-20"
+              stroke="#8B5CF6"
+              stroke-width="2"
+              stroke-linecap="round"
+              opacity="0.15"
+              fill="none"
+            />
+            <path
+              d="M214 91a20 20 0 0 0-20-20"
+              stroke="#8B5CF6"
+              stroke-width="2"
+              stroke-linecap="round"
+              opacity="0.15"
+              fill="none"
+            />
+          </svg>
+        </div>
+        <div class="error-code">404</div>
+        <h2>Page Not Found</h2>
+        <p>
+          The page you're looking for doesn't exist or has been moved. Let's get
+          you back on track.
+        </p>
+        <div class="error-actions">
+          <a href="index.html" class="btn btn-primary btn-lg">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 0 0 1 1h3m10-11l2 2m-2-2v10a1 1 0 0 1-1 1h-3m-6 0a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1m-6 0h6"
+              />
+            </svg>
+            Back to Home
+          </a>
+          <a href="contact.html" class="btn btn-outline btn-lg">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"
+              />
+            </svg>
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </main>
+    <script src="js/main.js"></script>
+  </body>
+</html>

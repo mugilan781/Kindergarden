@@ -1,0 +1,2574 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Our Services | Kindergarden — Premium Kindergarten & Primary School
+    </title>
+    <meta
+      name="description"
+      content="Explore Kindergarden's premium services: Montessori, Cambridge & IB PYP programs, extracurricular activities, before & after school care, nutrition, transportation, and flexible fee plans."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      :root {
+        --service-hero:
+          linear-gradient(
+            135deg,
+            rgba(30, 27, 75, 0.85) 0%,
+            rgba(49, 46, 129, 0.8) 40%,
+            rgba(79, 70, 229, 0.7) 100%
+          ),
+          url("assets/images/services_hero_1784220036014.png") center/cover
+            no-repeat;
+        --service-hero-accent: linear-gradient(135deg, #6ee7b7, #a78bfa);
+        --card-gradient-1: linear-gradient(135deg, #312e81, #4f46e5);
+        --card-gradient-2: linear-gradient(135deg, #6ee7b7, #34d399);
+        --card-gradient-3: linear-gradient(135deg, #a78bfa, #8b5cf6);
+      }
+      .services-hero {
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: var(--service-hero);
+        position: relative;
+        overflow: hidden;
+        padding: calc(var(--header-height) + 60px) 0 80px;
+      }
+      .services-hero h1 {
+        color: var(--white);
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        margin-bottom: var(--space-md);
+        letter-spacing: -0.03em;
+      }
+      .services-hero p {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 1.125rem;
+        max-width: 600px;
+        margin: 0 auto var(--space-xl);
+        line-height: 1.8;
+      }
+      .services-hero-shapes .shape {
+        position: absolute;
+        border-radius: var(--radius-full);
+        opacity: 0.08;
+        pointer-events: none;
+      }
+      .services-hero-shapes .shape:nth-child(1) {
+        width: 500px;
+        height: 500px;
+        background: var(--mint);
+        top: -200px;
+        right: -150px;
+        animation: float 22s ease-in-out infinite;
+      }
+      .services-hero-shapes .shape:nth-child(2) {
+        width: 350px;
+        height: 350px;
+        background: var(--lavender);
+        bottom: -120px;
+        left: -100px;
+        animation: floatReverse 18s ease-in-out infinite;
+      }
+      .services-hero-shapes .shape:nth-child(3) {
+        width: 200px;
+        height: 200px;
+        background: var(--peach);
+        top: 20%;
+        left: 15%;
+        animation: blobMove 25s ease-in-out infinite;
+      }
+      .services-hero-shapes .shape:nth-child(4) {
+        width: 150px;
+        height: 150px;
+        background: var(--coral);
+        bottom: 30%;
+        right: 12%;
+        animation: blobMove 20s ease-in-out infinite reverse;
+      }
+      .hero-breadcrumb {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: 8px 20px;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-pill);
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        font-family: var(--font-heading);
+        margin-bottom: var(--space-lg);
+      }
+      .hero-breadcrumb a {
+        color: var(--mint);
+        transition: var(--transition);
+      }
+      .hero-breadcrumb a:hover {
+        color: var(--white);
+      }
+      .hero-breadcrumb .sep {
+        color: rgba(255, 255, 255, 0.3);
+      }
+      .hero-badge-service {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: 6px 18px;
+        background: var(--service-hero-accent);
+        border-radius: var(--radius-pill);
+        color: var(--indigo-dark);
+        font-size: 0.8125rem;
+        font-weight: 700;
+        font-family: var(--font-heading);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: var(--space-lg);
+      } /* Academic Program Cards */
+      .program-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xl);
+      }
+      .program-card {
+        background: var(--white);
+        border-radius: var(--radius-xl);
+        padding: var(--space-2xl);
+        box-shadow: var(--shadow-md);
+        transition: var(--transition-slow);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+      .program-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        opacity: 0;
+        transition: var(--transition);
+      }
+      .program-card:nth-child(1)::before {
+        background: var(--card-gradient-1);
+      }
+      .program-card:nth-child(2)::before {
+        background: var(--card-gradient-2);
+      }
+      .program-card:nth-child(3)::before {
+        background: var(--card-gradient-3);
+      }
+      .program-card:hover::before {
+        opacity: 1;
+      }
+      .program-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-xl);
+      }
+      .program-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--space-lg);
+      }
+      .program-card:nth-child(1) .program-icon {
+        background: rgba(49, 46, 129, 0.1);
+        color: var(--indigo);
+      }
+      .program-card:nth-child(2) .program-icon {
+        background: rgba(110, 231, 183, 0.2);
+        color: var(--mint-dark);
+      }
+      .program-card:nth-child(3) .program-icon {
+        background: rgba(139, 92, 246, 0.12);
+        color: var(--lavender);
+      }
+      .program-icon svg {
+        width: 32px;
+        height: 32px;
+      }
+      .program-card h3 {
+        font-size: 1.375rem;
+        margin-bottom: var(--space-sm);
+      }
+      .program-card .program-tag {
+        display: inline-block;
+        padding: 4px 14px;
+        border-radius: var(--radius-pill);
+        font-size: 0.75rem;
+        font-weight: 700;
+        font-family: var(--font-heading);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: var(--space-md);
+      }
+      .program-card:nth-child(1) .program-tag {
+        background: rgba(49, 46, 129, 0.08);
+        color: var(--indigo);
+      }
+      .program-card:nth-child(2) .program-tag {
+        background: rgba(110, 231, 183, 0.2);
+        color: #059669;
+      }
+      .program-card:nth-child(3) .program-tag {
+        background: rgba(139, 92, 246, 0.1);
+        color: var(--lavender);
+      }
+      .program-card p {
+        color: var(--gray-500);
+        font-size: 0.9375rem;
+        line-height: 1.7;
+        margin-bottom: var(--space-lg);
+      }
+      .program-features {
+        text-align: left;
+        margin-bottom: var(--space-lg);
+      }
+      .program-features li {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: 6px 0;
+        color: var(--gray-600);
+        font-size: 0.875rem;
+      }
+      .program-features li svg {
+        width: 16px;
+        height: 16px;
+        min-width: 16px;
+        color: var(--mint-dark);
+      } /* Extracurricular Grid */
+      .activity-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+      }
+      .activity-card {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .activity-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        opacity: 0;
+        transition: var(--transition);
+      }
+      .activity-card:nth-child(1)::after {
+        background: var(--gradient-accent);
+      }
+      .activity-card:nth-child(2)::after {
+        background: var(--gradient-primary);
+      }
+      .activity-card:nth-child(3)::after {
+        background: var(--gradient-secondary);
+      }
+      .activity-card:nth-child(4)::after {
+        background: var(--card-gradient-3);
+      }
+      .activity-card:nth-child(5)::after {
+        background: var(--gradient-accent);
+      }
+      .activity-card:nth-child(6)::after {
+        background: var(--gradient-primary);
+      }
+      .activity-card:hover::after {
+        opacity: 1;
+      }
+      .activity-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+      }
+      .activity-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: var(--radius-full);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--space-md);
+        font-size: 0;
+      }
+      .activity-card:nth-child(1) .activity-icon {
+        background: rgba(255, 107, 107, 0.1);
+        color: var(--coral);
+      }
+      .activity-card:nth-child(2) .activity-icon {
+        background: rgba(139, 92, 246, 0.1);
+        color: var(--lavender);
+      }
+      .activity-card:nth-child(3) .activity-icon {
+        background: rgba(253, 186, 116, 0.15);
+        color: var(--peach-dark);
+      }
+      .activity-card:nth-child(4) .activity-icon {
+        background: rgba(49, 46, 129, 0.08);
+        color: var(--indigo);
+      }
+      .activity-card:nth-child(5) .activity-icon {
+        background: rgba(255, 107, 107, 0.08);
+        color: var(--coral-dark);
+      }
+      .activity-card:nth-child(6) .activity-icon {
+        background: rgba(139, 92, 246, 0.08);
+        color: var(--lavender-dark);
+      }
+      .activity-icon svg {
+        width: 26px;
+        height: 26px;
+      }
+      .activity-card h4 {
+        font-size: 1.125rem;
+        margin-bottom: var(--space-xs);
+      }
+      .activity-card p {
+        color: var(--gray-400);
+        font-size: 0.8125rem;
+        margin: 0;
+      }
+      .activity-age {
+        display: inline-block;
+        margin-top: var(--space-sm);
+        padding: 2px 10px;
+        border-radius: var(--radius-pill);
+        background: var(--cream);
+        color: var(--gray-500);
+        font-size: 0.6875rem;
+        font-weight: 600;
+        font-family: var(--font-heading);
+      } /* Care Section */
+      .care-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2xl);
+        align-items: start;
+      }
+      .care-content h3 {
+        font-size: 1.75rem;
+        margin-bottom: var(--space-md);
+      }
+      .care-content .care-lead {
+        color: var(--gray-500);
+        font-size: 1.0625rem;
+        line-height: 1.8;
+        margin-bottom: var(--space-lg);
+      }
+      .care-highlights {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-md);
+      }
+      .care-highlight {
+        display: flex;
+        gap: var(--space-md);
+        padding: var(--space-md);
+        background: var(--cream);
+        border-radius: var(--radius-md);
+        transition: var(--transition);
+      }
+      .care-highlight:hover {
+        background: var(--cream-light);
+        box-shadow: var(--shadow-sm);
+      }
+      .care-highlight-icon {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        border-radius: var(--radius-md);
+        background: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--lavender);
+        box-shadow: var(--shadow-sm);
+      }
+      .care-highlight-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+      .care-highlight h5 {
+        font-size: 0.9375rem;
+        margin-bottom: 2px;
+      }
+      .care-highlight p {
+        color: var(--gray-400);
+        font-size: 0.8125rem;
+        margin: 0;
+      }
+      .care-schedule {
+        background: var(--white);
+        border-radius: var(--radius-xl);
+        padding: var(--space-2xl);
+        box-shadow: var(--shadow-lg);
+      }
+      .care-schedule h4 {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-lg);
+        font-size: 1.25rem;
+      }
+      .care-schedule h4 svg {
+        width: 24px;
+        height: 24px;
+        color: var(--lavender);
+      }
+      .schedule-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-md) 0;
+        border-bottom: 1px solid var(--gray-100);
+      }
+      .schedule-item:last-child {
+        border-bottom: none;
+      }
+      .schedule-item .time {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 0.9375rem;
+        color: var(--indigo-dark);
+      }
+      .schedule-item .activity {
+        color: var(--gray-500);
+        font-size: 0.9375rem;
+      }
+      .schedule-item .tag {
+        padding: 4px 12px;
+        border-radius: var(--radius-pill);
+        font-size: 0.75rem;
+        font-weight: 700;
+        font-family: var(--font-heading);
+      }
+      .schedule-item .tag.included {
+        background: rgba(110, 231, 183, 0.2);
+        color: #059669;
+      }
+      .schedule-item .tag.extra {
+        background: rgba(255, 107, 107, 0.1);
+        color: var(--coral);
+      }
+      .schedule-item .tag.premium {
+        background: rgba(139, 92, 246, 0.1);
+        color: var(--lavender);
+      } /* Nutrition Cards */
+      .nutrition-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xl);
+      }
+      .nutrition-card {
+        background: var(--white);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        transition: var(--transition-slow);
+      }
+      .nutrition-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-xl);
+      }
+      .nutrition-card-header {
+        padding: var(--space-xl);
+        text-align: center;
+        position: relative;
+      }
+      .nutrition-card:nth-child(1) .nutrition-card-header {
+        background: linear-gradient(
+          135deg,
+          rgba(110, 231, 183, 0.12),
+          rgba(110, 231, 183, 0.05)
+        );
+      }
+      .nutrition-card:nth-child(2) .nutrition-card-header {
+        background: linear-gradient(
+          135deg,
+          rgba(253, 186, 116, 0.12),
+          rgba(253, 186, 116, 0.05)
+        );
+      }
+      .nutrition-card:nth-child(3) .nutrition-card-header {
+        background: linear-gradient(
+          135deg,
+          rgba(139, 92, 246, 0.1),
+          rgba(139, 92, 246, 0.05)
+        );
+      }
+      .nutrition-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: var(--radius-full);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--space-md);
+      }
+      .nutrition-card:nth-child(1) .nutrition-icon {
+        background: rgba(110, 231, 183, 0.2);
+        color: var(--mint-dark);
+      }
+      .nutrition-card:nth-child(2) .nutrition-icon {
+        background: rgba(253, 186, 116, 0.2);
+        color: var(--peach-dark);
+      }
+      .nutrition-card:nth-child(3) .nutrition-icon {
+        background: rgba(139, 92, 246, 0.12);
+        color: var(--lavender);
+      }
+      .nutrition-icon svg {
+        width: 28px;
+        height: 28px;
+      }
+      .nutrition-card-header h4 {
+        font-size: 1.25rem;
+        margin-bottom: 4px;
+      }
+      .nutrition-card-header p {
+        color: var(--gray-400);
+        font-size: 0.8125rem;
+        margin: 0;
+      }
+      .nutrition-card-body {
+        padding: var(--space-xl);
+      }
+      .nutrition-card-body ul li {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: 8px 0;
+        color: var(--gray-600);
+        font-size: 0.9375rem;
+        border-bottom: 1px solid var(--gray-50);
+      }
+      .nutrition-card-body ul li:last-child {
+        border-bottom: none;
+      }
+      .nutrition-card-body ul li svg {
+        width: 16px;
+        height: 16px;
+        min-width: 16px;
+        color: var(--mint-dark);
+      } /* Transportation */
+      .transport-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2xl);
+        align-items: center;
+      }
+      .transport-features {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-md);
+      }
+      .transport-feature {
+        padding: var(--space-lg);
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+      }
+      .transport-feature:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+      }
+      .transport-feature-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--space-md);
+      }
+      .transport-feature:nth-child(1) .transport-feature-icon {
+        background: rgba(49, 46, 129, 0.08);
+        color: var(--indigo);
+      }
+      .transport-feature:nth-child(2) .transport-feature-icon {
+        background: rgba(110, 231, 183, 0.15);
+        color: var(--mint-dark);
+      }
+      .transport-feature:nth-child(3) .transport-feature-icon {
+        background: rgba(255, 107, 107, 0.08);
+        color: var(--coral);
+      }
+      .transport-feature:nth-child(4) .transport-feature-icon {
+        background: rgba(139, 92, 246, 0.1);
+        color: var(--lavender);
+      }
+      .transport-feature-icon svg {
+        width: 24px;
+        height: 24px;
+      }
+      .transport-feature h5 {
+        font-size: 1rem;
+        margin-bottom: 4px;
+      }
+      .transport-feature p {
+        color: var(--gray-400);
+        font-size: 0.8125rem;
+        margin: 0;
+      }
+      .transport-visual {
+        background: var(--white);
+        border-radius: var(--radius-xl);
+        padding: var(--space-2xl);
+        box-shadow: var(--shadow-lg);
+        text-align: center;
+      }
+      .transport-visual .bus-illustration svg {
+        width: 200px;
+        height: auto;
+        margin-bottom: var(--space-lg);
+      }
+      .transport-visual h4 {
+        font-size: 1.25rem;
+        margin-bottom: var(--space-sm);
+      }
+      .transport-visual p {
+        color: var(--gray-500);
+        font-size: 0.9375rem;
+        max-width: 360px;
+        margin: 0 auto var(--space-xl);
+      }
+      .transport-badges {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-md);
+        flex-wrap: wrap;
+      }
+      .transport-badge {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: 8px 16px;
+        background: var(--cream);
+        border-radius: var(--radius-pill);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--gray-700);
+        font-family: var(--font-heading);
+      }
+      .transport-badge svg {
+        width: 18px;
+        height: 18px;
+        color: var(--mint-dark);
+      } /* Fee Cards - Using .pricing-grid from CSS with enhancements */
+      .pricing-badge {
+        position: absolute;
+        top: var(--space-md);
+        right: var(--space-md);
+        padding: 4px 14px;
+        border-radius: var(--radius-pill);
+        font-size: 0.6875rem;
+        font-weight: 700;
+        font-family: var(--font-heading);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .pricing-card.featured .pricing-badge {
+        background: var(--gradient-accent);
+        color: var(--white);
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+      }
+      .pricing-card:not(.featured) .pricing-badge {
+        display: none;
+      }
+      .pricing-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: var(--radius-full);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--space-md);
+      }
+      .pricing-card:nth-child(1) .pricing-icon {
+        background: rgba(110, 231, 183, 0.15);
+        color: var(--mint-dark);
+      }
+      .pricing-card.featured .pricing-icon {
+        background: rgba(139, 92, 246, 0.1);
+        color: var(--lavender);
+      }
+      .pricing-card:nth-child(3) .pricing-icon {
+        background: rgba(253, 186, 116, 0.15);
+        color: var(--peach-dark);
+      }
+      .pricing-icon svg {
+        width: 26px;
+        height: 26px;
+      }
+      .pricing-card.featured .btn-primary {
+        background: var(--gradient-accent);
+        box-shadow: 0 4px 20px rgba(255, 107, 107, 0.35);
+      }
+      .pricing-card.featured .btn-primary:hover {
+        box-shadow: 0 8px 30px rgba(255, 107, 107, 0.45);
+      }
+      .pricing-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      .pricing-features {
+        flex-grow: 1;
+        margin-bottom: var(--space-xl) !important;
+      } /* CTA Section */
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          rgba(30, 27, 75, 0.95) 0%,
+          rgba(49, 46, 129, 0.9) 40%,
+          rgba(79, 70, 229, 0.8) 100%
+        );
+        position: relative;
+        overflow: hidden;
+        padding: var(--space-5xl) 0;
+      }
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.5;
+      }
+      .cta-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .cta-section h2 {
+        color: var(--white);
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        margin-bottom: var(--space-md);
+      }
+      .cta-section p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.125rem;
+        margin-bottom: var(--space-xl);
+        line-height: 1.8;
+      }
+      .cta-actions {
+        display: flex;
+        gap: var(--space-md);
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .cta-shapes .shape {
+        position: absolute;
+        border-radius: var(--radius-full);
+        opacity: 0.06;
+        pointer-events: none;
+      }
+      .cta-shapes .shape:nth-child(1) {
+        width: 400px;
+        height: 400px;
+        background: var(--mint);
+        top: -150px;
+        left: -100px;
+        animation: float 20s ease-in-out infinite;
+      }
+      .cta-shapes .shape:nth-child(2) {
+        width: 300px;
+        height: 300px;
+        background: var(--lavender);
+        bottom: -80px;
+        right: -80px;
+        animation: floatReverse 15s ease-in-out infinite;
+      } /* Floating shapes for regular sections */
+      .section-floating-shapes .shape {
+        position: absolute;
+        border-radius: var(--radius-full);
+        opacity: 0.06;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .section-floating-shapes .shape:nth-child(1) {
+        width: 300px;
+        height: 300px;
+        background: var(--lavender);
+        top: -80px;
+        right: -60px;
+        animation: float 18s ease-in-out infinite;
+      }
+      .section-floating-shapes .shape:nth-child(2) {
+        width: 200px;
+        height: 200px;
+        background: var(--mint);
+        bottom: -60px;
+        left: -40px;
+        animation: floatReverse 22s ease-in-out infinite;
+      }
+      .section-floating-shapes .shape:nth-child(3) {
+        width: 120px;
+        height: 120px;
+        background: var(--peach);
+        top: 40%;
+        left: 60%;
+        animation: blobMove 20s ease-in-out infinite;
+      } /* Responsive */
+      @media (max-width: 1024px) {
+        .program-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .nutrition-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .activity-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .care-grid {
+          grid-template-columns: 1fr;
+        }
+        .transport-grid {
+          grid-template-columns: 1fr;
+        }
+        .care-highlights {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 768px) {
+        .program-grid {
+          grid-template-columns: 1fr;
+        }
+        .nutrition-grid {
+          grid-template-columns: 1fr;
+        }
+        .activity-grid {
+          grid-template-columns: 1fr;
+        }
+        .care-highlights {
+          grid-template-columns: 1fr;
+        }
+        .transport-features {
+          grid-template-columns: 1fr;
+        }
+        .services-hero {
+          min-height: 50vh;
+          padding-top: calc(var(--header-height) + 40px);
+          padding-bottom: 60px;
+        }
+      }
+      @media (max-width: 480px) {
+        .services-hero h1 {
+          font-size: 2.2rem;
+        }
+        .cta-actions {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Page Transition -->
+    <!-- Navbar -->
+    <nav class="navbar white-bg">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
+          </svg>
+        </span>
+        Kindergarden
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a> <a href="home2.html">Home 2</a>
+        <a href="about.html">About</a>
+        <a href="services.html" class="active">Programs</a>
+        <a href="gallery.html">Gallery</a> <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        </div>
+      <div class="nav-cta">
+        <div class="profile-wrap">
+          <button class="profile-btn" aria-label="Profile menu">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </button>
+          <div class="profile-dropdown">
+            <a href="login.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" y1="12" x2="3" y2="12" />
+              </svg>
+              Sign In / Register
+            </a>
+            <div class="divider"></div>
+            <a href="dashboard/user.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              User Dashboard
+            </a>
+            <a href="dashboard/admin.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+              Admin Dashboard
+            </a>
+          </div>
+        </div>
+        <button class="rtl-toggle" aria-label="Toggle language direction">RTL</button>
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+        <button class="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <!-- ===== HERO ===== -->
+    <section class="services-hero" aria-label="Services overview">
+      <div class="services-hero-shapes" aria-hidden="true">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <div class="container" style="position: relative; z-index: 1">
+        <div class="hero-breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="sep" aria-hidden="true">/</span> <span>Services</span>
+        </div>
+        <div class="hero-badge-service">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          Comprehensive Care Since 2010
+        </div>
+        <h1>Our Services</h1>
+        <p>
+          Every service we offer is designed to nurture curiosity, foster
+          growth, and create a foundation for lifelong learning in a safe,
+          inspiring environment.
+        </p>
+        <a href="#programs" class="btn btn-glass btn-lg">
+          Explore Services
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </section>
+    <!-- ===== ACADEMIC PROGRAMS ===== -->
+    <section
+      class="section section-alt"
+      id="programs"
+      aria-label="Academic Programs"
+    >
+      <div class="section-floating-shapes" aria-hidden="true">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <div class="container" style="position: relative; z-index: 1">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Academic Programs</span>
+          <h2 class="section-title">World-Class Curricula</h2>
+          <p>
+            Three internationally recognized programs tailored to nurture every
+            child's unique potential.
+          </p>
+        </div>
+        <div class="program-grid">
+          <article class="program-card reveal" style="transition-delay: 0.1s">
+            <div class="program-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path
+                  d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                />
+                <path d="M8 7h8M8 11h6M8 15h4" />
+              </svg>
+            </div>
+            <span class="program-tag">Ages 2–6</span>
+            <h3>Montessori</h3>
+            <p>
+              A child-centered approach that fosters independence, hands-on
+              learning, and a deep love for discovery through self-directed
+              activity.
+            </p>
+            <ul class="program-features">
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Mixed-age classrooms
+              </li>
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Self-paced learning
+              </li>
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Specially designed materials
+              </li>
+            </ul>
+            <a href="#" class="btn btn-outline btn-sm">Learn More</a>
+          </article>
+          <article class="program-card reveal" style="transition-delay: 0.2s">
+            <div class="program-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20" />
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                />
+              </svg>
+            </div>
+            <span class="program-tag">Ages 5–11</span>
+            <h3>Cambridge</h3>
+            <p>
+              A globally recognized curriculum that builds strong foundations in
+              English, mathematics, science, and critical thinking skills.
+            </p>
+            <ul class="program-features">
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                International benchmarks
+              </li>
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Inquiry-based learning
+              </li>
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Global perspective
+              </li>
+            </ul>
+            <a href="#" class="btn btn-outline btn-sm">Learn More</a>
+          </article>
+          <article class="program-card reveal" style="transition-delay: 0.3s">
+            <div class="program-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <span class="program-tag">Ages 3–12</span>
+            <h3>IB Primary Years</h3>
+            <p>
+              A transdisciplinary framework that develops inquiring,
+              knowledgeable, and caring young learners who thrive in a global
+              community.
+            </p>
+            <ul class="program-features">
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Inquiry-driven units
+              </li>
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Multilingual approach
+              </li>
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Action & community focus
+              </li>
+            </ul>
+            <a href="#" class="btn btn-outline btn-sm">Learn More</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- ===== EXTRACURRICULAR ACTIVITIES ===== -->
+    <section
+      class="section section-cream"
+      id="activities"
+      aria-label="Extracurricular Activities"
+    >
+      <div class="section-floating-shapes" aria-hidden="true">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <div class="container" style="position: relative; z-index: 1">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Extracurricular</span>
+          <h2 class="section-title">Beyond the Classroom</h2>
+          <p>
+            Six enriching programs that spark passion, build confidence, and
+            develop well-rounded individuals.
+          </p>
+        </div>
+        <div class="activity-grid">
+          <div class="activity-card reveal" style="transition-delay: 0.05s">
+            <div class="activity-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+            </div>
+            <h4>Sports</h4>
+            <p>Soccer, swimming, gymnastics & more</p>
+            <span class="activity-age">Ages 3+</span>
+          </div>
+          <div class="activity-card reveal" style="transition-delay: 0.1s">
+            <div class="activity-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M9 18V5l12-2v13" />
+                <circle cx="6" cy="18" r="3" />
+                <circle cx="18" cy="16" r="3" />
+              </svg>
+            </div>
+            <h4>Music</h4>
+            <p>Piano, violin, choir & rhythm</p>
+            <span class="activity-age">Ages 4+</span>
+          </div>
+          <div class="activity-card reveal" style="transition-delay: 0.15s">
+            <div class="activity-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 19l7-7 3 3-7 7-3-3z" />
+                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+                <path d="M2 2l7.586 7.586" />
+                <circle cx="11" cy="11" r="2" />
+              </svg>
+            </div>
+            <h4>Art</h4>
+            <p>Painting, sculpture & mixed media</p>
+            <span class="activity-age">Ages 3+</span>
+          </div>
+          <div class="activity-card reveal" style="transition-delay: 0.2s">
+            <div class="activity-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
+              </svg>
+            </div>
+            <h4>Coding</h4>
+            <p>Scratch, robotics & logic games</p>
+            <span class="activity-age">Ages 5+</span>
+          </div>
+          <div class="activity-card reveal" style="transition-delay: 0.25s">
+            <div class="activity-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M9 18V5l12-2v13" />
+                <circle cx="6" cy="18" r="3" />
+                <circle cx="18" cy="16" r="3" />
+              </svg>
+            </div>
+            <h4>Dance</h4>
+            <p>Ballet, hip-hop & creative movement</p>
+            <span class="activity-age">Ages 3+</span>
+          </div>
+          <div class="activity-card reveal" style="transition-delay: 0.3s">
+            <div class="activity-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <h4>Drama</h4>
+            <p>Storytelling, theater & puppetry</p>
+            <span class="activity-age">Ages 4+</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== BEFORE & AFTER SCHOOL CARE ===== -->
+    <section
+      class="section section-alt"
+      id="care"
+      aria-label="Before and After School Care"
+    >
+      <div class="section-floating-shapes" aria-hidden="true">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <div class="container" style="position: relative; z-index: 1">
+        <div class="section-header section-header-left reveal">
+          <span class="section-subtitle">Extended Care</span>
+          <h2 class="section-title">Before & After<br />School Care</h2>
+          <p>
+            Flexible, enriching care programs designed to support busy families
+            while keeping children engaged, safe, and happy.
+          </p>
+        </div>
+        <div class="care-grid">
+          <div class="care-content reveal">
+            <h3>A Home Away From Home</h3>
+            <p class="care-lead">
+              Our extended care program provides a nurturing environment before
+              and after school hours, filled with structured activities,
+              homework support, and free play.
+            </p>
+            <div class="care-highlights">
+              <div class="care-highlight">
+                <div class="care-highlight-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M12 2a10 10 0 1 0 10 10h-10V2z" />
+                    <path d="M12 12 8 8" />
+                  </svg>
+                </div>
+                <div>
+                  <h5>Flexible Hours</h5>
+                  <p>7:00 AM – 6:30 PM</p>
+                </div>
+              </div>
+              <div class="care-highlight">
+                <div class="care-highlight-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                  </svg>
+                </div>
+                <div>
+                  <h5>Homework Help</h5>
+                  <p>Guided support daily</p>
+                </div>
+              </div>
+              <div class="care-highlight">
+                <div class="care-highlight-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <div>
+                  <h5>Small Groups</h5>
+                  <p>1:8 staff-to-child ratio</p>
+                </div>
+              </div>
+              <div class="care-highlight">
+                <div class="care-highlight-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                    <line x1="8" y1="21" x2="16" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
+                  </svg>
+                </div>
+                <div>
+                  <h5>Enrichment Activities</h5>
+                  <p>Art, games & outdoor play</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="care-schedule reveal" style="transition-delay: 0.2s">
+            <h4>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              Daily Schedule
+            </h4>
+            <div class="schedule-item">
+              <span class="time">7:00 – 8:30 AM</span>
+              <span class="activity">Morning Care & Breakfast</span>
+              <span class="tag included">Included</span>
+            </div>
+            <div class="schedule-item">
+              <span class="time">8:30 AM – 3:00 PM</span>
+              <span class="activity">School Hours</span>
+              <span class="tag included">Included</span>
+            </div>
+            <div class="schedule-item">
+              <span class="time">3:00 – 4:00 PM</span>
+              <span class="activity">Snack & Outdoor Play</span>
+              <span class="tag included">Included</span>
+            </div>
+            <div class="schedule-item">
+              <span class="time">4:00 – 5:00 PM</span>
+              <span class="activity">Homework Club</span>
+              <span class="tag premium">Premium</span>
+            </div>
+            <div class="schedule-item">
+              <span class="time">5:00 – 6:30 PM</span>
+              <span class="activity">Enrichment & Free Play</span>
+              <span class="tag extra">Extra</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== NUTRITION & MEALS ===== -->
+    <section
+      class="section section-cream"
+      id="nutrition"
+      aria-label="Nutrition and Meals"
+    >
+      <div class="section-floating-shapes" aria-hidden="true">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <div class="container" style="position: relative; z-index: 1">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Nutrition & Meals</span>
+          <h2 class="section-title">Wholesome & Delicious</h2>
+          <p>
+            Nutritionally balanced meals prepared fresh daily by our in-house
+            culinary team using locally sourced ingredients.
+          </p>
+        </div>
+        <div class="nutrition-grid">
+          <article class="nutrition-card reveal" style="transition-delay: 0.1s">
+            <div class="nutrition-card-header">
+              <div class="nutrition-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 2a10 10 0 1 0 10 10h-10V2z" />
+                  <path d="M12 12 8 8" />
+                </svg>
+              </div>
+              <h4>Breakfast & Morning</h4>
+              <p>Served 7:30 – 8:30 AM</p>
+            </div>
+            <div class="nutrition-card-body">
+              <ul>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Fresh fruit & yogurt
+                </li>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Whole grain cereals
+                </li>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Eggs & protein options
+                </li>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Organic milk & juice
+                </li>
+              </ul>
+            </div>
+          </article>
+          <article class="nutrition-card reveal" style="transition-delay: 0.2s">
+            <div class="nutrition-card-header">
+              <div class="nutrition-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                  <line x1="6" y1="1" x2="6" y2="4" />
+                  <line x1="10" y1="1" x2="10" y2="4" />
+                  <line x1="14" y1="1" x2="14" y2="4" />
+                </svg>
+              </div>
+              <h4>Lunch Program</h4>
+              <p>Served 11:30 AM – 12:30 PM</p>
+            </div>
+            <div class="nutrition-card-body">
+              <ul>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Balanced hot lunches
+                </li>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Vegetarian & vegan options
+                </li>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Locally sourced produce
+                </li>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Allergy-aware kitchen
+                </li>
+              </ul>
+            </div>
+          </article>
+          <article class="nutrition-card reveal" style="transition-delay: 0.3s">
+            <div class="nutrition-card-header">
+              <div class="nutrition-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                  <line x1="6" y1="1" x2="6" y2="4" />
+                  <line x1="10" y1="1" x2="10" y2="4" />
+                  <line x1="14" y1="1" x2="14" y2="4" />
+                </svg>
+              </div>
+              <h4>Snacks & Allergies</h4>
+              <p>Morning & afternoon</p>
+            </div>
+            <div class="nutrition-card-body">
+              <ul>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Fresh fruit & veggie sticks
+                </li>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Nut-free campus policy
+                </li>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Dietary accommodation
+                </li>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Hydration stations
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- ===== TRANSPORTATION & SAFETY ===== -->
+    <section
+      class="section section-alt"
+      id="transport"
+      aria-label="Transportation and Safety"
+    >
+      <div class="section-floating-shapes" aria-hidden="true">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <div class="container" style="position: relative; z-index: 1">
+        <div class="section-header section-header-left reveal">
+          <span class="section-subtitle">Transportation</span>
+          <h2 class="section-title">Safe & Reliable<br />School Transport</h2>
+          <p>
+            Every journey matters. Our modern fleet and rigorous safety
+            protocols ensure your child travels safely every day.
+          </p>
+        </div>
+        <div class="transport-grid">
+          <div class="transport-features">
+            <div
+              class="transport-feature reveal"
+              style="transition-delay: 0.1s"
+            >
+              <div class="transport-feature-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="1" y="3" width="15" height="13" />
+                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                  <circle cx="5.5" cy="18.5" r="2.5" />
+                  <circle cx="18.5" cy="18.5" r="2.5" />
+                </svg>
+              </div>
+              <h5>Modern Fleet</h5>
+              <p>GPS-tracked, air-conditioned buses with seat belts</p>
+            </div>
+            <div
+              class="transport-feature reveal"
+              style="transition-delay: 0.15s"
+            >
+              <div class="transport-feature-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <h5>Trained Attendants</h5>
+              <p>Every bus staffed with a caring monitor</p>
+            </div>
+            <div
+              class="transport-feature reveal"
+              style="transition-delay: 0.2s"
+            >
+              <div class="transport-feature-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+              </div>
+              <h5>Real-Time Alerts</h5>
+              <p>Push notifications at pickup & drop-off</p>
+            </div>
+            <div
+              class="transport-feature reveal"
+              style="transition-delay: 0.25s"
+            >
+              <div class="transport-feature-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </div>
+              <h5>Child Check System</h5>
+              <p>Paperless attendance verification</p>
+            </div>
+          </div>
+          <div class="transport-visual reveal" style="transition-delay: 0.3s">
+            <div class="bus-illustration">
+              <svg
+                viewBox="0 0 240 140"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="20"
+                  y="40"
+                  width="180"
+                  height="70"
+                  rx="8"
+                  fill="var(--peach)"
+                  fill-opacity="0.15"
+                  stroke="var(--peach-dark)"
+                  stroke-width="2"
+                />
+                <rect
+                  x="30"
+                  y="55"
+                  width="50"
+                  height="35"
+                  rx="6"
+                  fill="var(--white)"
+                  stroke="var(--gray-200)"
+                  stroke-width="1.5"
+                />
+                <rect
+                  x="90"
+                  y="55"
+                  width="50"
+                  height="35"
+                  rx="6"
+                  fill="var(--white)"
+                  stroke="var(--gray-200)"
+                  stroke-width="1.5"
+                />
+                <rect
+                  x="150"
+                  y="55"
+                  width="40"
+                  height="35"
+                  rx="6"
+                  fill="var(--white)"
+                  stroke="var(--gray-200)"
+                  stroke-width="1.5"
+                />
+                <rect
+                  x="20"
+                  y="40"
+                  width="180"
+                  height="16"
+                  rx="8"
+                  fill="var(--lavender)"
+                  fill-opacity="0.2"
+                />
+                <circle
+                  cx="60"
+                  cy="115"
+                  r="14"
+                  fill="var(--indigo-dark)"
+                  stroke="var(--white)"
+                  stroke-width="2"
+                />
+                <circle cx="60" cy="115" r="6" fill="var(--gray-300)" />
+                <circle
+                  cx="160"
+                  cy="115"
+                  r="14"
+                  fill="var(--indigo-dark)"
+                  stroke="var(--white)"
+                  stroke-width="2"
+                />
+                <circle cx="160" cy="115" r="6" fill="var(--gray-300)" />
+                <rect
+                  x="35"
+                  y="60"
+                  width="12"
+                  height="8"
+                  rx="2"
+                  fill="var(--mint-dark)"
+                  fill-opacity="0.6"
+                />
+                <rect
+                  x="95"
+                  y="60"
+                  width="12"
+                  height="8"
+                  rx="2"
+                  fill="var(--mint-dark)"
+                  fill-opacity="0.6"
+                />
+                <rect
+                  x="155"
+                  y="60"
+                  width="12"
+                  height="8"
+                  rx="2"
+                  fill="var(--mint-dark)"
+                  fill-opacity="0.6"
+                />
+                <path
+                  d="M200 50 L215 50 L220 60 L215 70 L200 70 Z"
+                  fill="var(--indigo)"
+                  fill-opacity="0.15"
+                />
+                <rect
+                  x="200"
+                  y="50"
+                  width="30"
+                  height="20"
+                  rx="4"
+                  fill="var(--coral)"
+                  fill-opacity="0.1"
+                  stroke="var(--coral)"
+                  stroke-width="1.5"
+                  stroke-dasharray="3 2"
+                />
+              </svg>
+            </div>
+            <h4>Door-to-Door Service</h4>
+            <p>
+              Covering all major residential areas within a 15 km radius with
+              morning and afternoon routes.
+            </p>
+            <div class="transport-badges">
+              <span class="transport-badge">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                GPS Tracking
+              </span>
+              <span class="transport-badge">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                CCTV Equipped
+              </span>
+              <span class="transport-badge">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                First Aid Kit
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== FEE STRUCTURE ===== -->
+    <section class="section section-cream" id="fees" aria-label="Fee Structure">
+      <div class="section-floating-shapes" aria-hidden="true">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <div class="container" style="position: relative; z-index: 1">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Fee Structure</span>
+          <h2 class="section-title">Flexible Plans for<br />Every Family</h2>
+          <p>
+            Transparent, value-driven pricing with no hidden fees. Choose the
+            plan that best suits your child's needs.
+          </p>
+        </div>
+        <div class="pricing-grid">
+          <div class="pricing-card reveal" style="transition-delay: 0.1s">
+            <div class="pricing-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M8 12h8" />
+              </svg>
+            </div>
+            <span class="pricing-badge">Standard</span>
+            <h3 class="pricing-name">Half Day</h3>
+            <div class="pricing-price">$450<span>/mo</span></div>
+            <p class="pricing-period">3 hours daily, 5 days a week</p>
+            <ul class="pricing-features">
+              <li>Morning or afternoon session</li>
+              <li>Core curriculum access</li>
+              <li>Nutritious snack included</li>
+              <li>Progress reports (quarterly)</li>
+              <li>School events access</li>
+            </ul>
+            <a href="#" class="btn btn-outline w-full">Choose Plan</a>
+          </div>
+          <div
+            class="pricing-card featured reveal"
+            style="transition-delay: 0.2s"
+          >
+            <div class="pricing-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                />
+              </svg>
+            </div>
+            <span class="pricing-badge">Most Popular</span>
+            <h3 class="pricing-name">Full Day</h3>
+            <div class="pricing-price">$850<span>/mo</span></div>
+            <p class="pricing-period">7 hours daily, 5 days a week</p>
+            <ul class="pricing-features">
+              <li>Full academic program</li>
+              <li>All extracurriculars included</li>
+              <li>Breakfast, lunch & snacks</li>
+              <li>Homework support</li>
+              <li>Progress reports (monthly)</li>
+              <li>Priority event access</li>
+            </ul>
+            <a href="#" class="btn btn-primary w-full">Choose Plan</a>
+          </div>
+          <div class="pricing-card reveal" style="transition-delay: 0.3s">
+            <div class="pricing-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <span class="pricing-badge">Premium</span>
+            <h3 class="pricing-name">Extended Care</h3>
+            <div class="pricing-price">$1,200<span>/mo</span></div>
+            <p class="pricing-period">11 hours daily, 5 days a week</p>
+            <ul class="pricing-features">
+              <li>Everything in Full Day</li>
+              <li>Before & after school care</li>
+              <li>Private music lessons</li>
+              <li>Language immersion track</li>
+              <li>Personalized learning plan</li>
+              <li>Priority enrollment</li>
+            </ul>
+            <a href="#" class="btn btn-outline w-full">Choose Plan</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== CTA CONSULTATION ===== -->
+    <section class="cta-section" aria-label="Schedule a consultation">
+      <div class="cta-shapes" aria-hidden="true">
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <div class="container" style="position: relative; z-index: 1">
+        <div class="cta-content reveal">
+          <span
+            class="hero-badge-service"
+            style="margin-bottom: var(--space-lg)"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+              />
+            </svg>
+            Start Your Journey
+          </span>
+          <h2>Ready to Give Your Child<br />the Best Start?</h2>
+          <p>
+            Schedule a personal consultation and tour. Meet our educators,
+            explore our campus, and discover why Kindergarden is the right
+            choice for your family.
+          </p>
+          <div class="cta-actions">
+            <a href="contact.html" class="btn btn-accent btn-lg">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+              Book a Tour
+            </a>
+            <a href="tel:+1234567890" class="btn btn-glass btn-lg">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                />
+              </svg>
+              (123) 456-7890
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo">
+              <span class="logo-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
+                </svg>
+              </span>
+              Kindergarden
+            </a>
+            <p>
+              Kindergarden International is a premium IB World School and
+              Cambridge International Academy, offering world-class education
+              for children aged 2 to 12 in a nurturing, inquiry-driven
+              environment.
+            </p>
+            <div class="footer-social">
+              <a
+                href="#"
+                aria-label="Facebook"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="Twitter"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="Instagram"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="YouTube"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"
+                  />
+                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="services.html">Programs</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Programs</h4>
+            <ul class="footer-links">
+              <li><a href="services.html">Montessori</a></li>
+              <li><a href="services.html">Cambridge</a></li>
+              <li><a href="services.html">IB PYP</a></li>
+              <li><a href="services.html">After School</a></li>
+              <li><a href="services.html">Summer Camp</a></li>
+              <li><a href="services.html">Parent Workshops</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Get in Touch</h4>
+            <ul class="footer-contact">
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>123 Learning Lane,<br />Singapore 189721</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+                <span>+65 6789 0123</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <span>hello@kindergarden.edu</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                <span
+                  >Mon–Fri: 7:30 AM – 6:00 PM<br />Sat: 8:00 AM – 12:00 PM</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >&copy; 2026 Kindergarden International. All rights reserved.</span
+          >
+          <div style="display: flex; gap: var(--space-lg)">
+            <a
+              href="privacy.html"
+              style="color: rgba(255, 255, 255, 0.5); font-size: 0.875rem"
+              >Privacy Policy</a
+            >
+            <a
+              href="terms.html"
+              style="color: rgba(255, 255, 255, 0.5); font-size: 0.875rem"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Back to Top -->
+    <button class="back-to-top" aria-label="Back to top">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="12" y1="19" x2="12" y2="5" />
+        <polyline points="5 12 12 5 19 12" />
+      </svg>
+    </button>
+    <script src="js/main.js"></script>
+  </body>
+</html>

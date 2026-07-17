@@ -1,0 +1,2539 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Kindergarden — Premium Kindergarten & Primary School. Nurturing young minds with excellence since 2010."
+    />
+    <title>Kindergarden — Where Little Stars Shine Bright</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23312E81'/><text x='50' y='68' font-size='50' text-anchor='middle' fill='white' font-family='Arial'>K</text></svg>"
+    />
+    <style>
+      :root {
+        --hero2-gradient: linear-gradient(
+          135deg,
+          #1e1b4b 0%,
+          #312e81 40%,
+          #4f46e5 70%,
+          #8b5cf6 100%
+        );
+        --card-shadow-hover:
+          0 20px 60px rgba(49, 46, 129, 0.18),
+          0 8px 20px rgba(49, 46, 129, 0.08);
+        --radius-card: 24px;
+      }
+      .hero2 {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: var(--hero2-gradient);
+        overflow: hidden;
+        padding: var(--header-height) 0 0;
+      }
+      .hero2-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        width: 100%;
+        max-width: var(--container);
+        margin: 0 auto;
+        padding: 60px var(--space-lg);
+        position: relative;
+        z-index: 2;
+      }
+      .hero2-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: var(--radius-pill);
+        color: var(--mint);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        font-family: var(--font-heading);
+        margin-bottom: var(--space-lg);
+      }
+      .hero2 h1 {
+        color: var(--white);
+        font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+        line-height: 1.1;
+        margin-bottom: var(--space-lg);
+      }
+      .hero2 h1 span {
+        background: linear-gradient(135deg, var(--mint), var(--peach));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero2 p {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 1.125rem;
+        max-width: 520px;
+        line-height: 1.8;
+        margin-bottom: var(--space-xl);
+      }
+      .hero2-actions {
+        display: flex;
+        gap: var(--space-md);
+        flex-wrap: wrap;
+      }
+      .hero2-illustration {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero2-illustration-inner {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        aspect-ratio: 1 / 1;
+      }
+      .hero2-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 32px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+      }
+      .hero2-floating-card {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 18px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 20px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        color: var(--white);
+        z-index: 10;
+        transition: transform 0.3s ease;
+      }
+      .hero2-floating-card:hover {
+        transform: scale(1.05);
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .hero2-floating-card .card-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0;
+        flex-shrink: 0;
+      }
+      .hero2-floating-card .card-content {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.25;
+        text-align: left;
+      }
+      .hero2-floating-card .card-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+        opacity: 0.85;
+        display: block;
+      }
+      .hero2-floating-card .card-number {
+        font-size: 1.125rem;
+        font-weight: 800;
+        font-family: var(--font-heading);
+        display: block;
+        color: #FFFFFF !important;
+      }
+      .hero2-floating-card .card-sublabel {
+        font-size: 0.7rem;
+        opacity: 0.7;
+        display: block;
+      }
+      .hero2-floating-card.card-1 {
+        top: 8%;
+        left: -12%;
+        animation: floatCard1 5s ease-in-out infinite;
+      }
+      .hero2-floating-card.card-2 {
+        bottom: 25%;
+        right: -10%;
+        animation: floatCard2 6s ease-in-out infinite;
+      }
+      .hero2-floating-card.card-3 {
+        bottom: 8%;
+        left: -8%;
+        animation: floatCard3 5.5s ease-in-out infinite;
+      }
+      @keyframes floatCard1 {
+        0%, 100% { transform: translateY(0) rotate(-1deg); }
+        50% { transform: translateY(-10px) rotate(1deg); }
+      }
+      @keyframes floatCard2 {
+        0%, 100% { transform: translateY(0) rotate(1deg); }
+        50% { transform: translateY(-8px) rotate(-1deg); }
+      }
+      @keyframes floatCard3 {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-12px) rotate(1deg); }
+      }
+      .hero2-stats {
+        display: flex;
+        gap: var(--space-2xl);
+        margin-top: var(--space-3xl);
+        padding-top: var(--space-xl);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .hero2-stat h3 {
+        color: var(--white);
+        font-size: 2rem;
+        font-weight: 800;
+        font-family: var(--font-heading);
+      }
+      .hero2-stats .stat-number {
+        background: none !important;
+        -webkit-text-fill-color: #FFFFFF !important;
+        color: #FFFFFF !important;
+      }
+      .hero2-stat p {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.8125rem;
+        margin: 0;
+      }
+      .hero2-shapes {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .hero2-shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.06;
+      }
+      .hero2-shape-1 {
+        width: 700px;
+        height: 700px;
+        background: var(--mint);
+        top: -250px;
+        right: -200px;
+        animation: blobMove 25s ease-in-out infinite;
+      }
+      .hero2-shape-2 {
+        width: 500px;
+        height: 500px;
+        background: var(--peach);
+        bottom: -200px;
+        left: -150px;
+        animation: floatReverse 20s ease-in-out infinite;
+      }
+      .hero2-shape-3 {
+        width: 250px;
+        height: 250px;
+        background: var(--lavender);
+        top: 20%;
+        right: 30%;
+        animation: blobMove 30s ease-in-out infinite reverse;
+      } /* Programs Timeline */
+      .programs-section {
+        background: var(--white);
+        position: relative;
+        overflow: hidden;
+      }
+      .programs-timeline {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-xl);
+        position: relative;
+        padding-top: 0;
+      }
+      .program-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: var(--space-2xl) var(--space-xl);
+        background: var(--cream);
+        border-radius: var(--radius-card);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      .program-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--card-shadow-hover);
+      }
+      .program-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--space-lg);
+        font-size: 1.75rem;
+        flex-shrink: 0;
+      }
+      .program-icon.indigo {
+        background: rgba(49, 46, 129, 0.1);
+        color: var(--indigo);
+      }
+      .program-icon.lavender {
+        background: rgba(139, 92, 246, 0.1);
+        color: var(--lavender);
+      }
+      .program-icon.mint {
+        background: rgba(110, 231, 183, 0.15);
+        color: #059669;
+      }
+      .program-icon.peach {
+        background: rgba(253, 186, 116, 0.15);
+        color: var(--peach-dark);
+      }
+      .program-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: var(--space-sm);
+        margin-top: 0;
+        flex-shrink: 0;
+      }
+      .program-card p {
+        color: var(--gray-500);
+        font-size: 0.875rem;
+        line-height: 1.7;
+        margin: 0 0 var(--space-md) 0;
+        flex-grow: 1;
+      }
+      .program-age {
+        display: inline-block;
+        margin-top: auto;
+        padding: 4px 14px;
+        border-radius: var(--radius-pill);
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        flex-shrink: 0;
+      }
+      .program-age.indigo {
+        background: rgba(49, 46, 129, 0.08);
+        color: var(--indigo);
+      }
+      .program-age.lavender {
+        background: rgba(139, 92, 246, 0.08);
+        color: var(--lavender);
+      }
+      .program-age.mint {
+        background: rgba(110, 231, 183, 0.15);
+        color: #059669;
+      }
+      .program-age.peach {
+        background: rgba(253, 186, 116, 0.15);
+        color: var(--peach-dark);
+      } /* Stats premium */
+      .stats2-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-xl);
+      }
+      .stat2-item {
+        position: relative;
+        text-align: center;
+        padding: var(--space-2xl) var(--space-xl);
+        border-radius: var(--radius-card);
+        background: var(--white);
+        box-shadow: var(--shadow-md);
+        transition: all 0.4s ease;
+        overflow: hidden;
+      }
+      .stat2-item::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--gradient-primary);
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+        transform-origin: left;
+      }
+      .stat2-item:hover::after {
+        transform: scaleX(1);
+      }
+      .stat2-item:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--card-shadow-hover);
+      }
+      .stat2-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--space-lg);
+        font-size: 1.5rem;
+      }
+      .stat2-icon.purple {
+        background: rgba(139, 92, 246, 0.1);
+        color: var(--lavender);
+      }
+      .stat2-icon.green {
+        background: rgba(110, 231, 183, 0.15);
+        color: #059669;
+      }
+      .stat2-icon.orange {
+        background: rgba(253, 186, 116, 0.15);
+        color: var(--peach-dark);
+      }
+      .stat2-icon.coral {
+        background: rgba(255, 107, 107, 0.1);
+        color: var(--coral);
+      }
+      .stat2-number {
+        font-family: var(--font-heading);
+        font-weight: 800;
+        font-size: 2.75rem;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.1;
+        margin-bottom: var(--space-sm);
+      }
+      .stat2-label {
+        color: var(--gray-500);
+        font-weight: 600;
+        font-size: 0.9375rem;
+      } /* Video Section */
+      .video-section {
+        position: relative;
+        overflow: hidden;
+      }
+      .video-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--hero2-gradient);
+        opacity: 0.92;
+        z-index: 1;
+      }
+      .video-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: var(--space-5xl) var(--space-lg);
+        max-width: var(--container-narrow);
+        margin: 0 auto;
+      }
+      .video-content .section-subtitle {
+        color: var(--mint);
+      }
+      .video-content .section-subtitle::before {
+        background: var(--mint);
+      }
+      .video-content .section-title {
+        color: var(--white);
+      }
+      .video-content .section-header p {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .video-preview {
+        position: relative;
+        max-width: 720px;
+        margin: 0 auto;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+      }
+      .video-preview-bg {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .video-thumbnail {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .video-preview:hover .video-thumbnail {
+        transform: scale(1.03);
+      }
+      .video-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(30, 27, 75, 0.45);
+        z-index: 2;
+        transition: background 0.3s ease;
+      }
+      .video-preview:hover .video-overlay {
+        background: rgba(30, 27, 75, 0.35);
+      }
+      .video-play {
+        position: relative;
+        z-index: 3;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 2px solid rgba(255, 255, 255, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        cursor: pointer;
+      }
+      .video-play:hover {
+        transform: scale(1.08);
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+      .video-play-inner {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--gradient-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+      }
+      .video-play-pulse {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        animation: playPulse 2s ease-out infinite;
+      }
+      @keyframes playPulse {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1.6);
+          opacity: 0;
+        }
+      }
+      .video-caption {
+        position: relative;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 18px 24px;
+        background: rgba(15, 23, 42, 0.65);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 0;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.9375rem;
+      }
+      .video-caption span {
+        color: var(--mint);
+        font-weight: 600;
+      } /* Faculty Section */
+      .faculty-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-xl);
+      }
+      .faculty-card {
+        background: var(--white);
+        border-radius: var(--radius-card);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        transition: all 0.4s ease;
+        text-align: center;
+      }
+      .faculty-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--card-shadow-hover);
+      }
+      .faculty-card-image {
+        width: 100%;
+        padding: var(--space-2xl) var(--space-2xl) 0;
+        display: flex;
+        justify-content: center;
+      }
+      .faculty-avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(49, 46, 129, 0.15);
+        border: 4px solid var(--white);
+        background: var(--cream);
+      }
+      .faculty-avatar-ring {
+        position: absolute;
+        inset: -6px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        transition: var(--transition);
+        z-index: 2;
+      }
+      .faculty-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        z-index: 1;
+      }
+      .faculty-card:hover .faculty-avatar-ring {
+        transform: scale(1.06);
+      }
+      .faculty-card-body {
+        padding: var(--space-lg) var(--space-xl) var(--space-xl);
+      }
+      .faculty-card-name {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 1.125rem;
+        color: var(--indigo-dark);
+        margin-bottom: 4px;
+      }
+      .faculty-card-role {
+        color: var(--lavender);
+        font-weight: 600;
+        font-size: 0.8125rem;
+        margin-bottom: var(--space-sm);
+      }
+      .faculty-card-bio {
+        color: var(--gray-500);
+        font-size: 0.8125rem;
+        line-height: 1.6;
+        margin-bottom: var(--space-md);
+      }
+      .faculty-social {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-sm);
+      }
+      .faculty-social a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--cream);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gray-400);
+        font-size: 0.8125rem;
+        font-weight: 700;
+        transition: var(--transition);
+      }
+      .faculty-social a:hover {
+        background: var(--gradient-primary);
+        color: var(--white);
+        transform: translateY(-2px);
+      } /* Testimonials Slider */
+      .testimonials2-section {
+        background: var(--cream);
+        position: relative;
+        overflow: hidden;
+      }
+      .testimonials2-track-wrapper {
+        overflow: hidden;
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 20px 0;
+        touch-action: pan-y;
+        position: relative;
+      }
+      .testimonials2-track {
+        display: flex;
+        width: 100%;
+        gap: 0;
+        will-change: transform;
+        padding: var(--space-md) 0;
+      }
+      .testimonial2-card {
+        width: 100%;
+        min-width: 100%;
+        flex-shrink: 0;
+        background: var(--white);
+        border-radius: var(--radius-card);
+        padding: var(--space-2xl);
+        box-shadow: var(--shadow-md);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: auto;
+        box-sizing: border-box;
+      }
+      .testimonial2-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--card-shadow-hover);
+      }
+      .testimonial2-card::before {
+        content: '"';
+        position: absolute;
+        top: var(--space-lg);
+        right: var(--space-xl);
+        font-size: 5rem;
+        line-height: 1;
+        font-family: var(--font-heading);
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--indigo), var(--lavender));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        opacity: 0.08;
+      }
+      .testimonial2-stars {
+        display: flex;
+        gap: 4px;
+        margin-bottom: var(--space-lg);
+        flex-shrink: 0;
+      }
+      .testimonial2-stars svg {
+        color: var(--peach-dark);
+      }
+      .testimonial2-text {
+        color: var(--gray-600);
+        font-size: 0.9375rem;
+        line-height: 1.8;
+        margin-bottom: var(--space-lg);
+        font-style: italic;
+        flex-grow: 1;
+      }
+      .testimonial2-author {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        flex-shrink: 0;
+        margin-top: auto;
+      }
+      .testimonial2-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 1.125rem;
+        color: var(--white);
+        flex-shrink: 0;
+      }
+      .testimonial2-info {
+        flex: 1;
+      }
+      .testimonial2-name {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--indigo-dark);
+      }
+      .testimonial2-role {
+        font-size: 0.8125rem;
+        color: var(--gray-400);
+      }
+      .testimonial2-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--space-lg);
+        margin-top: var(--space-2xl);
+      }
+      .testimonial2-btn {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: 2px solid var(--gray-200);
+        background: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 1.25rem;
+        color: var(--gray-600);
+      }
+      .testimonial2-btn:hover {
+        border-color: var(--lavender);
+        background: var(--lavender);
+        color: var(--white);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(139, 92, 246, 0.25);
+      }
+      .testimonial2-dots {
+        display: flex;
+        gap: var(--space-sm);
+      }
+      .testimonial2-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--gray-300);
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .testimonial2-dot.active {
+        width: 32px;
+        border-radius: var(--radius-pill);
+        background: var(--gradient-primary);
+      } /* Admissions Timeline */
+      .admissions-section {
+        background: var(--white);
+        position: relative;
+      }
+      .admissions-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-xl);
+        position: relative;
+      }
+      .admissions-grid::before {
+        content: "";
+        position: absolute;
+        top: 36px;
+        left: 80px;
+        right: 80px;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--indigo),
+          var(--lavender),
+          var(--mint),
+          var(--peach)
+        );
+        border-radius: var(--radius-pill);
+      }
+      .admissions-step {
+        text-align: center;
+        position: relative;
+      }
+      .admissions-step-number {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--space-lg);
+        font-family: var(--font-heading);
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: var(--white);
+        position: relative;
+        z-index: 2;
+        transition: var(--transition);
+      }
+      .admissions-step:hover .admissions-step-number {
+        transform: scale(1.12);
+        box-shadow: 0 12px 40px rgba(139, 92, 246, 0.3);
+      }
+      .admissions-step:nth-child(1) .admissions-step-number {
+        background: var(--indigo);
+        box-shadow: 0 8px 24px rgba(49, 46, 129, 0.3);
+      }
+      .admissions-step:nth-child(2) .admissions-step-number {
+        background: var(--lavender);
+        box-shadow: 0 8px 24px rgba(139, 92, 246, 0.3);
+      }
+      .admissions-step:nth-child(3) .admissions-step-number {
+        background: #059669;
+        box-shadow: 0 8px 24px rgba(110, 231, 183, 0.3);
+      }
+      .admissions-step:nth-child(4) .admissions-step-number {
+        background: var(--peach-dark);
+        box-shadow: 0 8px 24px rgba(253, 186, 116, 0.3);
+      }
+      .admissions-step h4 {
+        font-size: 1.0625rem;
+        margin-bottom: var(--space-sm);
+      }
+      .admissions-step p {
+        color: var(--gray-500);
+        font-size: 0.8125rem;
+        line-height: 1.7;
+        margin: 0;
+      } /* Newsletter & CTA */
+      .newsletter-section {
+        position: relative;
+        overflow: hidden;
+      }
+      .newsletter-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          #1e1b4b 0%,
+          #312e81 50%,
+          #4f46e5 100%
+        );
+        z-index: 1;
+      }
+      .newsletter-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: var(--space-5xl) var(--space-lg);
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      .newsletter-content h2 {
+        color: var(--white);
+        margin-bottom: var(--space-md);
+      }
+      .newsletter-content p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.0625rem;
+        margin-bottom: var(--space-xl);
+      }
+      .newsletter-form {
+        display: flex;
+        gap: var(--space-md);
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .newsletter-form input {
+        flex: 1;
+        padding: 16px 20px;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        border-radius: var(--radius-pill);
+        background: rgba(255, 255, 255, 0.08);
+        font-family: var(--font-body);
+        font-size: 1rem;
+        color: var(--white);
+        outline: none;
+        transition: var(--transition);
+      }
+      .newsletter-form input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .newsletter-form input:focus {
+        border-color: var(--mint);
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .newsletter-form .btn {
+        flex-shrink: 0;
+      }
+      .newsletter-shapes {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .newsletter-shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.05;
+      }
+      .newsletter-shape-1 {
+        width: 500px;
+        height: 500px;
+        background: var(--mint);
+        top: -200px;
+        right: -100px;
+        animation: blobMove 20s ease-in-out infinite;
+      }
+      .newsletter-shape-2 {
+        width: 400px;
+        height: 400px;
+        background: var(--peach);
+        bottom: -150px;
+        left: -150px;
+        animation: floatReverse 18s ease-in-out infinite;
+      } /* Floating shapes shared */
+      .float-shape {
+        position: absolute;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.06;
+      }
+      .float-shape-1 {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: var(--lavender);
+        top: 10%;
+        right: -80px;
+        animation: float 15s ease-in-out infinite;
+      }
+      .float-shape-2 {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: var(--mint);
+        bottom: 15%;
+        left: -60px;
+        animation: floatReverse 12s ease-in-out infinite;
+      }
+      @media (max-width: 1024px) {
+        .hero2-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+          padding-top: 40px;
+        }
+        .hero2 p {
+          margin: 0 auto var(--space-xl);
+        }
+        .hero2-actions {
+          justify-content: center;
+        }
+        .hero2-stats {
+          justify-content: center;
+        }
+        .hero2-illustration {
+          max-width: 440px;
+          margin: 0 auto;
+        }
+        .hero2-floating-card.card-1 {
+          left: -6%;
+        }
+        .hero2-floating-card.card-2 {
+          right: -6%;
+        }
+        .hero2-floating-card.card-3 {
+          left: -4%;
+        }
+        .programs-timeline {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .admissions-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: var(--space-2xl);
+        }
+        .faculty-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .testimonial2-card {
+          min-width: 100%;
+        }
+      }
+      @media (max-width: 768px) {
+        .hero2-stats {
+          flex-wrap: wrap;
+          gap: var(--space-lg);
+        }
+        .hero2-illustration {
+          max-width: 360px;
+        }
+        .hero2-floating-card {
+          padding: 8px 12px;
+          gap: 8px;
+          border-radius: 12px;
+        }
+        .hero2-floating-card .card-emoji {
+          font-size: 1.25rem;
+        }
+        .hero2-floating-card .card-number {
+          font-size: 0.9375rem;
+        }
+        .hero2-floating-card .card-label {
+          font-size: 0.65rem;
+        }
+        .hero2-floating-card .card-sublabel {
+          font-size: 0.6rem;
+        }
+        .hero2-floating-card.card-1 {
+          top: 6%;
+          left: -4%;
+        }
+        .hero2-floating-card.card-2 {
+          bottom: 22%;
+          right: -4%;
+        }
+        .hero2-floating-card.card-3 {
+          bottom: 6%;
+          left: -3%;
+        }
+        .programs-timeline {
+          grid-template-columns: 1fr;
+        }
+        .stats2-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .admissions-grid {
+          grid-template-columns: 1fr;
+        }
+        .faculty-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .testimonial2-card {
+          min-width: 100%;
+        }
+        .newsletter-form {
+          flex-direction: column;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero2-illustration {
+          max-width: 290px;
+        }
+        .hero2-floating-card.card-1 {
+          left: -2%;
+        }
+        .hero2-floating-card.card-2 {
+          right: -2%;
+        }
+        .hero2-floating-card.card-3 {
+          left: -1%;
+        }
+        .stats2-grid {
+          grid-template-columns: 1fr;
+        }
+        .faculty-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero2-stat h3 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar white-bg">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-5" />
+          </svg>
+        </span>
+        Kindergarden
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="home2.html" class="active">Home 2</a>
+        <a href="about.html">About</a> <a href="services.html">Programs</a>
+        <a href="gallery.html">Gallery</a> <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        </div>
+      <div class="nav-cta">
+        <div class="profile-wrap">
+          <button class="profile-btn" aria-label="Profile menu">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </button>
+          <div class="profile-dropdown">
+            <a href="login.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" y1="12" x2="3" y2="12" />
+              </svg>
+              Sign In / Register
+            </a>
+            <div class="divider"></div>
+            <a href="dashboard/user.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              User Dashboard
+            </a>
+            <a href="dashboard/admin.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+              Admin Dashboard
+            </a>
+          </div>
+        </div>
+        <button class="rtl-toggle" aria-label="Toggle language direction">RTL</button>
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+        <button class="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <!-- 1. HERO - Split Layout -->
+    <section class="hero2" id="home">
+      <div class="hero2-shapes">
+        <div class="hero2-shape hero2-shape-1"></div>
+        <div class="hero2-shape hero2-shape-2"></div>
+        <div class="hero2-shape hero2-shape-3"></div>
+      </div>
+      <div class="hero2-grid">
+        <div>
+          <div class="hero2-badge">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 2l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z" />
+            </svg>
+            Established 2010
+          </div>
+          <h1>Where Little <span>Stars</span> Shine Bright</h1>
+          <p>
+            We nurture curiosity, creativity, and confidence in every child
+            through play-based learning, expert guidance, and a warm, inspiring
+            environment.
+          </p>
+          <div class="hero2-actions">
+            <a href="#programs" class="btn btn-primary btn-lg">
+              Explore Programs
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <a href="#video" class="btn btn-glass btn-lg">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                stroke="none"
+              >
+                <polygon points="5,3 19,12 5,21" />
+              </svg>
+              Take a Tour
+            </a>
+          </div>
+          <div class="hero2-stats">
+            <div class="hero2-stat reveal">
+              <h3><span class="stat-number">500+</span></h3>
+              <p>Happy Students</p>
+            </div>
+            <div class="hero2-stat reveal">
+              <h3><span class="stat-number">48+</span></h3>
+              <p>Expert Teachers</p>
+            </div>
+            <div class="hero2-stat reveal">
+              <h3><span class="stat-number">14</span></h3>
+              <p>Years Journey</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero2-illustration reveal-scale">
+          <div class="hero2-illustration-inner">
+            <img src="assets/images/hero2_classroom.png" alt="Happy Learners Classroom" class="hero2-img" loading="lazy" />
+            <div class="hero2-floating-card card-1">
+              <div class="card-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--mint)"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-label">Happy Learners</span>
+                <span class="card-number">500+</span>
+                <span class="card-sublabel">Students</span>
+              </div>
+            </div>
+            <div class="hero2-floating-card card-2">
+              <div class="card-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="var(--peach-dark)"
+                  stroke="var(--peach-dark)"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-label">Parent Rating</span>
+                <span class="card-number">4.9/5</span>
+              </div>
+            </div>
+            <div class="hero2-floating-card card-3">
+              <div class="card-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--lavender-light)"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-5" />
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-label">Certified Teachers</span>
+                <span class="card-number">48+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 2. FEATURED PROGRAMS -->
+    <section class="section programs-section" id="programs">
+      <div class="float-shape float-shape-1"></div>
+      <div class="float-shape float-shape-2"></div>
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Our Programs</span>
+          <h2 class="section-title">
+            Designed for Every <span class="text-gradient">Stage</span> of
+            Growth
+          </h2>
+          <p>
+            Age-appropriate curricula that blend play with purpose, guided by
+            experienced educators who nurture each child's unique potential.
+          </p>
+        </div>
+        <div class="programs-timeline">
+          <div class="program-card reveal">
+            <div class="program-icon indigo">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="8" r="5" />
+                <path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2" />
+              </svg>
+            </div>
+            <h3>Toddler Program</h3>
+            <p>
+              Safe, nurturing environment for our littlest learners. Sensory
+              play, music, and gentle discovery activities.
+            </p>
+            <span class="program-age indigo">Ages 1.5 – 3</span>
+          </div>
+          <div class="program-card reveal">
+            <div class="program-icon lavender">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 20h20" />
+                <path d="M5 20V8l7-5 7 5v12" />
+                <path d="M9 20v-4h6v4" />
+              </svg>
+            </div>
+            <h3>Preschool</h3>
+            <p>
+              Foundational skills through structured play. Letters, numbers,
+              art, and social-emotional growth.
+            </p>
+            <span class="program-age lavender">Ages 3 – 4</span>
+          </div>
+          <div class="program-card reveal">
+            <div class="program-icon mint">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path
+                  d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                />
+                <path d="M10 8h6" />
+                <path d="M10 12h6" />
+                <path d="M10 16h4" />
+              </svg>
+            </div>
+            <h3>Pre-Kindergarten</h3>
+            <p>
+              School readiness program with early literacy, math foundations,
+              science exploration, and creative arts.
+            </p>
+            <span class="program-age mint">Ages 4 – 5</span>
+          </div>
+          <div class="program-card reveal">
+            <div class="program-icon peach">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <h3>Primary School</h3>
+            <p>
+              Comprehensive education across all subjects with specialist
+              teachers, enrichment programs, and leadership.
+            </p>
+            <span class="program-age peach">Grades K – 5</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 3. SCHOOL NUMBERS -->
+    <section class="section section-gradient" id="numbers">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">By the Numbers</span>
+          <h2 class="section-title">
+            Our School in <span class="text-gradient">Numbers</span>
+          </h2>
+          <p>
+            Years of dedication, thousands of bright moments, and a community
+            that grows stronger every day.
+          </p>
+        </div>
+        <div class="stats2-grid">
+          <div class="stat2-item reveal">
+            <div class="stat2-icon purple">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <div class="stat2-number">
+              <span class="stat-number">500+</span>
+            </div>
+            <div class="stat2-label">Students Enrolled</div>
+          </div>
+          <div class="stat2-item reveal">
+            <div class="stat2-icon green">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 6V2" />
+                <path d="M6 12H2" />
+                <path d="M12 22v-4" />
+                <path d="M22 12h-4" />
+                <path d="M17.66 6.34L20.48 3.52" />
+                <path d="M6.34 17.66L3.52 20.48" />
+                <path d="M14.5 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+              </svg>
+            </div>
+            <div class="stat2-number"><span class="stat-number">48</span></div>
+            <div class="stat2-label">Expert Teachers</div>
+          </div>
+          <div class="stat2-item reveal">
+            <div class="stat2-icon orange">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <line x1="3" y1="9" x2="21" y2="9" />
+                <line x1="9" y1="21" x2="9" y2="9" />
+              </svg>
+            </div>
+            <div class="stat2-number"><span class="stat-number">14</span></div>
+            <div class="stat2-label">Years of Excellence</div>
+          </div>
+          <div class="stat2-item reveal">
+            <div class="stat2-icon coral">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+              </svg>
+            </div>
+            <div class="stat2-number"><span class="stat-number">98%</span></div>
+            <div class="stat2-label">Parent Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 4. VIRTUAL TOUR / VIDEO -->
+    <section class="video-section" id="video">
+      <div class="video-content">
+        <div class="section-header reveal" style="max-width: 580px">
+          <span class="section-subtitle">Virtual Tour</span>
+          <h2 class="section-title">
+            See Our World in <span style="color: var(--mint)">Motion</span>
+          </h2>
+          <p>
+            Step inside our classrooms, playgrounds, and creative spaces. Watch
+            how we make learning an adventure every single day.
+          </p>
+        </div>
+        <div class="video-preview reveal-scale">
+          <div class="video-preview-bg">
+            <img src="assets/images/video_thumbnail.png" alt="Virtual Tour Thumbnail" class="video-thumbnail" loading="lazy" />
+            <div class="video-overlay"></div>
+            <button
+              class="video-play"
+              onclick="alert('Video tour would play here')"
+            >
+              <div class="video-play-pulse"></div>
+              <div class="video-play-inner">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon points="6,3 20,12 6,21" />
+                </svg>
+              </div>
+            </button>
+          </div>
+          <div class="video-caption">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--mint)"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <span>3-minute tour</span> — See our classrooms, playground & creative spaces
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 5. FACULTY HIGHLIGHTS -->
+    <section class="section" id="faculty">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Meet Our Team</span>
+          <h2 class="section-title">
+            Dedicated <span class="text-gradient">Educators</span> Who Inspire
+          </h2>
+          <p>
+            Passionate teachers who bring expertise, warmth, and creativity to
+            every classroom — shaping confident lifelong learners.
+          </p>
+        </div>
+        <div class="faculty-grid">
+          <div class="faculty-card reveal">
+            <div class="faculty-card-image">
+              <div class="faculty-avatar">
+                <div
+                  class="faculty-avatar-ring"
+                  style="border-color: rgba(139, 92, 246, 0.3)"
+                ></div>
+                <img src="assets/images/teacher_sarah.png" alt="Sarah Mitchell" class="faculty-img" loading="lazy" />
+              </div>
+            </div>
+            <div class="faculty-card-body">
+              <div class="faculty-card-name">Sarah Mitchell</div>
+              <div class="faculty-card-role">Principal & Lead Educator</div>
+              <div class="faculty-card-bio">
+                M.Ed with 18 years in early childhood education. Passionate
+                about creating inclusive, joyful learning environments.
+              </div>
+              <div class="faculty-social">
+                <a href="#" aria-label="LinkedIn">in</a>
+                <a href="#" aria-label="Twitter">X</a>
+                <a href="#" aria-label="Email">@</a>
+              </div>
+            </div>
+          </div>
+          <div class="faculty-card reveal">
+            <div class="faculty-card-image">
+              <div class="faculty-avatar">
+                <div
+                  class="faculty-avatar-ring"
+                  style="border-color: rgba(110, 231, 183, 0.3)"
+                ></div>
+                <img src="assets/images/teacher_james.png" alt="James Chen" class="faculty-img" loading="lazy" />
+              </div>
+            </div>
+            <div class="faculty-card-body">
+              <div class="faculty-card-name">James Chen</div>
+              <div class="faculty-card-role">Head of STEM Program</div>
+              <div class="faculty-card-bio">
+                Former engineer turned educator. Makes science and math come
+                alive through hands-on experiments and discovery.
+              </div>
+              <div class="faculty-social">
+                <a href="#" aria-label="LinkedIn">in</a>
+                <a href="#" aria-label="Twitter">X</a>
+                <a href="#" aria-label="Email">@</a>
+              </div>
+            </div>
+          </div>
+          <div class="faculty-card reveal">
+            <div class="faculty-card-image">
+              <div class="faculty-avatar">
+                <div
+                  class="faculty-avatar-ring"
+                  style="border-color: rgba(253, 186, 116, 0.3)"
+                ></div>
+                <img src="assets/images/teacher_elena.png" alt="Elena Rodriguez" class="faculty-img" loading="lazy" />
+              </div>
+            </div>
+            <div class="faculty-card-body">
+              <div class="faculty-card-name">Elena Rodriguez</div>
+              <div class="faculty-card-role">Creative Arts Director</div>
+              <div class="faculty-card-bio">
+                Award-winning artist who blends music, painting, and movement to
+                spark imagination and self-expression in every child.
+              </div>
+              <div class="faculty-social">
+                <a href="#" aria-label="LinkedIn">in</a>
+                <a href="#" aria-label="Twitter">X</a>
+                <a href="#" aria-label="Email">@</a>
+              </div>
+            </div>
+          </div>
+          <div class="faculty-card reveal">
+            <div class="faculty-card-image">
+              <div class="faculty-avatar">
+                <div
+                  class="faculty-avatar-ring"
+                  style="border-color: rgba(255, 107, 107, 0.3)"
+                ></div>
+                <img src="assets/images/teacher_amara.png" alt="Amara Kone" class="faculty-img" loading="lazy" />
+              </div>
+            </div>
+            <div class="faculty-card-body">
+              <div class="faculty-card-name">Amara Kone</div>
+              <div class="faculty-card-role">Literacy Specialist</div>
+              <div class="faculty-card-bio">
+                Reading specialist with a gift for turning early literacy into
+                adventure. Every child leaves her class a storyteller.
+              </div>
+              <div class="faculty-social">
+                <a href="#" aria-label="LinkedIn">in</a>
+                <a href="#" aria-label="Twitter">X</a>
+                <a href="#" aria-label="Email">@</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 6. PARENT REVIEWS / TESTIMONIALS -->
+    <section class="section testimonials2-section" id="testimonials">
+      <div
+        class="float-shape float-shape-1"
+        style="right: auto; left: -80px"
+      ></div>
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Parent Reviews</span>
+          <h2 class="section-title">
+            What Families <span class="text-gradient">Say</span> About Us
+          </h2>
+          <p>
+            Hear from parents whose children have grown, learned, and thrived in
+            our care.
+          </p>
+        </div>
+        <div class="testimonials2-track-wrapper reveal">
+          <div class="testimonials2-track" id="testimonialsTrack">
+            <div class="testimonial2-card">
+              <div class="testimonial2-stars">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+              </div>
+              <p class="testimonial2-text">
+                Kindergarden has been a second home for our daughter. The
+                teachers are extraordinarily caring, and we've seen her
+                confidence and curiosity bloom since day one. The play-based
+                learning approach is brilliant.
+              </p>
+              <div class="testimonial2-author">
+                <div
+                  class="testimonial2-avatar"
+                  style="background: linear-gradient(135deg, #312e81, #8b5cf6)"
+                >
+                  P
+                </div>
+                <div class="testimonial2-info">
+                  <div class="testimonial2-name">Priya Sharma</div>
+                  <div class="testimonial2-role">Parent of Aarav, Age 4</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial2-card">
+              <div class="testimonial2-stars">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+              </div>
+              <p class="testimonial2-text">
+                We moved from another school and the difference is night and
+                day. Our son comes home excited every day, talking about science
+                experiments and new friends. The STEM program here is
+                outstanding.
+              </p>
+              <div class="testimonial2-author">
+                <div
+                  class="testimonial2-avatar"
+                  style="background: linear-gradient(135deg, #6ee7b7, #059669)"
+                >
+                  M
+                </div>
+                <div class="testimonial2-info">
+                  <div class="testimonial2-name">Michael Torres</div>
+                  <div class="testimonial2-role">Parent of Lucas, Age 6</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial2-card">
+              <div class="testimonial2-stars">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+              </div>
+              <p class="testimonial2-text">
+                The creativity and individual attention here is remarkable. My
+                daughter struggled with reading at first, but Ms. Kone's
+                approach made all the difference. Now she reads bedtime stories
+                to her little brother!
+              </p>
+              <div class="testimonial2-author">
+                <div
+                  class="testimonial2-avatar"
+                  style="background: linear-gradient(135deg, #fdba74, #f97316)"
+                >
+                  L
+                </div>
+                <div class="testimonial2-info">
+                  <div class="testimonial2-name">Leah Washington</div>
+                  <div class="testimonial2-role">Parent of Maya, Age 7</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial2-card">
+              <div class="testimonial2-stars">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+              </div>
+              <p class="testimonial2-text">
+                Both our children attend Kindergarden and the experience has
+                been consistently excellent. The communication from teachers is
+                phenomenal and the sense of community is something we treasure.
+              </p>
+              <div class="testimonial2-author">
+                <div
+                  class="testimonial2-avatar"
+                  style="background: linear-gradient(135deg, #ff6b6b, #ef4444)"
+                >
+                  D
+                </div>
+                <div class="testimonial2-info">
+                  <div class="testimonial2-name">David & Emma Chen</div>
+                  <div class="testimonial2-role">Parents of Ethan & Olivia</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial2-controls">
+          <button
+            class="testimonial2-btn"
+            id="testimonialPrev"
+            aria-label="Previous"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <div class="testimonial2-dots" id="testimonialDots"></div>
+          <button
+            class="testimonial2-btn"
+            id="testimonialNext"
+            aria-label="Next"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- 7. ADMISSIONS PROCESS -->
+    <section class="section admissions-section" id="admissions">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Admissions</span>
+          <h2 class="section-title">
+            Your Journey to <span class="text-gradient">Kindergarden</span>
+          </h2>
+          <p>
+            Simple, transparent, and guided. Here's how to join our community of
+            curious young learners.
+          </p>
+        </div>
+        <div class="admissions-grid">
+          <div class="admissions-step reveal">
+            <div class="admissions-step-number">01</div>
+            <h4>Schedule a Visit</h4>
+            <p>
+              Book a personal tour to explore our campus, meet our teachers, and
+              experience the Kindergarden difference firsthand.
+            </p>
+          </div>
+          <div class="admissions-step reveal">
+            <div class="admissions-step-number">02</div>
+            <h4>Submit Application</h4>
+            <p>
+              Complete our simple online application form. We'll guide you
+              through every document and detail along the way.
+            </p>
+          </div>
+          <div class="admissions-step reveal">
+            <div class="admissions-step-number">03</div>
+            <h4>Child Assessment</h4>
+            <p>
+              A friendly, play-based session where we get to know your child's
+              unique personality, interests, and learning style.
+            </p>
+          </div>
+          <div class="admissions-step reveal">
+            <div class="admissions-step-number">04</div>
+            <h4>Welcome Aboard</h4>
+            <p>
+              Receive your enrollment package, meet your child's teacher, and
+              join our vibrant community of families and learners.
+            </p>
+          </div>
+        </div>
+        <div class="text-center mt-4xl reveal">
+          <a href="#contact" class="btn btn-primary btn-lg">
+            Start Your Application
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- 8. NEWSLETTER & CTA -->
+    <section class="newsletter-section" id="contact">
+      <div class="newsletter-shapes">
+        <div class="newsletter-shape newsletter-shape-1"></div>
+        <div class="newsletter-shape newsletter-shape-2"></div>
+      </div>
+      <div class="newsletter-content reveal">
+        <h2>
+          Stay Connected with
+          <span style="color: var(--mint)">Kindergarden</span>
+        </h2>
+        <p>
+          Subscribe for updates on programs, events, parenting tips, and
+          enrollment announcements. Join our family.
+        </p>
+        <form
+          class="newsletter-form"
+          onsubmit="
+            event.preventDefault();
+            this.querySelector('input').value = '';
+            alert('Thank you for subscribing!');
+          "
+        >
+          <input type="email" placeholder="Enter your email address" required />
+          <button type="submit" class="btn btn-secondary btn-lg">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo">
+              <span class="logo-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
+                </svg>
+              </span>
+              Kindergarden
+            </a>
+            <p>
+              Kindergarden International is a premium IB World School and
+              Cambridge International Academy, offering world-class education
+              for children aged 2 to 12 in a nurturing, inquiry-driven
+              environment.
+            </p>
+            <div class="footer-social">
+              <a
+                href="#"
+                aria-label="Facebook"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="Twitter"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="Instagram"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="YouTube"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"
+                  />
+                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="services.html">Programs</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Programs</h4>
+            <ul class="footer-links">
+              <li><a href="services.html">Montessori</a></li>
+              <li><a href="services.html">Cambridge</a></li>
+              <li><a href="services.html">IB PYP</a></li>
+              <li><a href="services.html">After School</a></li>
+              <li><a href="services.html">Summer Camp</a></li>
+              <li><a href="services.html">Parent Workshops</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Get in Touch</h4>
+            <ul class="footer-contact">
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>123 Learning Lane,<br />Singapore 189721</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+                <span>+65 6789 0123</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <span>hello@kindergarden.edu</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                <span
+                  >Mon–Fri: 7:30 AM – 6:00 PM<br />Sat: 8:00 AM – 12:00 PM</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >&copy; 2026 Kindergarden International. All rights reserved.</span
+          >
+          <div style="display: flex; gap: var(--space-lg)">
+            <a
+              href="privacy.html"
+              style="color: rgba(255, 255, 255, 0.5); font-size: 0.875rem"
+              >Privacy Policy</a
+            >
+            <a
+              href="terms.html"
+              style="color: rgba(255, 255, 255, 0.5); font-size: 0.875rem"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Back to Top -->
+    <button class="back-to-top" aria-label="Back to top">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="12" y1="19" x2="12" y2="5" />
+        <polyline points="5 12 12 5 19 12" />
+      </svg>
+    </button>
+    <script src="js/main.js"></script>
+  </body>
+</html>

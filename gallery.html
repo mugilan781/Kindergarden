@@ -1,0 +1,2216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore the Kindergarden gallery — classrooms, activities, events, facilities, arts, videos, virtual tour, and social moments. A visual journey through our premium kindergarten and primary school."
+    />
+    <title>
+      Gallery | Kindergarden — Premium Kindergarten & Primary School
+    </title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23312E81'/><text x='16' y='22' font-size='18' text-anchor='middle' fill='white' font-family='Poppins,sans-serif' font-weight='800'>K</text></svg>"
+    />
+    <style>
+      .page-hero {
+        position: relative;
+        min-height: 50vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        padding: var(--header-height) 0 0;
+        background: linear-gradient(
+            135deg,
+            rgba(30, 27, 75, 0.85) 0%,
+            rgba(49, 46, 129, 0.75) 40%,
+            rgba(139, 92, 246, 0.55) 100%
+          ),
+          url("assets/images/gallery_hero.png") center/cover no-repeat;
+      }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.5;
+      }
+      .page-hero-content {
+        position: relative;
+        z-index: 2;
+        padding: var(--space-4xl) 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .page-hero-content p {
+        margin: 0 auto;
+      }
+      .page-hero h1 {
+        color: var(--white);
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        margin-bottom: var(--space-md);
+        letter-spacing: -0.02em;
+      }
+      .breadcrumb {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-sm);
+        color: rgba(255, 255, 255, 0.6);
+        font-family: var(--font-heading);
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-bottom: var(--space-md);
+      }
+      .breadcrumb a {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .breadcrumb a:hover {
+        color: var(--white);
+      }
+      .breadcrumb .separator {
+        display: flex;
+        align-items: center;
+        opacity: 0.4;
+      }
+      .breadcrumb .current {
+        color: var(--white);
+      }
+      .hero-floating-shapes {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .hero-floating-shapes .shape {
+        position: absolute;
+        border-radius: var(--radius-full);
+        opacity: 0.08;
+      }
+      .hero-floating-shapes .shape:nth-child(1) {
+        width: 500px;
+        height: 500px;
+        background: var(--lavender-light);
+        top: -150px;
+        right: -100px;
+        animation: float 20s ease-in-out infinite;
+      }
+      .hero-floating-shapes .shape:nth-child(2) {
+        width: 350px;
+        height: 350px;
+        background: var(--mint);
+        bottom: -80px;
+        left: -80px;
+        animation: floatReverse 18s ease-in-out infinite;
+      }
+      .hero-floating-shapes .shape:nth-child(3) {
+        width: 180px;
+        height: 180px;
+        background: var(--peach);
+        top: 30%;
+        right: 15%;
+        animation: blobMove 22s ease-in-out infinite;
+      }
+      .gallery-section {
+        position: relative;
+      }
+      .gallery-section-alt {
+        background: var(--white);
+      }
+      .gallery-grid-custom {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-md);
+        grid-auto-flow: dense;
+      }
+      .gallery-item {
+        position: relative;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        cursor: pointer;
+        aspect-ratio: 1;
+        background: var(--cream);
+      }
+      .gallery-item-tall {
+        grid-row: span 2;
+        aspect-ratio: auto;
+      }
+      .gallery-item-wide {
+        grid-column: span 2;
+        aspect-ratio: 2/1;
+      }
+      .gallery-item .gallery-thumb {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: var(--transition-slow);
+      }
+      .gallery-item:hover .gallery-thumb {
+        transform: scale(1.06);
+      }
+      .gallery-item-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(49, 46, 129, 0.85),
+          rgba(139, 92, 246, 0.65)
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: var(--transition);
+        gap: var(--space-sm);
+      }
+      .gallery-item:hover .gallery-item-overlay {
+        opacity: 1;
+      }
+      .gallery-item-overlay span {
+        color: var(--white);
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 1.125rem;
+        transform: translateY(20px);
+        transition: var(--transition-slow);
+      }
+      .gallery-item:hover .gallery-item-overlay span {
+        transform: translateY(0);
+      }
+      .gallery-item-overlay small {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.8125rem;
+        transform: translateY(20px);
+        transition: var(--transition-slow);
+        transition-delay: 0.05s;
+      }
+      .gallery-item:hover .gallery-item-overlay small {
+        transform: translateY(0);
+      }
+      .gallery-item-badge {
+        position: absolute;
+        top: var(--space-md);
+        left: var(--space-md);
+        padding: 6px 14px;
+        background: var(--gradient-primary);
+        color: var(--white);
+        border-radius: var(--radius-pill);
+        font-size: 0.6875rem;
+        font-weight: 700;
+        font-family: var(--font-heading);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        z-index: 2;
+        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+      }
+      .video-card {
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        position: relative;
+        aspect-ratio: 16/9;
+        cursor: pointer;
+        box-shadow: var(--shadow-lg);
+        transition: var(--transition-slow);
+      }
+      .video-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-xl);
+      }
+      .video-card-bg {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .video-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(30, 27, 75, 0.4),
+          rgba(49, 46, 129, 0.2)
+        );
+        transition: var(--transition);
+      }
+      .video-card:hover .video-card-overlay {
+        background: linear-gradient(
+          135deg,
+          rgba(30, 27, 75, 0.3),
+          rgba(49, 46, 129, 0.15)
+        );
+      }
+      .play-btn {
+        width: 80px;
+        height: 80px;
+        border-radius: var(--radius-full);
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        cursor: pointer;
+        transition: var(--transition-bounce);
+        position: relative;
+        z-index: 2;
+        font-size: 2rem;
+      }
+      .video-card:hover .play-btn {
+        transform: scale(1.1);
+        background: rgba(255, 255, 255, 0.3);
+      }
+      .video-card-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: var(--space-xl);
+        background: linear-gradient(transparent, rgba(30, 27, 75, 0.9));
+        z-index: 2;
+      }
+      .video-card-info h4 {
+        color: var(--white);
+        margin-bottom: 4px;
+        font-size: 1.125rem;
+      }
+      .video-card-info p {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.875rem;
+        margin: 0;
+      }
+      .video-card-duration {
+        position: absolute;
+        top: var(--space-md);
+        right: var(--space-md);
+        padding: 4px 12px;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        border-radius: var(--radius-pill);
+        color: var(--white);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        font-family: var(--font-heading);
+        z-index: 2;
+      }
+      .virtual-tour-card {
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        position: relative;
+        aspect-ratio: 21/9;
+        cursor: grab;
+        box-shadow: var(--shadow-xl);
+      }
+      .virtual-tour-bg {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .virtual-tour-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(30, 27, 75, 0.3),
+          rgba(139, 92, 246, 0.2)
+        );
+      }
+      .virtual-tour-controls {
+        position: absolute;
+        bottom: var(--space-xl);
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: var(--space-md);
+        z-index: 2;
+      }
+      .virtual-tour-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-full);
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .virtual-tour-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: scale(1.1);
+      }
+      .virtual-tour-hint {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 2;
+      }
+      .virtual-tour-hint .compass {
+        width: 64px;
+        height: 64px;
+        border-radius: var(--radius-full);
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--space-md);
+        color: var(--white);
+        animation: pulse 3s ease-in-out infinite;
+      }
+      .virtual-tour-hint p {
+        color: var(--white);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        margin: 0;
+      }
+      .social-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-md);
+      }
+      .social-card {
+        position: relative;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        aspect-ratio: 1;
+        cursor: pointer;
+      }
+      .social-card-bg {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition-slow);
+      }
+      .social-card:hover .social-card-bg {
+        transform: scale(1.08);
+      }
+      .social-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(49, 46, 129, 0.7),
+          rgba(139, 92, 246, 0.5)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: var(--transition);
+      }
+      .social-card:hover .social-card-overlay {
+        opacity: 1;
+      }
+      .social-card-overlay svg {
+        color: var(--white);
+        width: 32px;
+        height: 32px;
+      }
+      .social-card-platform {
+        position: absolute;
+        top: var(--space-sm);
+        right: var(--space-sm);
+        width: 32px;
+        height: 32px;
+        border-radius: var(--radius-full);
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        z-index: 2;
+        font-size: 0.75rem;
+      }
+      .share-section {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          var(--indigo-dark) 0%,
+          var(--indigo) 50%,
+          var(--lavender) 100%
+        );
+        padding: var(--space-5xl) 0;
+      }
+      .share-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.5;
+      }
+      .share-blob-1 {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: var(--lavender-light);
+        border-radius: var(--radius-full);
+        filter: blur(80px);
+        opacity: 0.12;
+        top: -100px;
+        right: -100px;
+        animation: float 20s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .share-blob-2 {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: var(--mint);
+        border-radius: var(--radius-full);
+        filter: blur(60px);
+        opacity: 0.1;
+        bottom: -80px;
+        left: -80px;
+        animation: floatReverse 18s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .share-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      .share-content h2 {
+        color: var(--white);
+        margin-bottom: var(--space-md);
+      }
+      .share-content p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.125rem;
+        margin-bottom: var(--space-xl);
+      }
+      .photo-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-xl);
+      }
+      @media (max-width: 1024px) {
+        .gallery-grid-custom {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .social-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .photo-stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 768px) {
+        .page-hero {
+          min-height: 40vh;
+        }
+        .gallery-grid-custom {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .gallery-item-wide {
+          grid-column: span 1;
+          aspect-ratio: 1;
+        }
+        .social-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .photo-stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .virtual-tour-card {
+          aspect-ratio: 16/9;
+        }
+      }
+      @media (max-width: 480px) {
+        .gallery-grid-custom {
+          grid-template-columns: 1fr;
+        }
+        .social-grid {
+          grid-template-columns: 1fr;
+        }
+        .photo-stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar white-bg">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-5" />
+          </svg>
+        </span>
+        Kindergarden
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a> <a href="home2.html">Home 2</a>
+        <a href="about.html">About</a> <a href="services.html">Programs</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="blog.html">Blog</a> <a href="contact.html">Contact</a>
+        </div>
+      <div class="nav-cta">
+        <div class="profile-wrap">
+          <button class="profile-btn" aria-label="Profile menu">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </button>
+          <div class="profile-dropdown">
+            <a href="login.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" y1="12" x2="3" y2="12" />
+              </svg>
+              Sign In / Register
+            </a>
+            <div class="divider"></div>
+            <a href="dashboard/user.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              User Dashboard
+            </a>
+            <a href="dashboard/admin.html">
+              <svg
+                class="dropdown-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+              Admin Dashboard
+            </a>
+          </div>
+        </div>
+        <button class="rtl-toggle" aria-label="Toggle language direction">RTL</button>
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+      </div>
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <section class="page-hero">
+      <div class="hero-floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <div class="container">
+        <div class="page-hero-content">
+          <div class="breadcrumb reveal">
+            <a href="index.html">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="vertical-align: middle; margin-right: 2px"
+              >
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+              Home
+            </a>
+            <span class="separator">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </span>
+            <span class="current">Gallery</span>
+          </div>
+          <h1 class="reveal" style="transition-delay: 0.1s">Our Gallery</h1>
+          <p
+            class="reveal"
+            style="
+              transition-delay: 0.2s;
+              color: rgba(255, 255, 255, 0.8);
+              font-size: 1.125rem;
+              max-width: 540px;
+            "
+          >
+            A visual journey through the laughter, learning, and little moments
+            that make Kindergarden a place where childhood shines.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="section gallery-section">
+      <div class="shape-blob shape-blob-1"></div>
+      <div class="shape-blob shape-blob-3"></div>
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Our Moments</span>
+          <h2 class="section-title">Captured in Color &amp; Joy</h2>
+          <p>
+            Every day at Kindergarden is a story waiting to be told. Browse
+            through our favorite snapshots of curiosity, creativity, and
+            community.
+          </p>
+        </div>
+        <div class="gallery-filters reveal">
+          <button class="gallery-filter active" data-filter="all">All</button>
+          <button class="gallery-filter" data-filter="classrooms">
+            Classrooms
+          </button>
+          <button class="gallery-filter" data-filter="activities">
+            Activities
+          </button>
+          <button class="gallery-filter" data-filter="events">Events</button>
+          <button class="gallery-filter" data-filter="facilities">
+            Facilities
+          </button>
+          <button class="gallery-filter" data-filter="arts">Arts</button>
+        </div>
+        <div class="gallery-grid-custom">
+          <div
+            class="gallery-item classrooms reveal-scale"
+            style="transition-delay: 0.05s"
+          >
+            <div
+              class="gallery-thumb"
+              style="
+                background: url(&quot;assets/images/gallery_classroom_1784219838321.png&quot;)
+                  center/cover no-repeat;
+              "
+            >
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.35)"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+              <svg
+                width="80"
+                height="80"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.12)"
+                stroke-width="0.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="position: absolute; bottom: -10px; right: -10px"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </div>
+            <span class="gallery-item-badge">Classrooms</span>
+            <div class="gallery-item-overlay">
+              <span>Morning Circle Time</span>
+              <small>Pre-Kindergarten Class</small>
+            </div>
+          </div>
+          <div
+            class="gallery-item activities gallery-item-tall reveal-scale"
+            style="transition-delay: 0.1s"
+          >
+            <div
+              class="gallery-thumb"
+              style="
+                background: url(&quot;assets/images/gallery_outdoor_1784219856859.png&quot;)
+                  center/cover no-repeat;
+              "
+            >
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="10" r="3" />
+                <path d="M7 20.7V17a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v3.7" />
+              </svg>
+              <div
+                style="
+                  position: absolute;
+                  bottom: var(--space-md);
+                  left: var(--space-md);
+                  right: var(--space-md);
+                  display: flex;
+                  gap: var(--space-sm);
+                  flex-wrap: wrap;
+                "
+              >
+                <span
+                  style="
+                    padding: 4px 12px;
+                    background: rgba(255, 255, 255, 0.12);
+                    border-radius: var(--radius-pill);
+                    color: rgba(255, 255, 255, 0.5);
+                    font-size: 0.625rem;
+                    font-weight: 600;
+                    backdrop-filter: blur(4px);
+                  "
+                  >Outdoor Play</span
+                >
+                <span
+                  style="
+                    padding: 4px 12px;
+                    background: rgba(255, 255, 255, 0.12);
+                    border-radius: var(--radius-pill);
+                    color: rgba(255, 255, 255, 0.5);
+                    font-size: 0.625rem;
+                    font-weight: 600;
+                    backdrop-filter: blur(4px);
+                  "
+                  >Sensory Play</span
+                >
+              </div>
+            </div>
+            <span class="gallery-item-badge">Activities</span>
+            <div class="gallery-item-overlay">
+              <span>Outdoor Discovery</span>
+              <small>Nature Play &amp; Exploration</small>
+            </div>
+          </div>
+          <div
+            class="gallery-item events reveal-scale"
+            style="transition-delay: 0.15s"
+          >
+            <div
+              class="gallery-thumb"
+              style="
+                background: url('assets/images/gallery_outdoor_1784219856859.png') center/cover no-repeat;
+              "
+            >
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              <div
+                style="
+                  position: absolute;
+                  top: var(--space-lg);
+                  right: var(--space-lg);
+                  text-align: center;
+                  color: rgba(255, 255, 255, 0.5);
+                "
+              >
+                <div
+                  style="
+                    font-family: var(--font-heading);
+                    font-weight: 800;
+                    font-size: 1.5rem;
+                    line-height: 1;
+                  "
+                >
+                  15
+                </div>
+                <div
+                  style="
+                    font-size: 0.625rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.08em;
+                  "
+                >
+                  Sep
+                </div>
+              </div>
+            </div>
+            <span class="gallery-item-badge">Events</span>
+            <div class="gallery-item-overlay">
+              <span>Fall Festival</span>
+              <small>Annual Community Celebration</small>
+            </div>
+          </div>
+          <div
+            class="gallery-item classrooms reveal-scale"
+            style="transition-delay: 0.2s"
+          >
+            <div
+              class="gallery-thumb"
+              style="
+                background: url('assets/images/hero_slide_1_1784219613259.png') center/cover no-repeat;
+              "
+            >
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path
+                  d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                />
+                <circle cx="12" cy="10" r="2" />
+                <path d="M12 12v4" />
+              </svg>
+            </div>
+            <span class="gallery-item-badge">Classrooms</span>
+            <div class="gallery-item-overlay">
+              <span>Storytime Corner</span>
+              <small>Library &amp; Reading Nook</small>
+            </div>
+          </div>
+          <div
+            class="gallery-item arts gallery-item-wide reveal-scale"
+            style="transition-delay: 0.25s"
+          >
+            <div
+              class="gallery-thumb"
+              style="
+                background: url(&quot;assets/images/gallery_art_1784219870257.png&quot;)
+                  center/cover no-repeat;
+              "
+            >
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                />
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+              <div
+                style="
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  display: flex;
+                  gap: var(--space-lg);
+                "
+              >
+                <span
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: var(--radius-full);
+                    background: rgba(255, 255, 255, 0.12);
+                  "
+                ></span>
+                <span
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: var(--radius-full);
+                    background: rgba(255, 255, 255, 0.15);
+                  "
+                ></span>
+                <span
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: var(--radius-full);
+                    background: rgba(255, 255, 255, 0.1);
+                  "
+                ></span>
+              </div>
+            </div>
+            <span class="gallery-item-badge">Arts</span>
+            <div class="gallery-item-overlay">
+              <span>Art Exhibition</span>
+              <small>Young Masters Gallery Show</small>
+            </div>
+          </div>
+          <div
+            class="gallery-item facilities reveal-scale"
+            style="transition-delay: 0.3s"
+          >
+            <div
+              class="gallery-thumb"
+              style="
+                background: url('assets/images/services_hero_1784220036014.png') center/cover no-repeat;
+              "
+            >
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 22V12l10-7 10 7v10" />
+                <rect x="6" y="14" width="4" height="8" />
+                <rect x="14" y="10" width="4" height="12" />
+              </svg>
+            </div>
+            <span class="gallery-item-badge">Facilities</span>
+            <div class="gallery-item-overlay">
+              <span>Sports Court</span> <small>Multi-Purpose Play Area</small>
+            </div>
+          </div>
+          <div
+            class="gallery-item activities reveal-scale"
+            style="transition-delay: 0.35s"
+          >
+            <div
+              class="gallery-thumb"
+              style="
+                background: url('assets/images/hero_slide_3_1784219647143.png') center/cover no-repeat;
+              "
+            >
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+                />
+                <circle cx="12" cy="13" r="4" />
+              </svg>
+              <div
+                style="
+                  position: absolute;
+                  bottom: var(--space-lg);
+                  left: var(--space-lg);
+                  right: var(--space-lg);
+                  text-align: center;
+                "
+              >
+                <div style="display: flex; justify-content: center; gap: 4px">
+                  <span
+                    style="
+                      width: 8px;
+                      height: 8px;
+                      border-radius: var(--radius-full);
+                      background: rgba(255, 255, 255, 0.2);
+                    "
+                  ></span>
+                  <span
+                    style="
+                      width: 8px;
+                      height: 8px;
+                      border-radius: var(--radius-full);
+                      background: rgba(255, 255, 255, 0.3);
+                    "
+                  ></span>
+                  <span
+                    style="
+                      width: 8px;
+                      height: 8px;
+                      border-radius: var(--radius-full);
+                      background: rgba(255, 255, 255, 0.2);
+                    "
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <span class="gallery-item-badge">Activities</span>
+            <div class="gallery-item-overlay">
+              <span>STEAM Lab</span>
+              <small>Robotics &amp; Coding Session</small>
+            </div>
+          </div>
+          <div
+            class="gallery-item events gallery-item-tall reveal-scale"
+            style="transition-delay: 0.4s"
+          >
+            <div
+              class="gallery-thumb"
+              style="
+                background: url(&quot;assets/images/gallery_music_1784219893482.png&quot;)
+                  center/cover no-repeat;
+              "
+            >
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              <div
+                style="
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                "
+              >
+                <svg
+                  width="64"
+                  height="64"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.12)"
+                  stroke-width="0.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+            </div>
+            <span class="gallery-item-badge">Events</span>
+            <div class="gallery-item-overlay">
+              <span>Music Concert</span>
+              <small>Annual Spring Performance</small>
+            </div>
+          </div>
+          <div
+            class="gallery-item arts reveal-scale"
+            style="transition-delay: 0.45s"
+          >
+            <div
+              class="gallery-thumb"
+              style="
+                background: url('assets/images/gallery_art_1784219870257.png') center/cover no-repeat;
+              "
+            >
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"
+                />
+              </svg>
+            </div>
+            <span class="gallery-item-badge">Arts</span>
+            <div class="gallery-item-overlay">
+              <span>Clay Sculptures</span> <small>Hands-On Art Studio</small>
+            </div>
+          </div>
+          <div
+            class="gallery-item facilities gallery-item-wide reveal-scale"
+            style="transition-delay: 0.5s"
+          >
+            <div
+              class="gallery-thumb"
+              style="
+                background: url('assets/images/gallery_music_1784219893482.png') center/cover no-repeat;
+              "
+            >
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+              <div
+                style="
+                  position: absolute;
+                  inset: 0;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: var(--space-xl);
+                "
+              >
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.12)"
+                  stroke-width="0.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                  <path d="M2 12l10 5 10-5" />
+                </svg>
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.08)"
+                  stroke-width="0.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                  <path d="M2 12l10 5 10-5" />
+                </svg>
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.12)"
+                  stroke-width="0.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                  <path d="M2 12l10 5 10-5" />
+                </svg>
+              </div>
+            </div>
+            <span class="gallery-item-badge">Facilities</span>
+            <div class="gallery-item-overlay">
+              <span>Performing Arts Studio</span>
+              <small>Music, Dance &amp; Drama Space</small>
+            </div>
+          </div>
+          <div
+            class="gallery-item classrooms reveal-scale"
+            style="transition-delay: 0.55s"
+          >
+            <div
+              class="gallery-thumb"
+              style="
+                background: url('assets/images/gallery_classroom_1784219838321.png') center/cover no-repeat;
+              "
+            >
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </div>
+            <span class="gallery-item-badge">Classrooms</span>
+            <div class="gallery-item-overlay">
+              <span>Montessori Materials</span> <small>Hands-On Learning</small>
+            </div>
+          </div>
+          <div
+            class="gallery-item activities reveal-scale"
+            style="transition-delay: 0.6s"
+          >
+            <div
+              class="gallery-thumb"
+              style="
+                background: url('assets/images/hero_slide_2_1784219628941.png') center/cover no-repeat;
+              "
+            >
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M8 12l2 2 4-4" />
+              </svg>
+            </div>
+            <span class="gallery-item-badge">Activities</span>
+            <div class="gallery-item-overlay">
+              <span>Gardening Club</span>
+              <small>Planting &amp; Growing Together</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section gallery-section-alt">
+      <div class="shape-blob shape-blob-2"></div>
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Watch &amp; Explore</span>
+          <h2 class="section-title">Video Gallery</h2>
+          <p>
+            Step inside our classrooms and see the magic of learning in motion
+            through these featured videos.
+          </p>
+        </div>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+          "
+        >
+          <div class="video-card reveal" style="transition-delay: 0.1s">
+            <div
+              class="video-card-bg"
+              style="
+                background: linear-gradient(135deg, rgba(49,46,129,0.5), rgba(79,70,229,0.5)), url('assets/images/hero_slide_1_1784219613259.png') center/cover no-repeat;
+              "
+            >
+              <div class="video-card-overlay"></div>
+              <div style="position: absolute; inset: 0; overflow: hidden">
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 400 225"
+                  preserveAspectRatio="none"
+                  style="opacity: 0.08; position: absolute; inset: 0"
+                >
+                  <circle cx="80" cy="60" r="30" fill="rgba(255,255,255,0.3)" />
+                  <circle
+                    cx="320"
+                    cy="170"
+                    r="40"
+                    fill="rgba(255,255,255,0.2)"
+                  />
+                  <circle
+                    cx="200"
+                    cy="30"
+                    r="20"
+                    fill="rgba(255,255,255,0.15)"
+                  />
+                  <circle
+                    cx="50"
+                    cy="180"
+                    r="15"
+                    fill="rgba(255,255,255,0.1)"
+                  />
+                  <circle
+                    cx="350"
+                    cy="40"
+                    r="25"
+                    fill="rgba(255,255,255,0.12)"
+                  />
+                </svg>
+              </div>
+              <div style="position: relative; z-index: 2; text-align: center">
+                <button class="play-btn" aria-label="Play video">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    stroke="none"
+                  >
+                    <polygon points="5 3 19 12 5 21 5 3" />
+                  </svg>
+                </button>
+              </div>
+              <span class="video-card-duration">4:32</span>
+              <div class="video-card-info">
+                <h4>A Day in the Life at Kindergarden</h4>
+                <p>
+                  Follow our students through a full day of learning, play, and
+                  discovery.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="video-card reveal" style="transition-delay: 0.2s">
+            <div
+              class="video-card-bg"
+              style="
+                background: linear-gradient(135deg, rgba(6,95,70,0.5), rgba(5,150,105,0.5)), url('assets/images/gallery_outdoor_1784219856859.png') center/cover no-repeat;
+              "
+            >
+              <div class="video-card-overlay"></div>
+              <div style="position: absolute; inset: 0; overflow: hidden">
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 400 225"
+                  preserveAspectRatio="none"
+                  style="opacity: 0.08; position: absolute; inset: 0"
+                >
+                  <circle
+                    cx="100"
+                    cy="80"
+                    r="35"
+                    fill="rgba(255,255,255,0.25)"
+                  />
+                  <circle
+                    cx="300"
+                    cy="140"
+                    r="45"
+                    fill="rgba(255,255,255,0.15)"
+                  />
+                  <circle
+                    cx="200"
+                    cy="190"
+                    r="20"
+                    fill="rgba(255,255,255,0.1)"
+                  />
+                  <circle
+                    cx="60"
+                    cy="180"
+                    r="18"
+                    fill="rgba(255,255,255,0.12)"
+                  />
+                  <circle
+                    cx="340"
+                    cy="50"
+                    r="28"
+                    fill="rgba(255,255,255,0.1)"
+                  />
+                </svg>
+              </div>
+              <div style="position: relative; z-index: 2; text-align: center">
+                <button class="play-btn" aria-label="Play video">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    stroke="none"
+                  >
+                    <polygon points="5 3 19 12 5 21 5 3" />
+                  </svg>
+                </button>
+              </div>
+              <span class="video-card-duration">6:18</span>
+              <div class="video-card-info">
+                <h4>Outdoor Learning &amp; Nature Exploration</h4>
+                <p>
+                  See how our nature campus becomes an extension of the
+                  classroom.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="shape-blob shape-blob-1"></div>
+      <div class="shape-blob shape-blob-3"></div>
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Explore Every Corner</span>
+          <h2 class="section-title">Virtual Tour</h2>
+          <p>
+            Take a panoramic walk through our campus. Drag to look around and
+            discover the spaces where your child will learn and grow.
+          </p>
+        </div>
+        <div class="virtual-tour-card reveal">
+          <div
+            class="virtual-tour-bg"
+            style="
+              background: linear-gradient(135deg, rgba(30,27,75,0.7), rgba(49,46,129,0.7)), url('assets/images/hero_slide_3_1784219647143.png') center/cover no-repeat;
+            "
+          >
+            <div class="virtual-tour-overlay"></div>
+            <div style="position: absolute; inset: 0; overflow: hidden">
+              <svg
+                width="100%"
+                height="100%"
+                viewBox="0 0 800 300"
+                preserveAspectRatio="none"
+                style="opacity: 0.06; position: absolute"
+              >
+                <circle cx="100" cy="120" r="60" fill="rgba(255,255,255,0.2)" />
+                <circle cx="700" cy="80" r="80" fill="rgba(255,255,255,0.15)" />
+                <circle cx="400" cy="200" r="50" fill="rgba(255,255,255,0.1)" />
+                <circle cx="250" cy="50" r="40" fill="rgba(255,255,255,0.12)" />
+                <circle
+                  cx="600"
+                  cy="180"
+                  r="45"
+                  fill="rgba(255,255,255,0.08)"
+                />
+                <circle cx="50" cy="240" r="30" fill="rgba(255,255,255,0.1)" />
+                <circle
+                  cx="750"
+                  cy="220"
+                  r="35"
+                  fill="rgba(255,255,255,0.12)"
+                />
+              </svg>
+            </div>
+            <div class="virtual-tour-hint">
+              <div class="compass">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polygon
+                    points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"
+                  />
+                </svg>
+              </div>
+              <p>Drag to explore 360° campus view</p>
+            </div>
+            <div class="virtual-tour-controls">
+              <button class="virtual-tour-btn" aria-label="Zoom in">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  <line x1="11" y1="8" x2="11" y2="14" />
+                  <line x1="8" y1="11" x2="14" y2="11" />
+                </svg>
+              </button>
+              <button class="virtual-tour-btn" aria-label="Fullscreen">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"
+                  />
+                </svg>
+              </button>
+              <button class="virtual-tour-btn" aria-label="Play auto tour">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+              </button>
+            </div>
+            <div
+              style="
+                position: absolute;
+                bottom: var(--space-xl);
+                right: var(--space-xl);
+                z-index: 2;
+              "
+            >
+              <span
+                style="
+                  padding: 8px 16px;
+                  background: rgba(255, 255, 255, 0.1);
+                  backdrop-filter: blur(8px);
+                  border: 1px solid rgba(255, 255, 255, 0.15);
+                  border-radius: var(--radius-pill);
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 0.8125rem;
+                  font-weight: 600;
+                  font-family: var(--font-heading);
+                  display: flex;
+                  align-items: center;
+                  gap: var(--space-sm);
+                "
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Kindergarden Campus
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section gallery-section-alt">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">By the Numbers</span>
+          <h2 class="section-title">Our Photo Legacy</h2>
+          <p>
+            Over the years, we've captured thousands of moments that tell the
+            story of our vibrant community.
+          </p>
+        </div>
+        <div class="photo-stats-grid">
+          <div class="stat-item reveal-scale" style="transition-delay: 0.05s">
+            <div class="stat-number">12,850+</div>
+            <div class="stat-label">Photos Taken</div>
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--lavender)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="margin: var(--space-sm) auto 0; opacity: 0.3"
+            >
+              <path
+                d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+              />
+              <circle cx="12" cy="13" r="4" />
+            </svg>
+          </div>
+          <div class="stat-item reveal-scale" style="transition-delay: 0.1s">
+            <div class="stat-number">180+</div>
+            <div class="stat-label">Events Covered</div>
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--mint-dark)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="margin: var(--space-sm) auto 0; opacity: 0.3"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <div class="stat-item reveal-scale" style="transition-delay: 0.15s">
+            <div class="stat-number">18</div>
+            <div class="stat-label">Years of Memories</div>
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--peach-dark)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="margin: var(--space-sm) auto 0; opacity: 0.3"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <div class="stat-item reveal-scale" style="transition-delay: 0.2s">
+            <div class="stat-number">3,200+</div>
+            <div class="stat-label">Smiles Captured</div>
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--coral)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="margin: var(--space-sm) auto 0; opacity: 0.3"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+              <line x1="9" y1="9" x2="9.01" y2="9" />
+              <line x1="15" y1="9" x2="15.01" y2="9" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="share-section">
+      <div class="share-blob-1"></div>
+      <div class="share-blob-2"></div>
+      <div class="container">
+        <div class="share-content reveal">
+          <div
+            style="
+              width: 72px;
+              height: 72px;
+              margin: 0 auto var(--space-lg);
+              border-radius: var(--radius-xl);
+              background: rgba(255, 255, 255, 0.1);
+              border: 1px solid rgba(255, 255, 255, 0.15);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: var(--mint);
+            "
+          >
+            <svg
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+            </svg>
+          </div>
+          <h2>Share Your Memories</h2>
+          <p>
+            Have a special moment from Kindergarden? Share your photos with us
+            using
+            <strong style="color: var(--mint)">#MyKindergardenStory</strong> and
+            you might be featured in our gallery!
+          </p>
+          <div
+            style="
+              display: flex;
+              gap: var(--space-md);
+              justify-content: center;
+              flex-wrap: wrap;
+            "
+          >
+            <a href="#" class="btn btn-secondary btn-lg">Share on Instagram</a>
+            <a href="#" class="btn btn-glass btn-lg">Upload Your Photos</a>
+          </div>
+          <div
+            style="
+              margin-top: var(--space-xl);
+              display: flex;
+              justify-content: center;
+              gap: var(--space-lg);
+              flex-wrap: wrap;
+            "
+          >
+            <span
+              style="
+                display: flex;
+                align-items: center;
+                gap: var(--space-sm);
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 0.875rem;
+              "
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Tag us for a feature
+            </span>
+            <span
+              style="
+                display: flex;
+                align-items: center;
+                gap: var(--space-sm);
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 0.875rem;
+              "
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Weekly featured photos
+            </span>
+            <span
+              style="
+                display: flex;
+                align-items: center;
+                gap: var(--space-sm);
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 0.875rem;
+              "
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Monthly giveaway
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo">
+              <span class="logo-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
+                </svg>
+              </span>
+              Kindergarden
+            </a>
+            <p>
+              Kindergarden International is a premium IB World School and
+              Cambridge International Academy, offering world-class education
+              for children aged 2 to 12 in a nurturing, inquiry-driven
+              environment.
+            </p>
+            <div class="footer-social">
+              <a
+                href="#"
+                aria-label="Facebook"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="Twitter"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="Instagram"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="YouTube"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.6);
+                  transition: var(--transition);
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"
+                  />
+                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="services.html">Programs</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Programs</h4>
+            <ul class="footer-links">
+              <li><a href="services.html">Montessori</a></li>
+              <li><a href="services.html">Cambridge</a></li>
+              <li><a href="services.html">IB PYP</a></li>
+              <li><a href="services.html">After School</a></li>
+              <li><a href="services.html">Summer Camp</a></li>
+              <li><a href="services.html">Parent Workshops</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Get in Touch</h4>
+            <ul class="footer-contact">
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>123 Learning Lane,<br />Singapore 189721</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+                <span>+65 6789 0123</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <span>hello@kindergarden.edu</span>
+              </li>
+              <li>
+                <svg
+                  class="icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                <span
+                  >Mon–Fri: 7:30 AM – 6:00 PM<br />Sat: 8:00 AM – 12:00 PM</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >&copy; 2026 Kindergarden International. All rights reserved.</span
+          >
+          <div style="display: flex; gap: var(--space-lg)">
+            <a
+              href="privacy.html"
+              style="color: rgba(255, 255, 255, 0.5); font-size: 0.875rem"
+              >Privacy Policy</a
+            >
+            <a
+              href="terms.html"
+              style="color: rgba(255, 255, 255, 0.5); font-size: 0.875rem"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Back to Top -->
+    <button class="back-to-top" aria-label="Back to top">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="12" y1="19" x2="12" y2="5" />
+        <polyline points="5 12 12 5 19 12" />
+      </svg>
+    </button>
+    <script src="js/main.js"></script>
+  </body>
+</html>

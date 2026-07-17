@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account — Kindergarden</title>
+    <meta
+      name="description"
+      content="Create your Kindergarden parent account to enroll your child, track progress, and stay connected with teachers."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Page Transition -->
+    <!-- ===== AUTH PAGE ===== -->
+    <main class="auth-page">
+      <!-- Floating Shapes -->
+      <div class="shape-blob shape-blob-1"></div>
+      <div class="shape-blob shape-blob-2"></div>
+      <div class="shape-blob shape-blob-3"></div>
+      <div class="auth-container">
+        <div class="auth-card">
+          <!-- Header -->
+          <div class="auth-header">
+            <a href="index.html" class="logo">
+              <span class="logo-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
+                </svg>
+              </span>
+              Kindergarden
+            </a>
+            <h2>Create Account</h2>
+            <p>Join our community and start your child's learning journey</p>
+          </div>
+          <!-- Form -->
+          <form class="auth-form" novalidate>
+            <div class="form-group">
+              <label for="fullname">Full Name</label>
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                class="form-control"
+                placeholder="Parent's full name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                placeholder="parent@example.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="form-control"
+                placeholder="(555) 123-4567"
+                required
+              />
+            </div>
+            <div class="form-group" style="position: relative">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-control"
+                placeholder="Create a strong password"
+                required
+                style="padding-right: 48px"
+              />
+              <button
+                type="button"
+                class="password-toggle"
+                aria-label="Toggle password visibility"
+                style="
+                  position: absolute;
+                  right: 14px;
+                  bottom: 14px;
+                  background: none;
+                  border: none;
+                  cursor: pointer;
+                  padding: 4px;
+                  color: var(--gray-400);
+                  transition: var(--transition);
+                  display: flex;
+                "
+              >
+                <svg
+                  class="eye-icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                <svg
+                  class="eye-off-icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="display: none"
+                >
+                  <path
+                    d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"
+                  />
+                  <path
+                    d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"
+                  />
+                  <line x1="1" y1="1" x2="23" y2="23" />
+                </svg>
+              </button>
+            </div>
+            <div class="form-group" style="position: relative">
+              <label for="confirm-password">Confirm Password</label>
+              <input
+                type="password"
+                id="confirm-password"
+                name="confirm-password"
+                class="form-control"
+                placeholder="Re-enter your password"
+                required
+                style="padding-right: 48px"
+              />
+              <button
+                type="button"
+                class="password-toggle"
+                aria-label="Toggle password visibility"
+                style="
+                  position: absolute;
+                  right: 14px;
+                  bottom: 14px;
+                  background: none;
+                  border: none;
+                  cursor: pointer;
+                  padding: 4px;
+                  color: var(--gray-400);
+                  transition: var(--transition);
+                  display: flex;
+                "
+              >
+                <svg
+                  class="eye-icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                <svg
+                  class="eye-off-icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="display: none"
+                >
+                  <path
+                    d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"
+                  />
+                  <path
+                    d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"
+                  />
+                  <line x1="1" y1="1" x2="23" y2="23" />
+                </svg>
+              </button>
+            </div>
+            <div class="form-group">
+              <label
+                style="
+                  display: flex;
+                  align-items: flex-start;
+                  gap: var(--space-sm);
+                  cursor: pointer;
+                  font-size: 0.875rem;
+                  color: var(--gray-600);
+                  line-height: 1.6;
+                "
+              >
+                <input
+                  type="checkbox"
+                  name="terms"
+                  required
+                  style="
+                    width: 16px;
+                    height: 16px;
+                    accent-color: var(--lavender);
+                    cursor: pointer;
+                    margin-top: 3px;
+                    min-width: 16px;
+                  "
+                />
+                <span
+                  >I agree to the
+                  <a
+                    href="terms.html"
+                    style="
+                      color: var(--lavender);
+                      font-weight: 600;
+                      text-decoration: underline;
+                    "
+                    >Terms of Service</a
+                  >
+                  and
+                  <a
+                    href="privacy.html"
+                    style="
+                      color: var(--lavender);
+                      font-weight: 600;
+                      text-decoration: underline;
+                    "
+                    >Privacy Policy</a
+                  ></span
+                >
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">
+              Create Account
+            </button>
+          </form>
+          <!-- Divider -->
+          <div class="auth-divider">or sign up with</div>
+          <!-- Social -->
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: var(--space-md);
+            "
+          >
+            <button
+              type="button"
+              class="btn btn-outline"
+              style="font-size: 0.875rem; padding: 12px 16px"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="none"
+              >
+                <path
+                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+                  fill="#4285F4"
+                />
+                <path
+                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  fill="#34A853"
+                />
+                <path
+                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                  fill="#FBBC05"
+                />
+                <path
+                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                  fill="#EA4335"
+                />
+              </svg>
+              Google
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline"
+              style="font-size: 0.875rem; padding: 12px 16px"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  fill="#1877F2"
+                  stroke="#1877F2"
+                />
+              </svg>
+              Facebook
+            </button>
+          </div>
+          <!-- Footer -->
+          <div class="auth-footer">
+            Already have an account? <a href="login.html">Sign In</a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Back to Top -->
+    <button class="back-to-top" aria-label="Back to top">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="18 15 12 9 6 15" />
+      </svg>
+    </button>
+    <!-- Password Toggle Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {      // Password visibility toggle      document.querySelectorAll('.password-toggle').forEach(toggle => {        toggle.addEventListener('click', () => {          const input = toggle.closest('.form-group').querySelector('input');          const eye = toggle.querySelector('.eye-icon');          const eyeOff = toggle.querySelector('.eye-off-icon');          const isPassword = input.type === 'password';          input.type = isPassword ? 'text' : 'password';          eye.style.display = isPassword ? 'none' : '';          eyeOff.style.display = isPassword ? '' : 'none';        });      });    });
+    </script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
