@@ -854,3 +854,166 @@
     max-width: 100%;
   }
 }
+
+/* ============================================================
+   Global Overrides & Specific Task Fixes 
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  /* Prevent horizontal scrolling globally */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Ensure images, cards, and forms don't overflow */
+  img, .card, .card-premium, .card-glass, .form-control, form, .container, .container-wide, .container-narrow {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Prevent text overflow */
+  p, h1, h2, h3, h4, h5, h6, .btn, span, a, div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Hide 25 Years card on tablet and mobile */
+  #about .grid-2 > .reveal-left > div > div:last-child {
+    display: none !important;
+  }
+  
+  /* Welcome section image wrapper fix */
+  #about .grid-2 > .reveal-left > div > div:first-child {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  /* Navbar fixes for Tablet and Mobile (320px - 1023px) */
+  .navbar {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important; /* Prevent horizontal scroll from navbar */
+    gap: 8px !important;
+  }
+
+  .navbar .logo {
+    display: flex !important;
+    align-items: center !important;
+    white-space: nowrap !important; /* Do not wrap into multiple lines */
+    font-size: 1.1rem !important; /* Reduce only the font-size */
+    flex-shrink: 1 !important; /* Allow shrinking if needed */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important; /* Prevent overflow */
+    gap: 6px !important;
+    min-width: 0 !important;
+  }
+  
+  .navbar .logo .logo-icon {
+    flex-shrink: 0 !important; /* Logo should keep its aspect ratio */
+  }
+
+  .nav-cta {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    flex-shrink: 0 !important;
+    gap: 6px !important; /* Maintain equal spacing */
+  }
+
+  .nav-cta button, 
+  .profile-btn, 
+  .rtl-toggle, 
+  .theme-toggle, 
+  .hamburger {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    padding: 0 !important;
+    border-radius: 50% !important; /* Keep circular buttons */
+    flex-shrink: 0 !important; /* Prevent squishing */
+  }
+}
+
+@media (max-width: 991px) {
+  /* Hero stats overlapping fix */
+  #home .hero-stats, .hero-stats {
+    position: relative !important;
+    z-index: 10;
+    margin-top: var(--space-2xl) !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: var(--space-md) !important;
+  }
+  
+  /* Designed for Every Stage of Discovery (Programs) - Tablet */
+  #programs .container > div:nth-child(2) {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--space-lg) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Navbar height reduced only on mobile */
+  .navbar {
+    height: 60px !important;
+    gap: 4px !important;
+  }
+  
+  .navbar .logo {
+    font-size: 0.95rem !important;
+    gap: 4px !important;
+  }
+  
+  .navbar .logo .logo-icon {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  
+  .nav-cta {
+    gap: 4px !important;
+  }
+  
+  .nav-cta button, 
+  .profile-btn, 
+  .rtl-toggle, 
+  .theme-toggle, 
+  .hamburger {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+  }
+  
+  /* Hero stats mobile */
+  #home .hero-stats, .hero-stats {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  
+  /* Designed for Every Stage of Discovery (Programs) - Mobile */
+  #programs .container > div:nth-child(2) {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Global Adjustments */
+  .section {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+  
+  .grid-2, .grid-3, .grid-4 {
+    gap: var(--space-lg) !important;
+  }
+}
+
