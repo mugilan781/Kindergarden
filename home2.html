@@ -113,20 +113,21 @@
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: 12px 18px;
-        background: rgba(255, 255, 255, 0.15);
+        padding: 14px 20px;
+        background: rgba(15, 23, 42, 0.85); /* Rich dark slate glass for contrast */
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.18);
         border-radius: 20px;
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.3);
         color: var(--white);
         z-index: 10;
-        transition: transform 0.3s ease;
+        transition: all 0.3s ease;
       }
       .hero2-floating-card:hover {
-        transform: scale(1.05);
-        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.06);
+        background: rgba(30, 41, 59, 0.9); /* Subtle hover shift */
+        box-shadow: 0 25px 50px rgba(15, 23, 42, 0.4);
       }
       .hero2-floating-card .card-icon {
         display: flex;
@@ -143,21 +144,24 @@
       }
       .hero2-floating-card .card-label {
         font-size: 0.75rem;
-        font-weight: 500;
-        opacity: 0.85;
+        font-weight: 600;
+        color: #e2e8f0;
         display: block;
+        margin-bottom: 2px;
       }
       .hero2-floating-card .card-number {
-        font-size: 1.125rem;
-        font-weight: 500;
+        font-size: 1.25rem;
+        font-weight: 700;
         font-family: var(--font-heading);
         display: block;
         color: #FFFFFF !important;
       }
       .hero2-floating-card .card-sublabel {
         font-size: 0.7rem;
-        opacity: 0.7;
+        color: #e2e8f0; /* Increased contrast for Students text label */
+        font-weight: 600;
         display: block;
+        margin-top: 2px;
       }
       .hero2-floating-card.card-1 {
         top: 8%;
@@ -186,28 +190,120 @@
         0%, 100% { transform: translateY(0) rotate(0deg); }
         50% { transform: translateY(-12px) rotate(1deg); }
       }
-      .hero2-stats {
+      /* Modern Hero Stats Panel */
+      .hero2-stats-container {
+        margin-top: var(--space-2xl);
+        padding-top: var(--space-lg);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        width: 100%;
+        max-width: 600px;
+      }
+      .hero2-stats-panel {
         display: flex;
-        gap: var(--space-2xl);
-        margin-top: var(--space-3xl);
-        padding-top: var(--space-xl);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        align-items: center;
+        gap: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        padding: 16px 24px;
+        box-shadow: 
+          0 10px 30px rgba(0, 0, 0, 0.15),
+          inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        position: relative;
       }
-      .hero2-stat h3 {
-        color: var(--white);
-        font-size: 2rem;
-        font-weight: 500;
+      .hero2-stat-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+        position: relative;
+        transition: transform 0.3s ease;
+      }
+      .hero2-stat-item:hover {
+        transform: translateY(-2px);
+      }
+      .stat-icon-wrapper {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .stat-icon-wrapper.mint {
+        background: rgba(110, 231, 183, 0.12);
+        color: var(--mint);
+        box-shadow: 0 0 15px rgba(110, 231, 183, 0.1);
+      }
+      .stat-icon-wrapper.peach {
+        background: rgba(253, 186, 116, 0.12);
+        color: var(--peach);
+        box-shadow: 0 0 15px rgba(253, 186, 116, 0.1);
+      }
+      .stat-icon-wrapper.lavender {
+        background: rgba(167, 139, 250, 0.12);
+        color: var(--lavender-light);
+        box-shadow: 0 0 15px rgba(167, 139, 250, 0.1);
+      }
+      .stat-info {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.25;
+      }
+      .stat-val {
         font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 1.375rem;
+        letter-spacing: -0.01em;
       }
-      .hero2-stats .stat-number {
-        background: none !important;
-        -webkit-text-fill-color: #FFFFFF !important;
-        color: #FFFFFF !important;
+      .stat-val.mint-grad {
+        background: linear-gradient(135deg, var(--mint), #34d399);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
-      .hero2-stat p {
-        color: rgba(255, 255, 255, 0.55);
-        font-size: 0.8125rem;
-        margin: 0;
+      .stat-val.peach-grad {
+        background: linear-gradient(135deg, var(--peach), #fb923c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .stat-val.lavender-grad {
+        background: linear-gradient(135deg, var(--lavender-light), #a78bfa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .stat-lbl {
+        font-size: 0.725rem;
+        color: #f8fafc; /* High contrast soft white for stats labels */
+        font-weight: 600;
+      }
+      /* Stat badge styles removed */
+      .hero2-stat-divider {
+        width: 1px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.08);
+      }
+      @media (max-width: 768px) {
+        .hero2-stats-panel {
+          flex-direction: column;
+          gap: 16px;
+          padding: 20px;
+        }
+        .hero2-stat-divider {
+          width: 100%;
+          height: 1px;
+          background: rgba(255, 255, 255, 0.08);
+        }
+        .hero2-stat-item {
+          width: 100%;
+          justify-content: flex-start;
+        }
+        /* Mobile stat badges styles removed */
       }
       .hero2-shapes {
         position: absolute;
@@ -308,7 +404,7 @@
         flex-shrink: 0;
       }
       .program-card p {
-        color: var(--gray-500);
+        color: var(--gray-700);
         font-size: 0.875rem;
         line-height: 1.7;
         margin: 0 0 var(--space-md) 0;
@@ -408,6 +504,7 @@
         font-weight: 500;
         margin-top: 4px;
       }
+      [data-theme="dark"] .stat2-number {
         font-size: 2.5rem;
         line-height: 1;
         background: linear-gradient(135deg, #FFFFFF 40%, rgba(255,255,255,0.6));
@@ -416,7 +513,7 @@
         background-clip: text;
         letter-spacing: -0.02em;
       }
-      .stat2-label {
+      [data-theme="dark"] .stat2-label {
         font-size: 0.8125rem;
         color: rgba(255,255,255,0.5);
         margin-top: 4px;
@@ -497,7 +594,11 @@
         background: rgba(30, 27, 75, 0.35);
       }
       .video-play {
-        position: relative;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -50px;
         z-index: 3;
         width: 100px;
         height: 100px;
@@ -512,10 +613,11 @@
         transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         cursor: pointer;
       }
-      .video-play:hover {
-        transform: scale(1.08);
+      .video-preview:hover .video-play {
+        transform: scale(1.1);
         background: rgba(255, 255, 255, 0.25);
-        border-color: rgba(255, 255, 255, 0.4);
+        border-color: rgba(255, 255, 255, 0.45);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
       }
       .video-play-inner {
         width: 80px;
@@ -589,8 +691,8 @@
         justify-content: center;
       }
       .faculty-avatar {
-        width: 140px;
-        height: 140px;
+        width: 170px;
+        height: 170px;
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -615,9 +717,13 @@
         object-fit: cover;
         border-radius: 50%;
         z-index: 1;
+        transition: var(--transition);
       }
       .faculty-card:hover .faculty-avatar-ring {
         transform: scale(1.06);
+      }
+      .faculty-card:hover .faculty-img {
+        transform: scale(1.08);
       }
       .faculty-card-body {
         padding: var(--space-lg) var(--space-xl) var(--space-xl);
@@ -1016,8 +1122,8 @@
         .hero2-actions {
           justify-content: center;
         }
-        .hero2-stats {
-          justify-content: center;
+        .hero2-stats-container {
+          margin: var(--space-xl) auto 0;
         }
         .hero2-illustration {
           max-width: 440px;
@@ -1320,18 +1426,52 @@
               Take a Tour
             </a>
           </div>
-          <div class="hero2-stats">
-            <div class="hero2-stat reveal">
-              <h3><span class="stat-number">500+</span></h3>
-              <p>Happy Students</p>
-            </div>
-            <div class="hero2-stat reveal">
-              <h3><span class="stat-number">48+</span></h3>
-              <p>Expert Teachers</p>
-            </div>
-            <div class="hero2-stat reveal">
-              <h3><span class="stat-number">14</span></h3>
-              <p>Years Journey</p>
+          <div class="hero2-stats-container reveal">
+            <div class="hero2-stats-panel">
+              <div class="hero2-stat-item">
+                <div class="stat-icon-wrapper mint">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-val mint-grad">500+</span>
+                  <span class="stat-lbl">Happy Students</span>
+                </div>
+              </div>
+              
+              <div class="hero2-stat-divider"></div>
+              
+              <div class="hero2-stat-item">
+                <div class="stat-icon-wrapper peach">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                    <path d="M6 12v5c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-5" />
+                  </svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-val peach-grad">48+</span>
+                  <span class="stat-lbl">Expert Teachers</span>
+                </div>
+              </div>
+              
+              <div class="hero2-stat-divider"></div>
+              
+              <div class="hero2-stat-item">
+                <div class="stat-icon-wrapper lavender">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-val lavender-grad">14</span>
+                  <span class="stat-lbl">Years Journey</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1592,9 +1732,26 @@
             how we make learning an adventure every single day.
           </p>
         </div>
-        <div class="video-preview reveal-scale">
+        <div class="video-preview reveal-scale" onclick="playVirtualTourVideo(this)">
           <div class="video-preview-bg">
-            <iframe style="position: absolute; inset: 0; width: 100%; height: 100%;" src="https://www.youtube-nocookie.com/embed/za_TbN734Dk?si=SpMQXNMs17vBHvXB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <img src="assets/images/video_thumbnail.png" alt="Virtual Tour Thumbnail" class="video-thumbnail" />
+            <div class="video-overlay"></div>
+            <div class="video-play">
+              <div class="video-play-pulse"></div>
+              <div class="video-play-inner">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="none"
+                  style="color: var(--white); margin-left: 3px;"
+                >
+                  <polygon points="5 3 19 12 5 21" />
+                </svg>
+              </div>
+            </div>
+            <div id="yt-iframe-placeholder" data-src="https://www.youtube-nocookie.com/embed/za_TbN734Dk?si=SpMQXNMs17vBHvXB&autoplay=1"></div>
           </div>
           <div class="video-caption">
             <svg
@@ -1615,6 +1772,36 @@
         </div>
       </div>
     </section>
+    <script>
+      function playVirtualTourVideo(container) {
+        if (container.querySelector('iframe')) return;
+        
+        const placeholder = container.querySelector('#yt-iframe-placeholder');
+        if (!placeholder) return;
+        const src = placeholder.getAttribute('data-src');
+        
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('style', 'position: absolute; inset: 0; width: 100%; height: 100%; z-index: 10; border: none;');
+        iframe.setAttribute('src', src);
+        iframe.setAttribute('title', 'YouTube video player');
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        iframe.setAttribute('allowfullscreen', 'true');
+        
+        const bg = container.querySelector('.video-preview-bg');
+        if (bg) {
+          bg.appendChild(iframe);
+        }
+        
+        const thumbnail = container.querySelector('.video-thumbnail');
+        const overlay = container.querySelector('.video-overlay');
+        const playBtn = container.querySelector('.video-play');
+        if (thumbnail) thumbnail.style.display = 'none';
+        if (overlay) overlay.style.display = 'none';
+        if (playBtn) playBtn.style.display = 'none';
+      }
+    </script>
     <!-- 5. FACULTY HIGHLIGHTS -->
     <section class="section" id="faculty">
       <div class="container">
@@ -1636,7 +1823,7 @@
                   class="faculty-avatar-ring"
                   style="border-color: rgba(139, 92, 246, 0.3)"
                 ></div>
-                <img src="assets/images/teacher_sarah.png" alt="Sarah Mitchell" class="faculty-img" loading="lazy" />
+                <img src="assets/images/teacher_sarah_highres.png" alt="Sarah Mitchell" class="faculty-img" loading="lazy" />
               </div>
             </div>
             <div class="faculty-card-body">
@@ -1647,9 +1834,24 @@
                 about creating inclusive, joyful learning environments.
               </div>
               <div class="faculty-social">
-                <a href="#" aria-label="LinkedIn">in</a>
-                <a href="#" aria-label="Twitter">X</a>
-                <a href="#" aria-label="Email">@</a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </a>
+                <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                  </svg>
+                </a>
+                <a href="mailto:sarah.mitchell@kindergarden.edu" aria-label="Email">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
@@ -1660,7 +1862,7 @@
                   class="faculty-avatar-ring"
                   style="border-color: rgba(110, 231, 183, 0.3)"
                 ></div>
-                <img src="assets/images/teacher_james.png" alt="James Chen" class="faculty-img" loading="lazy" />
+                <img src="assets/images/teacher_james_highres.png" alt="James Chen" class="faculty-img" loading="lazy" />
               </div>
             </div>
             <div class="faculty-card-body">
@@ -1671,9 +1873,24 @@
                 alive through hands-on experiments and discovery.
               </div>
               <div class="faculty-social">
-                <a href="#" aria-label="LinkedIn">in</a>
-                <a href="#" aria-label="Twitter">X</a>
-                <a href="#" aria-label="Email">@</a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </a>
+                <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                  </svg>
+                </a>
+                <a href="mailto:james.chen@kindergarden.edu" aria-label="Email">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
@@ -1684,7 +1901,7 @@
                   class="faculty-avatar-ring"
                   style="border-color: rgba(253, 186, 116, 0.3)"
                 ></div>
-                <img src="assets/images/teacher_elena.png" alt="Elena Rodriguez" class="faculty-img" loading="lazy" />
+                <img src="assets/images/teacher_elena_highres.png" alt="Elena Rodriguez" class="faculty-img" loading="lazy" />
               </div>
             </div>
             <div class="faculty-card-body">
@@ -1695,9 +1912,24 @@
                 spark imagination and self-expression in every child.
               </div>
               <div class="faculty-social">
-                <a href="#" aria-label="LinkedIn">in</a>
-                <a href="#" aria-label="Twitter">X</a>
-                <a href="#" aria-label="Email">@</a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </a>
+                <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                  </svg>
+                </a>
+                <a href="mailto:elena.rodriguez@kindergarden.edu" aria-label="Email">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
@@ -1708,7 +1940,7 @@
                   class="faculty-avatar-ring"
                   style="border-color: rgba(255, 107, 107, 0.3)"
                 ></div>
-                <img src="assets/images/teacher_amara.png" alt="Amara Kone" class="faculty-img" loading="lazy" />
+                <img src="assets/images/teacher_amara_highres.png" alt="Amara Kone" class="faculty-img" loading="lazy" />
               </div>
             </div>
             <div class="faculty-card-body">
@@ -1719,9 +1951,24 @@
                 adventure. Every child leaves her class a storyteller.
               </div>
               <div class="faculty-social">
-                <a href="#" aria-label="LinkedIn">in</a>
-                <a href="#" aria-label="Twitter">X</a>
-                <a href="#" aria-label="Email">@</a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </a>
+                <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                  </svg>
+                </a>
+                <a href="mailto:amara.kone@kindergarden.edu" aria-label="Email">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
