@@ -144,51 +144,77 @@
         position: relative;
         z-index: 1;
       }
+      .section {
+        padding: var(--space-3xl) 0; /* 64px instead of 120px to fix unwanted whitespaces */
+      }
+      .cta-section {
+        padding: var(--space-3xl) 0; /* 64px instead of 120px */
+      }
+      .section-header {
+        margin-bottom: var(--space-2xl); /* 48px instead of 80px */
+      }
       .mv-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: var(--space-xl);
+        align-items: stretch;
       }
       .mv-card {
         position: relative;
-        padding: var(--space-2xl);
-        border-radius: var(--radius-xl);
-        background: rgba(255, 255, 255, 0.55);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.8);
+        padding: var(--space-xl);
+        border-radius: 40px 16px 40px 16px; /* Playful kindergarten vibe corners */
+        background: var(--white);
+        border: 2px solid transparent;
         box-shadow: var(--shadow-md);
         transition: var(--transition-slow);
         overflow: hidden;
         z-index: 1;
+        display: flex;
+        flex-direction: column;
       }
-      .mv-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: var(--gradient-primary);
-        opacity: 0;
-        transition: var(--transition);
+      .mv-card:nth-child(1) {
+        background: rgba(139, 92, 246, 0.02);
+        border-color: rgba(139, 92, 246, 0.12);
+      }
+      .mv-card:nth-child(2) {
+        background: rgba(110, 231, 183, 0.04);
+        border-color: rgba(110, 231, 183, 0.18);
+      }
+      .mv-card:nth-child(3) {
+        background: rgba(253, 186, 116, 0.04);
+        border-color: rgba(253, 186, 116, 0.22);
       }
       .mv-card:hover {
         transform: translateY(-6px);
         box-shadow: var(--shadow-xl);
       }
-      .mv-card:hover::before {
-        opacity: 1;
+      .mv-card:nth-child(1):hover {
+        border-color: var(--lavender);
+        background: var(--white);
+      }
+      .mv-card:nth-child(2):hover {
+        border-color: var(--mint-dark);
+        background: var(--white);
+      }
+      .mv-card:nth-child(3):hover {
+        border-color: var(--peach-dark);
+        background: var(--white);
       }
       .mv-card-icon {
         width: 60px;
         height: 60px;
-        border-radius: var(--radius-lg);
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; /* Playful blob icon shape */
         display: flex;
         align-items: center;
         justify-content: center;
         margin-bottom: var(--space-lg);
         font-size: 1.5rem;
+        transition: var(--transition-slow);
+        box-shadow: var(--shadow-sm);
+      }
+      .mv-card:hover .mv-card-icon {
+        transform: scale(1.1) rotate(5deg);
+        border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
       }
       .mv-card:nth-child(1) .mv-card-icon {
         background: rgba(139, 92, 246, 0.12);
@@ -205,11 +231,13 @@
       .mv-card h3 {
         font-size: 1.375rem;
         margin-bottom: var(--space-sm);
+        color: var(--indigo-dark);
       }
       .mv-card p {
-        color: var(--gray-500);
+        color: var(--gray-600);
         font-size: 0.9375rem;
-        line-height: 1.7;
+        line-height: 1.6;
+        margin: 0;
       }
       .philosophy-section {
         background: var(--cream-light);
@@ -312,40 +340,48 @@
       }
       .teacher-card {
         background: var(--white);
-        border-radius: var(--radius-xl);
+        border-radius: 40px 16px 40px 16px;
         overflow: hidden;
+        border: 2px solid transparent;
         box-shadow: var(--shadow-md);
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        transition: var(--transition-slow);
         text-align: center;
         position: relative;
         display: flex;
         flex-direction: column;
         height: 100%;
         box-sizing: border-box;
+        padding: var(--space-xl) var(--space-lg);
       }
       .teacher-card:hover {
         transform: translateY(-8px);
         box-shadow: var(--shadow-xl);
+        border-color: rgba(139, 92, 246, 0.2);
       }
       .leader-image-wrapper {
         position: relative;
-        width: 100%;
-        height: 280px;
+        width: 140px;
+        height: 140px;
+        margin: 0 auto var(--space-md);
         overflow: hidden;
+        border-radius: 40px 12px 40px 12px; /* Playful photo framing */
         background: var(--cream-light);
-        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        border: 3px solid var(--white);
+        box-shadow: var(--shadow-md);
+        transition: var(--transition-slow);
+      }
+      .teacher-card:hover .leader-image-wrapper {
+        transform: scale(1.06) rotate(3deg);
+        border-radius: 12px 40px 12px 40px;
+        box-shadow: var(--shadow-lg);
       }
       .leader-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-      .teacher-card:hover .leader-img {
-        transform: scale(1.04);
       }
       .teacher-card-body {
-        padding: var(--space-xl);
+        padding: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -353,31 +389,35 @@
       }
       .teacher-card-name {
         font-family: var(--font-heading);
-        font-weight: 500;
-        font-size: 1.125rem;
+        font-weight: 700;
+        font-size: 1.25rem;
         color: var(--indigo-dark);
         margin-top: 0;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
       }
       .teacher-card-role {
         color: var(--lavender);
-        font-weight: 500;
-        font-size: 0.8125rem;
+        font-weight: 700;
+        font-size: 0.75rem;
         margin-top: 0;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        line-height: 1.4;
       }
       .teacher-card-bio {
         color: var(--gray-500);
         font-size: 0.875rem;
-        line-height: 1.7;
+        line-height: 1.6;
         margin-top: 0;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
         flex-grow: 1;
+        font-weight: 600;
       }
       .teacher-social {
         display: flex;
         justify-content: center;
-        gap: 12px;
+        gap: 10px;
         margin-top: auto;
         flex-wrap: nowrap;
       }
@@ -616,22 +656,68 @@
         justify-content: center;
         flex-wrap: wrap;
       }
+      .values-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-sm);
+        margin: var(--space-md) 0;
+      }
+      .value-tag {
+        display: flex;
+        flex-direction: column;
+        padding: var(--space-sm) var(--space-md);
+        background: var(--white);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        align-items: flex-start;
+      }
+      .value-tag strong {
+        color: var(--indigo-dark);
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .value-tag-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: var(--radius-full);
+        display: inline-block;
+        flex-shrink: 0;
+      }
+      .tag-lavender .value-tag-dot { background: var(--lavender); }
+      .tag-mint .value-tag-dot { background: var(--mint-dark); }
+      .tag-peach .value-tag-dot { background: var(--peach-dark); }
+      .tag-coral .value-tag-dot { background: var(--coral); }
+      .value-tag-desc {
+        font-size: 0.75rem;
+        color: var(--gray-500);
+        margin-top: 2px;
+        line-height: 1.3;
+        font-weight: 600;
+        text-align: left;
+      }
       .values-list {
         list-style: none;
-        margin-top: var(--space-lg);
+        margin-top: var(--space-md);
+        padding-top: var(--space-md);
+        border-top: 1px dashed rgba(0, 0, 0, 0.08);
       }
       .values-list li {
         display: flex;
         align-items: center;
         gap: var(--space-sm);
-        padding: var(--space-sm) 0;
+        padding: 4px 0;
         color: var(--gray-600);
-        font-size: 0.9375rem;
+        font-size: 0.875rem;
+        font-weight: 600;
       }
       .values-list li::before {
         content: "\2726";
         color: var(--lavender);
         font-size: 0.625rem;
+        flex-shrink: 0;
       }
       @media (max-width: 1024px) {
         .mv-grid {
@@ -1014,16 +1100,24 @@
               </svg>
             </div>
             <h3>Our Values</h3>
-            <p>
-              <strong style="color: var(--indigo-dark)">Curiosity</strong> — We
-              celebrate questions.
-              <strong style="color: var(--indigo-dark)">Compassion</strong> — We
-              practice kindness daily.
-              <strong style="color: var(--indigo-dark)">Creativity</strong> — We
-              think beyond the box.
-              <strong style="color: var(--indigo-dark)">Community</strong> — We
-              grow together.
-            </p>
+            <div class="values-grid">
+              <div class="value-tag tag-lavender">
+                <strong><span class="value-tag-dot"></span> Curiosity</strong>
+                <span class="value-tag-desc">We celebrate questions.</span>
+              </div>
+              <div class="value-tag tag-mint">
+                <strong><span class="value-tag-dot"></span> Compassion</strong>
+                <span class="value-tag-desc">We practice kindness.</span>
+              </div>
+              <div class="value-tag tag-peach">
+                <strong><span class="value-tag-dot"></span> Creativity</strong>
+                <span class="value-tag-desc">We think outside the box.</span>
+              </div>
+              <div class="value-tag tag-coral">
+                <strong><span class="value-tag-dot"></span> Community</strong>
+                <span class="value-tag-desc">We grow together.</span>
+              </div>
+            </div>
             <ul class="values-list">
               <li>Child-centered learning approach</li>
               <li>Respect for individual growth pace</li>
@@ -1168,18 +1262,16 @@
               <div class="teacher-card-name">Maria Thompson</div>
               <div class="teacher-card-role">Founder &amp; Executive Director</div>
               <p class="teacher-card-bio">
-                With 25+ years in early childhood education, Maria's visionary
-                leadership has shaped Kindergarden into a center of excellence.
-                MA in Child Development.
+                25+ years in early childhood education. MA in Child Development.
               </p>
               <div class="teacher-social">
-                <a href="#" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                 </a>
-                <a href="#" aria-label="Twitter">
+                <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </a>
-                <a href="#" aria-label="Email">
+                <a href="mailto:maria@kindergarden.edu" aria-label="Email">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </a>
               </div>
@@ -1193,18 +1285,16 @@
               <div class="teacher-card-name">James Rodriguez</div>
               <div class="teacher-card-role">Principal, Primary School</div>
               <p class="teacher-card-bio">
-                Former public school administrator with a passion for
-                inquiry-based learning. Ed.D in Educational Leadership from
-                Stanford University.
+                Former public school administrator. Ed.D in Educational Leadership.
               </p>
               <div class="teacher-social">
-                <a href="#" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                 </a>
-                <a href="#" aria-label="Twitter">
+                <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </a>
-                <a href="#" aria-label="Email">
+                <a href="mailto:james@kindergarden.edu" aria-label="Email">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </a>
               </div>
@@ -1218,18 +1308,16 @@
               <div class="teacher-card-name">Sarah Chen</div>
               <div class="teacher-card-role">Head of Early Learning</div>
               <p class="teacher-card-bio">
-                Specialist in Montessori and Reggio Emilia approaches. 15 years
-                guiding the kindergarten program with warmth, expertise, and
-                innovation.
+                Specialist in Montessori &amp; Reggio Emilia. 15 years experience.
               </p>
               <div class="teacher-social">
-                <a href="#" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                 </a>
-                <a href="#" aria-label="Twitter">
+                <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </a>
-                <a href="#" aria-label="Email">
+                <a href="mailto:sarah@kindergarden.edu" aria-label="Email">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </a>
               </div>
@@ -1243,18 +1331,16 @@
               <div class="teacher-card-name">Amara Kwame</div>
               <div class="teacher-card-role">Director of Curriculum</div>
               <p class="teacher-card-bio">
-                Curriculum designer and STEAM education advocate. PhD in
-                Curriculum &amp; Instruction. Leads our innovative project-based
-                learning framework.
+                Curriculum designer &amp; STEAM advocate. PhD in Curriculum &amp; Instruction.
               </p>
               <div class="teacher-social">
-                <a href="#" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                 </a>
-                <a href="#" aria-label="Twitter">
+                <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </a>
-                <a href="#" aria-label="Email">
+                <a href="mailto:amara@kindergarden.edu" aria-label="Email">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </a>
               </div>
