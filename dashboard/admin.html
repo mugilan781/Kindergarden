@@ -83,10 +83,10 @@
 
     /* HEADER */
     .dash-header { position:sticky; top:0; z-index:200; background:var(--dash-card); border-bottom:1px solid var(--dash-border); box-shadow:0 1px 20px rgba(49,46,129,0.08); height:var(--dash-header-h); display:flex; align-items:center; padding:0 32px; gap:24px; }
-    .dash-logo { display:flex; align-items:center; gap:10px; font-family:var(--font-heading); font-weight:800; font-size:1.25rem; color:var(--indigo); text-decoration:none; flex-shrink:0; }
+    .dash-logo { display:flex; align-items:center; gap:10px; font-family:var(--font-heading); font-weight:500; font-size:1.25rem; color:var(--indigo); text-decoration:none; flex-shrink:0; }
     .dash-logo-icon { width:38px; height:38px; background:var(--gradient-primary); border-radius:10px; display:flex; align-items:center; justify-content:center; color:white; }
     .dash-title-group { display:flex; flex-direction:column; }
-    .dash-title-group span:first-child { font-family:var(--font-heading); font-weight:700; font-size:0.9375rem; color:var(--dash-text); line-height:1.2; }
+    .dash-title-group span:first-child { font-family:var(--font-heading); font-weight:500; font-size:0.9375rem; color:var(--dash-text); line-height:1.2; }
     .dash-title-group span:last-child { font-size:0.75rem; color:var(--dash-muted); }
     .dash-header-search { flex:1; max-width:320px; margin:0 auto; position:relative; }
     .dash-header-search input { width:100%; padding:9px 16px 9px 40px; background:var(--dash-bg); border:1px solid var(--dash-border); border-radius:9999px; font-family:var(--font-body); font-size:0.875rem; color:var(--dash-text); outline:none; transition:0.3s; }
@@ -100,7 +100,7 @@
     .dash-profile-btn { display:flex; align-items:center; gap:8px; padding:6px 12px 6px 6px; border-radius:9999px; border:1px solid var(--dash-border); background:var(--dash-card); transition:0.3s; }
     .dash-profile-btn:hover { border-color:var(--lavender); background:var(--dash-bg); }
     .dash-avatar { width:32px; height:32px; border-radius:50%; background:var(--gradient-primary); display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:700; font-size:0.875rem; color:white; flex-shrink:0; }
-    .dash-profile-name { font-family:var(--font-heading); font-weight:600; font-size:0.8125rem; color:var(--dash-text); }
+    .dash-profile-name { font-family:var(--font-heading); font-weight:500; font-size:0.8125rem; color:var(--dash-text); }
 
     /* MAIN */
     .dash-main { padding:32px; max-width:1400px; margin:0 auto; }
@@ -108,15 +108,15 @@
     /* WELCOME */
     .admin-welcome { background:var(--gradient-dark); border-radius:24px; padding:28px 40px; margin-bottom:32px; display:flex; align-items:center; justify-content:space-between; gap:32px; position:relative; overflow:hidden; }
     .admin-welcome::before { content:''; position:absolute; top:-50px; right:-50px; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,0.05); }
-    .admin-welcome-text h1 { color:white; font-size:1.5rem; font-weight:800; margin-bottom:4px; display:flex; align-items:center; gap:10px; }
+    .admin-welcome-text h1 { color:white; font-size:1.5rem; font-weight:500; margin-bottom:4px; display:flex; align-items:center; gap:10px; }
     .admin-welcome-text p { color:rgba(255,255,255,0.65); font-size:0.9375rem; margin:0; }
     .admin-welcome-badge { display:inline-flex; align-items:center; gap:6px; padding:6px 16px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:9999px; color:white; font-family:var(--font-heading); font-weight:700; font-size:0.875rem; flex-shrink:0; }
 
     /* SECTION HEADER */
     .dash-section-label { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
-    .dash-section-label h2 { font-size:1.125rem; font-weight:700; color:var(--dash-text); display:flex; align-items:center; gap:10px; }
+    .dash-section-label h2 { font-size:1.125rem; font-weight:500; color:var(--dash-text); display:flex; align-items:center; gap:10px; }
     .dash-section-label h2 .section-icon { width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; }
-    .dash-section-label a { font-size:0.8125rem; font-weight:600; color:var(--lavender); text-decoration:none; }
+    .dash-section-label a { font-size:0.8125rem; font-weight:500; color:var(--lavender); text-decoration:none; }
     .dash-section-label a:hover { color:var(--indigo); }
 
     /* CARDS */
@@ -143,8 +143,8 @@
     .si-teal { background:rgba(20,184,166,0.12); color:#0D9488; }
     .si-pink { background:rgba(236,72,153,0.12); color:#DB2777; }
     .si-indigo { background:rgba(99,102,241,0.12); color:#6366F1; }
-    .stat-value { font-family:var(--font-heading); font-weight:800; font-size:1.625rem; color:var(--dash-text); line-height:1; }
-    .stat-label { font-size:0.75rem; font-weight:600; color:var(--dash-muted); text-transform:uppercase; letter-spacing:0.04em; }
+    .stat-value { font-family:var(--font-heading); font-weight:500; font-size:1.625rem; color:var(--dash-text); line-height:1; }
+    .stat-label { font-size:0.75rem; font-weight:500; color:var(--dash-muted); text-transform:uppercase; letter-spacing:0.04em; }
     .stat-change { display:inline-flex; align-items:center; gap:3px; font-size:0.6875rem; font-weight:700; padding:2px 8px; border-radius:9999px; }
     .up { background:rgba(16,185,129,0.1); color:#059669; }
     .down { background:rgba(239,68,68,0.1); color:var(--coral-dark); }
@@ -173,17 +173,17 @@
 
     /* TABLES */
     .data-table { width:100%; border-collapse:collapse; }
-    .data-table th { text-align:left; padding:8px 16px; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--dash-muted); border-bottom:1px solid var(--dash-border); white-space:nowrap; }
+    .data-table th { text-align:left; padding:8px 16px; font-size:0.75rem; font-weight:500; text-transform:uppercase; letter-spacing:0.04em; color:var(--dash-muted); border-bottom:1px solid var(--dash-border); white-space:nowrap; }
     .data-table td { padding:14px 16px; border-bottom:1px solid var(--dash-border); font-size:0.875rem; }
     .data-table tr:last-child td { border-bottom:none; }
     .data-table tr:hover td { background:var(--dash-bg); }
-    .student-name { font-weight:600; color:var(--dash-text); }
+    .student-name { font-weight:500; color:var(--dash-text); }
     .student-sub { font-size:0.75rem; color:var(--dash-muted); }
 
     /* PROGRESS */
     .progress-bar-wrap { margin-bottom:12px; }
     .progress-bar-header { display:flex; justify-content:space-between; margin-bottom:5px; }
-    .progress-bar-label { font-size:0.875rem; font-weight:600; color:var(--dash-text); }
+    .progress-bar-label { font-size:0.875rem; font-weight:500; color:var(--dash-text); }
     .progress-bar-value { font-size:0.875rem; font-weight:700; color:var(--lavender); }
     .progress-track { height:8px; background:var(--dash-bg); border-radius:9999px; overflow:hidden; }
     .progress-fill { height:100%; border-radius:9999px; }
@@ -198,12 +198,12 @@
     .class-card { background:var(--dash-bg); border-radius:16px; padding:20px; border:1px solid var(--dash-border); transition:0.3s; }
     .class-card:hover { border-color:var(--lavender); transform:translateY(-2px); box-shadow:0 6px 20px rgba(49,46,129,0.1); }
     .class-card-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
-    .class-grade { font-family:var(--font-heading); font-weight:800; font-size:1.125rem; color:var(--dash-text); }
+    .class-grade { font-family:var(--font-heading); font-weight:500; font-size:1.125rem; color:var(--dash-text); }
     .class-section { font-size:0.75rem; color:var(--dash-muted); margin-top:2px; }
     .class-stats { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
     .class-stat-item { text-align:center; padding:8px; background:var(--dash-card); border-radius:10px; }
-    .class-stat-value { font-family:var(--font-heading); font-weight:700; font-size:1rem; color:var(--dash-text); }
-    .class-stat-label { font-size:0.625rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; color:var(--dash-muted); }
+    .class-stat-value { font-family:var(--font-heading); font-weight:500; font-size:1rem; color:var(--dash-text); }
+    .class-stat-label { font-size:0.625rem; font-weight:500; text-transform:uppercase; letter-spacing:0.04em; color:var(--dash-muted); }
     .class-teacher { font-size:0.8125rem; color:var(--dash-muted); display:flex; align-items:center; gap:4px; }
 
     /* TEACHER CARDS */
@@ -211,10 +211,10 @@
     .teacher-card { background:var(--dash-bg); border-radius:16px; padding:20px; border:1px solid var(--dash-border); transition:0.3s; }
     .teacher-card:hover { border-color:var(--lavender); box-shadow:0 6px 20px rgba(49,46,129,0.1); }
     .teacher-avatar { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:700; font-size:1.125rem; color:white; margin-bottom:12px; }
-    .teacher-name { font-family:var(--font-heading); font-weight:700; font-size:1rem; color:var(--dash-text); margin-bottom:2px; }
+    .teacher-name { font-family:var(--font-heading); font-weight:500; font-size:1rem; color:var(--dash-text); margin-bottom:2px; }
     .teacher-dept { font-size:0.8125rem; color:var(--dash-muted); margin-bottom:12px; }
     .teacher-tags { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:12px; }
-    .teacher-tag { padding:2px 8px; border-radius:9999px; font-size:0.6875rem; font-weight:600; background:rgba(139,92,246,0.1); color:var(--lavender); }
+    .teacher-tag { padding:2px 8px; border-radius:9999px; font-size:0.6875rem; font-weight:500; background:rgba(139,92,246,0.1); color:var(--lavender); }
     .teacher-meta { display:flex; justify-content:space-between; align-items:center; }
     .teacher-meta-item { font-size:0.75rem; color:var(--dash-muted); }
 
@@ -224,33 +224,33 @@
     .fin-card.revenue { background:rgba(49,46,129,0.06); border:1px solid rgba(49,46,129,0.12); }
     .fin-card.collected { background:rgba(16,185,129,0.06); border:1px solid rgba(16,185,129,0.15); }
     .fin-card.pending { background:rgba(249,115,22,0.06); border:1px solid rgba(249,115,22,0.15); }
-    .fin-amount { font-family:var(--font-heading); font-weight:800; font-size:1.75rem; margin-bottom:4px; }
+    .fin-amount { font-family:var(--font-heading); font-weight:500; font-size:1.75rem; margin-bottom:4px; }
     .fin-card.revenue .fin-amount { color:var(--indigo); }
     .fin-card.collected .fin-amount { color:#059669; }
     .fin-card.pending .fin-amount { color:var(--peach-dark); }
-    .fin-label { font-size:0.8125rem; color:var(--dash-muted); font-weight:600; }
+    .fin-label { font-size:0.8125rem; color:var(--dash-muted); font-weight:500; }
     .fin-sub { font-size:0.75rem; color:var(--dash-muted); margin-top:4px; }
 
     /* REVENUE BARS */
     .revenue-chart { display:flex; gap:8px; align-items:flex-end; height:120px; padding:0 8px; margin-bottom:16px; }
     .rev-col { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end; }
     .rev-bar { width:100%; border-radius:6px 6px 0 0; }
-    .rev-label { font-size:0.625rem; font-weight:600; color:var(--dash-muted); }
+    .rev-label { font-size:0.625rem; font-weight:500; color:var(--dash-muted); }
 
     /* EVENTS */
     .event-card { display:flex; align-items:center; gap:16px; padding:16px 20px; background:var(--dash-bg); border-radius:14px; border:1px solid var(--dash-border); margin-bottom:8px; transition:0.3s; }
     .event-card:hover { border-color:var(--lavender); transform:translateX(4px); }
     .event-date { width:52px; height:56px; border-radius:12px; background:var(--gradient-primary); display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0; color:white; }
-    .event-date-day { font-family:var(--font-heading); font-weight:800; font-size:1.25rem; line-height:1; }
+    .event-date-day { font-family:var(--font-heading); font-weight:500; font-size:1.25rem; line-height:1; }
     .event-date-month { font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; opacity:0.85; }
-    .event-title { font-family:var(--font-heading); font-weight:700; font-size:0.9375rem; color:var(--dash-text); }
+    .event-title { font-family:var(--font-heading); font-weight:500; font-size:0.9375rem; color:var(--dash-text); }
     .event-desc { font-size:0.8125rem; color:var(--dash-muted); margin-top:2px; }
 
     /* ANNOUNCEMENTS */
     .ann-item { display:flex; align-items:flex-start; gap:12px; padding:16px; background:var(--dash-bg); border-radius:14px; border:1px solid var(--dash-border); margin-bottom:8px; transition:0.3s; }
     .ann-item:hover { border-color:var(--lavender); }
     .ann-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; margin-top:5px; }
-    .ann-title { font-weight:600; font-size:0.9375rem; color:var(--dash-text); margin-bottom:2px; }
+    .ann-title { font-weight:500; font-size:0.9375rem; color:var(--dash-text); margin-bottom:2px; }
     .ann-meta { font-size:0.75rem; color:var(--dash-muted); }
 
     /* SYSTEM STATUS */
@@ -259,7 +259,7 @@
     .sys-indicator { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
     .sys-indicator.online { background:#059669; box-shadow:0 0 0 3px rgba(16,185,129,0.2); }
     .sys-indicator.warning { background:var(--peach-dark); box-shadow:0 0 0 3px rgba(249,115,22,0.2); }
-    .sys-label { font-size:0.875rem; font-weight:600; color:var(--dash-text); }
+    .sys-label { font-size:0.875rem; font-weight:500; color:var(--dash-text); }
     .sys-sub { font-size:0.75rem; color:var(--dash-muted); }
 
     /* FOOTER */
@@ -419,11 +419,11 @@
           <h2><div class="section-icon" style="background:rgba(16,185,129,0.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>Attendance Overview</h2>
         </div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px">
-          <div style="text-align:center;padding:16px;border-radius:14px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.15)"><div style="font-family:var(--font-heading);font-weight:800;font-size:1.5rem;color:#059669">91%</div><div style="font-size:0.75rem;color:var(--dash-muted);font-weight:600">School Today</div></div>
-          <div style="text-align:center;padding:16px;border-radius:14px;background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.15)"><div style="font-family:var(--font-heading);font-weight:800;font-size:1.5rem;color:var(--lavender)">1,137</div><div style="font-size:0.75rem;color:var(--dash-muted);font-weight:600">Present</div></div>
-          <div style="text-align:center;padding:16px;border-radius:14px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.15)"><div style="font-family:var(--font-heading);font-weight:800;font-size:1.5rem;color:var(--coral-dark)">111</div><div style="font-size:0.75rem;color:var(--dash-muted);font-weight:600">Absent</div></div>
+          <div style="text-align:center;padding:16px;border-radius:14px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.15)"><div style="font-family:var(--font-heading);font-weight:500;font-size:1.5rem;color:#059669">91%</div><div style="font-size:0.75rem;color:var(--dash-muted);font-weight:500">School Today</div></div>
+          <div style="text-align:center;padding:16px;border-radius:14px;background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.15)"><div style="font-family:var(--font-heading);font-weight:500;font-size:1.5rem;color:var(--lavender)">1,137</div><div style="font-size:0.75rem;color:var(--dash-muted);font-weight:500">Present</div></div>
+          <div style="text-align:center;padding:16px;border-radius:14px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.15)"><div style="font-family:var(--font-heading);font-weight:500;font-size:1.5rem;color:var(--coral-dark)">111</div><div style="font-size:0.75rem;color:var(--dash-muted);font-weight:500">Absent</div></div>
         </div>
-        <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--dash-muted);margin-bottom:16px">Class-Wise Attendance</div>
+        <div style="font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.04em;color:var(--dash-muted);margin-bottom:16px">Class-Wise Attendance</div>
         <div class="progress-bar-wrap"><div class="progress-bar-header"><span class="progress-bar-label">KG Section A</span><span class="progress-bar-value" style="color:#059669">97%</span></div><div class="progress-track"><div class="progress-fill pf-green" style="width:97%"></div></div></div>
         <div class="progress-bar-wrap"><div class="progress-bar-header"><span class="progress-bar-label">Grade 1 Section B</span><span class="progress-bar-value">94%</span></div><div class="progress-track"><div class="progress-fill pf-purple" style="width:94%"></div></div></div>
         <div class="progress-bar-wrap"><div class="progress-bar-header"><span class="progress-bar-label">Grade 2 Section A</span><span class="progress-bar-value" style="color:var(--peach-dark)">88%</span></div><div class="progress-track"><div class="progress-fill pf-orange" style="width:88%"></div></div></div>
@@ -470,7 +470,7 @@
           <div class="fin-card collected"><div class="fin-amount">$71,360</div><div class="fin-label">Collected</div><div class="fin-sub">84.7% of target</div></div>
           <div class="fin-card pending"><div class="fin-amount">$12,840</div><div class="fin-label">Pending</div><div class="fin-sub">47 families</div></div>
         </div>
-        <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--dash-muted);margin-bottom:8px">Monthly Revenue Trend</div>
+        <div style="font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.04em;color:var(--dash-muted);margin-bottom:8px">Monthly Revenue Trend</div>
         <div class="revenue-chart">
           <div class="rev-col"><div class="rev-bar" style="height:60%;background:var(--gradient-primary);opacity:0.6"></div><div class="rev-label">Feb</div></div>
           <div class="rev-col"><div class="rev-bar" style="height:70%;background:var(--gradient-primary);opacity:0.7"></div><div class="rev-label">Mar</div></div>
@@ -556,10 +556,10 @@
         </div>
         <div class="dash-divider" style="margin:20px 0"></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-          <div style="padding:14px;background:rgba(49,46,129,0.06);border-radius:14px;border:1px solid var(--dash-border)"><div style="font-size:0.75rem;font-weight:700;color:var(--dash-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">Academic Year</div><div style="font-family:var(--font-heading);font-weight:700;color:var(--dash-text)">2024 &ndash; 2025</div></div>
-          <div style="padding:14px;background:rgba(49,46,129,0.06);border-radius:14px;border:1px solid var(--dash-border)"><div style="font-size:0.75rem;font-weight:700;color:var(--dash-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">Current Semester</div><div style="font-family:var(--font-heading);font-weight:700;color:var(--dash-text)">Semester 2</div></div>
-          <div style="padding:14px;background:rgba(16,185,129,0.06);border-radius:14px;border:1px solid rgba(16,185,129,0.15)"><div style="font-size:0.75rem;font-weight:700;color:var(--dash-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">School Status</div><div style="font-family:var(--font-heading);font-weight:700;color:#059669">Open &bull; Day 142</div></div>
-          <div style="padding:14px;background:rgba(139,92,246,0.06);border-radius:14px;border:1px solid rgba(139,92,246,0.15)"><div style="font-size:0.75rem;font-weight:700;color:var(--dash-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">System Version</div><div style="font-family:var(--font-heading);font-weight:700;color:var(--lavender)">EduPortal v2.4.1</div></div>
+          <div style="padding:14px;background:rgba(49,46,129,0.06);border-radius:14px;border:1px solid var(--dash-border)"><div style="font-size:0.75rem;font-weight:500;color:var(--dash-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">Academic Year</div><div style="font-family:var(--font-heading);font-weight:500;color:var(--dash-text)">2024 &ndash; 2025</div></div>
+          <div style="padding:14px;background:rgba(49,46,129,0.06);border-radius:14px;border:1px solid var(--dash-border)"><div style="font-size:0.75rem;font-weight:500;color:var(--dash-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">Current Semester</div><div style="font-family:var(--font-heading);font-weight:500;color:var(--dash-text)">Semester 2</div></div>
+          <div style="padding:14px;background:rgba(16,185,129,0.06);border-radius:14px;border:1px solid rgba(16,185,129,0.15)"><div style="font-size:0.75rem;font-weight:500;color:var(--dash-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">School Status</div><div style="font-family:var(--font-heading);font-weight:500;color:#059669">Open &bull; Day 142</div></div>
+          <div style="padding:14px;background:rgba(139,92,246,0.06);border-radius:14px;border:1px solid rgba(139,92,246,0.15)"><div style="font-size:0.75rem;font-weight:500;color:var(--dash-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">System Version</div><div style="font-family:var(--font-heading);font-weight:500;color:var(--lavender)">EduPortal v2.4.1</div></div>
         </div>
       </div>
     </div>
