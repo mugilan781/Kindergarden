@@ -522,12 +522,21 @@
         height: 26px;
       }
       .social-card h4 {
-        font-size: 1.0625rem;
+        font-size: 1.125rem;
+        font-weight: 700;
         margin-bottom: 2px;
       }
-      .social-card p {
-        color: var(--gray-400);
+      .social-handle {
         font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--indigo);
+        margin-bottom: 6px;
+        display: block;
+      }
+      .social-desc {
+        color: var(--gray-500);
+        font-size: 0.8125rem;
+        line-height: 1.5;
         margin: 0;
       }
       .visit-grid {
@@ -1441,10 +1450,10 @@
           </p>
         </div>
         <div class="social-grid">
+          <!-- Facebook -->
           <a
             href="https://www.facebook.com/"
             class="social-card reveal"
-            style="transition-delay: 0.05s"
             aria-label="Facebook"
             target="_blank"
             rel="noopener noreferrer"
@@ -1464,8 +1473,10 @@
               </svg>
             </div>
             <h4>Facebook</h4>
-            <p>@kindergarden.edu</p>
+            <span class="social-handle">@kindergarden.edu</span>
+            <p class="social-desc">Daily school updates &amp; news</p>
           </a>
+          <!-- Instagram -->
           <a
             href="https://www.instagram.com/"
             class="social-card reveal"
@@ -1489,8 +1500,10 @@
               </svg>
             </div>
             <h4>Instagram</h4>
-            <p>@kindergarden_official</p>
+            <span class="social-handle">@kindergarden_official</span>
+            <p class="social-desc">Classroom moments &amp; photo stories</p>
           </a>
+          <!-- Twitter / X -->
           <a
             href="https://x.com/"
             class="social-card reveal"
@@ -1514,8 +1527,10 @@
               </svg>
             </div>
             <h4>Twitter / X</h4>
-            <p>@kindergarden</p>
+            <span class="social-handle">@kindergarden</span>
+            <p class="social-desc">Announcements &amp; event highlights</p>
           </a>
+          <!-- LinkedIn -->
           <a
             href="https://www.linkedin.com/"
             class="social-card reveal"
@@ -1541,8 +1556,10 @@
               </svg>
             </div>
             <h4>LinkedIn</h4>
-            <p>Kindergarden School</p>
+            <span class="social-handle">Kindergarden School</span>
+            <p class="social-desc">Careers &amp; professional network</p>
           </a>
+          <!-- YouTube -->
           <a
             href="https://www.youtube.com/"
             class="social-card reveal"
@@ -1567,8 +1584,10 @@
               </svg>
             </div>
             <h4>YouTube</h4>
-            <p>Kindergarden Channel</p>
+            <span class="social-handle">Kindergarden Channel</span>
+            <p class="social-desc">Campus virtual tours &amp; videos</p>
           </a>
+          <!-- WhatsApp -->
           <a
             href="https://wa.me/15551234567"
             class="social-card reveal"
@@ -1592,7 +1611,8 @@
               </svg>
             </div>
             <h4>WhatsApp</h4>
-            <p>+1 (555) 123-4567</p>
+            <span class="social-handle">Chat with Admissions</span>
+            <p class="social-desc">Instant inquiry &amp; support</p>
           </a>
         </div>
       </div>
