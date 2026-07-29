@@ -20,7 +20,7 @@
             rgba(49, 46, 129, 0.8) 40%,
             rgba(79, 70, 229, 0.7) 100%
           ),
-          url("assets/images/services_hero_1784220036014.png") center/cover
+          url("assets/images/services_hero_new.png") center/cover
             no-repeat;
         --service-hero-accent: linear-gradient(135deg, #6ee7b7, #a78bfa);
         --card-gradient-1: linear-gradient(135deg, #312e81, #4f46e5);
@@ -93,41 +93,48 @@
         display: inline-flex;
         align-items: center;
         gap: var(--space-sm);
-        padding: 8px 20px;
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: var(--radius-pill);
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 0.8125rem;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.875rem;
         font-weight: 500;
         font-family: var(--font-heading);
-        margin-bottom: var(--space-lg);
+        margin-bottom: var(--space-md);
       }
-      .hero-breadcrumb a {
-        color: var(--mint);
-        transition: var(--transition);
+      .services-hero .breadcrumb {
+        color: rgba(255, 255, 255, 0.9) !important;
       }
-      .hero-breadcrumb a:hover {
-        color: var(--white);
+      .services-hero .breadcrumb a {
+        color: #6ee7b7 !important; /* Vivid mint link for high contrast in light mode */
+        font-weight: 600 !important;
       }
-      .hero-breadcrumb .sep {
-        color: rgba(255, 255, 255, 0.3);
+      .services-hero .breadcrumb a:hover {
+        color: #ffffff !important;
+      }
+      .services-hero .breadcrumb a svg {
+        color: #6ee7b7 !important;
+        stroke: #6ee7b7 !important;
+      }
+      .services-hero .breadcrumb .separator {
+        color: rgba(255, 255, 255, 0.5) !important;
+      }
+      .services-hero .breadcrumb .separator svg {
+        color: rgba(255, 255, 255, 0.5) !important;
+        stroke: rgba(255, 255, 255, 0.5) !important;
+      }
+      .services-hero .breadcrumb .current {
+        color: #ffffff !important; /* Pure white text */
+        font-weight: 700 !important;
       }
       .hero-badge-service {
         display: inline-flex;
         align-items: center;
-        gap: var(--space-sm);
-        padding: 6px 18px;
-        background: var(--service-hero-accent);
-        border-radius: var(--radius-pill);
-        color: var(--indigo-dark);
+        gap: var(--space-xs);
+        color: var(--mint); /* Elegant typography subtitle, no button shape */
         font-size: 0.8125rem;
         font-weight: 700;
         font-family: var(--font-heading);
         text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: var(--space-lg);
+        letter-spacing: 0.1em;
+        margin-bottom: var(--space-md);
       } /* Academic Program Cards */
       .program-grid {
         display: grid;
@@ -137,12 +144,65 @@
       .program-card {
         background: var(--white);
         border-radius: var(--radius-xl);
-        padding: var(--space-2xl);
+        padding: 0;
         box-shadow: var(--shadow-md);
         transition: var(--transition-slow);
         position: relative;
         overflow: hidden;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      .program-card-content {
+        padding: var(--space-xl);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-grow: 1;
+      }
+      .program-image-banner {
+        position: relative;
+        width: 100%;
+        height: 190px;
+        overflow: hidden;
+      }
+      .program-banner-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition-slow);
+      }
+      .program-card:hover .program-banner-img {
+        transform: scale(1.08);
+      }
+      .program-image-banner .program-tag {
+        position: absolute;
+        bottom: 14px;
+        left: 14px;
+        z-index: 3;
+        margin-bottom: 0;
+        padding: 6px 16px;
+        border-radius: var(--radius-pill);
+        font-size: 0.75rem;
+        font-weight: 800;
+        font-family: var(--font-heading);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      }
+      .program-card:nth-child(1) .program-tag {
+        background: #1e1b4b !important; /* Solid deep indigo */
+        color: #ffffff !important;      /* Solid white text */
+      }
+      .program-card:nth-child(2) .program-tag {
+        background: #047857 !important; /* Solid emerald green */
+        color: #ffffff !important;      /* Solid white text */
+      }
+      .program-card:nth-child(3) .program-tag {
+        background: #6d28d9 !important; /* Solid deep purple */
+        color: #ffffff !important;      /* Solid white text */
       }
       .program-card::before {
         content: "";
@@ -208,7 +268,6 @@
         font-family: var(--font-heading);
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        margin-bottom: var(--space-md);
       }
       .program-card:nth-child(1) .program-tag {
         background: rgba(49, 46, 129, 0.08);
@@ -255,8 +314,9 @@
         background: var(--white);
         border-radius: var(--radius-lg);
         padding: var(--space-xl);
+        border: 1px solid rgba(0, 0, 0, 0.04); /* Defined borders for visibility */
         box-shadow: var(--shadow-sm);
-        transition: var(--transition);
+        transition: var(--transition-slow);
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -289,12 +349,35 @@
       .activity-card:nth-child(6)::after {
         background: var(--gradient-primary);
       }
-      .activity-card:hover::after {
-        opacity: 1;
+      .activity-card:nth-child(1):hover {
+        transform: translateY(-6px);
+        border-color: rgba(255, 107, 107, 0.3);
+        box-shadow: 0 12px 30px rgba(255, 107, 107, 0.12);
       }
-      .activity-card:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-lg);
+      .activity-card:nth-child(2):hover {
+        transform: translateY(-6px);
+        border-color: rgba(139, 92, 246, 0.3);
+        box-shadow: 0 12px 30px rgba(139, 92, 246, 0.12);
+      }
+      .activity-card:nth-child(3):hover {
+        transform: translateY(-6px);
+        border-color: rgba(253, 186, 116, 0.3);
+        box-shadow: 0 12px 30px rgba(253, 186, 116, 0.15);
+      }
+      .activity-card:nth-child(4):hover {
+        transform: translateY(-6px);
+        border-color: rgba(79, 70, 229, 0.3);
+        box-shadow: 0 12px 30px rgba(79, 70, 229, 0.12);
+      }
+      .activity-card:nth-child(5):hover {
+        transform: translateY(-6px);
+        border-color: rgba(255, 107, 107, 0.3);
+        box-shadow: 0 12px 30px rgba(255, 107, 107, 0.12);
+      }
+      .activity-card:nth-child(6):hover {
+        transform: translateY(-6px);
+        border-color: rgba(139, 92, 246, 0.3);
+        box-shadow: 0 12px 30px rgba(139, 92, 246, 0.12);
       }
       .activity-icon {
         width: 60px;
@@ -305,6 +388,8 @@
         justify-content: center;
         margin: 0 auto var(--space-md);
         font-size: 0;
+        border: 2px solid currentColor; /* Outline ring matching icon color */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
       }
       .activity-card:nth-child(1) .activity-icon {
         background: rgba(255, 107, 107, 0.1);
@@ -337,11 +422,14 @@
       .activity-card h4 {
         font-size: 1.125rem;
         margin-bottom: var(--space-xs);
+        color: var(--indigo-dark);
+        font-weight: 700;
       }
       .activity-card p {
-        color: var(--gray-400);
+        color: var(--gray-600); /* Better contrast visibility */
         font-size: 0.8125rem;
         margin: 0;
+        font-weight: 550;
       }
       .activity-age {
         display: inline-block;
@@ -431,14 +519,12 @@
         color: var(--lavender);
       }
       .schedule-item {
-        display: flex;
+        display: grid;
+        grid-template-columns: 160px 1fr auto;
         align-items: center;
-        justify-content: space-between;
+        gap: var(--space-md);
         padding: var(--space-md) 0;
         border-bottom: 1px solid var(--gray-100);
-      }
-      .schedule-item:last-child {
-        border-bottom: none;
       }
       .schedule-item .time {
         font-family: var(--font-heading);
@@ -449,6 +535,7 @@
       .schedule-item .activity {
         color: var(--gray-500);
         font-size: 0.9375rem;
+        text-align: left;
       }
       .schedule-item .tag {
         padding: 4px 12px;
@@ -456,6 +543,7 @@
         font-size: 0.75rem;
         font-weight: 700;
         font-family: var(--font-heading);
+        justify-self: end;
       }
       .schedule-item .tag.included {
         background: rgba(110, 231, 183, 0.2);
@@ -480,73 +568,92 @@
         overflow: hidden;
         box-shadow: var(--shadow-md);
         transition: var(--transition-slow);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        position: relative;
+        border: 1px solid rgba(0, 0, 0, 0.05);
       }
       .nutrition-card:hover {
         transform: translateY(-6px);
         box-shadow: var(--shadow-xl);
       }
-      .nutrition-card-header {
-        padding: var(--space-xl);
-        text-align: center;
+      .nutrition-card-banner {
         position: relative;
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
       }
-      .nutrition-card:nth-child(1) .nutrition-card-header {
-        background: linear-gradient(
-          135deg,
-          rgba(110, 231, 183, 0.12),
-          rgba(110, 231, 183, 0.05)
-        );
+      .nutrition-banner-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition-slow);
       }
-      .nutrition-card:nth-child(2) .nutrition-card-header {
-        background: linear-gradient(
-          135deg,
-          rgba(253, 186, 116, 0.12),
-          rgba(253, 186, 116, 0.05)
-        );
+      .nutrition-card:hover .nutrition-banner-img {
+        transform: scale(1.08);
       }
-      .nutrition-card:nth-child(3) .nutrition-card-header {
-        background: linear-gradient(
-          135deg,
-          rgba(139, 92, 246, 0.1),
-          rgba(139, 92, 246, 0.05)
-        );
+      .nutrition-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(30, 27, 75, 0.85);
+        backdrop-filter: blur(8px);
+        color: #ffffff;
+        padding: 4px 12px;
+        border-radius: var(--radius-pill);
+        font-size: 0.75rem;
+        font-weight: 700;
+        font-family: var(--font-heading);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
-      .nutrition-icon {
-        width: 64px;
-        height: 64px;
-        border-radius: var(--radius-full);
+      .nutrition-card-header {
+        padding: var(--space-lg) var(--space-lg) 0;
+        text-align: left;
+      }
+      .nutrition-title-wrap {
         display: flex;
         align-items: center;
+        gap: 12px;
+      }
+      .nutrition-card-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-lg);
+        display: inline-flex;
+        align-items: center;
         justify-content: center;
-        margin: 0 auto var(--space-md);
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       }
-      .nutrition-card:nth-child(1) .nutrition-icon {
-        background: rgba(110, 231, 183, 0.2);
-        color: var(--mint-dark);
+      .nutrition-card-icon svg {
+        width: 22px;
+        height: 22px;
       }
-      .nutrition-card:nth-child(2) .nutrition-icon {
-        background: rgba(253, 186, 116, 0.2);
-        color: var(--peach-dark);
+      .nutrition-card:nth-child(1) .nutrition-card-icon {
+        background: rgba(16, 185, 129, 0.15);
+        color: #059669;
       }
-      .nutrition-card:nth-child(3) .nutrition-icon {
-        background: rgba(139, 92, 246, 0.12);
-        color: var(--lavender);
+      .nutrition-card:nth-child(2) .nutrition-card-icon {
+        background: rgba(245, 158, 11, 0.15);
+        color: #d97706;
       }
-      .nutrition-icon svg {
-        width: 28px;
-        height: 28px;
+      .nutrition-card:nth-child(3) .nutrition-card-icon {
+        background: rgba(139, 92, 246, 0.15);
+        color: #7c3aed;
       }
       .nutrition-card-header h4 {
         font-size: 1.25rem;
-        margin-bottom: 4px;
-      }
-      .nutrition-card-header p {
-        color: var(--gray-400);
-        font-size: 0.8125rem;
-        margin: 0;
+        margin-bottom: 0;
+        color: var(--indigo-dark);
+        font-weight: 700;
       }
       .nutrition-card-body {
-        padding: var(--space-xl);
+        padding: var(--space-sm) var(--space-lg) var(--space-lg);
+      }
+      .nutrition-card-body ul {
+        margin-top: 0;
       }
       .nutrition-card-body ul li {
         display: flex;
@@ -578,15 +685,17 @@
         gap: var(--space-md);
       }
       .transport-feature {
-        padding: var(--space-lg);
+        padding: var(--space-xl);
         background: var(--white);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-sm);
-        transition: var(--transition);
+        border-radius: var(--radius-xl);
+        border: 1px solid rgba(30, 27, 75, 0.12); /* Solid border ring for card visibility */
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08); /* High contrast shadow */
+        transition: var(--transition-slow);
       }
       .transport-feature:hover {
-        transform: translateY(-3px);
-        box-shadow: var(--shadow-md);
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        border-color: rgba(79, 70, 229, 0.3);
       }
       .transport-feature-icon {
         width: 48px;
@@ -618,35 +727,81 @@
         height: 24px;
       }
       .transport-feature h5 {
-        font-size: 1rem;
-        margin-bottom: 4px;
+        font-size: 1.0625rem;
+        margin-bottom: 6px;
+        color: var(--indigo-dark);
+        font-weight: 700;
       }
       .transport-feature p {
-        color: var(--gray-400);
-        font-size: 0.8125rem;
+        color: #334155; /* High contrast slate gray */
+        font-size: 0.875rem;
+        line-height: 1.5;
         margin: 0;
+        font-weight: 550;
       }
       .transport-visual {
         background: var(--white);
         border-radius: var(--radius-xl);
-        padding: var(--space-2xl);
+        padding: 0;
         box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: var(--transition-slow);
+      }
+      .transport-visual:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-xl);
+      }
+      .transport-image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+      }
+      .transport-card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition-slow);
+      }
+      .transport-visual:hover .transport-card-img {
+        transform: scale(1.06);
+      }
+      .transport-content-body {
+        padding: var(--space-xl);
         text-align: center;
       }
-      .transport-visual .bus-illustration svg {
-        width: 200px;
-        height: auto;
-        margin-bottom: var(--space-lg);
-      }
       .transport-visual h4 {
-        font-size: 1.25rem;
-        margin-bottom: var(--space-sm);
+        font-size: 1.375rem;
+        margin-bottom: var(--space-xs);
+        color: var(--indigo-dark);
+        font-weight: 700;
       }
       .transport-visual p {
         color: var(--gray-500);
         font-size: 0.9375rem;
-        max-width: 360px;
-        margin: 0 auto var(--space-xl);
+        max-width: 420px;
+        margin: 0 auto var(--space-lg);
+        line-height: 1.6;
+      }
+      .transport-badges {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+      }
+      .transport-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 16px;
+        background: rgba(16, 185, 129, 0.12);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        border-radius: var(--radius-pill);
+        font-size: 0.8125rem;
+        font-weight: 700;
+        color: #047857;
+        font-family: var(--font-heading);
       }
       .transport-badges {
         display: flex;
@@ -1023,24 +1178,39 @@
         <div class="shape"></div>
       </div>
       <div class="container" style="position: relative; z-index: 1">
-        <div class="hero-breadcrumb">
-          <a href="index.html">Home</a>
-          <span class="sep" aria-hidden="true">/</span> <span>Services</span>
-        </div>
-        <div class="hero-badge-service">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          </svg>
-          Comprehensive Care Since 2010
+        <div class="breadcrumb reveal" style="justify-content: center; margin-bottom: var(--space-md);">
+          <a href="index.html">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="vertical-align: middle; margin-right: 2px"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+            Home
+          </a>
+          <span class="separator">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </span>
+          <span class="current">Services</span>
         </div>
         <h1>Our Services</h1>
         <p>
@@ -1077,9 +1247,9 @@
         <div class="shape"></div>
       </div>
       <div class="container" style="position: relative; z-index: 1">
-        <div class="section-header reveal">
+        <div class="section-header reveal" style="text-align: center;">
           <span class="section-subtitle">Academic Programs</span>
-          <h2 class="section-title">World-Class Curricula</h2>
+          <h2 class="section-title" style="white-space: nowrap; text-align: center;">World-Class Curriculum</h2>
           <p>
             Three internationally recognized programs tailored to nurture every
             child's unique potential.
@@ -1087,202 +1257,90 @@
         </div>
         <div class="program-grid">
           <article class="program-card reveal" style="transition-delay: 0.1s">
-            <div class="program-icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                <path
-                  d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
-                />
-                <path d="M8 7h8M8 11h6M8 15h4" />
-              </svg>
+            <div class="program-image-banner">
+              <img src="assets/images/program_montessori.png" alt="Montessori Program" class="program-banner-img" />
+              <span class="program-tag">Ages 2–6</span>
             </div>
-            <span class="program-tag">Ages 2–6</span>
-            <h3>Montessori</h3>
-            <p>
-              A child-centered approach that fosters independence, hands-on
-              learning, and a deep love for discovery through self-directed
-              activity.
-            </p>
-            <ul class="program-features">
-              <li>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Mixed-age classrooms
-              </li>
-              <li>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Self-paced learning
-              </li>
-              <li>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Specially designed materials
-              </li>
-            </ul>
+            <div class="program-card-content">
+              <h3>Montessori</h3>
+              <p>
+                A child-centered approach that fosters independence, hands-on
+                learning, and a deep love for discovery through self-directed
+                activity.
+              </p>
+              <ul class="program-features">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  Mixed-age classrooms
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  Self-paced learning
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  Specially designed materials
+                </li>
+              </ul>
               <a href="service-montessori.html" class="btn btn-outline btn-sm">Learn More</a>
+            </div>
           </article>
           <article class="program-card reveal" style="transition-delay: 0.2s">
-            <div class="program-icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="M2 12h20" />
-                <path
-                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                />
-              </svg>
+            <div class="program-image-banner">
+              <img src="assets/images/program_cambridge.png" alt="Cambridge Program" class="program-banner-img" />
+              <span class="program-tag">Ages 5–11</span>
             </div>
-            <span class="program-tag">Ages 5–11</span>
-            <h3>Cambridge</h3>
-            <p>
-              A globally recognized curriculum that builds strong foundations in
-              English, mathematics, science, and critical thinking skills.
-            </p>
-            <ul class="program-features">
-              <li>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                International benchmarks
-              </li>
-              <li>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Inquiry-based learning
-              </li>
-              <li>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Global perspective
-              </li>
-            </ul>
-            <a href="service-cambridge.html" class="btn btn-outline btn-sm">Learn More</a>
+            <div class="program-card-content">
+              <h3>Cambridge</h3>
+              <p>
+                A globally recognized curriculum that builds strong foundations in
+                English, mathematics, science, and critical thinking skills.
+              </p>
+              <ul class="program-features">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  International benchmarks
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  Inquiry-based learning
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  Global perspective
+                </li>
+              </ul>
+              <a href="service-cambridge.html" class="btn btn-outline btn-sm">Learn More</a>
+            </div>
           </article>
           <article class="program-card reveal" style="transition-delay: 0.3s">
-            <div class="program-icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                <path d="M2 17l10 5 10-5" />
-                <path d="M2 12l10 5 10-5" />
-              </svg>
+            <div class="program-image-banner">
+              <img src="assets/images/program_ib.png" alt="IB Primary Years Program" class="program-banner-img" />
+              <span class="program-tag">Ages 3–12</span>
             </div>
-            <span class="program-tag">Ages 3–12</span>
-            <h3>IB Primary Years</h3>
-            <p>
-              A transdisciplinary framework that develops inquiring,
-              knowledgeable, and caring young learners who thrive in a global
-              community.
-            </p>
-            <ul class="program-features">
-              <li>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Inquiry-driven units
-              </li>
-              <li>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Multilingual approach
-              </li>
-              <li>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Action & community focus
-              </li>
-            </ul>
-            <a href="service-ib.html" class="btn btn-outline btn-sm">Learn More</a>
+            <div class="program-card-content">
+              <h3>IB Primary Years</h3>
+              <p>
+                A transdisciplinary framework that develops inquiring,
+                knowledgeable, and caring young learners who thrive in a global
+                community.
+              </p>
+              <ul class="program-features">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  Inquiry-driven units
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  Multilingual approach
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  Action & community focus
+                </li>
+              </ul>
+              <a href="service-ib.html" class="btn btn-outline btn-sm">Learn More</a>
+            </div>
           </article>
         </div>
       </div>
@@ -1599,230 +1657,115 @@
         </div>
         <div class="nutrition-grid">
           <article class="nutrition-card reveal" style="transition-delay: 0.1s">
+            <div class="nutrition-card-banner">
+              <img src="assets/images/nutrition_breakfast.png" alt="Breakfast & Morning" class="nutrition-banner-img" />
+              <span class="nutrition-badge">7:30 – 8:30 AM</span>
+            </div>
             <div class="nutrition-card-header">
-              <div class="nutrition-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M12 2a10 10 0 1 0 10 10h-10V2z" />
-                  <path d="M12 12 8 8" />
-                </svg>
+              <div class="nutrition-title-wrap">
+                <span class="nutrition-card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                    <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                    <line x1="6" y1="2" x2="6" y2="4" />
+                    <line x1="10" y1="2" x2="10" y2="4" />
+                    <line x1="14" y1="2" x2="14" y2="4" />
+                  </svg>
+                </span>
+                <h4>Breakfast & Morning</h4>
               </div>
-              <h4>Breakfast & Morning</h4>
-              <p>Served 7:30 – 8:30 AM</p>
             </div>
             <div class="nutrition-card-body">
               <ul>
                 <li>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                   Fresh fruit & yogurt
                 </li>
                 <li>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                   Whole grain cereals
                 </li>
                 <li>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                   Eggs & protein options
                 </li>
                 <li>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                   Organic milk & juice
                 </li>
               </ul>
             </div>
           </article>
           <article class="nutrition-card reveal" style="transition-delay: 0.2s">
+            <div class="nutrition-card-banner">
+              <img src="assets/images/nutrition_lunch.png" alt="Lunch Program" class="nutrition-banner-img" />
+              <span class="nutrition-badge">11:30 AM – 12:30 PM</span>
+            </div>
             <div class="nutrition-card-header">
-              <div class="nutrition-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
-                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
-                  <line x1="6" y1="1" x2="6" y2="4" />
-                  <line x1="10" y1="1" x2="10" y2="4" />
-                  <line x1="14" y1="1" x2="14" y2="4" />
-                </svg>
+              <div class="nutrition-title-wrap">
+                <span class="nutrition-card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8V21M18 2v3" />
+                    <path d="M6 2v7a3 3 0 0 0 6 0V2" />
+                    <path d="M9 12v9" />
+                  </svg>
+                </span>
+                <h4>Lunch Program</h4>
               </div>
-              <h4>Lunch Program</h4>
-              <p>Served 11:30 AM – 12:30 PM</p>
             </div>
             <div class="nutrition-card-body">
               <ul>
                 <li>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                   Balanced hot lunches
                 </li>
                 <li>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                   Vegetarian & vegan options
                 </li>
                 <li>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                   Locally sourced produce
                 </li>
                 <li>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                   Allergy-aware kitchen
                 </li>
               </ul>
             </div>
           </article>
           <article class="nutrition-card reveal" style="transition-delay: 0.3s">
+            <div class="nutrition-card-banner">
+              <img src="assets/images/nutrition_snacks.png" alt="Snacks & Allergies" class="nutrition-banner-img" />
+              <span class="nutrition-badge">Morning & Afternoon</span>
+            </div>
             <div class="nutrition-card-header">
-              <div class="nutrition-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
-                  <line x1="6" y1="1" x2="6" y2="4" />
-                  <line x1="10" y1="1" x2="10" y2="4" />
-                  <line x1="14" y1="1" x2="14" y2="4" />
-                </svg>
+              <div class="nutrition-title-wrap">
+                <span class="nutrition-card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.91 4.91 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06z" />
+                    <path d="M10 2c1 .5 2 2 2 5" />
+                  </svg>
+                </span>
+                <h4>Snacks & Allergies</h4>
               </div>
-              <h4>Snacks & Allergies</h4>
-              <p>Morning & afternoon</p>
             </div>
             <div class="nutrition-card-body">
               <ul>
                 <li>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                   Fresh fruit & veggie sticks
                 </li>
                 <li>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                   Nut-free campus policy
                 </li>
                 <li>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                   Dietary accommodation
                 </li>
                 <li>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                   Hydration stations
                 </li>
               </ul>
@@ -1936,171 +1879,29 @@
             </div>
           </div>
           <div class="transport-visual reveal" style="transition-delay: 0.3s">
-            <div class="bus-illustration">
-              <svg
-                viewBox="0 0 240 140"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="20"
-                  y="40"
-                  width="180"
-                  height="70"
-                  rx="8"
-                  fill="var(--peach)"
-                  fill-opacity="0.15"
-                  stroke="var(--peach-dark)"
-                  stroke-width="2"
-                />
-                <rect
-                  x="30"
-                  y="55"
-                  width="50"
-                  height="35"
-                  rx="6"
-                  fill="var(--white)"
-                  stroke="var(--gray-200)"
-                  stroke-width="1.5"
-                />
-                <rect
-                  x="90"
-                  y="55"
-                  width="50"
-                  height="35"
-                  rx="6"
-                  fill="var(--white)"
-                  stroke="var(--gray-200)"
-                  stroke-width="1.5"
-                />
-                <rect
-                  x="150"
-                  y="55"
-                  width="40"
-                  height="35"
-                  rx="6"
-                  fill="var(--white)"
-                  stroke="var(--gray-200)"
-                  stroke-width="1.5"
-                />
-                <rect
-                  x="20"
-                  y="40"
-                  width="180"
-                  height="16"
-                  rx="8"
-                  fill="var(--lavender)"
-                  fill-opacity="0.2"
-                />
-                <circle
-                  cx="60"
-                  cy="115"
-                  r="14"
-                  fill="var(--indigo-dark)"
-                  stroke="var(--white)"
-                  stroke-width="2"
-                />
-                <circle cx="60" cy="115" r="6" fill="var(--gray-300)" />
-                <circle
-                  cx="160"
-                  cy="115"
-                  r="14"
-                  fill="var(--indigo-dark)"
-                  stroke="var(--white)"
-                  stroke-width="2"
-                />
-                <circle cx="160" cy="115" r="6" fill="var(--gray-300)" />
-                <rect
-                  x="35"
-                  y="60"
-                  width="12"
-                  height="8"
-                  rx="2"
-                  fill="var(--mint-dark)"
-                  fill-opacity="0.6"
-                />
-                <rect
-                  x="95"
-                  y="60"
-                  width="12"
-                  height="8"
-                  rx="2"
-                  fill="var(--mint-dark)"
-                  fill-opacity="0.6"
-                />
-                <rect
-                  x="155"
-                  y="60"
-                  width="12"
-                  height="8"
-                  rx="2"
-                  fill="var(--mint-dark)"
-                  fill-opacity="0.6"
-                />
-                <path
-                  d="M200 50 L215 50 L220 60 L215 70 L200 70 Z"
-                  fill="var(--indigo)"
-                  fill-opacity="0.15"
-                />
-                <rect
-                  x="200"
-                  y="50"
-                  width="30"
-                  height="20"
-                  rx="4"
-                  fill="var(--coral)"
-                  fill-opacity="0.1"
-                  stroke="var(--coral)"
-                  stroke-width="1.5"
-                  stroke-dasharray="3 2"
-                />
-              </svg>
+            <div class="transport-image-wrapper">
+              <img src="assets/images/transport_bus.png" alt="Modern Yellow School Bus Transport" class="transport-card-img" />
             </div>
-            <h4>Door-to-Door Service</h4>
-            <p>
-              Covering all major residential areas within a 15 km radius with
-              morning and afternoon routes.
-            </p>
-            <div class="transport-badges">
-              <span class="transport-badge">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                GPS Tracking
-              </span>
-              <span class="transport-badge">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                CCTV Equipped
-              </span>
-              <span class="transport-badge">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                First Aid Kit
-              </span>
+            <div class="transport-content-body">
+              <h4>Door-to-Door Service</h4>
+              <p>
+                Covering all major residential areas within a 15 km radius with
+                morning and afternoon routes.
+              </p>
+              <div class="transport-badges">
+                <span class="transport-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  GPS Tracking
+                </span>
+                <span class="transport-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  CCTV Equipped
+                </span>
+                <span class="transport-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  First Aid Kit
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -2265,23 +2066,6 @@
                 />
               </svg>
               Book a Tour
-            </a>
-            <a href="tel:+1234567890" class="btn btn-glass btn-lg">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                />
-              </svg>
-              (123) 456-7890
             </a>
           </div>
         </div>
