@@ -63,25 +63,28 @@
         align-items: center;
         justify-content: center;
         gap: var(--space-sm);
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(255, 255, 255, 0.9);
         font-family: var(--font-heading);
         font-size: 0.875rem;
         font-weight: 500;
         margin-bottom: var(--space-md);
       }
       .breadcrumb a {
-        color: rgba(255, 255, 255, 0.6);
+        color: #6ee7b7 !important; /* Vivid mint link for high contrast */
+        font-weight: 600 !important;
       }
       .breadcrumb a:hover {
-        color: var(--white);
+        color: var(--white) !important;
       }
       .breadcrumb .separator {
         display: flex;
         align-items: center;
-        opacity: 0.4;
+        opacity: 0.5;
+        color: rgba(255, 255, 255, 0.6);
       }
       .breadcrumb .current {
-        color: var(--white);
+        color: #ffffff !important; /* High contrast pure white */
+        font-weight: 700 !important;
       }
       .hero-floating-shapes {
         position: absolute;
@@ -163,57 +166,64 @@
         position: absolute;
         inset: 0;
         background: linear-gradient(
-          135deg,
-          rgba(49, 46, 129, 0.85),
-          rgba(139, 92, 246, 0.65)
+          to top,
+          rgba(15, 23, 42, 0.95) 0%,
+          rgba(30, 27, 75, 0.85) 50%,
+          rgba(30, 27, 75, 0.45) 100%
         );
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         opacity: 0;
-        transition: var(--transition);
-        gap: var(--space-sm);
+        transition: var(--transition-slow);
+        gap: 6px;
+        padding: var(--space-md);
+        text-align: center;
       }
       .gallery-item:hover .gallery-item-overlay {
         opacity: 1;
       }
       .gallery-item-overlay span {
-        color: var(--white);
+        color: #ffffff !important; /* Pure white title for high contrast */
         font-family: var(--font-heading);
-        font-weight: 600;
+        font-weight: 700 !important;
         font-size: 1.125rem;
-        transform: translateY(20px);
+        transform: translateY(15px);
         transition: var(--transition-slow);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
       }
       .gallery-item:hover .gallery-item-overlay span {
         transform: translateY(0);
       }
       .gallery-item-overlay small {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 0.8125rem;
-        transform: translateY(20px);
+        color: #a7f3d0 !important; /* Vivid mint subtitle for high contrast */
+        font-size: 0.875rem;
+        font-weight: 600 !important;
+        transform: translateY(15px);
         transition: var(--transition-slow);
         transition-delay: 0.05s;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
       }
       .gallery-item:hover .gallery-item-overlay small {
         transform: translateY(0);
       }
       .gallery-item-badge {
         position: absolute;
-        top: var(--space-md);
-        left: var(--space-md);
-        padding: 6px 14px;
-        background: var(--gradient-primary);
-        color: var(--white);
+        top: 12px;
+        left: 12px;
+        padding: 5px 14px;
+        background: #1e1b4b !important; /* Solid indigo badge */
+        color: #ffffff !important;      /* Solid white text */
         border-radius: var(--radius-pill);
-        font-size: 0.6875rem;
-        font-weight: 700;
+        font-size: 0.75rem;
+        font-weight: 800;
         font-family: var(--font-heading);
         text-transform: uppercase;
-        letter-spacing: 0.05em;
-        z-index: 2;
-        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        letter-spacing: 0.06em;
+        z-index: 3;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
       .video-card {
         border-radius: var(--radius-xl);
@@ -254,25 +264,26 @@
         );
       }
       .play-btn {
-        width: 80px;
-        height: 80px;
+        width: 76px;
+        height: 76px;
         border-radius: var(--radius-full);
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(8px);
-        border: 2px solid rgba(255, 255, 255, 0.4);
+        background: #ffffff !important;
+        border: 2px solid #ffffff !important;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--white);
+        color: #312e81 !important;
         cursor: pointer;
         transition: var(--transition-bounce);
         position: relative;
         z-index: 2;
-        font-size: 2rem;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
       }
       .video-card:hover .play-btn {
-        transform: scale(1.1);
-        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.12);
+        background: #ffffff !important;
+        color: #4f46e5 !important;
+        box-shadow: 0 12px 35px rgba(255, 255, 255, 0.4);
       }
       .video-card-info {
         position: absolute;
@@ -280,32 +291,101 @@
         left: 0;
         right: 0;
         padding: var(--space-xl);
-        background: linear-gradient(transparent, rgba(30, 27, 75, 0.9));
+        background: linear-gradient(
+          to top,
+          rgba(15, 23, 42, 0.95) 0%,
+          rgba(15, 23, 42, 0.7) 60%,
+          transparent 100%
+        );
         z-index: 2;
       }
       .video-card-info h4 {
-        color: var(--white);
-        margin-bottom: 4px;
-        font-size: 1.125rem;
+        color: #ffffff !important;
+        margin-bottom: 6px;
+        font-size: 1.25rem;
+        font-weight: 700;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
       }
       .video-card-info p {
-        color: rgba(255, 255, 255, 0.65);
-        font-size: 0.875rem;
+        color: #e2e8f0 !important;
+        font-size: 0.9375rem;
+        font-weight: 500;
         margin: 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
       }
       .video-card-duration {
         position: absolute;
-        top: var(--space-md);
-        right: var(--space-md);
-        padding: 4px 12px;
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(4px);
+        top: 14px;
+        right: 14px;
+        padding: 6px 14px;
+        background: rgba(15, 23, 42, 0.85) !important;
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
         border-radius: var(--radius-pill);
-        color: var(--white);
+        color: #ffffff !important;
         font-size: 0.8125rem;
-        font-weight: 600;
+        font-weight: 700;
         font-family: var(--font-heading);
-        z-index: 2;
+        z-index: 3;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+      .stat-icon-wrapper {
+        width: 52px;
+        height: 52px;
+        border-radius: var(--radius-full);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--space-md);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      }
+      .stat-icon-wrapper.camera { background: rgba(79, 70, 229, 0.12); color: #4f46e5; }
+      .stat-icon-wrapper.events { background: rgba(16, 185, 129, 0.15); color: #059669; }
+      .stat-icon-wrapper.years { background: rgba(245, 158, 11, 0.15); color: #d97706; }
+      .stat-icon-wrapper.smiles { background: rgba(236, 72, 153, 0.15); color: #db2777; }
+      
+      .tour-areas-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-lg);
+        margin-top: var(--space-2xl);
+      }
+      .tour-area-card {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        border: 1px solid rgba(30, 27, 75, 0.08);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition: var(--transition-slow);
+      }
+      .tour-area-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border-color: rgba(79, 70, 229, 0.3);
+      }
+      .tour-area-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        background: rgba(79, 70, 229, 0.1);
+        color: var(--indigo);
+        border-radius: var(--radius-pill);
+        font-size: 0.75rem;
+        font-weight: 700;
+        font-family: var(--font-heading);
+        text-transform: uppercase;
+        margin-bottom: var(--space-xs);
+      }
+      .tour-area-card h4 {
+        font-size: 1rem;
+        margin-bottom: 4px;
+        color: var(--indigo-dark);
+        font-weight: 700;
+      }
+      .tour-area-card p {
+        color: #475569;
+        font-size: 0.8125rem;
+        line-height: 1.5;
+        margin: 0;
       }
       .virtual-tour-card {
         border-radius: var(--radius-xl);
@@ -328,9 +408,19 @@
         inset: 0;
         background: linear-gradient(
           135deg,
-          rgba(30, 27, 75, 0.3),
-          rgba(139, 92, 246, 0.2)
+          rgba(15, 23, 42, 0.65) 0%,
+          rgba(30, 27, 75, 0.55) 50%,
+          rgba(15, 23, 42, 0.65) 100%
         );
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .virtual-tour-card.tour-started .virtual-tour-overlay,
+      .virtual-tour-card.tour-started .virtual-tour-hint {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
       }
       .virtual-tour-controls {
         position: absolute;
@@ -339,24 +429,25 @@
         transform: translateX(-50%);
         display: flex;
         gap: var(--space-md);
-        z-index: 2;
+        z-index: 3;
       }
       .virtual-tour-btn {
         width: 48px;
         height: 48px;
         border-radius: var(--radius-full);
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(15, 23, 42, 0.75);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--white);
         cursor: pointer;
         transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
       }
       .virtual-tour-btn:hover {
-        background: rgba(255, 255, 255, 0.25);
+        background: rgba(79, 70, 229, 0.9);
         transform: scale(1.1);
       }
       .virtual-tour-hint {
@@ -366,26 +457,35 @@
         transform: translate(-50%, -50%);
         text-align: center;
         z-index: 2;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
       }
       .virtual-tour-hint .compass {
         width: 64px;
         height: 64px;
         border-radius: var(--radius-full);
-        background: rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(15, 23, 42, 0.65);
+        backdrop-filter: blur(12px);
+        border: 2px solid rgba(255, 255, 255, 0.4);
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 0 auto var(--space-md);
-        color: var(--white);
+        color: #ffffff;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         animation: pulse 3s ease-in-out infinite;
       }
       .virtual-tour-hint p {
-        color: var(--white);
-        font-size: 0.9375rem;
-        font-weight: 500;
+        color: #ffffff !important;
+        font-size: 1rem;
+        font-weight: 700 !important;
         margin: 0;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+        background: rgba(15, 23, 42, 0.75);
+        padding: 8px 22px;
+        border-radius: var(--radius-pill);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
       }
       .social-grid {
         display: grid;
@@ -1560,8 +1660,9 @@
               background: url('assets/images/hero_slide_3_1784219647143.png') center/cover no-repeat;
             "
           >
-            <!-- Overlay removed for a clear view -->
-            <div style="position: absolute; inset: 0; overflow: hidden">
+            <!-- Dark Backdrop Overlay for initial high contrast -->
+            <div class="virtual-tour-overlay" id="virtualTourOverlay"></div>
+            <div style="position: absolute; inset: 0; overflow: hidden; pointer-events: none;">
               <svg
                 width="100%"
                 height="100%"
@@ -1596,7 +1697,7 @@
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="1.8"
+                  stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
@@ -1662,32 +1763,34 @@
                 position: absolute;
                 bottom: var(--space-xl);
                 right: var(--space-xl);
-                z-index: 2;
+                z-index: 3;
               "
             >
               <span
+                class="campus-location-badge"
                 style="
-                  padding: 8px 16px;
-                  background: rgba(255, 255, 255, 0.1);
-                  backdrop-filter: blur(8px);
-                  border: 1px solid rgba(255, 255, 255, 0.15);
+                  padding: 10px 20px;
+                  background: rgba(15, 23, 42, 0.88);
+                  backdrop-filter: blur(12px);
+                  border: 1px solid rgba(255, 255, 255, 0.3);
                   border-radius: var(--radius-pill);
-                  color: rgba(255, 255, 255, 0.8);
-                  font-size: 0.8125rem;
-                  font-weight: 600;
+                  color: #ffffff;
+                  font-size: 0.875rem;
+                  font-weight: 700;
                   font-family: var(--font-heading);
                   display: flex;
                   align-items: center;
-                  gap: var(--space-sm);
+                  gap: 8px;
+                  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
                 "
               >
                 <svg
-                  width="16"
-                  height="16"
+                  width="18"
+                  height="18"
                   viewBox="0 0 24 24"
                   fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
+                  stroke="#34d399"
+                  stroke-width="2.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
@@ -1696,6 +1799,34 @@
                 </svg>
                 Kindergarden Campus
               </span>
+            </div>
+          </div>
+
+          <!-- Campus Exploration Area Captions & Descriptions -->
+          <div style="text-align: center; margin-top: var(--space-2xl); margin-bottom: var(--space-lg);">
+            <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--indigo-dark); font-family: var(--font-heading); margin-bottom: 4px;">Explore Key Campus Areas</h3>
+            <p style="color: var(--gray-500); font-size: 0.9375rem; margin: 0;">Detailed descriptions of the featured learning environments visible in the Virtual Tour.</p>
+          </div>
+          <div class="tour-areas-grid">
+            <div class="tour-area-card">
+              <div class="tour-area-badge">Classrooms</div>
+              <h4>Academic Learning Studios</h4>
+              <p>Interactive STEM stations, reading nooks, and Montessori sensory learning corners.</p>
+            </div>
+            <div class="tour-area-card">
+              <div class="tour-area-badge">Outdoors</div>
+              <h4>Nature &amp; Eco-Gardens</h4>
+              <p>Organic vegetable patches, outdoor play structures, and shaded sensory paths.</p>
+            </div>
+            <div class="tour-area-card">
+              <div class="tour-area-badge">Creative</div>
+              <h4>Arts &amp; Music Studio</h4>
+              <p>Dedicated space for painting, pottery, drama, and acoustic music practice.</p>
+            </div>
+            <div class="tour-area-card">
+              <div class="tour-area-badge">Sports</div>
+              <h4>Recreation &amp; Athletics</h4>
+              <p>Child-safe indoor gym, mini basketball court, and splash swimming pool.</p>
             </div>
           </div>
         </div>
@@ -1713,83 +1844,48 @@
         </div>
         <div class="photo-stats-grid">
           <div class="stat-item reveal-scale" style="transition-delay: 0.05s">
+            <div class="stat-icon-wrapper camera">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                <circle cx="12" cy="13" r="4" />
+              </svg>
+            </div>
             <div class="stat-number">12,850+</div>
             <div class="stat-label">Photos Taken</div>
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="var(--lavender)"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              style="margin: var(--space-sm) auto 0; opacity: 0.3"
-            >
-              <path
-                d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
-              />
-              <circle cx="12" cy="13" r="4" />
-            </svg>
           </div>
           <div class="stat-item reveal-scale" style="transition-delay: 0.1s">
+            <div class="stat-icon-wrapper events">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
             <div class="stat-number">180+</div>
             <div class="stat-label">Events Covered</div>
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="var(--mint-dark)"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              style="margin: var(--space-sm) auto 0; opacity: 0.3"
-            >
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
           </div>
           <div class="stat-item reveal-scale" style="transition-delay: 0.15s">
+            <div class="stat-icon-wrapper years">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
             <div class="stat-number">18</div>
             <div class="stat-label">Years of Memories</div>
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="var(--peach-dark)"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              style="margin: var(--space-sm) auto 0; opacity: 0.3"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
           </div>
           <div class="stat-item reveal-scale" style="transition-delay: 0.2s">
+            <div class="stat-icon-wrapper smiles">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                <line x1="9" y1="9" x2="9.01" y2="9" />
+                <line x1="15" y1="9" x2="15.01" y2="9" />
+              </svg>
+            </div>
             <div class="stat-number">3,200+</div>
             <div class="stat-label">Smiles Captured</div>
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="var(--coral)"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              style="margin: var(--space-sm) auto 0; opacity: 0.3"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-              <line x1="9" y1="9" x2="9.01" y2="9" />
-              <line x1="15" y1="9" x2="15.01" y2="9" />
-            </svg>
-          </div>
         </div>
       </div>
     </section>
@@ -2253,7 +2349,9 @@
           let startX, startY;
           let autoPlayInterval;
 
-          const hideHint = () => { if(hint) hint.style.opacity = '0'; };
+          const hideHint = () => {
+            if (tourCard) tourCard.classList.add('tour-started');
+          };
 
           const updatePlayIcon = (playing) => {
             if (!autoPlayBtn) return;

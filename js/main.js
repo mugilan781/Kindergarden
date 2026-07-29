@@ -132,15 +132,19 @@ function initCounterAnimation() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const target = entry.target;
-        const text = target.textContent;
-        // Extract number from text (handle formats like "99%", "500+", "15+", etc.)
-        const numMatch = text.match(/\d[\d,]*/);
+        if (target.getAttribute('data-counter-done') === 'true') return;
+        target.setAttribute('data-counter-done', 'true');
+
+        const originalText = target.getAttribute('data-target-val') || target.textContent.trim();
+        const numMatch = originalText.match(/\d[\d,]*/);
         if (!numMatch) return;
 
         const targetValue = parseInt(numMatch[0].replace(/,/g, ''));
-        const suffix = text.replace(numMatch[0], '');
+        const suffix = originalText.replace(numMatch[0], '');
         const duration = 2000;
         const startTime = performance.now();
+
+        target.textContent = '0' + suffix;
 
         function update(currentTime) {
           const elapsed = currentTime - startTime;
@@ -161,9 +165,14 @@ function initCounterAnimation() {
         observer.unobserve(target);
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.15 });
 
-  counters.forEach(counter => observer.observe(counter));
+  counters.forEach(counter => {
+    if (!counter.hasAttribute('data-target-val')) {
+      counter.setAttribute('data-target-val', counter.textContent.trim());
+    }
+    observer.observe(counter);
+  });
 }
 
 // === FAQ ACCORDION ===
