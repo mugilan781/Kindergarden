@@ -171,6 +171,8 @@
         z-index: 1;
         display: flex;
         flex-direction: column;
+        height: 100%; /* Explicit height for pixel-perfect balance */
+        box-sizing: border-box;
       }
       .mv-card:nth-child(1) {
         background: rgba(139, 92, 246, 0.02);
@@ -240,8 +242,10 @@
         margin: 0;
       }
       .philosophy-section {
-        background: var(--cream-light);
+        background: linear-gradient(135deg, #fafaf9 0%, #f5f3ff 50%, #eff6ff 100%); /* Highlighted premium background */
         position: relative;
+        border-top: 1px solid rgba(139, 92, 246, 0.06);
+        border-bottom: 1px solid rgba(139, 92, 246, 0.06);
       }
       .philosophy-grid {
         display: grid;
@@ -254,11 +258,38 @@
         border-radius: var(--radius-xl);
         background: var(--white);
         box-shadow: var(--shadow-sm);
-        transition: var(--transition);
+        transition: var(--transition-slow);
+        border-top: 4px solid transparent; /* Highlighted accent top borders */
+        position: relative;
+        overflow: hidden;
       }
-      .philosophy-card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-lg);
+      .philosophy-card:nth-child(1) {
+        border-top-color: var(--lavender);
+      }
+      .philosophy-card:nth-child(2) {
+        border-top-color: var(--mint-dark);
+      }
+      .philosophy-card:nth-child(3) {
+        border-top-color: var(--peach-dark);
+      }
+      .philosophy-card:nth-child(4) {
+        border-top-color: var(--coral);
+      }
+      .philosophy-card:nth-child(1):hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(139, 92, 246, 0.12);
+      }
+      .philosophy-card:nth-child(2):hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(16, 185, 129, 0.1);
+      }
+      .philosophy-card:nth-child(3):hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(245, 158, 11, 0.1);
+      }
+      .philosophy-card:nth-child(4):hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(239, 68, 68, 0.12);
       }
       .philosophy-icon {
         width: 56px;
@@ -448,11 +479,15 @@
         grid-template-columns: repeat(3, 1fr);
         gap: var(--space-lg);
       }
+      .section-alt {
+        background: #fafaf6; /* Contrasting soft cream-light background to make white cards pop */
+      }
       .facility-card {
         background: var(--white);
         border-radius: var(--radius-xl);
         padding: var(--space-2xl);
-        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(139, 92, 246, 0.08); /* High visibility defined border */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); /* Increased shadow depth */
         transition: var(--transition-slow);
         text-align: center;
         position: relative;
@@ -475,7 +510,8 @@
       }
       .facility-card:hover {
         transform: translateY(-6px);
-        box-shadow: var(--shadow-lg);
+        border-color: var(--lavender);
+        box-shadow: 0 15px 35px rgba(139, 92, 246, 0.12); /* Pop out hover shadow */
       }
       .facility-icon {
         width: 64px;
@@ -543,6 +579,10 @@
         transition: var(--transition-slow);
         position: relative;
         border: 2px solid transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
       .accreditation-badge:hover {
         border-color: var(--lavender);
@@ -550,42 +590,38 @@
         box-shadow: 0 10px 40px rgba(139, 92, 246, 0.12);
         background: var(--white);
       }
-      .accreditation-badge-icon {
+      .accreditation-image-wrapper {
         width: 72px;
         height: 72px;
-        border-radius: var(--radius-full);
+        border-radius: 50%;
+        background: var(--white);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 0 auto var(--space-lg);
-        font-size: 1.75rem;
         transition: var(--transition);
+        padding: 6px;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        box-sizing: border-box;
       }
-      .accreditation-badge:hover .accreditation-badge-icon {
-        transform: scale(1.1);
+      .accreditation-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 50%;
       }
-      .accreditation-badge:nth-child(1) .accreditation-badge-icon {
-        background: rgba(139, 92, 246, 0.1);
-        color: var(--lavender);
-      }
-      .accreditation-badge:nth-child(2) .accreditation-badge-icon {
-        background: rgba(110, 231, 183, 0.15);
-        color: var(--mint-dark);
-      }
-      .accreditation-badge:nth-child(3) .accreditation-badge-icon {
-        background: rgba(253, 186, 116, 0.15);
-        color: var(--peach-dark);
-      }
-      .accreditation-badge:nth-child(4) .accreditation-badge-icon {
-        background: rgba(255, 107, 107, 0.1);
-        color: var(--coral);
+      .accreditation-badge:hover .accreditation-image-wrapper {
+        transform: scale(1.1) rotate(3deg);
+        box-shadow: 0 8px 20px rgba(139, 92, 246, 0.15);
       }
       .accreditation-badge h4 {
-        font-size: 1rem;
-        margin-bottom: 4px;
+        font-size: 1.05rem;
+        margin-bottom: 6px;
+        color: var(--indigo-dark);
       }
       .accreditation-badge p {
-        color: var(--gray-400);
+        color: var(--gray-500);
         font-size: 0.8125rem;
         font-weight: 600;
         margin: 0;
@@ -698,27 +734,7 @@
         font-weight: 600;
         text-align: left;
       }
-      .values-list {
-        list-style: none;
-        margin-top: var(--space-md);
-        padding-top: var(--space-md);
-        border-top: 1px dashed rgba(0, 0, 0, 0.08);
-      }
-      .values-list li {
-        display: flex;
-        align-items: center;
-        gap: var(--space-sm);
-        padding: 4px 0;
-        color: var(--gray-600);
-        font-size: 0.875rem;
-        font-weight: 600;
-      }
-      .values-list li::before {
-        content: "\2726";
-        color: var(--lavender);
-        font-size: 0.625rem;
-        flex-shrink: 0;
-      }
+      /* Values list style removed */
       @media (max-width: 1024px) {
         .mv-grid {
           grid-template-columns: repeat(2, 1fr);
@@ -1118,12 +1134,7 @@
                 <span class="value-tag-desc">We grow together.</span>
               </div>
             </div>
-            <ul class="values-list">
-              <li>Child-centered learning approach</li>
-              <li>Respect for individual growth pace</li>
-              <li>Partnership with families</li>
-              <li>Excellence through continuous improvement</li>
-            </ul>
+            <!-- Values list bullets removed -->
           </div>
         </div>
       </div>
@@ -1526,21 +1537,8 @@
             class="accreditation-badge reveal"
             style="transition-delay: 0.05s"
           >
-            <div class="accreditation-badge-icon">
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                />
-              </svg>
+            <div class="accreditation-image-wrapper">
+              <img src="assets/images/award_naeyc.png" alt="NAEYC Accreditation Seal" class="accreditation-img" />
             </div>
             <h4>National Accreditation</h4>
             <p>NAEYC Accredited</p>
@@ -1549,20 +1547,8 @@
             class="accreditation-badge reveal"
             style="transition-delay: 0.1s"
           >
-            <div class="accreditation-badge-icon">
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="8" r="6" />
-                <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
-              </svg>
+            <div class="accreditation-image-wrapper">
+              <img src="assets/images/award_excellence.png" alt="Excellence Award Seal" class="accreditation-img" />
             </div>
             <h4>Excellence Award</h4>
             <p>National Education Board 2024</p>
@@ -1571,19 +1557,8 @@
             class="accreditation-badge reveal"
             style="transition-delay: 0.15s"
           >
-            <div class="accreditation-badge-icon">
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-              </svg>
+            <div class="accreditation-image-wrapper">
+              <img src="assets/images/award_green_school.png" alt="Green School Certification Seal" class="accreditation-img" />
             </div>
             <h4>Green School Certification</h4>
             <p>Eco-Schools Bronze</p>
@@ -1592,21 +1567,8 @@
             class="accreditation-badge reveal"
             style="transition-delay: 0.2s"
           >
-            <div class="accreditation-badge-icon">
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="M7 12h10" />
-                <path d="M12 7v10" />
-              </svg>
+            <div class="accreditation-image-wrapper">
+              <img src="assets/images/award_parents_choice.png" alt="Parents' Choice Award Seal" class="accreditation-img" />
             </div>
             <h4>Top Early Education</h4>
             <p>Parents' Choice Awards 2024</p>
