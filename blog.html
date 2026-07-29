@@ -141,25 +141,21 @@
       }
       .featured-article-image {
         position: relative;
-        min-height: 400px;
+        height: 100%;
+        min-height: 380px;
         overflow: hidden;
       }
-      .featured-article-image .gradient-bg {
+      .featured-img {
         width: 100%;
         height: 100%;
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        object-fit: cover;
+        transition: var(--transition-slow);
       }
-      .featured-article-image .gradient-bg svg {
-        opacity: 0.15;
-        width: 120px;
-        height: 120px;
+      .featured-article:hover .featured-img {
+        transform: scale(1.06);
       }
       .featured-article-body {
-        padding: var(--space-2xl) var(--space-2xl) var(--space-2xl) 0;
+        padding: var(--space-2xl);
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -238,69 +234,68 @@
       .category-card {
         display: flex;
         align-items: center;
-        gap: var(--space-lg);
-        padding: var(--space-lg);
-        background: var(--white);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-sm);
-        transition: var(--transition);
+        justify-content: space-between;
+        padding: 10px 14px;
+        background: #f8fafc;
+        border-radius: var(--radius-md);
+        transition: var(--transition-slow);
         cursor: pointer;
+        border: 1px solid rgba(30, 27, 75, 0.05);
       }
       .category-card:hover {
         transform: translateX(4px);
-        box-shadow: var(--shadow-md);
+        background: var(--white);
+        border-color: rgba(79, 70, 229, 0.25);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      }
+      .category-card-main {
+        display: flex;
+        align-items: center;
+        gap: 12px;
       }
       .category-card-icon {
-        width: 48px;
-        height: 48px;
-        min-width: 48px;
-        border-radius: var(--radius-lg);
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-      }
-      .category-card-info {
-        flex: 1;
       }
       .category-card-info h4 {
         font-size: 0.9375rem;
-        margin-bottom: 2px;
-      }
-      .category-card-info span {
-        font-size: 0.8125rem;
-        color: var(--gray-400);
+        margin: 0;
+        font-weight: 700;
+        color: var(--indigo-dark);
       }
       .category-card-count {
-        width: 36px;
-        height: 36px;
-        border-radius: var(--radius-full);
-        background: var(--cream);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        padding: 3px 10px;
+        border-radius: var(--radius-pill);
+        background: var(--white);
+        border: 1px solid rgba(30, 27, 75, 0.08);
         font-family: var(--font-heading);
         font-weight: 700;
-        font-size: 0.875rem;
-        color: var(--lavender);
+        font-size: 0.75rem;
+        color: var(--indigo);
       }
       .popular-card {
         display: flex;
-        gap: var(--space-md);
-        padding: var(--space-md);
-        background: var(--white);
+        align-items: center;
+        gap: 12px;
+        padding: 8px;
+        background: transparent;
         border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-sm);
         transition: var(--transition);
         cursor: pointer;
       }
       .popular-card:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
+        background: #f8fafc;
+        transform: translateX(4px);
       }
       .popular-card-thumb {
-        width: 80px;
-        min-width: 80px;
-        height: 80px;
+        width: 64px;
+        min-width: 64px;
+        height: 64px;
         border-radius: var(--radius-md);
         overflow: hidden;
         display: flex;
@@ -314,9 +309,11 @@
         justify-content: center;
       }
       .popular-card-info h4 {
-        font-size: 0.9375rem;
-        line-height: 1.4;
+        font-size: 0.875rem;
+        line-height: 1.35;
         margin-bottom: 4px;
+        font-weight: 700;
+        color: var(--indigo-dark);
         transition: var(--transition);
       }
       .popular-card:hover .popular-card-info h4 {
@@ -445,9 +442,94 @@
       .sidebar-card {
         background: var(--white);
         border-radius: var(--radius-xl);
-        padding: var(--space-xl);
-        box-shadow: var(--shadow-md);
+        padding: var(--space-lg);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         margin-bottom: var(--space-xl);
+        border: 1px solid rgba(30, 27, 75, 0.08);
+      }
+      .sidebar-card h3 {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--indigo-dark);
+        margin-bottom: var(--space-md);
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--gray-100);
+      }
+      .blog-search-filter-wrap {
+        background: var(--white);
+        padding: var(--space-lg);
+        border-radius: var(--radius-xl);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(30, 27, 75, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+        margin-bottom: var(--space-2xl);
+      }
+      .blog-search-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      .blog-search-box svg {
+        position: absolute;
+        left: 18px;
+        color: var(--indigo);
+        pointer-events: none;
+      }
+      .blog-search-box input {
+        width: 100%;
+        padding: 14px 44px 14px 48px;
+        border-radius: var(--radius-pill);
+        border: 1px solid var(--gray-200);
+        font-family: var(--font-body);
+        font-size: 0.9375rem;
+        color: var(--indigo-dark);
+        background: #f8fafc;
+        outline: none;
+        transition: var(--transition);
+      }
+      .blog-search-box input:focus {
+        background: var(--white);
+        border-color: var(--indigo);
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+      }
+      #clearSearchBtn {
+        position: absolute;
+        right: 14px;
+        background: none;
+        border: none;
+        font-size: 1.25rem;
+        color: var(--gray-400);
+        cursor: pointer;
+        line-height: 1;
+      }
+      .blog-filter-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-xs);
+      }
+      .filter-btn {
+        padding: 8px 18px;
+        border-radius: var(--radius-pill);
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: var(--gray-600);
+        background: #f1f5f9;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .filter-btn:hover {
+        background: var(--lavender-light);
+        color: var(--indigo-dark);
+      }
+      .filter-btn.active {
+        background: var(--indigo-dark);
+        color: #ffffff;
+        font-weight: 700;
+        box-shadow: 0 4px 12px rgba(30, 27, 75, 0.25);
       }
       .sidebar-card h3 {
         font-size: 1.25rem;
@@ -658,57 +740,7 @@
       <div class="container">
         <div class="featured-article reveal-scale">
           <div class="featured-article-image">
-            <div
-              class="gradient-bg"
-              style="
-                background: url('assets/images/gallery_classroom_1784219838321.png') center/cover no-repeat;
-              "
-            >
-              <svg
-                width="120"
-                height="120"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="rgba(255,255,255,0.3)"
-                stroke-width="1"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 6v6l4 2" />
-                <path d="M12 2v2" />
-                <path d="M12 20v2" />
-                <path d="M4.93 4.93l1.41 1.41" />
-                <path d="M17.66 17.66l1.41 1.41" />
-                <path d="M2 12h2" />
-                <path d="M20 12h2" />
-                <path d="M4.93 19.07l1.41-1.41" />
-                <path d="M17.66 6.34l1.41-1.41" />
-              </svg>
-            </div>
-            <div
-              style="
-                position: absolute;
-                top: var(--space-lg);
-                left: var(--space-lg);
-                display: flex;
-                gap: var(--space-sm);
-              "
-            >
-              <span
-                class="blog-card-category"
-                style="background: var(--gradient-primary)"
-                >Featured</span
-              >
-              <span
-                class="blog-card-category"
-                style="
-                  background: rgba(255, 255, 255, 0.2);
-                  backdrop-filter: blur(10px);
-                "
-                >Parenting Guides</span
-              >
-            </div>
+            <img src="assets/images/gallery_classroom_1784219838321.png" alt="Preparing Your Child for Their First Day at School" class="featured-img" />
           </div>
           <div class="featured-article-body">
             <span
@@ -807,6 +839,25 @@
         <div class="section-header reveal">
           <div class="section-subtitle">Latest Articles</div>
           <h2 class="section-title">Insights for<br />Modern Families</h2>
+        </div>
+
+        <!-- Search Bar & Article Category Filter Bar -->
+        <div class="blog-search-filter-wrap reveal">
+          <div class="blog-search-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="blogSearchInput" placeholder="Search articles by title, topic, or keyword..." />
+            <button id="clearSearchBtn" aria-label="Clear search" style="display: none;">&times;</button>
+          </div>
+          <div class="blog-filter-tabs">
+            <button class="filter-btn active" data-category="all">All Articles</button>
+            <button class="filter-btn" data-category="Education Tips">Education Tips</button>
+            <button class="filter-btn" data-category="Parenting Guides">Parenting Guides</button>
+            <button class="filter-btn" data-category="School News">School News</button>
+            <button class="filter-btn" data-category="Events">Events</button>
+          </div>
         </div>
         <div class="blog-layout">
           <!-- Blog Grid -->
@@ -1279,154 +1330,159 @@
                 style="
                   display: flex;
                   flex-direction: column;
-                  gap: var(--space-sm);
+                  gap: 10px;
                 "
               >
                 <div class="category-card">
-                  <div
-                    class="category-card-icon"
-                    style="
-                      background: rgba(139, 92, 246, 0.12);
-                      color: var(--lavender);
-                    "
-                  >
-                    <svg
-                      width="22"
-                      height="22"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                  <div class="category-card-main">
+                    <div
+                      class="category-card-icon"
+                      style="
+                        background: rgba(139, 92, 246, 0.12);
+                        color: var(--lavender);
+                      "
                     >
-                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                    </svg>
-                  </div>
-                  <div class="category-card-info">
-                    <h4>Education Tips</h4>
-                    <span>Practical classroom insights</span>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                      </svg>
+                    </div>
+                    <div class="category-card-info">
+                      <h4>Education Tips</h4>
+                    </div>
                   </div>
                   <div class="category-card-count">24</div>
                 </div>
                 <div class="category-card">
-                  <div
-                    class="category-card-icon"
-                    style="
-                      background: rgba(110, 231, 183, 0.2);
-                      color: var(--mint-dark);
-                    "
-                  >
-                    <svg
-                      width="22"
-                      height="22"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                  <div class="category-card-main">
+                    <div
+                      class="category-card-icon"
+                      style="
+                        background: rgba(110, 231, 183, 0.2);
+                        color: var(--mint-dark);
+                      "
                     >
-                      <path
-                        d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"
-                      />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                  </div>
-                  <div class="category-card-info">
-                    <h4>Parenting Guides</h4>
-                    <span>Support for every stage</span>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"
+                        />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                    </div>
+                    <div class="category-card-info">
+                      <h4>Parenting Guides</h4>
+                    </div>
                   </div>
                   <div class="category-card-count">18</div>
                 </div>
                 <div class="category-card">
-                  <div
-                    class="category-card-icon"
-                    style="
-                      background: rgba(253, 186, 116, 0.2);
-                      color: var(--peach-dark);
-                    "
-                  >
-                    <svg
-                      width="22"
-                      height="22"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                  <div class="category-card-main">
+                    <div
+                      class="category-card-icon"
+                      style="
+                        background: rgba(253, 186, 116, 0.2);
+                        color: var(--peach-dark);
+                      "
                     >
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M2 12h20" />
-                      <path
-                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                      />
-                    </svg>
-                  </div>
-                  <div class="category-card-info">
-                    <h4>School News</h4>
-                    <span>Updates & announcements</span>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M2 12h20" />
+                        <path
+                          d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                        />
+                      </svg>
+                    </div>
+                    <div class="category-card-info">
+                      <h4>School News</h4>
+                    </div>
                   </div>
                   <div class="category-card-count">31</div>
                 </div>
                 <div class="category-card">
-                  <div
-                    class="category-card-icon"
-                    style="
-                      background: rgba(255, 107, 107, 0.12);
-                      color: var(--coral);
-                    "
-                  >
-                    <svg
-                      width="22"
-                      height="22"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                  <div class="category-card-main">
+                    <div
+                      class="category-card-icon"
+                      style="
+                        background: rgba(255, 107, 107, 0.12);
+                        color: var(--coral);
+                      "
                     >
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M2 12h20" />
-                      <path
-                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                      />
-                    </svg>
-                  </div>
-                  <div class="category-card-info">
-                    <h4>Events</h4>
-                    <span>Community celebrations</span>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M2 12h20" />
+                        <path
+                          d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                        />
+                      </svg>
+                    </div>
+                    <div class="category-card-info">
+                      <h4>Events</h4>
+                    </div>
                   </div>
                   <div class="category-card-count">15</div>
                 </div>
                 <div class="category-card">
-                  <div
-                    class="category-card-icon"
-                    style="
-                      background: rgba(49, 46, 129, 0.08);
-                      color: var(--indigo);
-                    "
-                  >
-                    <svg
-                      width="22"
-                      height="22"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                  <div class="category-card-main">
+                    <div
+                      class="category-card-icon"
+                      style="
+                        background: rgba(49, 46, 129, 0.08);
+                        color: var(--indigo);
+                      "
                     >
-                      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                      <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
-                    </svg>
-                  </div>
-                  <div class="category-card-info">
-                    <h4>Montessori</h4>
-                    <span>Method & philosophy</span>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
+                      </svg>
+                    </div>
+                    <div class="category-card-info">
+                      <h4>Montessori</h4>
+                    </div>
                   </div>
                   <div class="category-card-count">12</div>
                 </div>
@@ -1575,6 +1631,27 @@
                     </span>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- Popular Topics Tag Cloud Card -->
+            <div class="sidebar-card reveal" style="transition-delay: 0.2s">
+              <h3><span>Popular Topics</span></h3>
+              <div class="tag-cloud">
+                <span class="tag">#Montessori</span>
+                <span class="tag">#EarlyLearning</span>
+                <span class="tag">#ParentingTips</span>
+                <span class="tag">#STEM</span>
+                <span class="tag">#Nutrition</span>
+                <span class="tag">#OutdoorPlay</span>
+                <span class="tag">#SocialSkills</span>
+                <span class="tag">#Arts &amp; Crafts</span>
+                <span class="tag">#Phonics</span>
+                <span class="tag">#Childcare</span>
+                <span class="tag">#Reading</span>
+                <span class="tag">#Activities</span>
+                <span class="tag">#SchoolLife</span>
+                <span class="tag">#Mindset</span>
               </div>
             </div>
 
@@ -1967,5 +2044,94 @@
       </svg>
     </button>
     <script src="js/main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('blogSearchInput');
+        const clearBtn = document.getElementById('clearSearchBtn');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const blogCards = document.querySelectorAll('.blog-card');
+        const sidebarCategories = document.querySelectorAll('.category-card');
+
+        let currentCategory = 'all';
+        let currentQuery = '';
+
+        const filterArticles = () => {
+          blogCards.forEach((card) => {
+            const title = card.querySelector('.blog-card-title')?.textContent.toLowerCase() || '';
+            const excerpt = card.querySelector('.blog-card-excerpt')?.textContent.toLowerCase() || '';
+            const category = card.querySelector('.blog-card-category')?.textContent.trim() || '';
+
+            const matchesCategory = (currentCategory === 'all') || (category.toLowerCase() === currentCategory.toLowerCase());
+            const matchesQuery = !currentQuery || title.includes(currentQuery) || excerpt.includes(currentQuery);
+
+            if (matchesCategory && matchesQuery) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        };
+
+        if (searchInput) {
+          searchInput.addEventListener('input', (e) => {
+            currentQuery = e.target.value.toLowerCase().trim();
+            if (clearBtn) clearBtn.style.display = currentQuery ? 'block' : 'none';
+            filterArticles();
+          });
+        }
+
+        if (clearBtn) {
+          clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            currentQuery = '';
+            clearBtn.style.display = 'none';
+            filterArticles();
+          });
+        }
+
+        filterBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            filterBtns.forEach((b) => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = btn.getAttribute('data-category');
+            filterArticles();
+          });
+        });
+
+        sidebarCategories.forEach((catCard) => {
+          catCard.addEventListener('click', () => {
+            const catName = catCard.querySelector('h4')?.textContent.trim();
+            if (catName) {
+              filterBtns.forEach((btn) => {
+                if (btn.getAttribute('data-category').toLowerCase() === catName.toLowerCase()) {
+                  btn.click();
+                  const filterWrap = document.querySelector('.blog-search-filter-wrap');
+                  if (filterWrap) {
+                    window.scrollTo({ top: filterWrap.offsetTop - 100, behavior: 'smooth' });
+                  }
+                }
+              });
+            }
+          });
+        });
+
+        const tags = document.querySelectorAll('.tag-cloud .tag');
+        tags.forEach((tag) => {
+          tag.addEventListener('click', () => {
+            const topic = tag.textContent.replace('#', '').trim();
+            if (searchInput) {
+              searchInput.value = topic;
+              currentQuery = topic.toLowerCase();
+              if (clearBtn) clearBtn.style.display = 'block';
+              filterArticles();
+              const filterWrap = document.querySelector('.blog-search-filter-wrap');
+              if (filterWrap) {
+                window.scrollTo({ top: filterWrap.offsetTop - 100, behavior: 'smooth' });
+              }
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>
