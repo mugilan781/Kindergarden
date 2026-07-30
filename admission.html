@@ -619,7 +619,8 @@
         .why-grid { grid-template-columns: repeat(2, 1fr); }
         .tuition-grid { grid-template-columns: 1fr 1fr; }
         .testimonials-grid { grid-template-columns: 1fr 1fr; }
-        .eligibility-grid { grid-template-columns: 1fr; }
+        .eligibility-grid { grid-template-columns: 1fr; gap: var(--space-xl); }
+        .eligibility-wrap { padding: var(--space-2xl) var(--space-xl); }
       }
       @media (max-width: 768px) {
         .process-step, .process-step.reverse { grid-template-columns: 1fr; direction: ltr; }
@@ -628,10 +629,14 @@
         .tuition-grid { grid-template-columns: 1fr; }
         .testimonials-grid { grid-template-columns: 1fr; }
         .cta-banner { padding: var(--space-2xl) var(--space-lg); }
+        .eligibility-wrap { padding: var(--space-xl) var(--space-lg); }
+        .eligibility-grid { gap: var(--space-md); }
       }
       @media (max-width: 480px) {
         .why-grid { grid-template-columns: 1fr; }
         .hero-badge-row { flex-direction: column; align-items: center; }
+        .eligibility-wrap { padding: var(--space-lg) var(--space-md); }
+        .eligibility-card { padding: var(--space-md); }
       }
     </style>
     <link rel="stylesheet" href="css/responsive.css" />
