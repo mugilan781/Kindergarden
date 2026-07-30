@@ -1,0 +1,1307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admission Process | Kindergarden — Premium Kindergarten &amp; Primary School</title>
+    <meta
+      name="description"
+      content="Learn about Kindergarden's step-by-step admission process. From campus visits and assessments to enrolment — everything parents need to know to get started."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      /* ── Hero ── */
+      .admission-hero {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background:
+          linear-gradient(135deg, rgba(30,27,75,0.88) 0%, rgba(49,46,129,0.82) 45%, rgba(110,231,183,0.25) 100%),
+          url("assets/images/admission_hero.png") center/cover no-repeat;
+        position: relative;
+        overflow: hidden;
+        padding: calc(var(--header-height) + 80px) 0 100px;
+      }
+      .admission-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 70% 40%, rgba(110,231,183,0.12) 0%, transparent 60%);
+        pointer-events: none;
+      }
+      .admission-hero h1 {
+        color: #fff;
+        font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+        margin-bottom: var(--space-md);
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+      }
+      .admission-hero h1 em {
+        font-style: normal;
+        background: linear-gradient(135deg, #6ee7b7, #a78bfa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .admission-hero p {
+        color: rgba(255,255,255,0.78);
+        font-size: 1.125rem;
+        max-width: 620px;
+        margin: 0 auto var(--space-2xl);
+        line-height: 1.85;
+      }
+      .hero-badge-row {
+        display: flex;
+        gap: var(--space-md);
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: var(--space-2xl);
+      }
+      .hero-badge {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: var(--radius-pill);
+        padding: 8px 20px;
+        color: rgba(255,255,255,0.9);
+        font-size: 0.875rem;
+        font-weight: 600;
+        backdrop-filter: blur(8px);
+      }
+      .hero-badge svg { color: #6ee7b7; }
+      .hero-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+      .hero-shapes span {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.07;
+      }
+      .hero-shapes span:nth-child(1) { width: 520px; height: 520px; background: var(--mint); top: -200px; right: -150px; animation: float 22s ease-in-out infinite; }
+      .hero-shapes span:nth-child(2) { width: 350px; height: 350px; background: var(--lavender); bottom: -120px; left: -100px; animation: floatReverse 18s ease-in-out infinite; }
+
+      /* ── Section Labels ── */
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, rgba(110,231,183,0.15), rgba(167,139,250,0.15));
+        border: 1px solid rgba(110,231,183,0.3);
+        border-radius: var(--radius-pill);
+        padding: 6px 18px;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        color: var(--mint-dark);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: var(--space-md);
+      }
+      [data-theme="dark"] .section-label { color: var(--mint); }
+
+      /* ── Why Choose Us ── */
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-xl);
+        margin-top: var(--space-2xl);
+      }
+      .why-card {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        text-align: center;
+        box-shadow: 0 4px 24px rgba(49,46,129,0.08);
+        border: 1px solid rgba(49,46,129,0.07);
+        transition: var(--transition);
+      }
+      [data-theme="dark"] .why-card { background: var(--card-bg); border-color: var(--border); }
+      .why-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(49,46,129,0.14); }
+      .why-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--space-md);
+      }
+      .why-icon svg { width: 28px; height: 28px; }
+      .why-card h4 { font-size: 1.0625rem; margin-bottom: var(--space-xs); }
+      .why-card p { font-size: 0.875rem; color: var(--gray-500); line-height: 1.7; margin: 0; }
+
+      /* ── Process Steps ── */
+      .process-step {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-3xl);
+        align-items: center;
+        padding: var(--space-3xl) 0;
+        border-bottom: 1px solid rgba(49,46,129,0.08);
+      }
+      .process-step:last-child { border-bottom: none; }
+      .process-step.reverse { direction: rtl; }
+      .process-step.reverse > * { direction: ltr; }
+      .step-image-wrap {
+        position: relative;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(49,46,129,0.18);
+      }
+      .step-image-wrap img {
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.7s ease;
+      }
+      .step-image-wrap:hover img { transform: scale(1.04); }
+      .step-number-badge {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #312e81, #4f46e5);
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 16px rgba(49,46,129,0.4);
+        font-family: var(--font-heading);
+      }
+      .step-tag {
+        display: inline-block;
+        background: linear-gradient(135deg, rgba(110,231,183,0.2), rgba(167,139,250,0.2));
+        border: 1px solid rgba(110,231,183,0.3);
+        color: var(--mint-dark);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border-radius: var(--radius-pill);
+        padding: 4px 14px;
+        margin-bottom: var(--space-md);
+      }
+      [data-theme="dark"] .step-tag { color: var(--mint); }
+      .step-content h3 {
+        font-size: 1.75rem;
+        margin-bottom: var(--space-md);
+        line-height: 1.3;
+        color: var(--indigo-dark);
+      }
+      [data-theme="dark"] .step-content h3 { color: var(--text); }
+      .step-content p {
+        color: var(--gray-600);
+        line-height: 1.85;
+        font-size: 1rem;
+        margin-bottom: var(--space-lg);
+      }
+      [data-theme="dark"] .step-content p { color: var(--text-muted); }
+      .step-checklist {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 var(--space-xl) 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+      }
+      .step-checklist li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.9375rem;
+        color: var(--gray-700);
+        font-weight: 500;
+      }
+      [data-theme="dark"] .step-checklist li { color: var(--text-muted); }
+      .step-checklist li::before {
+        content: "";
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #6ee7b7, #34d399);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 12px;
+        margin-top: 2px;
+      }
+      .step-duration-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(49,46,129,0.06);
+        border-radius: var(--radius-md);
+        padding: 8px 16px;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--indigo);
+      }
+      [data-theme="dark"] .step-duration-badge { background: rgba(110,231,183,0.1); color: var(--mint); }
+
+      /* ── Eligibility ── */
+      .eligibility-wrap {
+        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4f46e5 100%);
+        border-radius: var(--radius-2xl);
+        padding: var(--space-3xl);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .eligibility-wrap::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 80% 20%, rgba(110,231,183,0.12) 0%, transparent 60%);
+        pointer-events: none;
+      }
+      .eligibility-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2xl);
+        margin-top: var(--space-2xl);
+      }
+      .eligibility-card {
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        backdrop-filter: blur(4px);
+      }
+      .eligibility-card h4 {
+        color: #fff;
+        font-size: 1.0625rem;
+        margin-bottom: var(--space-sm);
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      .eligibility-card h4 span {
+        width: 32px;
+        height: 32px;
+        border-radius: var(--radius-md);
+        background: rgba(110,231,183,0.2);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+      }
+      .eligibility-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .eligibility-card ul li {
+        color: rgba(255,255,255,0.78);
+        font-size: 0.9rem;
+        padding-left: 20px;
+        position: relative;
+        line-height: 1.6;
+      }
+      .eligibility-card ul li::before {
+        content: "›";
+        position: absolute;
+        left: 0;
+        color: #6ee7b7;
+        font-weight: 700;
+      }
+
+      /* ── FAQ ── */
+      .faq-list { display: flex; flex-direction: column; gap: var(--space-md); margin-top: var(--space-2xl); }
+      .faq-item {
+        border: 1px solid rgba(49,46,129,0.1);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: var(--transition);
+        background: var(--white);
+      }
+      [data-theme="dark"] .faq-item { background: var(--card-bg); border-color: var(--border); }
+      .faq-item.open { box-shadow: 0 8px 32px rgba(49,46,129,0.1); border-color: rgba(110,231,183,0.4); }
+      .faq-question {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-lg) var(--space-xl);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        font-family: var(--font-heading);
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--indigo-dark);
+        gap: var(--space-md);
+        transition: var(--transition);
+      }
+      [data-theme="dark"] .faq-question { color: var(--text); }
+      .faq-question:hover { background: rgba(49,46,129,0.03); }
+      .faq-icon {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        border-radius: 50%;
+        background: rgba(110,231,183,0.15);
+        color: var(--mint-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+      }
+      .faq-item.open .faq-icon { transform: rotate(45deg); background: linear-gradient(135deg, #6ee7b7, #34d399); color: #fff; }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.3s ease;
+        padding: 0 var(--space-xl);
+      }
+      .faq-item.open .faq-answer { max-height: 300px; padding: 0 var(--space-xl) var(--space-lg); }
+      .faq-answer p { color: var(--gray-600); line-height: 1.8; font-size: 0.9375rem; margin: 0; }
+      [data-theme="dark"] .faq-answer p { color: var(--text-muted); }
+
+      /* ── Tuition Cards ── */
+      .tuition-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xl);
+        margin-top: var(--space-2xl);
+      }
+      .tuition-card {
+        border-radius: var(--radius-xl);
+        border: 2px solid rgba(49,46,129,0.1);
+        padding: var(--space-2xl) var(--space-xl);
+        text-align: center;
+        background: var(--white);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+      [data-theme="dark"] .tuition-card { background: var(--card-bg); border-color: var(--border); }
+      .tuition-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(49,46,129,0.15); border-color: rgba(110,231,183,0.4); }
+      .tuition-card.featured {
+        background: linear-gradient(135deg, #312e81 0%, #4f46e5 100%);
+        border-color: transparent;
+        color: #fff;
+      }
+      .tuition-card.featured::before {
+        content: "Most Popular";
+        position: absolute;
+        top: 22px;
+        right: -38px;
+        width: 145px;
+        text-align: center;
+        background: linear-gradient(135deg, #6ee7b7, #34d399);
+        color: #1e1b4b;
+        font-size: 0.58rem;
+        font-weight: 800;
+        padding: 5px 0;
+        transform: rotate(45deg);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        z-index: 2;
+      }
+
+      /* Specific button overrides for tuition plans */
+      .tuition-card .btn-outline {
+        border: 2px solid var(--indigo) !important;
+        color: var(--indigo) !important;
+        background: transparent !important;
+      }
+      .tuition-card .btn-outline:hover {
+        background: var(--indigo) !important;
+        color: var(--white) !important;
+      }
+      [data-theme="dark"] .tuition-card .btn-outline {
+        border-color: var(--mint) !important;
+        color: var(--mint) !important;
+      }
+      [data-theme="dark"] .tuition-card .btn-outline:hover {
+        background: var(--mint) !important;
+        color: #1e1b4b !important;
+      }
+      
+      /* Featured card button contrast fix in dark and light modes */
+      .tuition-card.featured .btn-primary {
+        background: #ffffff !important;
+        color: #312e81 !important;
+        border: none !important;
+      }
+      .tuition-card.featured .btn-primary:hover {
+        background: var(--mint) !important;
+        color: #1e1b4b !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 24px rgba(110, 231, 183, 0.4) !important;
+      }
+      .tuition-age {
+        display: inline-block;
+        border-radius: var(--radius-pill);
+        padding: 4px 16px;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        margin-bottom: var(--space-md);
+        background: rgba(110,231,183,0.15);
+        color: var(--mint-dark);
+      }
+      .tuition-card.featured .tuition-age { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.85); }
+      .tuition-card h3 { font-size: 1.25rem; margin-bottom: var(--space-xs); }
+      .tuition-card.featured h3 { color: #fff; }
+      .tuition-price {
+        font-size: 2.5rem;
+        font-weight: 900;
+        font-family: var(--font-heading);
+        color: var(--indigo-dark);
+        margin: var(--space-md) 0 4px;
+        letter-spacing: -0.04em;
+      }
+      .tuition-card.featured .tuition-price { color: #fff; }
+      .tuition-period { font-size: 0.875rem; color: var(--gray-500); margin-bottom: var(--space-xl); }
+      .tuition-card.featured .tuition-period { color: rgba(255,255,255,0.6); }
+      .tuition-features { list-style: none; padding: 0; margin: 0 0 var(--space-xl) 0; text-align: left; display: flex; flex-direction: column; gap: 10px; }
+      .tuition-features li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
+        color: var(--gray-700);
+      }
+      .tuition-card.featured .tuition-features li { color: rgba(255,255,255,0.85); }
+      [data-theme="dark"] .tuition-features li { color: var(--text-muted); }
+      .tuition-features li::before {
+        content: "✓";
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #6ee7b7, #34d399);
+        color: #1e1b4b;
+        font-size: 0.7rem;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ── Testimonials ── */
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xl);
+        margin-top: var(--space-2xl);
+      }
+      .testimonial-card {
+        background: var(--white);
+        border: 1px solid rgba(49,46,129,0.08);
+        border-radius: var(--radius-xl);
+        padding: var(--space-xl);
+        transition: var(--transition);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      [data-theme="dark"] .testimonial-card { background: var(--card-bg); border-color: var(--border); }
+      .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(49,46,129,0.12); }
+      .testimonial-quote {
+        font-size: 2.5rem;
+        line-height: 1;
+        color: var(--mint);
+        font-family: Georgia, serif;
+        margin-bottom: var(--space-sm);
+      }
+      .testimonial-text {
+        color: var(--gray-600);
+        line-height: 1.8;
+        font-size: 0.9375rem;
+        margin-bottom: var(--space-lg);
+        font-style: italic;
+        flex-grow: 1;
+      }
+      [data-theme="dark"] .testimonial-text { color: var(--text-muted); }
+      .testimonial-stars { color: #f59e0b; font-size: 0.875rem; margin-bottom: var(--space-md); }
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        margin-top: auto;
+      }
+      .testimonial-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #312e81, #6ee7b7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 800;
+        font-size: 1rem;
+        font-family: var(--font-heading);
+        flex-shrink: 0;
+      }
+      .testimonial-name { font-weight: 700; font-size: 0.9375rem; color: var(--indigo-dark); }
+      [data-theme="dark"] .testimonial-name { color: #F8FAFC !important; }
+      .testimonial-role { font-size: 0.8125rem; color: var(--gray-500); }
+
+      /* ── CTA Banner ── */
+      .cta-banner {
+        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4f46e5 100%);
+        border-radius: var(--radius-2xl);
+        padding: var(--space-4xl) var(--space-3xl);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 20% 50%, rgba(110,231,183,0.15) 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 50%, rgba(167,139,250,0.12) 0%, transparent 60%);
+        pointer-events: none;
+      }
+      .cta-banner h2 { color: #fff; font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: var(--space-md); }
+      .cta-banner p { color: rgba(255,255,255,0.7); font-size: 1.0625rem; max-width: 580px; margin: 0 auto var(--space-2xl); line-height: 1.8; }
+      .cta-actions { display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap; }
+      .btn-white {
+        background: #fff;
+        color: var(--indigo-dark);
+        padding: 16px 36px;
+        border-radius: var(--radius-pill);
+        font-weight: 800;
+        font-family: var(--font-heading);
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+      }
+      .btn-white:hover { background: #f0fdf4; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+      [data-theme="dark"] .btn-white {
+        color: #1e1b4b !important;
+      }
+      .btn-outline-white {
+        background: rgba(255,255,255,0.08);
+        color: #fff;
+        border: 2px solid rgba(255,255,255,0.3);
+        padding: 14px 34px;
+        border-radius: var(--radius-pill);
+        font-weight: 700;
+        font-family: var(--font-heading);
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: var(--transition);
+        backdrop-filter: blur(4px);
+      }
+      .btn-outline-white:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.5); transform: translateY(-2px); }
+
+      /* ── Responsive ── */
+      @media (max-width: 1024px) {
+        .why-grid { grid-template-columns: repeat(2, 1fr); }
+        .tuition-grid { grid-template-columns: 1fr 1fr; }
+        .testimonials-grid { grid-template-columns: 1fr 1fr; }
+        .eligibility-grid { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 768px) {
+        .process-step, .process-step.reverse { grid-template-columns: 1fr; direction: ltr; }
+        .process-step.reverse { direction: ltr; }
+        .why-grid { grid-template-columns: 1fr 1fr; }
+        .tuition-grid { grid-template-columns: 1fr; }
+        .testimonials-grid { grid-template-columns: 1fr; }
+        .cta-banner { padding: var(--space-2xl) var(--space-lg); }
+      }
+      @media (max-width: 480px) {
+        .why-grid { grid-template-columns: 1fr; }
+        .hero-badge-row { flex-direction: column; align-items: center; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- ══ NAVBAR ══ -->
+    <nav class="navbar white-bg">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
+          </svg>
+        </span>
+        Kindergarden
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="home2.html">Home 2</a>
+        <a href="about.html">About</a>
+                <div class="nav-dropdown-wrap">
+          <a href="#" class="dropdown-trigger active">Programs <svg class="dropdown-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+          <div class="nav-dropdown">
+            <a href="services.html">Programs Overview</a>
+            <a href="admission.html" class="active">Admission Process</a>
+          </div>
+        </div>
+        <a href="gallery.html">Gallery</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <div class="profile-wrap">
+          <button class="profile-btn" aria-label="Profile menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </button>
+          <div class="profile-dropdown">
+            <a href="login.html">
+              <svg class="dropdown-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" y1="12" x2="3" y2="12" />
+              </svg>
+              Sign In / Register
+            </a>
+            <div class="divider"></div>
+            <a href="dashboard/user.html">
+              <svg class="dropdown-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              User Dashboard
+            </a>
+            <a href="dashboard/admin.html">
+              <svg class="dropdown-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+              Admin Dashboard
+            </a>
+          </div>
+        </div>
+        <button class="rtl-toggle" aria-label="Toggle language direction">RTL</button>
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+        <button class="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ══ HERO ══ -->
+    <section class="admission-hero" aria-label="Admission hero">
+      <div class="hero-shapes" aria-hidden="true">
+        <span></span><span></span>
+      </div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <div class="breadcrumb" style="justify-content: center; margin-bottom: var(--space-lg);">
+          <a href="index.html" style="color: #6ee7b7;">Home</a>
+          <span>/</span>
+          <a href="services.html" style="color: #6ee7b7;">Programs</a>
+          <span>/</span>
+          <span style="color: #ffffff; font-weight: 600;">Admission Process</span>
+        </div>
+        <h1>Begin Your Child's<br /><em>Journey With Us</em></h1>
+        <p>A simple, transparent, and family-friendly admission process designed to find the right fit for your child and give them the best possible start in life.</p>
+        <div class="hero-badge-row">
+          <div class="hero-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Ages 2 – 12 Years
+          </div>
+          <div class="hero-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            3 Academic Programs
+          </div>
+          <div class="hero-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Limited Seats Available
+          </div>
+          <div class="hero-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Rolling Admissions
+          </div>
+        </div>
+        <a href="contact.html" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; font-size: 1.0625rem; padding: 16px 40px;">
+          Begin Your Application
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ══ WHY KINDERGARDEN ══ -->
+    <section class="section" aria-labelledby="why-heading">
+      <div class="container">
+        <div style="text-align: center;">
+          <span class="section-label">Why Choose Us</span>
+          <h2 id="why-heading" class="section-title">What Makes Us Different</h2>
+          <p class="section-subtitle">We're not just an excellent school — we're a community where every child is seen, heard, and celebrated.</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-icon" style="background: linear-gradient(135deg, rgba(110,231,183,0.15), rgba(52,211,153,0.15));">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h4>Low Student-Teacher Ratio</h4>
+            <p>A maximum of 15 students per class ensures every child receives personalised attention and mentorship.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon" style="background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(139,92,246,0.15));">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
+            </div>
+            <h4>World-Class Curriculum</h4>
+            <p>Offering IB PYP, Cambridge, and Montessori programs, recognised by educational institutions worldwide.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon" style="background: linear-gradient(135deg, rgba(253,186,116,0.15), rgba(249,115,22,0.15));">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h4>Safe &amp; Nurturing Campus</h4>
+            <p>Our state-of-the-art campus features secure access systems, CCTV, and child-safe facilities throughout.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon" style="background: linear-gradient(135deg, rgba(255,107,107,0.12), rgba(239,68,68,0.12));">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h4>Holistic Development</h4>
+            <p>Beyond academics — arts, sports, mindfulness, music, and social-emotional learning are woven into every day.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ ADMISSION STEPS ══ -->
+    <section class="section" style="background: var(--bg-secondary);" aria-labelledby="steps-heading">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: var(--space-3xl);">
+          <span class="section-label">The Journey</span>
+          <h2 id="steps-heading" class="section-title">Our Admission Process</h2>
+          <p class="section-subtitle">Six thoughtful steps designed to ensure your child finds the right home at Kindergarden. We guide you every step of the way.</p>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="process-step">
+          <div class="step-image-wrap">
+            <img src="assets/images/admission_hero.png" alt="Family learning about Kindergarden programs" loading="lazy" />
+            <div class="step-number-badge">01</div>
+          </div>
+          <div class="step-content">
+            <span class="step-tag">Step 1</span>
+            <h3>Explore Our Programs &amp; Book a Call</h3>
+            <p>Your journey starts with curiosity. Browse our Montessori, Cambridge, and IB PYP programs online, then schedule a free 20-minute consultation call with our Admissions team. We'll answer your questions and help identify which program best matches your child's learning style and your family's values.</p>
+            <ul class="step-checklist">
+              <li>Review program overviews on our Programs page</li>
+              <li>Download the current Academic Year Prospectus</li>
+              <li>Book a free 20-min consultation via phone or Zoom</li>
+              <li>Receive a personalised program recommendation</li>
+            </ul>
+            <div class="step-duration-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Anytime — no appointment needed
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="process-step reverse">
+          <div class="step-image-wrap">
+            <img src="assets/images/admission_visit.png" alt="Family on a campus tour with school administrator" loading="lazy" />
+            <div class="step-number-badge">02</div>
+          </div>
+          <div class="step-content">
+            <span class="step-tag">Step 2</span>
+            <h3>Schedule a Campus Visit &amp; Open Day</h3>
+            <p>Experience Kindergarden firsthand. Book a personalised campus tour guided by our friendly Admissions counsellor. You and your child will explore classrooms, outdoor play areas, the library, and creative labs. We also host monthly Open Day events where you can meet teachers, see lessons in action, and connect with current parents.</p>
+            <ul class="step-checklist">
+              <li>Guided 60-minute campus walkthrough</li>
+              <li>Sit in on a live classroom session</li>
+              <li>Meet the Head of School and key teachers</li>
+              <li>Monthly Open Days every 2nd Saturday</li>
+            </ul>
+            <div class="step-duration-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              1 – 2 hours · Book 3 days in advance
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="process-step">
+          <div class="step-image-wrap">
+            <img src="assets/images/admission_interview.png" alt="Parent completing online application" loading="lazy" />
+            <div class="step-number-badge">03</div>
+          </div>
+          <div class="step-content">
+            <span class="step-tag">Step 3</span>
+            <h3>Submit Your Application Online</h3>
+            <p>Ready to apply? Complete our secure online application form. We've designed it to be simple, fast, and mobile-friendly — most families finish in under 15 minutes. Along with the form, upload the required documents and pay the non-refundable application processing fee of S$80.</p>
+            <ul class="step-checklist">
+              <li>Fill in the child's personal and medical details</li>
+              <li>Upload birth certificate &amp; previous school records</li>
+              <li>Submit a parent statement (optional but recommended)</li>
+              <li>Pay the S$80 application processing fee</li>
+              <li>Receive instant email confirmation of submission</li>
+            </ul>
+            <div class="step-duration-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              ~15 minutes · Available 24/7 online
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="process-step reverse">
+          <div class="step-image-wrap">
+            <img src="assets/images/gallery_classroom_1784219838321.png" alt="Child readiness assessment play session" loading="lazy" />
+            <div class="step-number-badge">04</div>
+          </div>
+          <div class="step-content">
+            <span class="step-tag">Step 4</span>
+            <h3>Child Readiness Assessment</h3>
+            <p>This is a relaxed, play-based activity session — not a formal exam. Our experienced teachers invite your child to spend 45 minutes in a classroom environment, engaging in age-appropriate activities. The goal is to understand your child's learning style, curiosity, and social readiness so we can place them in the best possible class and programme.</p>
+            <ul class="step-checklist">
+              <li>Play-based, stress-free activity session</li>
+              <li>Language, numeracy &amp; creative skills observed</li>
+              <li>Social and emotional wellbeing noted</li>
+              <li>Parents receive a brief written report</li>
+            </ul>
+            <div class="step-duration-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              45 minutes · On-campus
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="process-step">
+          <div class="step-image-wrap">
+            <img src="assets/images/about_section_1784219663514.png" alt="Family reviewing the Kindergarden offer letter" loading="lazy" />
+            <div class="step-number-badge">05</div>
+          </div>
+          <div class="step-content">
+            <span class="step-tag">Step 5</span>
+            <h3>Receive Your Offer &amp; Acceptance</h3>
+            <p>Within 5 working days of the assessment, our Admissions team will send you a formal offer letter by email and post. The offer letter includes your child's assigned program, class, and the start date. You will have 10 business days to accept the offer and secure your child's place.</p>
+            <ul class="step-checklist">
+              <li>Offer letter issued within 5 working days</li>
+              <li>Review the programme, class, and fees schedule</li>
+              <li>Sign and return the Acceptance Form digitally</li>
+              <li>Pay the first-month deposit to secure the seat</li>
+            </ul>
+            <div class="step-duration-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Accept within 10 business days
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="process-step reverse">
+          <div class="step-image-wrap">
+            <img src="assets/images/hero2_classroom.png" alt="Happy child on their first day at Kindergarden" loading="lazy" />
+            <div class="step-number-badge">06</div>
+          </div>
+          <div class="step-content">
+            <span class="step-tag">Step 6</span>
+            <h3>Welcome to Kindergarden — Your First Day!</h3>
+            <p>Congratulations — your child is officially part of the Kindergarden family! Before Day 1, you'll receive a Welcome Pack with a school calendar, uniform guidelines, meal plans, and your Parent Portal login. Our "Gentle Start" induction program helps new children transition comfortably into their new environment over the first two weeks.</p>
+            <ul class="step-checklist">
+              <li>Receive the Digital Welcome Pack &amp; school handbook</li>
+              <li>Access the Parent Portal for updates &amp; communications</li>
+              <li>Two-week Gentle Start transition programme</li>
+              <li>Meet your dedicated class teacher and pastoral tutor</li>
+              <li>Join the Parent Community WhatsApp group</li>
+            </ul>
+            <div class="step-duration-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              The beginning of something wonderful!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ ELIGIBILITY ══ -->
+    <section class="section" aria-labelledby="eligibility-heading">
+      <div class="container">
+        <div class="eligibility-wrap">
+          <div style="text-align: center; margin-bottom: var(--space-sm);">
+            <span style="display: inline-block; background: rgba(110,231,183,0.2); border: 1px solid rgba(110,231,183,0.3); color: #6ee7b7; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 9999px; padding: 6px 18px; margin-bottom: var(--space-md);">Eligibility &amp; Documents</span>
+            <h2 id="eligibility-heading" style="color: #fff; font-size: clamp(1.6rem, 3.5vw, 2.5rem); margin-bottom: var(--space-md);">Who Can Apply?</h2>
+            <p style="color: rgba(255,255,255,0.7); max-width: 580px; margin: 0 auto; line-height: 1.8;">Kindergarden welcomes children of all nationalities and backgrounds. We evaluate each child individually, with a focus on holistic fit rather than academic ability alone.</p>
+          </div>
+          <div class="eligibility-grid">
+            <div class="eligibility-card">
+              <h4><span>🎓</span> Program Age Eligibility</h4>
+              <ul>
+                <li>Nursery (Montessori): 2 – 3 years</li>
+                <li>Pre-K (Montessori / Cambridge): 3 – 4 years</li>
+                <li>Kindergarten 1 &amp; 2: 4 – 6 years</li>
+                <li>Primary 1 – 6 (Cambridge / IB PYP): 6 – 12 years</li>
+                <li>Age determined by birth date as of 1 January of the academic year</li>
+              </ul>
+            </div>
+            <div class="eligibility-card">
+              <h4><span>📄</span> Required Documents</h4>
+              <ul>
+                <li>Child's original birth certificate (with certified copy)</li>
+                <li>Passport-sized photograph (recent, colour)</li>
+                <li>Immunisation / vaccination records</li>
+                <li>Most recent school report card (if applicable)</li>
+                <li>Copy of parent/guardian passport or NRIC</li>
+                <li>Special needs or medical documentation (if applicable)</li>
+              </ul>
+            </div>
+            <div class="eligibility-card">
+              <h4><span>🌍</span> International Applicants</h4>
+              <ul>
+                <li>All nationalities are warmly welcomed</li>
+                <li>Dependent Pass or Student Pass required for non-citizens</li>
+                <li>English proficiency support available for EAL learners</li>
+                <li>Mid-year enrolment considered based on availability</li>
+              </ul>
+            </div>
+            <div class="eligibility-card">
+              <h4><span>📅</span> Important Dates</h4>
+              <ul>
+                <li>Academic year begins: January &amp; July intakes</li>
+                <li>Application portal opens: 3 months before intake</li>
+                <li>Priority deadline (siblings): 6 weeks before intake</li>
+                <li>Open Days: Every 2nd Saturday of the month</li>
+                <li>Enrolment confirmation: Rolling basis</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ TUITION OVERVIEW ══ -->
+    <section class="section" style="background: var(--bg-secondary);" aria-labelledby="tuition-heading">
+      <div class="container">
+        <div style="text-align: center;">
+          <span class="section-label">Fees &amp; Tuition</span>
+          <h2 id="tuition-heading" class="section-title">Transparent Tuition Plans</h2>
+          <p class="section-subtitle">No hidden fees. No surprises. We believe world-class education should be clearly priced and accessible to ambitious families.</p>
+        </div>
+        <div class="tuition-grid">
+          <div class="tuition-card">
+            <span class="tuition-age">Ages 2 – 4</span>
+            <h3>Early Learners</h3>
+            <div class="tuition-price">$1,200</div>
+            <div class="tuition-period">per month · Montessori</div>
+            <ul class="tuition-features">
+              <li>Full-day Montessori programme</li>
+              <li>Healthy snacks &amp; lunch included</li>
+              <li>Art, music &amp; movement sessions</li>
+              <li>Parent weekly progress updates</li>
+              <li>Before school care (7:30 AM)</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="width: 100%; text-align: center; justify-content: center;">Apply Now</a>
+          </div>
+          <div class="tuition-card featured">
+            <span class="tuition-age">Ages 5 – 7</span>
+            <h3>Kindergarten</h3>
+            <div class="tuition-price">$1,600</div>
+            <div class="tuition-period">per month · Cambridge / IB</div>
+            <ul class="tuition-features">
+              <li>Full-day Cambridge or IB PYP</li>
+              <li>3 nutritious meals daily</li>
+              <li>STEM lab &amp; creative arts</li>
+              <li>After school care (until 6 PM)</li>
+              <li>Bi-weekly parent-teacher reviews</li>
+              <li>Field trips &amp; excursions included</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="width: 100%; text-align: center; justify-content: center;">Apply Now</a>
+          </div>
+          <div class="tuition-card">
+            <span class="tuition-age">Ages 8 – 12</span>
+            <h3>Primary Years</h3>
+            <div class="tuition-price">$2,100</div>
+            <div class="tuition-period">per month · Cambridge / IB PYP</div>
+            <ul class="tuition-features">
+              <li>Full Cambridge / IB PYP curriculum</li>
+              <li>Advanced STEM &amp; coding labs</li>
+              <li>Leadership &amp; community projects</li>
+              <li>Foreign language programme</li>
+              <li>Dedicated academic counsellor</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="width: 100%; text-align: center; justify-content: center;">Apply Now</a>
+          </div>
+        </div>
+        <p style="text-align: center; color: var(--gray-500); font-size: 0.875rem; margin-top: var(--space-xl);">* Registration fee ($300) and uniform deposit ($150) are one-time charges. Financial aid and sibling discounts available — speak to our team.</p>
+      </div>
+    </section>
+
+    <!-- ══ FAQ ══ -->
+    <section class="section" aria-labelledby="faq-heading">
+      <div class="container" style="max-width: 860px;">
+        <div style="text-align: center;">
+          <span class="section-label">Questions Answered</span>
+          <h2 id="faq-heading" class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Everything parents commonly ask before taking the first step.</p>
+        </div>
+        <div class="faq-list" id="faqList">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Is Kindergarden right for my child even if they've never been to school before?
+              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="faq-answer"><p>Absolutely. Many of our Nursery children join with no prior school experience at all. Our Gentle Start programme and nurturing Montessori environment are specifically designed to make the transition as comfortable and joyful as possible, for both children and parents.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Is there an entry test or competitive exam for admission?
+              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="faq-answer"><p>No formal exam. We conduct a relaxed, play-based Readiness Assessment — not a test. The session helps our teachers understand your child's curiosity, communication style, and social readiness so we can support them well. There's nothing to prepare or practise for.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What is the difference between the Montessori, Cambridge, and IB PYP programmes?
+              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="faq-answer"><p>Montessori focuses on child-led exploration and independence (ideal for ages 2–6). Cambridge offers a structured global curriculum with internationally recognised qualifications. IB PYP is inquiry-based and internationally-minded, developing critical thinkers and communicators. Our Admissions team can help you choose during your consultation call.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Can we apply mid-year if we're relocating to Singapore?
+              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="faq-answer"><p>Yes. We accept mid-year applications on a rolling basis, subject to class availability. Families relocating internationally can complete the application process remotely, including the campus tour via a virtual session and a scheduled on-site assessment once in Singapore.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Are there sibling discounts or financial aid options?
+              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="faq-answer"><p>Yes. We offer a 10% sibling discount for the second child and 15% for the third child enrolled simultaneously. A limited number of merit-based bursaries are also available — please contact our Admissions office for a confidential discussion about financial assistance.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How soon will we hear back after submitting the application?
+              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="faq-answer"><p>You will receive an automated confirmation email immediately upon submission. Our Admissions team will contact you within 2 working days to schedule the Readiness Assessment. Following the assessment, an official offer letter is issued within 5 working days.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ TESTIMONIALS ══ -->
+    <section class="section" style="background: var(--bg-secondary);" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <div style="text-align: center;">
+          <span class="section-label">Parent Stories</span>
+          <h2 id="testimonials-heading" class="section-title">What Our Families Say</h2>
+          <p class="section-subtitle">Hear from parents who have been through the admission journey and are now proud members of the Kindergarden community.</p>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">The admission process was the smoothest we've ever experienced. From the campus tour to our son's first day, the team held our hand at every step. He absolutely loves school now — something we never expected to say at age 4!</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SL</div>
+              <div>
+                <div class="testimonial-name">Sophia &amp; Liam Chen</div>
+                <div class="testimonial-role">Parents of Ethan, Nursery 2024</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">We relocated from the UK and were worried about mid-year placement. The Kindergarden team made it incredibly easy — virtual tour, online application, and a wonderfully welcoming assessment day. Our daughter settled in within days.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">PB</div>
+              <div>
+                <div class="testimonial-name">Priya &amp; James Bradshaw</div>
+                <div class="testimonial-role">Parents of Anika, IB PYP Year 3</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">We toured three international schools before choosing Kindergarden. The Readiness Assessment was not stressful at all — our twins actually had fun. The teachers clearly genuinely love children. Worth every step of the process.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">AM</div>
+              <div>
+                <div class="testimonial-name">Ahmed &amp; Maya Al-Rashid</div>
+                <div class="testimonial-role">Parents of twins, Cambridge Primary 1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CTA ══ -->
+    <section class="section" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="cta-banner">
+          <h2 id="cta-heading">Ready to Take the First Step?</h2>
+          <p>Enrolments for the January 2026 intake are now open. Limited places available — don't miss the chance to secure your child's spot at Kindergarden International.</p>
+          <div class="cta-actions">
+            <a href="contact.html" class="btn-white">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Speak with Admissions
+            </a>
+            <a href="services.html" class="btn-outline-white">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
+              Explore Programs
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo footer-logo">
+              <span class="logo-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5" />
+                </svg>
+              </span>
+              Kindergarden
+            </a>
+            <p>Kindergarden International is a premium IB World School and Cambridge International Academy, offering world-class education for children aged 2 to 12 in a nurturing, inquiry-driven environment.</p>
+            <div class="footer-social">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="facebook-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z"/></svg>
+              </a>
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="twitter-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="instagram-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="youtube-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li>        <div class="nav-dropdown-wrap">
+          <a href="#" class="dropdown-trigger active">Programs <svg class="dropdown-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+          <div class="nav-dropdown">
+            <a href="services.html">Programs Overview</a>
+            <a href="admission.html" class="active">Admission Process</a>
+          </div>
+        </div></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Programs</h4>
+            <ul class="footer-links">
+              <li><a href="service-montessori.html">Montessori</a></li>
+              <li><a href="service-cambridge.html">Cambridge</a></li>
+              <li><a href="service-ib.html">IB PYP</a></li>
+              <li><a href="admission.html">Admission Process</a></li>
+              <li><a href="services.html">After School</a></li>
+              <li><a href="services.html">Summer Camp</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Get in Touch</h4>
+            <ul class="footer-contact">
+              <li>
+                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <a href="https://maps.google.com/?q=123+Learning+Lane,+Singapore+189721" target="_blank" rel="noopener noreferrer" class="footer-contact-link">123 Learning Lane,<br />Singapore 189721</a>
+              </li>
+              <li>
+                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <a href="tel:+6567890123" class="footer-contact-link">+65 6789 0123</a>
+              </li>
+              <li>
+                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <a href="mailto:hello@kindergarden.edu" class="footer-contact-link">hello@kindergarden.edu</a>
+              </li>
+              <li>
+                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <a href="contact.html#hours" class="footer-contact-link">Mon–Fri: 7:30 AM – 6:00 PM<br />Sat: 8:00 AM – 12:00 PM</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 Kindergarden International. All rights reserved.</span>
+          <div style="display: flex; gap: var(--space-lg);">
+            <a href="privacy.html" style="color: rgba(255,255,255,0.5); font-size: 0.875rem;">Privacy Policy</a>
+            <a href="terms.html" style="color: rgba(255,255,255,0.5); font-size: 0.875rem;">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" aria-label="Back to top">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="19" x2="12" y2="5" />
+        <polyline points="5 12 12 5 19 12" />
+      </svg>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script>
+      // FAQ accordion
+      document.querySelectorAll('.faq-question').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var item = btn.closest('.faq-item');
+          var isOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item').forEach(function(i) {
+            i.classList.remove('open');
+            i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            item.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

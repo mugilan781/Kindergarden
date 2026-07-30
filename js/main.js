@@ -7,6 +7,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initMobileMenu();
+  initNavDropdowns();
   initHeroSlider();
   initScrollReveal();
   initCounterAnimation();
@@ -48,12 +49,37 @@ function initMobileMenu() {
     document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
   });
 
-  document.querySelectorAll('.nav-links a').forEach(link => {
+  document.querySelectorAll('.nav-links a:not(.dropdown-trigger)').forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('active');
       navLinks.classList.remove('open');
       document.body.style.overflow = '';
     });
+  });
+}
+
+// === NAV DROPDOWNS ===
+function initNavDropdowns() {
+  const dropdownWrappers = document.querySelectorAll('.nav-dropdown-wrap');
+  dropdownWrappers.forEach(wrapper => {
+    const trigger = wrapper.querySelector('.dropdown-trigger');
+    if (!trigger) return;
+    
+    // Toggle active state on click for touch/mobile devices
+    trigger.addEventListener('click', (e) => {
+      if (window.innerWidth <= 1024) {
+        e.preventDefault();
+        e.stopPropagation();
+        wrapper.classList.toggle('open');
+      }
+    });
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-dropdown-wrap')) {
+      dropdownWrappers.forEach(w => w.classList.remove('open'));
+    }
   });
 }
 

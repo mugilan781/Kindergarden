@@ -561,6 +561,65 @@
           flex-direction: column;
         }
       }
+
+      /* ── Dark Mode Contrast Fixes for Blog Page ── */
+      [data-theme="dark"] .filter-btn {
+        background: #1C1C35 !important;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+        color: #CBD5E1 !important;
+      }
+      [data-theme="dark"] .filter-btn:hover {
+        background: rgba(255, 255, 255, 0.12) !important;
+        color: #ffffff !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+      }
+      [data-theme="dark"] .filter-btn.active {
+        background: var(--gradient-primary) !important;
+        color: #ffffff !important;
+        border-color: transparent !important;
+        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3) !important;
+      }
+
+      [data-theme="dark"] .category-card {
+        background: #1C1C35 !important;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      [data-theme="dark"] .category-card:hover {
+        background: #21213E !important;
+        border-color: rgba(139, 92, 246, 0.3) !important;
+      }
+      [data-theme="dark"] .category-card-info h4 {
+        color: #F8FAFC !important;
+      }
+      [data-theme="dark"] .category-card-count {
+        background: #131326 !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: #CBD5E1 !important;
+      }
+
+      [data-theme="dark"] .popular-card:hover {
+        background: rgba(255, 255, 255, 0.05) !important;
+      }
+      [data-theme="dark"] .popular-card-info h4 {
+        color: #F8FAFC !important;
+      }
+      [data-theme="dark"] .popular-card:hover .popular-card-info h4 {
+        color: var(--mint) !important;
+      }
+
+      [data-theme="dark"] .blog-search-box input {
+        background: #1C1C35 !important;
+        border-color: rgba(255, 255, 255, 0.12) !important;
+        color: #F8FAFC !important;
+      }
+      [data-theme="dark"] .blog-search-box input:focus {
+        background: #232342 !important;
+        border-color: var(--indigo) !important;
+        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25) !important;
+      }
+      [data-theme="dark"] .blog-search-box svg {
+        color: var(--mint) !important;
+      }
     </style>
     <link rel="stylesheet" href="css/responsive.css" />
   </head>
@@ -588,7 +647,13 @@
       </a>
       <div class="nav-links">
         <a href="index.html">Home</a> <a href="home2.html">Home 2</a>
-        <a href="about.html">About</a> <a href="services.html">Programs</a>
+        <a href="about.html">About</a>         <div class="nav-dropdown-wrap">
+          <a href="#" class="dropdown-trigger">Programs <svg class="dropdown-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+          <div class="nav-dropdown">
+            <a href="services.html">Programs Overview</a>
+            <a href="admission.html">Admission Process</a>
+          </div>
+        </div>
         <a href="gallery.html">Gallery</a>
         <a href="blog.html" class="active">Blog</a>
         <a href="contact.html">Contact</a>
@@ -1876,7 +1941,13 @@
             <ul class="footer-links">
               <li><a href="index.html">Home</a></li>
               <li><a href="about.html">About Us</a></li>
-              <li><a href="services.html">Programs</a></li>
+              <li>        <div class="nav-dropdown-wrap">
+          <a href="#" class="dropdown-trigger">Programs <svg class="dropdown-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+          <div class="nav-dropdown">
+            <a href="services.html">Programs Overview</a>
+            <a href="admission.html">Admission Process</a>
+          </div>
+        </div></li>
               <li><a href="gallery.html">Gallery</a></li>
               <li><a href="blog.html">Blog</a></li>
               <li><a href="contact.html">Contact</a></li>
