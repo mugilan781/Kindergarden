@@ -619,6 +619,11 @@
         .photo-stats-grid {
           grid-template-columns: repeat(2, 1fr);
         }
+        .tour-areas-grid {
+          grid-template-columns: repeat(2, 1fr);
+          padding: 0 var(--space-xl) var(--space-xl) !important;
+          box-sizing: border-box !important;
+        }
       }
       @media (max-width: 768px) {
         .page-hero {
@@ -640,6 +645,12 @@
         .virtual-tour-card {
           aspect-ratio: 16/9;
         }
+        .tour-areas-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: var(--space-md);
+          padding: 0 var(--space-lg) var(--space-lg) !important;
+          box-sizing: border-box !important;
+        }
       }
       @media (max-width: 480px) {
         .gallery-grid-custom {
@@ -650,6 +661,12 @@
         }
         .photo-stats-grid {
           grid-template-columns: 1fr;
+        }
+        .tour-areas-grid {
+          grid-template-columns: 1fr;
+          gap: var(--space-md);
+          padding: 0 var(--space-md) var(--space-md) !important;
+          box-sizing: border-box !important;
         }
       }
     </style>
@@ -1805,7 +1822,7 @@
           </div>
 
           <!-- Campus Exploration Area Captions & Descriptions -->
-          <div style="text-align: center; margin-top: var(--space-2xl); margin-bottom: var(--space-lg);">
+          <div style="text-align: center; margin-top: var(--space-2xl); margin-bottom: var(--space-lg); padding: 0 var(--space-lg);">
             <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--indigo-dark); font-family: var(--font-heading); margin-bottom: 4px;">Explore Key Campus Areas</h3>
             <p style="color: var(--gray-500); font-size: 0.9375rem; margin: 0;">Detailed descriptions of the featured learning environments visible in the Virtual Tour.</p>
           </div>

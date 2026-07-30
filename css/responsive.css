@@ -1901,7 +1901,7 @@
     aspect-ratio: auto !important;
     min-height: 280px !important;
     width: 100% !important;
-    max-width: 340px !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
     margin: 0 auto !important;
   }
